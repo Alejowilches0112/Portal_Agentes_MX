@@ -1,0 +1,60 @@
+﻿
+<header>
+    <div id="stuck_container" class="stuck_container">
+        <nav class="navbar navbar-default navbar-static-top ">
+            <div class="container">
+                <div class="navbar-header">
+                    <h1 class="navbar-brand">
+                        <a href="~/Home/">
+                            BayPort <br />
+                            <small>Grupo BayPort Finanzas</small>
+                        </a>
+                    </h1>
+                </div>
+
+                <div class="navbar-right">
+                    <ul class="navbar-nav sf-menu" data-type="navbar">
+                        <li class="active dropdown">
+                            <a href="./">Produccion</a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="~/Profile/index">Perfilar Clientes</a>
+                                </li>
+                                <li>
+                                    <a href="~/ReqByClient/index">Solicitudes por Cliente</a>
+                                </li>
+                                <li>
+                                    <a href="~/ReqByDate/index">Solicitudes por Fecha</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="#">Comisiones</a>
+                        </li>
+                        <li>
+                            <a href="#">PQR</a>
+                        </li>
+                        <li>
+                            <div class="text-right usr-div">
+                                <span class="glyphicon glyphicon-user img-circle"></span>
+                                <p class="usr-p">@Helper.SessionHelper.GetUser()</p>
+                            </div>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="~/Home/MailPwd">Cambiar Contraseña</a>
+                                </li>
+                                <li>
+                                    <a href="~/Home/Logout">Cerrar Sesión</a>
+                                </li>
+
+                            </ul>
+                        </li>
+                    </ul>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+</header>
+<hr />

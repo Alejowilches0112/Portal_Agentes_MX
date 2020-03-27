@@ -1,0 +1,338 @@
+﻿using Entities;
+using Helper;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Models
+{
+    public class MangerRequest
+    {
+        public bool MapEntity(InProfileService inputData, ProfileCustomer objProfile, ref OutOffer objOffer)
+        {
+            bool valid = true;
+            string message = string.Empty;
+            try
+            {
+                /* Validacion sobre Numero de Documento*/
+                if (( int.Parse( inputData.numDoc.Replace(".","") )> 0)  && (inputData.numDoc.Length <= 12))
+                {
+                    objProfile.identificationNumber = inputData.numDoc.Replace(".", "");
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en Documento";                    
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+                /* Validacion sobre primer nombre*/
+                if (!string.IsNullOrEmpty(inputData.pNombre))
+                {
+                    objProfile.name = inputData.pNombre;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en primer nombre";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /* Segundo nombre */
+                objProfile.secondName = inputData.sNombre != null ? inputData.sNombre : string.Empty;
+
+
+                /* Validacion sobre primer apellido*/
+                if (!string.IsNullOrEmpty(inputData.pApellido))
+                {
+                    objProfile.surname = inputData.pApellido;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en primer apellido";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                // Segundo apellido
+                objProfile.secondSurname = inputData.sApellido != null ? inputData.sApellido : string.Empty;
+
+
+                // Validacion celular
+                if (!string.IsNullOrEmpty(inputData.Celular ))
+                {
+                    objProfile.phone = inputData.Celular;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en el celular";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+                /*Validacion sobre fecha de Nacimiento*/
+
+                if (inputData.fecNac != null && inputData.fecNac.Length <= 10 && inputData.fecNac != string.Empty)
+                {
+                    CultureInfo provider = CultureInfo.InvariantCulture;
+                    objProfile.birthday = DateTime.ParseExact(inputData.fecNac.Substring(0, 10), "MM/dd/yyyy", provider);
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en Fecha Nacimiento";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre pagaduria*/
+                if (inputData.pagaduria > 0)
+                {
+                    objProfile.payable = inputData.pagaduria;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en pagaduria";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre fecha de ingreso*/
+                if (inputData.fecIng != null && inputData.fecIng.Length <= 10 && inputData.fecIng != string.Empty)
+                {
+                    CultureInfo provider = CultureInfo.InvariantCulture;
+                    objProfile.admissionDate = DateTime.ParseExact(inputData.fecIng.Substring(0, 10), "MM/dd/yyyy", provider);
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en Fecha Nacimiento";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre tipo de contrato*/
+                if (inputData.tipocontrato > 0)
+                {
+                    objProfile.contractType = inputData.tipocontrato;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en tipo de contrato";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre tipo de credito*/
+                if (inputData.tipoCredito > 0)
+                {
+                    objProfile.LoanType = inputData.tipoCredito;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en tipo de credito";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre linea de credito*/
+                if (inputData.lineCredito > 0)
+                {
+                    objProfile.LoanLine = inputData.lineCredito;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en linea de credito";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre estado*/
+                if (inputData.estado != "0" ) 
+                {
+                    objProfile.activePensioner = int.Parse (inputData.estado);
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en estado";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre rango*/
+                if (!string.IsNullOrEmpty(inputData.rango))
+                {
+                    objProfile.teacher = inputData.rango;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en rango";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion sobre monto solicitado*/
+                inputData.monto = inputData.monto.Replace(".", "");
+                if ( !string.IsNullOrEmpty(inputData.monto) && int.Parse (inputData.monto) > 0)
+                {
+                    objProfile.amount = int.Parse(inputData.monto);
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en monto solicitado";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Descuentos*/
+                objProfile.otherDiscounts = !string.IsNullOrEmpty(inputData.descuentos) ? int.Parse(inputData.descuentos.Replace(".", "")) : 0 ;
+
+                /*Otros ingresos*/
+                objProfile.additionalIncome = !string.IsNullOrEmpty(inputData.otroingreso) ? int.Parse(inputData.otroingreso.Replace(".", "")) : 0;
+
+                /*Retefuente*/
+                objProfile.retefuente = !string.IsNullOrEmpty(inputData.retefuente) ? int.Parse(inputData.retefuente.Replace(".", "")) : 0;
+
+
+                /*Validacion sobre Salario*/
+                inputData.salario = inputData.salario.Replace(".", "");
+                if (!string.IsNullOrEmpty(inputData.salario)  && int.Parse(inputData.salario) > 0)
+                {
+                    objProfile.salary = int.Parse(inputData.salario);
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en valor salario";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Fondo solidaridad*/
+                objProfile.solidarityFunds = !string.IsNullOrEmpty(inputData.solidaridad) ? int.Parse(inputData.solidaridad.Replace(".", "")):0;  
+
+                /*Dcto Pension*/
+                objProfile.pension = !string.IsNullOrEmpty(inputData.valorPension) ? int.Parse(inputData.valorPension.Replace(".", "")) : 0; 
+
+                /*Dcto Salud*/
+                objProfile.health = !string.IsNullOrEmpty(inputData.valorSalud) ? int.Parse(inputData.valorSalud.Replace(".", "")) : 0;  
+
+                /*Compra de cartera*/
+                objProfile.amountPurchasePortfolio = !string.IsNullOrEmpty(inputData.valorCartera) ? int.Parse(inputData.valorCartera.Replace(".", "")) : 0; 
+
+                /*Validacion convenio*/
+                if (!string.IsNullOrEmpty(inputData.convenio))
+                {
+                    objProfile.agreement = inputData.convenio;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en el convenio";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /*Validacion celular*/
+                if (!string.IsNullOrEmpty(inputData.Celular))
+                {
+                    objProfile.phone = inputData.Celular;
+                }
+                else
+                {
+                    valid = false;
+                    message = "Inconsistencias en el número de celular";
+                    objOffer.msg.errorMessage = message;
+                    objOffer.msg.errorCode = "400";
+                    LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", Helper.Utilities.ConvertToXml(inputData), "400-" + "|" + message, inputData.numDoc);
+                    return valid;
+                }
+
+                /* Detalle compra de cartera*/
+                if (inputData.cartera!=null)
+                {
+                    if (inputData.cartera.Count > 0)
+                    {
+                        objProfile.lstPurchase = new List<PurchaseDetail>();
+                        PurchaseDetail detail;
+                        foreach (var cartera in inputData.cartera)
+                        {
+                            detail = new PurchaseDetail();
+                            detail.balance = int.Parse(cartera.saldo.Replace(".", "")); 
+                            detail.entity = cartera.name;
+                            detail.monthlyPayment = int.Parse(cartera.cuota.Replace(".", ""));  
+                            detail.desprendible = cartera.desprendible;
+                            objProfile.lstPurchase.Add(detail);
+                        }
+                    }
+
+                }
+
+
+                objProfile.gender = inputData.gender;
+
+                /*Asesor*/
+                objProfile.agent = 10180;
+                objProfile.branch = 1002;
+                objProfile.regional = "CENTRO";
+                /*Validacion sobre plazo*/
+                objProfile.term = 72;
+
+                objOffer.msg.errorMessage = "/Profile/OfferResult";
+                objOffer.msg.errorCode = "200";
+
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "MangerRequest", "MapEntity", ex, "");
+                objOffer.msg.errorMessage = ex.InnerException.ToString();
+                objOffer.msg.errorCode = "400";
+            }
+            return valid;
+        }
+    }
+}

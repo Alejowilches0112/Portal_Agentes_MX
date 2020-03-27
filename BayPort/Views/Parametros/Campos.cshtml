@@ -1,0 +1,285 @@
+﻿
+@{
+    ViewBag.Title = "Campos Parámetrizados";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Campos Parámetrizados</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion" ng-init="getCampos();getTipoCredito();getPeriodos();getDependenciasActivas()">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNuevoCampo')">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Campos Parámetrizados</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="tableSucursales" class="table table-hover">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>Tipo Solicitud</th>
+                                <th>Dependencia/Empresa</th>
+                                <th>Tipo Producto</th>
+                                <th>Periodo</th>
+                                <th>Campo</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in Campos.ListCampos" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.solicitud}}</td>
+                                <td>{{item.dependencia}}</td>
+                                <td>{{item.producto}}</td>
+                                <td>{{item.periodo}}</td>
+                                <td>{{item.campo}}</td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdCampo(item.codigo_campo);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-danger btn-xs" ng-click=" openModal('myModalDeleteCampo'); objDelete(item);">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNuevoCampo" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNuevoCampo')">&times;</button>
+                        <h5 class="modal-title">Nuev Campo Parámetrizados</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-12">Tipo Solicitud</label>
+                                <button type="button" class="selectpicker form-control" data-toggle="collapse" data-target="#dropdown">Seleccione Tipo Solicitud</button>
+                                <div id="dropdown" class="collapse">
+                                    <div class="checkbox" ng-repeat="x in tiposSolicitud.ListTipoSolicitud">
+                                        <label class="dropdown-item"><input type="checkbox" ng-model="x.checked" id="{{x.secuencia}}" ng-change="ChangeSolicitud();">{{x.tipoSolicitud}}</label>
+                                    </div>
+                                </div>
+                                <span id="data-campo1"></span>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Dependencia/Empresa</label>
+                                <div class="col-sm-13">
+                                    <select required name="dependencia" class="selectpicker form-control" ng-model="newCampo.dependencia" ng-options="dependencia.secuencia as dependencia.dependencia for dependencia in dependenciasList.ListDependencias" ng-change="getDependenciasActivas();getProductoDependencia(newCampo.dependencia);">
+                                        <option value="">SELECCIONE DEPENDENCIA/EMPRESA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Producto</label>
+                                <div class="col-sm-13">
+                                    <select name="producto" class="selectpicker form-control" ng-model="newCampo.producto" ng-options="tipoProducto.secuencia as tipoProducto.producto for tipoProducto in productos.ListProductosDependencia" ng-change="getProductoDependencia(newCampo.dependencia);">
+                                        <option value="">SELECCIONE PRODUCTO</option>
+                                    </select>
+                                </div>
+                                <span id="data-campo"></span>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Periodo</label>
+                                <div class="col-sm-13">
+                                    <select required name="periodo" class="selectpicker form-control" ng-model="newCampo.periodo" ng-options="Periodo.secuencia as Periodo.periodo for Periodo in Periodos.ListPeriodos" ng-change="getPeriodos();">
+                                        <option value="">SELECCIONE PERIODO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label for="lblSucursal" class="control-label col-xs-6">Nombre del Campo Adicional</label>
+                                <div class="col-sm-13">
+                                    <select required name="periodo" class="selectpicker form-control" ng-model="newCampo.nombreCampo">
+                                        <option value="">SELECCIONE CAMPO ADICIONAL</option>
+                                        <option value="RECA">RECA</option>
+                                        <option value="NSS">NSS</option>
+                                        <option value="MONTO DEUDOR">MONTO DEUDOR</option>
+                                        <option value="MATRICULA">MATRÍCULA</option>
+                                        <option value="GRUPO">GRUPO</option>
+                                        <option value="ESPECIFICAR">ESPECIFICAR</option>
+                                        <option value="CLAVE TRABAJDOR">CLAVE TRABAJADOR</option>
+                                        <option value="DELEGACION">DELEGACIÓN</option>
+                                        <option value="CATEGORIA O TIPO DE PENSION">CATEGORIA O TIPO DE PENSION</option>
+                                        <option value="ADSCRIPCION O UBICACIÓN DEL PAGO">ADSCRIPCIÓN O UBICACIÓN DEL PAGO</option>
+                                        <option value="FECHA PRIMER PAGO">FECHA PRIMER PAGO</option>
+                                        <option value="FECHA ULTIMO PAGO">FECHA ÚLTIMO PAGO</option>
+                                        <option value="CLAVE_PRESUPUESTAL">CLAVE PRESUPUESTAL</option>
+                                        <option value="PAGADURIA">PAGADURIA</option>
+                                        <option value="NO_EMPLEADO">NÚMERO EMPLEADO</option>
+                                        <option value="FECHA INGRESO">FECHA INGRESO</option>
+                                        <option value="FECHA INGRESO">FECHA INGRESO</option>
+                                        <option value="CODIGO_POSTAL_OCP">CODIGO POSTAL OCUPACIÓN</option>
+                                        <option value="ENTIDAD_OCP">ENTIDAD OCUPACIÓN</option>
+                                        <option value="MUNICIPIO_OCP">MUNICIPIO OCUPACIÓN</option>
+                                        <option value="CLAVE_OCP">CLAVE</option>
+                                        <option value="CALLE_OCP">CALLE OCUPACIÓN</option>
+                                        <option value="COLONIA_OCP">COLONIA OCUPACIÓN</option>
+                                        <option value="TELEFONO_FIJO_OCP">TELEFONO FIJO</option>
+                                        <option value="EXTENSION_OCP">EXTENSIÓN </option>
+                                        <option value="LUGAR_TRABAJO_OCP">LUGAR DE TRABAJO </option>
+                                        <option value="NUMERO_EXT_OCP">NÚMERO EXTERIOR </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group" ng-if=" newCampo.nombreCampo != 'RECA'">
+                                <label for="lblGenero" class="control-label col-xs-6">Tipo de Dato</label>
+                                <div class="col-sm-8" ng-init='newCampo.tipoDato="N"'>
+                                    <label class="radio-inline col-xs-4" ng-if="newCampo.nombreCampo != 'CLAVE TRABAJDOR'"> <input ng-if="newCampo.nombreCampo != 'CLAVE TRABAJDOR'" type="radio" name="tipoDato" id="rbNumero" value="T" ng-checked="true" ng-model="newCampo.tipoDato"> Alfanumerico </label>
+                                    <!--<label class="radio-inline col-xs-3" ng-if="newCampo.nombreCampo != 'CLAVE TRABAJDOR'"> <input ng-if="newCampo.nombreCampo != 'CLAVE TRABAJDOR'" type="radio" name="tipoDato" id="rbTexto" value="T" ng-model="newCampo.tipoDato"> Texto </label>-->
+                                    <label class="radio-inline col-xs-3"> <input type="radio" name="tipoDato" id="rbOpciones" value="O" ng-model="newCampo.tipoDato"> Opciones </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group" ng-if="newCampo.tipoDato == 'O' && newCampo.nombreCampo != 'RECA'">
+                                <label for="lblinputOpciones" class="control-label col-xs-6">Opciones del campo (Separado por ,)</label>
+                                <input type="text" class="form-control" id="inputOpciones" ng-pattern="regexOocionesCampos" name="OpcionesCampoAdicional" ng-model="newCampo.opciones">
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblGenero" class="control-label col-xs-6">Campo Obligatorio</label>
+                                <div class="col-sm-8" ng-init="newCampo.obligatorio='S'">
+                                    <label class="radio-inline col-xs-4"> <input type="radio" name="obligatorio" id="rbSI" value="S" ng-checked="true" ng-model="newCampo.obligatorio"> SI </label>
+                                    <label class="radio-inline col-xs-4"> <input type="radio" name="obligatorio" id="rbNO" value="N" ng-model="newCampo.obligatorio"> NO </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="saveCampos()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEditCampo" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEditCampo')">&times;</button>
+                        <h5 class="modal-title">Editar Campo Parámetrizado</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Tipo Solciitud</label>
+                                <div class="col-sm-13">
+                                    <select disabled  name="solciitudUpd" class="selectpicker form-control" ng-model="Campo.solicitud" ng-options="tipoSolicitud.secuencia as tipoSolicitud.tipoSolicitud for tipoSolicitud in tiposSolicitud.ListTipoSolicitud" ng-change="getTipoCredito();">
+                                        
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Dependencia/Empresa</label>
+                                <div class="col-sm-13">
+                                    <select disabled name="dependenciaUpd" class="selectpicker form-control" ng-model="Campo.dependencia" ng-options="dependencia.secuencia as dependencia.dependencia for dependencia in dependenciasList.ListDependencias" ng-change="getDependencias();getProductoDependencia(Campo.dependencia);">
+                                        <option value="">SELECCIONE DEPENDENCIA/EMPRESA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Producto</label>
+                                <div class="col-sm-13">
+                                    <select disabled name="productoUpd" class="selectpicker form-control" ng-model="Campo.producto" ng-options="tipoProducto.secuencia as tipoProducto.producto for tipoProducto in productos.ListProductosDependencia" ng-change="getProductoDependencia(Campo.dependencia);">
+                                        <option value="">SELECCIONE PRODUCTO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Periodo</label>
+                                <div class="col-sm-13">
+                                    <select disabled name="periodoUpd" class="selectpicker form-control" ng-model="Campo.periodo" ng-options="Periodo.secuencia as Periodo.periodo for Periodo in Periodos.ListPeriodos" ng-change="getPeriodos();">
+                                        <option value="">SELECCIONE PERIODO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group">
+                                <label for="lblSucursal" class="control-label col-xs-6">Nombre del Campo Adicional</label>
+                                <div class="col-sm-13">
+                                    <select required name="CampoUpd" class="selectpicker form-control" ng-model="Campo.campo">
+                                        <option value="">SELECCIONE CAMPO ADICIONAL</option>
+                                        <option value="RECA">RECA</option>
+                                        <option value="NSS">NSS</option>
+                                        <option value="MONTO DEUDOR">MONTO DEUDOR</option>
+                                        <option value="MATRICULA">MATRÍCULA</option>
+                                        <option value="GRUPO">GRUPO</option>
+                                        <option value="ESPECIFICAR">ESPECIFICAR</option>
+                                        <option value="CLAVE TRABAJDOR">CLAVE TRABAJADOR</option>
+                                        <option value="DELEGACION">DELEGACIÓN</option>
+                                        <option value="CATEGORIA O TIPO DE PENSION">CATEGORIA O TIPO DE PENSION</option>
+                                        <option value="ADSCRIPCION O UBICACIÓN DEL PAGO">ADSCRIPCIÓN O UBICACIÓN DEL PAGO</option>
+                                        <option value="FECHA PRIMER PAGO">FECHA PRIMER PAGO</option>
+                                        <option value="FECHA ULTIMO PAGO">FECHA ÚLTIMO PAGO</option>
+                                        <option value="CLAVE_PRESUPUESTAL">CLAVE PRESUPUESTAL</option>
+                                        <option value="PAGADURIA">PAGADURIA</option>
+                                        <option value="NO_EMPLEADO">NÚMERO EMPLEADO</option>
+                                        <option value="FECHA INGRESO">FECHA INGRESO</option>
+                                        <option value="CODIGO_POSTAL_OCP">CODIGO POSTAL OCUPACIÓN</option>
+                                        <option value="ENTIDAD_OCP">ENTIDAD OCUPACIÓN</option>
+                                        <option value="MUNICIPIO_OCP">MUNICIPIO OCUPACIÓN</option>
+                                        <option value="CLAVE_OCP">CLAVE</option>
+                                        <option value="CALLE_OCP">CALLE OCUPACIÓN</option>
+                                        <option value="COLONIA_OCP">COLONIA OCUPACIÓN</option>
+                                        <option value="TELEFONO_FIJO_OCP">TELEFONO FIJO</option>
+                                        <option value="EXTENSION_OCP">EXTENSIÓN </option>
+                                        <option value="LUGAR_TRABAJO_OCP">LUGAR DE TRABAJO </option>
+                                        <option value="NUMERO_EXT_OCP">NÚMERO EXTERIOR </option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group" ng-if=" Campo.campo != 'RECA'">
+                                <label for="lblGenero" class="control-label col-xs-6">Tipo de Dato</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline col-xs-4" ng-if="Campo.campo != 'CLAVE TRABAJDOR'"> <input ng-if="Campo.campo != 'CLAVE TRABAJDOR'" type="radio" name="tipoDatoT" id="rbAlfaNumericoUpd" value="T" ng-model="Campo.tipo_dato"> Alfanumerico </label>
+                                    <!--<label class="radio-inline col-xs-3"ng-if="Campo.campo != 'CLAVE TRABAJDOR'"> <input ng-if="Campo.campo != 'CLAVE TRABAJDOR'"type="radio" name="tipoDato" id="rbTexto" value="T" ng-model="Campo.tipo_dato"> Texto </label>-->
+                                    <label class="radio-inline col-xs-3"> <input type="radio" name="tipoDato" id="rbOpcionesUpd" value="O" ng-model="Campo.tipo_dato"> Opciones </label>
+                                </div>
+                            </div>
+                            <div class="col-xs-12 form-group" ng-if="Campo.tipo_dato == 'O' &&  Campo.campo != 'RECA'">
+                                <label for="lblinputOpciones" class="control-label col-xs-6">Opciones del campo (Separado por ,)</label>
+                                <input type="text" class="form-control" id="inputOpcionesUpd" ng-pattern="regexOocionesCampos" name="OpcionesCampoAdicional" ng-model="Campo.opciones">
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblGenero" class="control-label col-xs-6">Campo Obligatorio</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline col-xs-4"> <input type="radio" name="obligatorio" id="rbSIUpd" value="S" ng-checked="true" ng-model="Campo.obligatorio"> SI </label>
+                                    <label class="radio-inline col-xs-4"> <input type="radio" name="obligatorio" id="rbNOUpd" value="N" ng-model="Campo.obligatorio"> NO </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="updCampo(Campo.codigo_campo,Campo.campo,Campo.tipo_dato,Campo.opciones,Campo.obligatorio)">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalDeleteCampo" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalDeleteCampo')">&times;</button>
+                        <h5 class="modal-title">Eliminar Campos Parámetrizado</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Este Campo Parámetrizado?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deleteCampo(objEliminar.codigo_campo)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDeleteCampo')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

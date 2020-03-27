@@ -1,0 +1,111 @@
+﻿
+@{
+    ViewBag.Title = "Periodos";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Periodos</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion" ng-init="getPeriodos()">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNueva')">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Periodos </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>Periodos</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in Periodos.ListPeriodos" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.periodo}}</td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdPeriodo(item.secuencia);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-danger btn-xs" ng-click="objDelete(item);openModal('myModalDelete')">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNueva" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNueva')">&times;</button>
+                        <h5 class="modal-title">Nuevo Tipos de Periodo</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 form-group">
+                                <label for="lblPeriodo" class="control-label col-xs-6">Tipos de Periodo</label>
+                                <input type="text" class="form-control" id="inputPeriodo" name="nombrePeriodo" ng-model="newPeriodo.nombre" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="savePeriodo()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEdit')">&times;</button>
+                        <h5 class="modal-title">Editar Tipos de Periodo</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-12 form-group">
+                                <label for="lblPeriodo" class="control-label col-xs-6">Tipos de Periodo</label>
+                                <input type="text" class="form-control" id="inputPeriodoEdit" name="nombrePeriodo" ng-model="Periodo.periodo" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs"  ng-click="updPeriodo(Periodo.secuencia, Periodo.periodo)">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalDelete" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalDelete')">&times;</button>
+                        <h5 class="modal-title">Eliminar Tipos de Periodo</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Este Tipos de Periodo?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deletePeriodo(objEliminar.secuencia)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDelete')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

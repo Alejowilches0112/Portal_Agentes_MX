@@ -1,0 +1,40 @@
+﻿using Entities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Web;
+using System.Web.UI;
+using System.Xml;
+
+
+namespace Helper
+{
+    public class Utilities
+    {
+        public static OutMailInformation GetMailInformation(string templatePath)
+        {
+            OutMailInformation mailInformation = new OutMailInformation();
+            try
+            {
+                XmlDocument doc = new XmlDocument();
+                string xmlTemplatePath = HttpContext.Current.Server.MapPath(templatePath);
+                doc.Load(xmlTemplatePath);
+                if (doc.GetElementsByTagName("to").Item(0) != null)
+                    mailInformation.to = doc.GetElementsByTagName("to").Item(0).InnerText;
+                if (doc.GetElementsByTagName("subject").Item(0) != null)
+                    mailInformation.subject = doc.GetElementsByTagName("subject").Item(0).InnerText;
+                if (doc.GetElementsByTagName("message").Item(0) != null)
+                    mailInformation.message = doc.GetElementsByTagName("message").Item(0).InnerText;
+            }
+            catch (Exception ex)
+            {
+                LogHelper.WriteLog("Helper", "Utilities", "GetMailRecipient", ex, "");
+            }
+
+            return mailInformation;
+        }
+       
+    }
+}

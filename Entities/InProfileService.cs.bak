@@ -1,0 +1,45 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+
+namespace Entities
+{
+    public class InProfileService
+    {
+        public string numDoc { get; set; }
+        public string pNombre { get; set; }
+        public string sNombre { get; set; }
+        public string pApellido { get; set; }
+        public string sApellido { get; set; }
+        public int gender { get; set; }
+
+        [Required]
+        [DataType("YYYY-MM-DD 00:00:00")]
+        public string fecNac { get; set; }
+        public int pagaduria { get; set; }
+        public string fecIng { get; set; }
+        public int tipocontrato { get; set; }
+        public int tipoCredito { get; set; }
+        public int lineCredito { get; set; }
+        public string estado { get; set; }
+        public string rango { get; set; }
+        public string term { get; set; } = "0";
+        public string monto { get; set; }
+      /*  public int cuota { get; set; }
+        public int saldo { get; set; }*/
+
+        public string Celular { get; set; }
+
+        public List<cartera> cartera { get; set; }
+
+        public string descuentos { get; set; }
+        public string otroingreso { get; set; }
+        public string retefuente { get; set; }
+        public string salario { get; set; }
+        public string solidaridad { get; set; }
+        public string valorPension { get; set; }
+        public string valorSalud { get; set; }
+        public string valorCartera { get; set; }
+        public string convenio { get; set; }
+    }
+}

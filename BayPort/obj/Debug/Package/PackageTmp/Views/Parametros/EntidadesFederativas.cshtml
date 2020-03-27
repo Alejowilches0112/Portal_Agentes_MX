@@ -1,0 +1,146 @@
+﻿
+@{
+
+    ViewBag.Title = "Entidades Federativas";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Entidades Federativas</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion" ng-init="getEntidadFederativa();getPaises();">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNueva')">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Entidades Federativas</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>Entidad Federativa</th>
+                                <th>País</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in Entidades.ListEntidades" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.nombre_entidad}}</td>
+                                <td>{{item.codigo_pais}}</td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdEntidadFederativa(item.codigo_entidad);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-danger btn-xs" ng-click="openModal('myModalDelete'); objDelete(item);">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNueva" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNueva')">&times;</button>
+                        <h5 class="modal-title">Nueva Entidad Federativa</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">País</label>
+                                <div class="col-sm-13">
+                                    <select id="SelectPeriodo" required class="selectpicker form-control" ng-model="NewEntidadFed.pais" ng-options="Pais.codigo_pais as Pais.nombre_pais for Pais in Paises.ListPais" ng-change="getPaises();">
+                                        <option value="">SELECCIONE PAÍS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEditPlazo" class="control-label col-xs-12">Código Entidad Federativa</label>
+                                <input type="text" class="form-control" id="inputDependencia" name="nombrePlazo" ng-model="NewEntidadFed.codigo" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEditPlazo" class="control-label col-xs-12">Nombre Entidad Federativa</label>
+                                <input type="text" class="form-control" id="inputDependencia" name="nombrePlazo" ng-model="NewEntidadFed.nombre" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEditPlazo" class="control-label col-xs-12">Abreviatura Entidad Federativa</label>
+                                <input type="text" class="form-control" id="inputDependencia" name="abrvEntid" ng-model="NewEntidadFed.abreviatura" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="saveEntidadFederativa()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEdit')">&times;</button>
+                        <h5 class="modal-title">Editar Entidad Federativa</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">País</label>
+                                <div class="col-sm-13">
+                                    <select disabled id="SelectPeriodo" class="selectpicker form-control" ng-model="EntidadFederativa.codigo_pais" ng-options="Pais.codigo_pais as Pais.nombre_pais for Pais in Paises.ListPais" ng-change="getPaises();">
+                                        <option value="">SELECCIONE PAÍS</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEditPlazo" class="control-label col-xs-12">Código Entidad Federativa</label>
+                                <input disabled type="text" class="form-control" id="inputDependencia" name="nombrePlazo" ng-model="EntidadFederativa.codigo_entidad">
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEditPlazo" class="control-label col-xs-12">Nombre Entidad Federativa</label>
+                                <input type="text" class="form-control" id="inputDependencia" name="nombrePlazo" ng-model="EntidadFederativa.nombre_entidad" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEditPlazo" class="control-label col-xs-12">Abreviatura Entidad Federativa</label>
+                                <input type="text" class="form-control" id="inputDependencia" name="abrvEntid" ng-model="EntidadFederativa.abreviatura" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="updEntidadFederativa(EntidadFederativa.codigo_entidad, EntidadFederativa.nombre_entidad, EntidadFederativa.abreviatura)">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalDelete" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalDelete')" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Eliminar Entidad Federativa</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Esta Entidad Federativa?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deleteEntidadFederativa(objEliminar.codigo_entidad)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDelete')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

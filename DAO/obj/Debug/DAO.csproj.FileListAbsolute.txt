@@ -1,0 +1,143 @@
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\DAO.dll
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\DAO.pdb
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\Entities.dll
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\Helper.dll
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\Entities.pdb
+D:\Desarrollo\BayPortWeb\DAO\bin\Debug\Helper.pdb
+D:\Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.dll
+D:\Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\DAO.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\DAO.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\Helper.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\bin\Debug\Helper.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\obj\Debug\DAO.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\DAO\obj\Debug\DAO.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\DAO.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\DAO.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\Entities.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\Helper.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\Entities.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\bin\Debug\Helper.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\obj\Debug\DAO.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\DAO\obj\Debug\DAO.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\DAO.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\DAO.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\Helper.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\bin\Debug\Helper.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\DAO\obj\Debug\DAO.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\DAO.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\DAO.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\Entities.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\Helper.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\Entities.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\bin\Debug\Helper.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\obj\Debug\DAO.csprojResolveAssemblyReference.cache
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\obj\Debug\DAO.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\DAO\obj\Debug\DAO.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\DAO.pdb
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Entities.pdb
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\bin\Debug\Helper.pdb
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb

@@ -1,0 +1,707 @@
+﻿@model BayPortColombia.ViewModels.OfferViewModel
+@{
+    ViewBag.Title = "OfferResult";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+
+
+<ol class="breadcrumb">
+    <li><a href="#">Producción</a></li>
+    <li><a href="#">Perfilar Cliente</a></li>
+</ol>
+<div class="contentSeguro" ng-controller="PerfilarController">
+    <form name="offerform" autocomplete="off">
+
+        <div class="col-md-3 col-xs-3 col-sm-3">
+            <img src="~/images/pareja.png" class="fondoOferta" alt="pareja">
+        </div>
+
+        <div class="col-md-9 col-xs-9 col-sm-9">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6 imgInfoCredito">
+                    <div class="msgbox">
+                        <img alt="Correcto" src="~/images/msgInformacionCredito.png">
+                    </div>
+                </div>
+
+                <div class=" col-xs-12 col-sm-12 col-md-12 text-center cabecera">
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 cabOferta">
+                            <div>
+                                <text><b>Oferta</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 cabMonto">
+                            <div>
+                                <text><b>Monto</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 cabPlazo">
+                            <div>
+                                <text><b>Plazo</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 cabCuota">
+                            <div>
+                                <text><b>Cuota</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 cabCapacidad">
+                            <div>
+                                <text><b>Capacidad</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 cabEleccion">
+                            <div>
+                                <text><b>Elección</b></text>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 ofertaSolicitada">
+
+                            <div>
+                                <text><b>Solicitada</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 priMonto">
+                            <div>
+                                <text>{{ofertaaceptada.amountClientIsurance | currency:undefined:0}}</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 priPlazo">
+                            <div>
+                                <text>@Model.profileOffer.termClient</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 priCuota">
+                            <div>
+                                <text>{{ofertaaceptada.monthlyPayment | currency:undefined:0}}</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 priCapacidad">
+                            <div>
+                                <text>$@Model.profileOffer.capacity.ToString("N0")</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 priEleccion">
+                            <div class="divPriEleccion" ng-click="AceptarOferta(true)">
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 ofertaMaxima">
+
+                            <div>
+                                <text><b>Máxima</b></text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 segMonto">
+                            <div>
+                                <text>$@Model.profileOffer.maximumAmount.ToString("N0")</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 segPlazo">
+                            <div>
+                                <text>@Model.profileOffer.maximunTerm</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 segCuota">
+                            <div>
+                                <text>$@Model.profileOffer.monthlyPayment.ToString("N0")</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 segCapacidad">
+                            <div>
+                                <text>$@Model.profileOffer.capacity.ToString("N0")</text>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 segEleccion">
+                            <div class="divSegEleccion" ng-click="AceptarOferta(false)">
+                                <i class="fa fa-check"></i>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+
+
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+                            <img class="imagenCambioCondiciones" ng-click="RecalcularOferta()" alt="Correcto" src="http://clientesbayport.com/images/cambio_condiciones_nuevo.png"><br><text style="
+                                      font-size: 0.8em;
+                                      color: #141545;
+                                  ">Cambiar Condiciones</text>
+                        </div>
+
+                        <div class="col-xs-1 col-sm-1 col-md-1">
+
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2 ">
+                            <img class="imagenRechazo" data-target="#myModal" data-toggle="modal" ng-click="RechazarOferta()" alt="Correcto" src="http://clientesbayport.com/images/rechazar_nuevo.png"><br><text style="font-size: 0.8em;
+                                                                           color: #141545;">Rechazar Oferta</text>
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+
+                        </div>
+
+                        <div class="col-xs-2 col-sm-2 col-md-2">
+
+                        </div>
+
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-2 col-sm-2 col-md-2 divTextSeguroVol">
+                            <text><b>Seguro Voluntario Accidentes Personales</b></text>
+                        </div>
+                        <div class="col-xs-8 col-sm-8 col-md-8 valoresCoberturaSel">
+                            <div class="row">
+                                <div class="col-xs-2 col-sm-2 col-md-2 col-xs-offset-1 col-sm-offset-1 col-md-offset-1" style="margin-top: 20px;">
+                                    <text id="textCoberturaEn" ng-hide="ofertaaceptada.applyInsurance"><b>Cobertura</b></text>
+
+                                </div>
+                                <div class="separador"></div>
+                                <div class="col-xs-8 col-sm-8 col-md-8 text-center textoOfertaCoberturaM" style="margin-top: 20px;">
+
+                                    <div ng-if="ofertaaceptada.selectedOffer.length == 0">
+                                        INDIVIDUAL
+                                        <b ng-hide="ofertaaceptada.applyInsurance">{{ofertaaceptada.PpalOffer | currency:undefined:0 }}</b>
+                                    </div>
+
+                                    <div ng-if="ofertaaceptada.selectedOffer.length > 0">
+                                        PRINCIPAL
+                                        <b ng-hide="ofertaaceptada.applyInsurance">{{ofertaaceptada.PpalOffer | currency:undefined:0 }}</b>
+                                    </div>
+                                </div>
+
+
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-10 col-sm-10 col-md-10 valorDiario">
+
+                                    <div style="height:15px;"></div>
+                                    <div>
+                                        <text class="textUno">
+                                            <b ng-hide="ofertaaceptada.applyInsurance">Desde </b>
+                                            <b ng-show="ofertaaceptada.applyInsurance"> </b>
+                                        </text>
+                                        <text class="textDos">
+                                            <b ng-show="ofertaaceptada.applyInsurance">{{NoAplicaSeguro}}</b>
+                                            <b ng-hide="ofertaaceptada.applyInsurance">{{ofertaaceptada.dailyValue | currency:undefined:0 }}</b>
+                                        </text>
+                                        <text class="textTres">
+                                            <b ng-hide="ofertaaceptada.applyInsurance">diarios*</b>
+                                            <b ng-show="ofertaaceptada.applyInsurance"> </b>
+                                        </text>
+                                    </div>
+                                    <div style="height: 10px;"></div>
+
+
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="col-xs-2 col-sm-2 col-md-2 text-center divBotonSeguro">
+
+                            <div class="btnSeguro" id="divSeguros" ng-hide="ofertaaceptada.applyInsurance">
+                                <img class="imagenSeguro" alt="Correcto" src="http://clientesbayport.com/images/icon_seguro_dos.png"><br>
+                                <text class="textoBotonSeguro">Ver oferta</text>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-xs-10 col-sm-10 col-md-9">
+
+                            <div class="row">
+                                <div class="col-xs-6 col-sm-6 col-md-6 text-left" id="divOfertaTotalEn" ng-hide="ofertaaceptada.applyInsurance">
+                                    <text class="textoOfertaMensual"><b>Valor mensual: </b></text>
+                                    <text class="texto1">{{ofertaaceptada.monthValue | currency:undefined:0 }} </text>
+
+                                </div>
+
+                                <div class="col-xs-6 col-sm-6 col-md-6 text-right">
+                                    <div class="notaHijos" id="divNotaHijos" ng-hide="ofertaaceptada.applyInsurance">*Número máximo de hijos por asegurar: 6</div>
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-top: 0px;">
+
+                                <div class="col-xs-10 col-sm-10 col-md-6 text-left" id="divOfertaMensualEn" ng-hide="ofertaaceptada.applyInsurance">
+
+                                    <text class="textoOfertaTotal"><b>Valor prima total: </b></text>
+                                    <text class="texto2">{{ofertaaceptada.isurancePlanValue | currency:undefined:0 }} </text>
+
+                                </div>
+
+                            </div>
+                            <div class="row" style="margin-top: 0px;">
+
+                                <div class="text-left checkAplica" id="divCheckAplica">
+                                    <input name="apliSeguro" id="apliSeguro" type="checkbox" value="1" ng-click="setNoAplicaSeguro($event)"> No aplicar seguro<br>
+                                </div>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+
+
+        <div class="modal fade in " id="myModalSeguros" role="dialog">
+
+            <div class="modal-dialog" role="document" style="width:90%">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="container" style="background-color:#ededed; height:600px;">
+
+                            <div class="row">
+
+                                <div class="col-xs-8 col-sm-6">
+
+                                    <img alt="Correcto" src="http://clientesbayport.com/images/familiar.PNG" style="height: 10em;margin-left: 10px;">
+
+                                </div>
+
+                                <div class="col-xs-4 col-sm-6 text-center">
+
+                                    <img alt="Correcto" src="http://clientesbayport.com/images/mensajeOfertaSeguro.PNG" style=" height: 150px;">
+
+                                </div>
+
+                            </div>
+
+                            <div class="row" style="font-size: small; font-family: calibri;">
+
+                                <div class="col-xs-2 contentNombreSeguro col-xs-offset-1 border-left text-center"><text><b>Seguro de accidentes personales voluntario</b></text></div>
+
+                                <div class="col-xs-1 contentNombreSeguro altodiv border-center ubicacion-center text-center"><text><b>Asegurados</b></text></div>
+
+                                <div class="col-xs-1 contentNombreSeguro altodiv border-center ubicacion-center text-center"><text><b>Valor Asegurado</b></text></div>
+
+                                <div class="col-xs-1 contentNombreSeguro altodiv border-center ubicacion-center text-center"><text><b>Prima Mensual</b></text></div>
+
+                                <div class="col-xs-1 contentNombreSeguro altodiv border-center ubicacion-center text-center"><text style="/* padding: 0px 3px; */"><b>Prima Diaria</b></text></div>
+
+                                <div class="col-xs-1 contentNombreSeguro altodiv border-center ubicacion-center text-center"><text><b>Vigencia</b></text></div>
+
+                                <div class="col-xs-2 contentNombreSeguro altodiv border-center ubicacion-center text-center"><text><b>Valor Prima Total</b></text></div>
+
+                                <div class="col-xs-1 contentNombreSeguro altodiv border-rigth text-center"><text><b>Elección</b></text></div>
+
+                            </div>
+
+
+
+                            @{ var i = 1; }
+
+                            @foreach (var res in Model.insurancePolicy.lstInsurancePolicy)
+
+                        {
+
+                            var vlrMensual = @res.PolicyValue / @res.YearsValidity;
+
+                            var vlrDiario = (@res.PolicyValue / @res.YearsValidity) / 30;
+
+                            var principal = "";
+
+                            var lstRela = @Model.insurancePolicy.lstInsurancePolicyRel.Where(x => x.PlanCode == @res.PlanCode);
+
+                            <div class="row text-center" style="font-size:small; font-family: calibri; margin-top: 3px;">
+
+                                <div class="col-xs-2 col-xs-offset-1 border-left aseguradosOpcion1
+
+                                            @((i==2 ? "fondo-azul": i==3 ? "alto-caja fondo-gris" : i==4 ? "alto-caja fondo-azul" : "alto-caja-normal fondo-gris"))">
+
+                                    <text><b>@res.PlanName</b> </text>
+
+                                </div>
+
+                                <div class="col-xs-1 border-center ubicacion-center aseguradosOpcion1 @((i==2 ? "fondo-azul": i==3 ? "fondo-gris" : i==4 ? "fondo-azul" : "fondo-gris"))">
+
+                                    <text>
+
+                                        <b>
+
+                                            @{
+
+                                            principal = "PRINCIPAL";
+
+                                            @principal
+
+                                        if (lstRela.Count() > 0)
+
+                                        {
+
+                                            foreach (var item in lstRela)
+
+                                            {
+
+                                                <br />
+
+                                            principal = item.RelationshipName;
+
+                                            @principal
+
+
+
+
+
+                                    }
+
+                                }
+
+                                            }
+
+                                        </b>
+
+                                    </text>
+
+                                </div>
+
+                                <div class="col-xs-1 border-center ubicacion-center aseguradosOpcion1 @((i==2 ? "fondo-azul": i==3 ? "fondo-gris" : i==4 ? "fondo-azul" : "fondo-gris"))">
+
+                                    <text>
+
+                                        <b>
+
+                                            @{
+
+                                            var pesos = "$";
+
+                                            @pesos @res.CovertureValue.ToString("N0")
+
+                                        if (lstRela.Count() > 0)
+
+                                        {
+
+                                            foreach (var item in lstRela)
+
+                                            {
+
+                                                <br />
+
+                                            principal = item.InsuredValue.ToString("N0");
+
+                                            @pesos @principal
+
+
+
+                                    }
+
+                                }
+
+                                            }
+
+                                        </b>
+
+                                    </text>
+
+                                </div>
+
+                                <div class="col-xs-1 border-center ubicacion-center aseguradosOpcion1 @((i==2 ? "fondo-azul": i==3 ? "fondo-gris" : i==4 ? "fondo-azul" : "fondo-gris"))">
+
+                                    <text> 
+
+                                        <b>
+
+                                            @{
+
+                                                @pesos @vlrMensual.ToString("N0")
+
+                                            if (lstRela.Count() > 0)
+
+                                            {
+
+                                                <br />
+
+                                            foreach (var item in lstRela)
+
+                                            {
+
+                                                <br />
+
+                                        }
+
+                                    }
+
+                                            }
+
+                                        </b>
+
+                                    </text>
+
+                                </div>
+
+                                <div class="col-xs-1 border-center ubicacion-center aseguradosOpcion1  @((i==2 ? "fondo-azul": i==3 ? "alto-caja fondo-gris" : i==4 ? "alto-caja fondo-azul" : "alto-caja-normal fondo-gris"))">
+
+                                    <text>
+
+                                        <b>
+
+                                            $@vlrDiario.ToString("N0")
+
+                                            @if (lstRela.Count() > 0)
+
+                                        {
+
+                                            foreach (var item in lstRela)
+
+                                            {
+
+                                                <br />
+
+                                        }
+
+                                    }
+
+                                        </b>
+
+                                    </text>
+
+                                </div>
+
+                                <div class="col-xs-1  border-center ubicacion-center aseguradosOpcion1  @((i==2 ? "fondo-azul": i==3 ? "alto-caja fondo-gris" : i==4 ? "alto-caja fondo-azul" : "alto-caja-normal fondo-gris"))">
+
+                                    <text>
+
+                                        <b>
+
+                                            @res.YearsValidity
+
+                                            @if (lstRela.Count() > 0)
+
+                                        {
+
+                                            foreach (var item in lstRela)
+
+                                            {
+
+                                                <br />
+
+                                        }
+
+                                    }
+
+                                        </b>
+
+                                    </text>
+
+                                </div>
+
+                                <div class="col-xs-2 border-center ubicacion-center aseguradosOpcion1  @((i==2 ? "fondo-azul": i==3 ? "alto-caja fondo-gris" : i==4 ? "alto-caja fondo-azul" : "alto-caja-normal fondo-gris"))">
+
+                                    <text>
+
+                                        <b>
+
+                                            $@res.PolicyValue.ToString("N0")
+
+                                            @if (lstRela.Count() > 0)
+
+                                        {
+
+                                            foreach (var item in lstRela)
+
+                                            {
+
+                                                <br />
+
+                                        }
+
+                                    }
+
+                                        </b>
+
+                                    </text>
+
+                                </div>
+
+                                <div class="col-xs-1  border-rigth aseguradosOpcion1  @((i==2 ? "fondo-azul": i==3 ? "alto-caja fondo-gris" : i==4 ? "alto-caja fondo-azul" : "alto-caja-normal fondo-gris"))">
+
+                                    <input name="eleccionOpcionSeguro" ng-click="seleccionarSeguro($event)" class="elecSeg" type="radio"
+                                           @((res.Principal == 1 ? "checked" : " "))
+                                           value=@res.PolicyValue data-cuota=@res.MonthlyValue data-vigencia=@res.YearsValidity
+                                           data-valaseg=@res.CovertureValue
+                                           data-asegurados="PPAL" data-indicador=@res.Principal data-code=@res.PlanCode
+                                           data-cobertura=@res.CovertureValue>
+
+                                </div>
+
+                            </div>
+
+                        i = i + 1;
+
+                    }
+
+
+
+
+
+
+
+                            <div class="row ">
+
+                                <div class="valorDiarioOferta valorDiarioOferta col-xs-4 col-sm-8 col-md-12">
+
+                                    <div style="height:10px;"></div>
+
+                                    <div>
+
+                                        <text class="textUno">Seguro voluntario desde </text>
+
+                                        <text class="textDosModal">
+
+                                            <b ng-show="ofertaaceptada.applyInsurance">{{NoAplicaSeguro}}</b>
+
+                                            <b ng-hide="ofertaaceptada.applyInsurance">{{ofertaaceptada.dailyValue | currency:undefined:0 }}</b>
+
+                                        </text><text class="textTres"> diarios*</text>
+
+                                    </div>
+
+                                    <div style="height:10px;"></div>
+
+                                </div>
+
+                                <div class="textHijosIdModal  col-xs-4 col-sm-8 col-md-12">
+
+                                    <text><b>*Número máximo de hijos por asegurar: 6</b></text>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button class="btn btn-primary btn-xs" data-dismiss="modal" id="selectSeguro" style="margin-right: 3%;" type="button">Seleccionar seguro</button>
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+
+        </div>
+
+
+
+
+
+        <!-- Modal -->
+
+        <div class="modal fade" id="myModal" role="dialog">
+
+            <div class="modal-dialog modal-md">
+
+                <div class="modal-content">
+
+                    <div class="modal-header">
+
+                        <button type="button" class="close" data-dismiss="modal" ng-click="redireccionar()">&times;</button>
+
+                        <h5 class="modal-title">{{mensaje}}</h5>
+
+                    </div>
+
+                    <div class="modal-body">
+
+                        <div class="row" style="text-align:center">
+
+                            <img ng-src={{imagenPopup}} />
+
+                            <table class="table">
+
+                                <thead>
+
+                                    <tr style="border:hidden;">
+
+                                        <td class="col-xs-12 text-center">
+
+                                            {{cabecera}}
+
+                                        </td>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody class="col-xs-12">
+
+                                    <tr ng-show="ocultar"><td class="col-xs-2" style="border: none;">Fecha</td><td class="col-xs-2" style="border: none;">{{CurrenDate| date: 'dd-MM-yyyy'}}</td></tr>
+
+                                    <tr ng-show="ocultar"><td class="col-xs-2" style="border: none;">Id de la Operación</td><td class="col-xs-2" style="border: none;">{{oferta.folderId}}</td></tr>
+
+                                    <tr ng-hide="ocultar"><td>{{oferta.validatorCode}}</td><td>{{oferta.detail}}</td></tr>
+
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                    </div>
+
+                    <div class="modal-footer">
+
+                        <button type="button" class="btn btn-primary btn-xs" data-dismiss="modal" ng-click="redireccionar()">Ok</button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+    </form>
+</div>

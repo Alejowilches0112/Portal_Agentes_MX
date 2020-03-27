@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://mx.com.bayport.ws/exposition/originacion/cliente" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="ServicioCliente" targetNamespace="http://mx.com.bayport.ws/exposition/originacion/cliente" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xs:schema xmlns:ns1="http://mx.com.bayport.ws/messages/types/originacion" targetNamespace="http://mx.com.bayport.ws/messages/types/originacion/cliente" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://mx.com.bayport.ws/messages/types/originacion" />
+      <xs:complexType name="TypeIdentificacion">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="nombre" type="ns1:TypeAttributes2" />
+          <xs:element minOccurs="0" name="apellido" type="ns1:TypeAttributes2" />
+          <xs:element minOccurs="0" name="nacimiento" type="ns1:TypeNacimiento" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeGenerales">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="rfc" type="xs:string" />
+          <xs:element minOccurs="0" name="curp" type="xs:string" />
+          <xs:element minOccurs="0" name="genero" type="xs:string" />
+          <xs:element minOccurs="0" name="nacionalidad" type="xs:string" />
+          <xs:element minOccurs="0" name="email" type="xs:string" />
+          <xs:element minOccurs="0" name="telefono" type="ns1:TypeTelefonosPersonal" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeDomicilio">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="direccion" type="ns1:TypeDireccion" />
+          <xs:element minOccurs="0" name="paisResidencia" type="xs:string" />
+          <xs:element minOccurs="0" name="tiempoResidencia" type="xs:int" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://mx.com.bayport.ws/messages/types/originacion" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="TypeAttributes2">
+        <xs:sequence>
+          <xs:element name="primero" type="xs:string" />
+          <xs:element name="segundo" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeNacimiento">
+        <xs:sequence>
+          <xs:element name="fecha" type="xs:string" />
+          <xs:element name="pais" type="xs:string" />
+          <xs:element name="entidad" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeTelefonosPersonal">
+        <xs:sequence>
+          <xs:element name="celular" type="xs:long" />
+          <xs:element name="proveedor" type="xs:string" />
+          <xs:element name="propioRecados" type="xs:long" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeDireccion">
+        <xs:sequence>
+          <xs:element name="codigoPostal" type="xs:string" />
+          <xs:element name="entidad" type="xs:string" />
+          <xs:element name="municipioDelegacion" type="xs:string" />
+          <xs:element name="colonia" type="xs:string" />
+          <xs:element name="otra" type="xs:string" />
+          <xs:element name="domicilioCalle" type="xs:string" />
+          <xs:element name="numeroExterior" type="xs:string" />
+          <xs:element name="numeroInterior" type="xs:string" />
+          <xs:element name="entreCalles" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeGlobalError">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="codigo" type="xs:string" />
+          <xs:element minOccurs="0" name="codigoMensaje" type="xs:string" />
+          <xs:element minOccurs="0" name="error" type="xs:string" />
+          <xs:element minOccurs="0" name="exception" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="TypeGlobalTicket">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="id" type="xs:string" />
+          <xs:element minOccurs="0" name="inicio" type="xs:string" />
+          <xs:element minOccurs="0" name="termino" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns1="http://mx.com.bayport.ws/messages/types/originacion" xmlns:ns3="http://mx.com.bayport.ws/messages/response/originacion" xmlns:ns2="http://mx.com.bayport.ws/messages/types/originacion/cliente" targetNamespace="http://mx.com.bayport.ws/messages/response/originacion/cliente" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://mx.com.bayport.ws/messages/types/originacion" />
+      <xs:import namespace="http://mx.com.bayport.ws/messages/types/originacion/cliente" />
+      <xs:import namespace="http://mx.com.bayport.ws/messages/response/originacion" />
+      <xs:complexType name="ResponseBusqueda">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ns3:ResponseBase">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="identificacion" type="ns2:TypeIdentificacion" />
+              <xs:element minOccurs="0" name="generales" type="ns2:TypeGenerales" />
+              <xs:element minOccurs="0" name="domicilio" type="ns2:TypeDomicilio" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:tns="http://mx.com.bayport.ws/messages/response/originacion" xmlns:ns1="http://mx.com.bayport.ws/messages/types/originacion" targetNamespace="http://mx.com.bayport.ws/messages/response/originacion" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://mx.com.bayport.ws/messages/types/originacion" />
+      <xs:complexType name="ResponseBase">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="error" type="ns1:TypeGlobalError" />
+          <xs:element minOccurs="0" name="ticket" type="ns1:TypeGlobalTicket" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="ResponseGenerico">
+        <xs:complexContent mixed="false">
+          <xs:extension base="tns:ResponseBase">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="estatus" type="xs:string" />
+              <xs:element minOccurs="0" name="descripcion" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema targetNamespace="http://mx.com.bayport.ws/messages/request/originacion/cliente" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:complexType name="RequestRfc">
+        <xs:sequence>
+          <xs:element name="rfc" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ns1="http://mx.com.bayport.ws/messages/request/originacion/cliente" xmlns:ns3="http://mx.com.bayport.ws/messages/response/originacion/cliente" xmlns:ns2="http://mx.com.bayport.ws/messages/types/originacion/cliente" elementFormDefault="unqualified" targetNamespace="http://mx.com.bayport.ws/exposition/originacion/cliente" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+      <xs:import namespace="http://mx.com.bayport.ws/messages/request/originacion/cliente" />
+      <xs:import namespace="http://mx.com.bayport.ws/messages/types/originacion/cliente" />
+      <xs:import namespace="http://mx.com.bayport.ws/messages/response/originacion/cliente" />
+      <xs:element name="buscarPorRfc" type="tns:buscarPorRfc" />
+      <xs:element name="buscarPorRfcResponse" type="tns:buscarPorRfcResponse" />
+      <xs:complexType name="buscarPorRfc">
+        <xs:sequence>
+          <xs:element name="request" type="ns1:RequestRfc" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="buscarPorRfcResponse">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="response" type="ns3:ResponseBusqueda" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="buscarPorRfcResponse">
+    <wsdl:part name="parameters" element="tns:buscarPorRfcResponse" />
+  </wsdl:message>
+  <wsdl:message name="buscarPorRfc">
+    <wsdl:part name="parameters" element="tns:buscarPorRfc" />
+  </wsdl:message>
+  <wsdl:portType name="ServicioClienteType">
+    <wsdl:operation name="buscarPorRfc">
+      <wsdl:input name="buscarPorRfc" message="tns:buscarPorRfc" />
+      <wsdl:output name="buscarPorRfcResponse" message="tns:buscarPorRfcResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="ServicioClienteSoapBinding" type="tns:ServicioClienteType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="buscarPorRfc">
+      <soap:operation soapAction="urn:buscarPorRfc" style="document" />
+      <wsdl:input name="buscarPorRfc">
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output name="buscarPorRfcResponse">
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ServicioCliente">
+    <wsdl:port name="ServicioClienteTypePort" binding="tns:ServicioClienteSoapBinding">
+      <soap:address location="http://187.248.70.106:8484/BMX_Originacion/Cliente/v1" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

@@ -1,0 +1,20 @@
+﻿@{
+
+    ViewBag.Title = "Perfilar Cliente";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+
+<ol class="breadcrumb">
+    <li><a href="#">Parámetros</a></li>
+</ol>
+<div class="panel-group" id="accordion">
+    <form name="formData" novalidate="novalidate" ng-controller="OriginacionController" ng-init="GetUserOptions(7)" encType="multipart/form-data" autocomplete="off">
+        <div class="topnavnew navbar-static-top" >
+            <div class="dropdownnew">
+                <a ng-repeat="item in UserOptions7.lstUserOptions" href="{{item.ventana_objeto}}">{{item.funcionalidad_nombre}}</a>
+            </div>
+        </div>
+    </form>
+</div>

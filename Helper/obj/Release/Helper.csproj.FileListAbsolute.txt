@@ -1,0 +1,62 @@
+D:\Desarrollo\BayPortWeb\Helper\bin\Release\Helper.dll
+D:\Desarrollo\BayPortWeb\Helper\bin\Release\Helper.pdb
+D:\Desarrollo\BayPortWeb\Helper\obj\Release\Helper.dll
+D:\Desarrollo\BayPortWeb\Helper\obj\Release\Helper.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\bin\Release\Helper.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\bin\Release\Helper.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\bin\Release\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\bin\Release\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\obj\Release\Helper.csprojResolveAssemblyReference.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\obj\Release\Helper.csproj.CoreCompileInputs.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\obj\Release\Helper.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Helper\obj\Release\Helper.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\bin\Release\Helper.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\bin\Release\Helper.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\bin\Release\Entities.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\bin\Release\Entities.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\obj\Release\Helper.csprojResolveAssemblyReference.cache
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\obj\Release\Helper.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Helper\obj\Release\Helper.pdb
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\bin\Release\Helper.dll
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\bin\Release\Helper.pdb
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\bin\Release\Entities.dll
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\bin\Release\Entities.pdb
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\obj\Release\Helper.csprojResolveAssemblyReference.cache
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\obj\Release\Helper.csproj.CoreCompileInputs.cache
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\obj\Release\Helper.dll
+C:\Proyectos\Bayport\Fuentes\BayPortWeb\Helper\obj\Release\Helper.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\bin\Release\Helper.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\bin\Release\Helper.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\bin\Release\Entities.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\bin\Release\Entities.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\obj\Release\Helper.csprojResolveAssemblyReference.cache
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\obj\Release\Helper.csproj.CoreCompileInputs.cache
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\obj\Release\Helper.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\Helper\obj\Release\Helper.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\bin\Release\Helper.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\bin\Release\Helper.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\bin\Release\Entities.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\bin\Release\Entities.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csproj.CopyComplete
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.pdb
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\bin\Release\Helper.dll
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\bin\Release\Helper.pdb
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\bin\Release\Entities.dll
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\bin\Release\Entities.pdb
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csprojAssemblyReference.cache
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csproj.CoreCompileInputs.cache
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csproj.CopyComplete
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.dll
+C:\Users\Alejo\Documents\Portal Mexico\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\bin\Release\Helper.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\bin\Release\Helper.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\bin\Release\Entities.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\bin\Release\Entities.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.csproj.CopyComplete
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Helper\obj\Release\Helper.pdb

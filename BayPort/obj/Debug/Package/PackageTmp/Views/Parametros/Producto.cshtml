@@ -1,0 +1,150 @@
+﻿@{
+    ViewBag.Title = "Productos";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Productos</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion" ng-init="getProductos();getDependenciasActivas();">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNueva')">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Productos</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>Producto</th>
+                                <th>Dependencia</th>
+                                <th>Estado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in productos.ListProductos" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.producto}}</td>
+                                <td>{{item.dependencia}}</td>
+                                <td>{{item.estado}}</td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdProducto(item.secuencia);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#myModalDelete" ng-click="objDelete(item);">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNueva" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNueva')">&times;</button>
+                        <h5 class="modal-title">Nuevo Producto</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblCodPlazo" class="control-label col-xs-6">Código Producto</label>
+                                <input type="text" class="form-control" id="inputCodPlazo" name="codigoPlazo" ng-model="newProducto.codigo" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Dependencia</label>
+                                <div class="col-sm-13">
+                                    <select required class="selectpicker form-control" ng-model="newProducto.dependencia" ng-options="dependencia.secuencia as dependencia.dependencia for dependencia in dependenciasList.ListDependencias" ng-change="getDependenciasActivas();">
+                                        <option value="">SELECCIONE DEPENDENCIA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblPlazo" class="control-label col-xs-6">Producto</label>
+                                <input type="text" class="form-control" id="inputPlazo" name="nombrePlazo" ng-model="newProducto.nombre" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEstatusProducto" class="control-label col-xs-12">Estatus</label>
+                                <select class="selectpicker form-control" name="estadoProducto" ng-model="newProducto.estado" ng-init="newProducto.estado = 'A'">
+                                    <option value="A">ACTIVA</option>
+                                    <option value="I">INACTIVA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="saveProducto()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEdit')">&times;</button>
+                        <h5 class="modal-title">Editar Producto</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblCodPlazo" class="control-label col-xs-6">Código Producto</label>
+                                <input type="text" class="form-control" id="inputCodPlazo" name="codigoPlazo" ng-model="producto.secuencia" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Dependencia</label>
+                                <div class="col-sm-13">
+                                    <select disabled class="selectpicker form-control" ng-model="producto.dependencia" ng-options="dependencia.secuencia as dependencia.dependencia for dependencia in dependenciasList.ListDependencias" ng-change="getDependenciasActivas();">
+                                        <option value="">SELECCIONE DEPENDENCIA</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblDependencia" class="control-label col-xs-6">Producto</label>
+                                <input type="text" class="form-control" id="inputDependencia" name="nombreDependencia" ng-model="producto.producto" required>
+                            </div>
+                            <div class="col-xs-6 form-group">
+                                <label for="lblEstatusProducto" class="control-label col-xs-12">Estatus</label>
+                                <select class="selectpicker form-control" name="estadoProducto" ng-model="producto.estado">
+                                    <option value="A">ACTIVA</option>
+                                    <option value="I">INACTIVA</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="updProducto(producto.secuencia, producto.producto, producto.estado)">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalDelete" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalDelete')">&times;</button>
+                        <h5 class="modal-title">Eliminar Producto</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Este Producto?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deleteProducto(objEliminar.secuencia)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDelete')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

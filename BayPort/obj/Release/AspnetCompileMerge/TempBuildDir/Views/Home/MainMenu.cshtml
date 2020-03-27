@@ -1,0 +1,39 @@
+﻿@model Entities.OutValidateUser
+@{
+    ViewBag.Title = "MenuPrincipal";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+    Entities.OutValidateUser usuario = Model; 
+
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml", usuario)
+
+@if (Helper.SessionHelper.ExistUserInSession())
+{
+    @*<p> @Helper.SessionHelper.GetUser()</p>
+    <a href="~/Home/Logout">Salir</a>*@
+    <ol class="breadcrumb">
+        <li><a href="#">Inicio</a></li>
+
+    </ol>
+
+
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    <div class="row"></div>
+    
+}
+else
+{
+
+
+}

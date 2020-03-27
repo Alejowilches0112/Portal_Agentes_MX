@@ -1,0 +1,118 @@
+﻿
+@{
+
+    ViewBag.Title = "Listado Solicitudes";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="#">Profile/Listado Solicitudes</a></li>
+</ol>
+
+<div ng-controller="OriginacionController" class="panel-group" id="accordion" ng-init="getListadoSolicitudes()">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="panel panel-default">
+            <div class="panel-title"> Listado de Solicitudes </div>
+            <div class="panel-body">
+                <label>Buscar: <input ng-model="searchText"></label>
+                <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>#</th>
+                                <th>Tipo</th>
+                                <th>Fecha de Solicitud</th>
+                                <th>Fecha Dispersión</th>
+                                <th>Folio</th>
+                                <th>Sucursal</th>
+                                <th>Asesor</th>
+                                <th>Supervisor</th>
+                                <th>Cliente</th>
+                                <th>RFC</th>
+                                <th>Monto</th>
+                                <th>Monto Deudor</th>
+                                <th>Monto remanente</th>
+                                <th>Colocación Total</th>
+                                <th>Plazo</th>
+                                <th>Cuota</th>
+                                <th>Dependencia</th>
+                                <th>Producto</th>
+                                <th>Estatus Solicitud</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in ListSolicitudes.listSolicitudes | filter:searchText" style="font-size:  small; white-space:nowrap;">
+                                <th>{{item.consecutivo}}</th>
+                                <td>{{item.tipo}}</td>
+                                <td>{{item.fecha_soliciud}}</td>
+                                <td>{{item.fecha_desembolso}}</td>
+                                <td>{{item.folderNumber}}</td>
+                                <td>{{item.sucursal}}</td>
+                                <td>{{item.asesor}}</td>
+                                <td>{{item.asesor_superior}}</td>
+                                <td>{{item.cliente}}</td>
+                                <td>{{item.rfc}}</td>
+                                <td>{{item.monto}}</td>
+                                <td>{{item.monto_deudor}}</td>
+                                <td>{{item.monto_remanente}}</td>
+                                <td>{{item.colocacion_total}}</td>
+                                <td>{{item.plazo}}</td>
+                                <td>{{item.cuota}}</td>
+                                <td>{{item.dependencia}}</td>
+                                <td>{{item.producto}}</td>
+                                <td>{{item.estado}}</td>
+                                <td class="col-xs-3">
+                                    <span class="glyphicon glyphicon-pencil" style="color:blue;" ng-click="getIdSolicitud(item.folderNumber);"></span>
+                                    <span class="glyphicon glyphicon-th-list" style="color:blue;" ng-click="getComentarios(item.folderNumber); openModal('modalComentarios');"></span>
+                                    <span class="glyphicon glyphicon-print" style="color:blue;" ng-click="expedienteCompleto(item)"></span>
+                                    <span class="glyphicon glyphicon-ban-circle" ng-if="item.estado == 'NUEVA'" style="color:blue;" ng-click="cancelarFolder(item);openModal('modalConfirmacion');"></span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalComentarios" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="table-responsive">
+                        <table class="table table-hover ">
+                            <thead>
+                                <tr style="font-size: small;">
+                                    <th>Comentario</th>
+                                    <th>Fecha</th>
+                                </tr>
+                            </thead>
+                            <tbody style="font-size: small;">
+                                <tr ng-repeat="item in comentariosList" style="font-size:  small; white-space:nowrap;">
+                                    <td>{{item.comentario}}</td>
+                                    <td>{{item.fecha}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="modalConfirmacion" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('modalConfirmacion')">&times;</button>
+                        <h5 class="modal-title">Cancelar Solicitudes</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Cancelar esta Solicitud?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="cancelarFolio(folderCancelar.folderNumber)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('modalConfirmacion')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

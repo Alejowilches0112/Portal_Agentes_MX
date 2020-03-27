@@ -1,0 +1,120 @@
+﻿
+@{
+
+    ViewBag.Title = "Entidades Bancarias";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Entidades Bancarias</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion" ng-init="getBancos();">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNueva')">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Entidades Bancarias</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>Entidad Bancaria</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in Bancos.ListBancos" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.nombre_banco}}</td>
+                                <td class="col-sm-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdBanco(item.codigo_banco);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-sm-1">
+                                    <button class="btn btn-danger btn-xs" ng-click="openModal('myModalDelete'); objDelete(item);">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNueva" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNueva')">&times;</button>
+                        <h5 class="modal-title">Nuevo País</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPeriodo" class="control-label col-sm-12">Código Banco</label>
+                                <input type="text" class="form-control" id="inputcodigoPaisN" ng-maxlength="3" name="codigoPaisN" format ng-model="newBanco.codigo_banco" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-6">Nombre Banco</label>
+                                <input type="text" class="form-control" id="inputcodigoPais" name="codigoPais" uppercase ng-model="newBanco.nombre_banco" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="saveBanco()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEdit')">&times;</button>
+                        <h5 class="modal-title">Editar País</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPeriodo" class="control-label col-sm-12">Código Banco</label>
+                                <input type="text" class="form-control" id="inputcodigoPaisN" ng-maxlength="3" name="codigoPaisN" ng-model="Banco.codigo_banco" uppercase disabled>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-6">Nombre Banco</label>
+                                <input type="text" class="form-control" id="inputcodigoPais" name="codigoPais" ng-model="Banco.nombre_banco" uppercase required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="updBanco(Banco.codigo_banco, Banco.nombre_banco)">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalDelete" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"  ng-click="closeModal('myModalDelete')" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Eliminar Banco</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Este Banco?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deleteBanco(objEliminar.codigo_banco)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDelete')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

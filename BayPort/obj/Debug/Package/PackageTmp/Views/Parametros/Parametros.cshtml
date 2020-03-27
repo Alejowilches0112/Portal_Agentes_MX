@@ -1,0 +1,100 @@
+﻿
+@{
+
+    ViewBag.Title = "Carga de Parametros";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Carga Masiva de Parámetros</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion">
+    <form name="Parametros" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-xs-6 form-group">
+                    <label for="parametroSelec" class="control-label col-xs-6">Parametro a cargar</label>
+                    <div class="col-sm-13">
+                        <select requierd id="parametroSelec" class="selectpicker form-control" name="parametro" ng-model="Parametro.parametro" ng-change="eliminaTexto('parametroReq');">
+                            <option value="">Seleccione un parámetro a cargar</option>
+                            <option value="0">Dependencias</option>
+                            <option value="1">Quincena Descuento</option>
+                            <option value="2">Destinos Solicitudes</option>
+                            <option value="3">Empresas Telefonicas</option>
+                            <option value="4">Estado Civil</option>
+                            <option value="5">Ingresos Netos</option>
+                            <option value="6">Medios de Disposición</option>
+                            <option value="7">Periodos Aplicables</option>
+                            <option value="8">Plazos por Periodo</option>
+                            <option value="9">Sector</option>
+                            <option value="10">Puesto por Sector</option>
+                            <option value="11">Reca</option>
+                            <option value="12">Sucursales</option>
+                            <option value="13">Tipos de Solicitud</option>
+                            <option value="14">Tipos de Nomina</option>
+                            <option value="15">Tipos de Identificación</option>
+                            <option value="16">Productos</option>
+                            <option value="17">Paises</option>
+                            <option value="18">Entidades Federativas</option>
+                            <option value="19">Municipios</option>
+                            <option value="20">Campos Parámetrizados</option>
+                        </select>
+                        <span id="parametroReq"></span>
+                    </div>
+                </div>
+                <div class="col-xs-12 form-group">
+                         <label for="loadParametros" class="custom-file-upload">
+                            <i class="fa fa-cloud-upload"></i> Cargar Documento
+                        </label>
+                        <input id="loadParametros" type="file" accept=".csv" onchange="angular.element(this).scope().uploadedFile(this)" />
+                        <label id="data-loadParametros"></label>
+                </div>
+            </div>
+            <div class="row" ng-hide="sendParams">
+                <div class="col-xs-6 form-group">
+                    <button class="btn  btn-primary btn-xs" ng-click="readCSV()">Verificar</button>
+                </div>
+            </div>
+            <div id="dvCSV"></div>
+            <div class="row" ng-hide="!sendParams">
+                <div class="col-xs-6 form-group">
+                    <button class="btn  btn-primary btn-xs" ng-click="uploadParams(Parametros.$valid)">Cargar Parámetros</button>
+                    <button class="btn  btn-primary btn-xs" ng-click="descartaArchivo()">Descartar</button>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="ErroresCargar" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('ErroresCargar')">&times;</button>
+                        <h5 class="modal-title">Errores Presentados al Cargar el CSV</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="table-responsive">
+                                <table class="table table-hover ">
+                                    <thead>
+                                        <tr style="font-size: small;">
+                                            <th>VALOR</th>
+                                            <th>ERROR REGUSTRADO</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody style="font-size: small;">
+                                        <tr ng-repeat="item in erroresCarga" style="font-size:  small; white-space:nowrap;">
+                                            <td>{{item.valor}}</td>
+                                            <td>{{item.Error}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,80 @@
+D:\Desarrollo\BayPortWeb\Entities\bin\Debug\Entities.dll
+D:\Desarrollo\BayPortWeb\Entities\bin\Debug\Entities.pdb
+D:\Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+D:\Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.dll
+D:\Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Entities\bin\Debug\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Entities\bin\Debug\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Entities\obj\Debug\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\BayPortWeb\Entities\obj\Debug\Entities.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Entities\bin\Debug\Entities.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Entities\bin\Debug\Entities.pdb
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Entities\obj\Debug\Entities.dll
+D:\Desarrollo\DocumentosCGO\Bayport\BayPortWeb\Entities\obj\Debug\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\Entities\bin\Debug\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\Entities\bin\Debug\Entities.pdb
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.dll
+C:\Users\Druckern\Documents\Proyectos de Desarrollo\BayPortWeb\Entities\obj\Debug\Entities.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\Entities\bin\Debug\Entities.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\Entities\bin\Debug\Entities.pdb
+C:\Proyectos\PortalMexico\Dev\AppWeb\Entities\obj\Debug\Entities.csprojResolveAssemblyReference.cache
+C:\Proyectos\PortalMexico\Dev\AppWeb\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Proyectos\PortalMexico\Dev\AppWeb\Entities\obj\Debug\Entities.dll
+C:\Proyectos\PortalMexico\Dev\AppWeb\Entities\obj\Debug\Entities.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb
+C:\TECNOEVOLUCION\Bayport\Fuentes Locales\FUENTES-2018-11-23-PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\Users\Usuario\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\Users\Usuario\Documents\prueba\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\Users\TECNO\Documents\PortalMexico-AjustesSeguridad1\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\Users\Usuario\Desktop\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\Users\Usuario\Documents\prueba\ajusteMX\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Entities.pdb
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\bin\Debug\Newtonsoft.Json.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csprojAssemblyReference.cache
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CoreCompileInputs.cache
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.csproj.CopyComplete
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.dll
+C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Entities\obj\Debug\Entities.pdb

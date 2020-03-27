@@ -1,0 +1,334 @@
+﻿using DAO;
+using Entities;
+using Helper;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Xml;
+using System.Xml.Linq;
+using System.Xml.Serialization;
+using System.Configuration;
+
+namespace Models
+{
+    public class ManageProfile
+    {
+        /// <summary>
+        /// Gets the agreement list.
+        /// </summary>
+        /// <param name="userID">The user identifier.</param>
+        /// <returns></returns>
+        public OutAgreement GetAgreementList()
+        {
+            OutAgreement agreements = new OutAgreement();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                agreements = dao.GetAgreementList();
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetAgreementList", ex, "");
+            }
+            return agreements;            
+        }
+
+        /// <summary>
+        /// Gets the payable list.
+        /// </summary>
+        /// <param name="userID">The user identifier.</param>
+        /// <param name="payableCode">The payable code.</param>
+        /// <returns></returns>
+        public OutPayable GetPayableList(double agreementCode)
+        {
+            OutPayable payable = new OutPayable();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                payable = dao.GetPayableList(agreementCode);
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetPayableList", ex, "");
+            }
+            return payable;
+        }
+
+        /// <summary>
+        /// Gets the contract type list.
+        /// </summary>
+        /// <param name="input">The input.</param>
+        /// <returns></returns>
+        public OutContractType GetContractTypeList(InContractType input)
+        {
+            OutContractType contracts = new OutContractType();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                contracts = dao.GetContractList(input); 
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetContractTypeList", ex, SessionHelper.GetUser());
+            }
+            return contracts;
+        }
+
+        /// <summary>
+        /// Gets the position list.
+        /// </summary>
+        /// <param name="userID">The user identifier.</param>
+        /// <param name="payableCode">The payable code.</param>
+        /// <returns></returns>
+        public OutPosition GetPositionList (double payableCode)
+        {
+            OutPosition positions = new OutPosition();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                positions = dao.GetPositionList(payableCode);
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetPositionList", ex, "");
+            }
+            return positions;
+        }
+
+        /// <summary>
+        /// Gets the loan line list.
+        /// </summary>
+        /// <param name="userID">The user identifier.</param>
+        /// <returns></returns>
+        public OutLoanLine GetLoanLineList()
+        {
+            OutLoanLine loanLine = new OutLoanLine();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                loanLine = dao.GetLoanLineList();
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetLoanLineList", ex, "");
+            }
+            return loanLine;
+        }
+
+        /// <summary>
+        /// Gets the loan type list.
+        /// </summary>
+        /// <param name="userID">The user identifier.</param>
+        /// <returns></returns>
+        public OutLoanType GetLoanTypeList()
+        {
+            OutLoanType loanType = new OutLoanType();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                loanType = dao.GetLoanTypeList();
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetLoanLineList", ex, "");
+            }
+            return loanType;
+        }
+
+        /// <summary>
+        /// Gets the purchase entity list.
+        /// </summary>
+        /// <param name="userID">The user identifier.</param>
+        /// <returns></returns>
+        public OutPurchaseEntity GetPurchaseEntityList()
+        {
+            OutPurchaseEntity purchaseEntity = new OutPurchaseEntity();
+            try
+            {
+                ProfileDAO dao = new ProfileDAO();
+                purchaseEntity = dao.GetPurchaseEntityList();
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "GetPurchaseEntityList", ex, "");
+            }
+            return purchaseEntity;
+        }
+
+        public OutOffer ProcessOffer(ProfileCustomer input)
+        {
+            OutOffer outOffer = new OutOffer();
+            outOffer.msg = new Response();
+            int index = 1, monthlyPayment1 = 0, balance1 = 0, monthlyPayment2 = 0, balance2 = 0, monthlyPayment3 = 0, balance3 = 0, monthlyPayment4 = 0, balance4 = 0;
+            string entity1 = "0|0", entity2 = "0|0", entity3 = "0|0", entity4 = "0|0";
+
+            try
+            {
+
+                if (input.lstPurchase!=null)
+                {
+                    if (input.lstPurchase.Count > 0)
+                    {
+                        foreach (var itemPurchase in input.lstPurchase)
+                        {
+                            switch (index)
+                            {
+                                case 1:
+                                    monthlyPayment1 = itemPurchase.monthlyPayment;
+                                    balance1 = itemPurchase.balance;
+                                    entity1 = itemPurchase.entity + "|" + itemPurchase.desprendible;
+                                    break;
+                                case 2:
+                                    monthlyPayment2 = itemPurchase.monthlyPayment;
+                                    balance2 = itemPurchase.balance;
+                                    entity2 = itemPurchase.entity + "|" + itemPurchase.desprendible;
+                                    break;
+                                case 3:
+                                    monthlyPayment3 = itemPurchase.monthlyPayment;
+                                    balance3 = itemPurchase.balance;
+                                    entity3 = itemPurchase.entity + "|" + itemPurchase.desprendible;
+                                    break;
+                                case 4:
+                                    monthlyPayment4 = itemPurchase.monthlyPayment;
+                                    balance4 = itemPurchase.balance;
+                                    entity4 = itemPurchase.entity + "|" + itemPurchase.desprendible;
+                                    break;
+                            }
+                            index++;
+                        }
+                    }
+
+                }
+
+                //.ToString("yyyy-MM-dd")
+                System.Globalization.CultureInfo customCulture = new System.Globalization.CultureInfo("en-US", true);
+                customCulture.DateTimeFormat.ShortDatePattern = "yyyy-MM-dd";
+                System.Threading.Thread.CurrentThread.CurrentCulture = customCulture;
+                System.Threading.Thread.CurrentThread.CurrentUICulture = customCulture;
+                DateTime newBirthdate = System.Convert.ToDateTime(input.birthday.ToString("yyyy-MM-dd"));
+                DateTime newadmissionDate = System.Convert.ToDateTime(input.admissionDate.ToString("yyyy-MM-dd"));
+
+                dlgPerfilamiento.SOAPServer service = new dlgPerfilamiento.SOAPServer();
+                var response = service.procesarOferta(ConfigurationSettings.AppSettings["usuario"].ToString(),
+                                    ConfigurationSettings.AppSettings["clave"].ToString(),
+                                    input.identificationNumber, input.name, input.secondName,
+                                    input.surname, input.secondSurname, input.gender, newBirthdate, input.payable, newadmissionDate,
+                                    input.contractType, input.LoanType, input.LoanLine, input.activePensioner, input.teacher, input.term,
+                                    input.amount, monthlyPayment1, balance1, entity1, monthlyPayment2, balance2, entity2, monthlyPayment3,
+                                    balance3, entity3, monthlyPayment4, balance4, entity4, input.monthlyPaymentRefinancing, input.branch,
+                                    input.regional, input.agent, input.salary, input.formatURL, input.health, input.pension, input.retefuente,
+                                    input.solidarityFunds, input.otherDiscounts, input.amountPurchasePortfolio, input.additionalIncome,
+                                    input.otro_intento, input.folderNumber, input.phone, int.Parse(input.teacher), input.numericalField2,
+                                    input.numericalField3, input.numericalField4, input.numericalField5, input.numericalField6, input.numericalField7,
+                                    input.numericalField8, input.numericalField9, input.numericalField10, input.numericalField11, input.numericalField12,
+                                    input.numericalField13, input.numericalField14, input.numericalField15, input.numericalField16, input.numericalField17,
+                                    input.numericalField18, input.numericalField19, input.numericalField20, input.stringField1, input.stringField2,
+                                    input.stringField3, input.stringField4, input.stringField5, input.stringField6, input.stringField7, input.stringField8,
+                                    input.stringField9, input.stringField10, input.stringField11, input.stringField12, input.stringField13, input.stringField14,
+                                    input.stringField15, input.stringField16, input.stringField17, input.stringField18, input.stringField19, input.stringField20,
+                                    input.dateField1, input.dateField2, input.dateField3, input.dateField4, input.dateField5, input.agreement);
+
+
+               // string response = @"<?xml version=""1.0"" encoding=""UTF - 8""?><notificacion><codigo_validador> 03 </codigo_validador><detalle> Campo vacio(URL FORMATO).</detalle><identificador> -</identificador><tasa> 0 </tasa><tasa_seguro> 0 </tasa_seguro><tasa_admin_fee> 0 </tasa_admin_fee><tasa_aval> 0 </tasa_aval><monto_maximo> 0 </monto_maximo><plazo_maximo> 0 </plazo_maximo><cuota_sugerida> 0 </cuota_sugerida><cuota> 0 </cuota><capacidad> 0 </capacidad><continua> -</continua><detalle_continua> -</detalle_continua><carpeta> 0 </carpeta></notificacion> ";
+                TextReader tr = new StringReader(response);
+                var xml = XDocument.Load(tr);
+                XmlTextReader tr2 = new XmlTextReader(new System.IO.StringReader(xml.Root.ToString()));
+                XmlDocument x = new XmlDocument();
+                x.Load(tr2);
+            
+                outOffer.validatorCode = x.GetElementsByTagName("codigo_validador").Item(0).InnerText;
+                outOffer.detail = x.GetElementsByTagName("detalle").Item(0).InnerText;
+                outOffer.identifier = x.GetElementsByTagName("identificador").Item(0).InnerText;
+                outOffer.rate = decimal.Parse(x.GetElementsByTagName("tasa").Item(0).InnerText);
+                outOffer.insuranceRate = decimal.Parse(x.GetElementsByTagName("tasa_seguro").Item(0).InnerText);
+                outOffer.rate_admin_fee = decimal.Parse(x.GetElementsByTagName("tasa_admin_fee").Item(0).InnerText);
+                outOffer.rateGuarantee = decimal.Parse(x.GetElementsByTagName("tasa_aval").Item(0).InnerText);
+                outOffer.maximumAmount = double.Parse(x.GetElementsByTagName("monto_maximo").Item(0).InnerText);
+                outOffer.maximunTerm = double.Parse(x.GetElementsByTagName("plazo_maximo").Item(0).InnerText);
+                outOffer.suggestedMonthlyPayment = double.Parse(x.GetElementsByTagName("cuota_sugerida").Item(0).InnerText);
+                outOffer.monthlyPayment = double.Parse(x.GetElementsByTagName("cuota").Item(0).InnerText);
+                outOffer.capacity = double.Parse(x.GetElementsByTagName("capacidad").Item(0).InnerText);
+                outOffer.pass = x.GetElementsByTagName("continua").Item(0).InnerText;
+                outOffer.passDetail = x.GetElementsByTagName("detalle_continua").Item(0).InnerText;
+                outOffer.folder = x.GetElementsByTagName("carpeta").Item(0).InnerText;
+                
+                outOffer.msg.errorMessage = "OfferResult";
+                outOffer.msg.errorCode = "200";
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "ProcessOffer", ex, "");
+                outOffer.msg.errorMessage = ex.Message.ToString();
+                outOffer.msg.errorCode = "400";
+            }
+            return outOffer;
+        }
+
+        public OutProcessOffer AcceptOffer(InAcceptOffer input)
+        {
+            OutProcessOffer outOfferAswser = new OutProcessOffer();
+            try
+            {
+                dlgPerfilamiento.SOAPServer service = new dlgPerfilamiento.SOAPServer();
+                var response = service.actualizarCondicionesOferta(ConfigurationSettings.AppSettings["usuario"].ToString(),
+                                    ConfigurationSettings.AppSettings["clave"].ToString(), input.folder, input.rate,
+                                        input.term, input.amount);
+                TextReader tr = new StringReader(response);
+                var xml = XDocument.Load(tr);
+                XmlTextReader tr2 = new XmlTextReader(new System.IO.StringReader(xml.Root.ToString()));
+                XmlDocument x = new XmlDocument();
+                x.Load(tr2);
+
+                outOfferAswser.validatorCode = x.GetElementsByTagName("codigo_validador").Item(0).InnerText;
+                outOfferAswser.detail = x.GetElementsByTagName("detalle").Item(0).InnerText;
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "rejectOffer", ex, "");
+            }
+            return outOfferAswser;
+        }
+        public OutProcessOffer RejectOffer( InRejectOffer input)
+        {
+            OutProcessOffer outOfferAswser = new OutProcessOffer();
+            try
+            {
+                dlgPerfilamiento.SOAPServer service = new dlgPerfilamiento.SOAPServer();
+                var response = service.rechazarCondicionesOferta(ConfigurationSettings.AppSettings["usuario"].ToString(),
+                                    ConfigurationSettings.AppSettings["clave"].ToString(),
+                                    input.folder, input.observations, 
+                                    input.agent);
+
+                TextReader tr = new StringReader(response);
+                var xml = XDocument.Load(tr);
+                XmlTextReader tr2 = new XmlTextReader(new System.IO.StringReader(xml.Root.ToString()));
+                XmlDocument x = new XmlDocument();
+                x.Load(tr2);
+
+                outOfferAswser.validatorCode = x.GetElementsByTagName("codigo_validador").Item(0).InnerText;
+                outOfferAswser.detail = x.GetElementsByTagName("detalle").Item(0).InnerText;
+            }
+            catch (Exception ex)
+            {
+                //escribir en el log
+                LogHelper.WriteLog("Models", "ManageProfile", "rejectOffer", ex, "");
+            }
+            return outOfferAswser;
+        }
+
+    }
+
+}

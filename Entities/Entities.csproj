@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{A937198C-9CE7-46C3-9472-76DC1EEE6790}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Entities</RootNamespace>
+    <AssemblyName>Entities</AssemblyName>
+    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="arbolCarpetas.cs" />
+    <Compile Include="OutParamClaveDelg.cs" />
+    <Compile Include="OutParamCasaFinanciera.cs" />
+    <Compile Include="OutParamDiasExp.cs" />
+    <Compile Include="OutServiceCodigoPostal.cs" />
+    <Compile Include="OutBeneficiariosPoliza.cs" />
+    <Compile Include="InValidateUser.cs" />
+    <Compile Include="OutComentarios.cs" />
+    <Compile Include="OutDashBoard.cs" />
+    <Compile Include="OutParamParentesco.cs" />
+    <Compile Include="OutEmail.cs" />
+    <Compile Include="cartera.cs" />
+    <Compile Include="InOriginacionServicioSolicitud.cs" />
+    <Compile Include="InSegurosServicioPoliza.cs" />
+    <Compile Include="InSegurosServicioCliente.cs" />
+    <Compile Include="OutOriginacionServicioSolicitud.cs" />
+    <Compile Include="OutCalculoServicioCalculo.cs" />
+    <Compile Include="OutSRFCServicioCliente.cs" />
+    <Compile Include="OutSegurosServicioCliente.cs" />
+    <Compile Include="OutSegurosServicioPoliza.cs" />
+    <Compile Include="OutParamGuias.cs" />
+    <Compile Include="OutPolizas.cs" />
+    <Compile Include="OutParamConfiguracionDoc.cs" />
+    <Compile Include="OutParamMunicipios.cs" />
+    <Compile Include="OutparamEntidadFederativa.cs" />
+    <Compile Include="OutParamBanco.cs" />
+    <Compile Include="OutParamPais.cs" />
+    <Compile Include="OutParamReca.cs" />
+    <Compile Include="OutParamRegion.cs" />
+    <Compile Include="OutParamPeriodos.cs" />
+    <Compile Include="OutParamProductos.cs" />
+    <Compile Include="OutParamPuesto.cs" />
+    <Compile Include="OutParamPlazos.cs" />
+    <Compile Include="OutParamSector.cs" />
+    <Compile Include="OutParamQuincenaDscto.cs" />
+    <Compile Include="OutParamDestinoCred.cs" />
+    <Compile Include="OutParamEmpresatelefonica.cs" />
+    <Compile Include="OutFormularioSolicitud.cs" />
+    <Compile Include="OutParamSucursales.cs" />
+    <Compile Include="OutParamDivision.cs" />
+    <Compile Include="OutParamCampos.cs" />
+    <Compile Include="OutParamDocumentos.cs" />
+    <Compile Include="OutParamTipoSucursal.cs" />
+    <Compile Include="OutParamTipoIdentificacion.cs" />
+    <Compile Include="OutParamIngresos.cs" />
+    <Compile Include="OutParamMedios.cs" />
+    <Compile Include="OutParamTipoNomina.cs" />
+    <Compile Include="OutParamEstadoCivil.cs" />
+    <Compile Include="OutParamTipo.cs" />
+    <Compile Include="OutParamDependencia.cs" />
+    <Compile Include="InAcceptOffer.cs" />
+    <Compile Include="InProfileRegTran.cs" />
+    <Compile Include="InCategorySimulation.cs" />
+    <Compile Include="InContractType.cs" />
+    <Compile Include="InCreatePQR.cs" />
+    <Compile Include="InInsurancePolicyFolder.cs" />
+    <Compile Include="InInsurancePolicyOffer.cs" />
+    <Compile Include="InLogDocuments.cs" />
+    <Compile Include="InProfileService.cs" />
+    <Compile Include="InRejectOffer.cs" />
+    <Compile Include="InUpdateExecutive.cs" />
+    <Compile Include="InUpdateExecutiveService.cs" />
+    <Compile Include="InValidateAccess.cs" />
+    <Compile Include="InBeneficiarioPoliza.cs" />
+    <Compile Include="OutAccumulatedClarifications.cs" />
+    <Compile Include="OutAccumulatedLoan.cs" />
+    <Compile Include="OutCategoryRange.cs" />
+    <Compile Include="OutCategorySimulation.cs" />
+    <Compile Include="OutRequestMW.cs" />
+    <Compile Include="OutExecutiveChilds.cs" />
+    <Compile Include="OutExecutiveLevel.cs" />
+    <Compile Include="OutFolder.cs" />
+    <Compile Include="OutFolioDetail.cs" />
+    <Compile Include="OutGoalExecutive.cs" />
+    <Compile Include="OutGoalSupervisor.cs" />
+    <Compile Include="OutLoanResume.cs" />
+    <Compile Include="OutMotorInfo.cs" />
+    <Compile Include="OutMenuType.cs" />
+    <Compile Include="OutNextCategory.cs" />
+    <Compile Include="OutParamDocuments.cs" />
+    <Compile Include="OutAFP.cs" />
+    <Compile Include="OutAgreement.cs" />
+    <Compile Include="OutAppliedStudies.cs" />
+    <Compile Include="OutARP.cs" />
+    <Compile Include="OutBalancesCommision.cs" />
+    <Compile Include="OutBanks.cs" />
+    <Compile Include="OutBornCities.cs" />
+    <Compile Include="OutCategories.cs" />
+    <Compile Include="OutCancellationCausal.cs" />
+    <Compile Include="OutChannelType.cs" />
+    <Compile Include="OutCivilStatus.cs" />
+    <Compile Include="OutCommissionsHeader.cs" />
+    <Compile Include="OutContractType.cs" />
+    <Compile Include="OutCoordinator.cs" />
+    <Compile Include="OutCustomer.cs" />
+    <Compile Include="OutDepartments.cs" />
+    <Compile Include="OutDocuments.cs" />
+    <Compile Include="OutEPS.cs" />
+    <Compile Include="OutExecutiveInformation.cs" />
+    <Compile Include="OutExecutiveType.cs" />
+    <Compile Include="OutFlowType.cs" />
+    <Compile Include="OutHeaderPQR.cs" />
+    <Compile Include="OutHousingType.cs" />
+    <Compile Include="OutInsurancePolicyOffer.cs" />
+    <Compile Include="OutJustification.cs" />
+    <Compile Include="OutLoanDetail.cs" />
+    <Compile Include="OutLoanHeader.cs" />
+    <Compile Include="OutLoanInformation.cs" />
+    <Compile Include="OutLoanLine.cs" />
+    <Compile Include="OutLoanType.cs" />
+    <Compile Include="OutLogPQR.cs" />
+    <Compile Include="OutMailInformation.cs" />
+    <Compile Include="OutMovesCommission.cs" />
+    <Compile Include="OutNoveltyPQR.cs" />
+    <Compile Include="OutOffer.cs" />
+    <Compile Include="OutPayable.cs" />
+    <Compile Include="OutPosition.cs" />
+    <Compile Include="OutProcessOffer.cs" />
+    <Compile Include="OutProductivity.cs" />
+    <Compile Include="OutPurchaseEntity.cs" />
+    <Compile Include="OutRegional.cs" />
+    <Compile Include="OutSalesChannel.cs" />
+    <Compile Include="OutBranches.cs" />
+    <Compile Include="OutUserOptions.cs" />
+    <Compile Include="OutStates.cs" />
+    <Compile Include="OutSummaryPQR.cs" />
+    <Compile Include="OutUploadDocuments.cs" />
+    <Compile Include="OutValidateUser.cs" />
+    <Compile Include="OutParamSectorGuias.cs" />
+    <Compile Include="OutParamSectorTablas.cs" />
+    <Compile Include="ProfileCustomer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseDetail.cs" />
+    <Compile Include="Response.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

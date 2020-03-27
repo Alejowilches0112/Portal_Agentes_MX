@@ -1,0 +1,166 @@
+﻿
+@{
+
+    ViewBag.Title = "Guias";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="#">Guías</a></li>
+</ol>
+
+<div ng-controller="DocumentosController" class="panel-group" id="accordion" ng-init="GetddSectorGuias();getGuias();">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNueva')">
+                <i class="fa fa-plus"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Listado de Guias Disponibles</div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table class="table table-hover ">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th>No</th>
+                                <th>Nombre </th>
+                                <th>Última Modificación</th>
+                                <th>Estado</th>
+                                <th>Editar</th>
+                                <th>Eliminar</th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;" ng-repeat="itemleg in ddSectorGuias.ListSectorGuias">
+                            <tr class="table-primary">
+                                <th colspan="4">
+                                    <legend>{{itemleg.sector}}</legend>
+                                </th>
+                            </tr>
+                            <tr ng-repeat="item in SetGu(itemleg.secuencia)" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.no}}</td>
+                                <td><span ng-click="DownloadDocFiles(item.path)"> {{item.nombre}} </span></td>
+                                <td>{{item.fecha}}</td>
+                                <td>{{item.ind_estado === 1 ? "ACTIVO" : "INACTIVO"}}</td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdGuia(item.codigo_guia);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-xs-1">
+                                    <button class="btn btn-danger btn-xs" ng-click="objDelete(item);openModal('myModalDelete');">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNueva" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNueva')">&times;</button>
+                        <h5 class="modal-title">Nuevo Documento</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Sector</label>
+                                <div class="col-sm-13">
+                                    <select required name="dependencia" class="selectpicker form-control" ng-model="guia.sector">
+                                        <option ng-repeat="item in ddSectorGuias.ListSectorGuias" value="{{item.secuencia}}">{{item.sector}}</option>
+                                    </select>
+                                </div>
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Estado</label>
+                                <div class="col-sm-13">
+                                    <select required name="estado" class="selectpicker form-control" ng-model="guia.ind_estado" ng-init="guia.ind_estado='1'">
+                                        <option value="1" selected>ACTIVO</option>
+                                        <option value="0">INACTIVO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <label for="data-Guia" class="control-label col-xs-12">Documento</label>
+                                <label for="data-Guia" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload"></i> Cargar Documento
+                                </label>
+
+                                <input id="data-Guia" type="file" accept=".pdf" onchange="angular.element(this).scope().uploadedFileGuia(this)" />
+                                <label id="data-GuiaDoc"></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="saveGuia()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEdit')">&times;</button>
+                        <h5 class="modal-title">Editar Documento</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-xs-6 form-group">
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Sector</label>
+                                <div class="col-sm-13">
+                                    <select disabled name="dependencia" class="selectpicker form-control" ng-model="guia.sector">
+                                        <option ng-repeat="item in ddSectorGuias.ListSectorGuias" value="{{item.secuencia}}" ng-selected="item.secuencia == guia.sector">{{item.sector}}</option>
+                                    </select>
+                                </div>
+                                <label for="lblLineaCredito" class="control-label col-xs-6">Estado</label>
+                                <div class="col-sm-13">
+                                    <select required name="estado" class="selectpicker form-control" ng-model="guia.ind_estado">
+                                        <option ng-selected="guia.ind_estado == 1" value="1">ACTIVO</option>
+                                        <option ng-selected="guia.ind_estado == 0" value="0">INACTIVO</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-xs-12">
+                                <label for="data-plantilla" class="control-label col-xs-12">Documento</label>
+                                <label for="data-plantilla" class="custom-file-upload">
+                                    <i class="fa fa-cloud-upload"></i> Cargar Documento
+                                </label>
+                                <input id="data-plantilla" type="file" accept=".pdf;.png;.jpeg" onchange="angular.element(this).scope().uploadedFileGuia(this)" />
+                                <label id="data-plantillaDoc"></label>
+                            </div>
+                            <div class="col-xs-6">
+                                <button class="btn btn-primary btn-xs" ng-click="DownloadDocFiles(guia.path)">
+                                    <i class="fa fa-file-pdf-o"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="editarGuia()">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalDelete" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalDelete')">&times;</button>
+                        <h5 class="modal-title">Eliminar Guía</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Este Documento?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deleteGuia(objEliminar.codigo_guia)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDelete')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

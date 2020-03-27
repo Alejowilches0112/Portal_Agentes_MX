@@ -1,0 +1,133 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+}
+
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+
+<ol class="breadcrumb">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Actualizar Ejecutivo</a></li>
+</ol>
+
+
+<div ng-controller="ActualizarController" class="panel-group" id="accordion" ng-submit="submit();">
+    <form name="formUpdate" novalidate="novalidate" ng-submit="submit();" encType="multipart/form-data" autocomplete="off">
+       <legend>Mis Datos Asesor </legend>
+       <div class="row">
+           <div class="form-group col-xs-6">
+               <label for="lblRFC" class="control-label col-xs-6">RFC</label>
+               <input required type="text" upper class="form-control" id="inputRFC" placeholder="Digite RFC" name="rfc" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblCURP" class="control-label col-xs-6">CURP</label>
+               <input required type="text" upper class="form-control" id="InputCURP" placeholder="Digite CURP" name="curp" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblNoCuenta" class="control-label col-xs-12">No Cuenta Bancaria</label>
+               <input type="text" upper class="form-control" id="InputNoCuenta" placeholder="Digite Numero de cuenta" name="noCuenta" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblClabe" class="control-label col-xs-12">Clabe</label>
+               <input type="text" upper class="form-control" id="InputClabe" placeholder="Digite Clabe" name="Clabe" />
+           </div>
+           <div class="col-xs-6 form-group">
+               <label for="lblNombreBanco" class="control-label col-xs-6">Banco</label>
+               <select class="selectpicker form-control" name="NombreBanco" ng-options="banco.codigo_banco as banco.nombre_banco for banco in listBancos.ListBancos"></select>
+           </div>
+       </div>
+       <div>
+           <div class="col-xs-12">
+               <legend>Domicilio Fiscal</legend>
+           </div>
+           <div class="col-xs-6 form-group">
+               <label for="lblentidadFamiliarBen" class="control-label col-xs-12">Entidad</label>
+               <div class="col-sm-13">
+                   <select class="selectpicker form-control" name="entidadFamiliarBen" ng-model="beneficiarioPolizaFamiiliar.entidadF" ng-options="entidad.codigo_entidad as entidad.nombre_entidad for entidad in ListEntidadesR.ListEntidades" ng-change="getEntidadesFedR(formulario.paisR);municipioDom(formulario.paisR,beneficiarioPolizaFamiiliar.entidadF)">
+                       <option value="">Selecione Entidad</option>
+                   </select>
+               </div>
+           </div>
+           <div class="col-xs-6 form-group">
+               <label for="lblmunicipioFamiliarDom" class="control-label col-xs-12">Minicipio</label>
+               <select class="selectpicker form-control" name="municipioFamiliarDom" ng-model="beneficiarioPolizaFamiiliar.municipioF" ng-options="municipio.codigo_municipio as municipio.nombre_municipio for municipio in listMinucipiosDom.ListMunicipios" ng-change="municipioDom(formulario.paisR,beneficiarioPolizaFamiiliar.entidadF)">
+                   <option value="">Selecione Municipio</option>
+               </select>
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblCiudad" class="control-label col-xs-12">Ciudad</label>
+               <input type="text" class="form-control" id="InputCiudad" placeholder="" name="Ciudad" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblColonia" class="control-label col-xs-12">Colonia</label>
+               <input type="text" class="form-control" id="InputColonia" placeholder="" name="Colonia" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">Domicilio/Calle</label>
+               <input type="text" class="form-control" id="InputColonia" placeholder="" name="Domicilio" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">No Exterior</label>
+               <input type="text" class="form-control" id="InputNoExt" placeholder="" name="NoExt" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">No Interior</label>
+               <input type="text" class="form-control" id="InputNoInt" placeholder="" name="NoInt" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">Codigo Postal</label>
+               <input type="text" class="form-control" id="InputCodPostal" placeholder="" name="CodPostal" />
+           </div>
+       </div>
+       <div class="row">
+           <div class="col-xs-12">
+               <legend>Domicilio Actual</legend>
+           </div>
+           <div class="form-group col-xs-6">
+               <label class="control-label col-xs-12">Igual a Domicilio Fiscal</label>
+               <select class="selectpicker form-control" name="mismoDomicilioFiscal" ng-init="asesor.igualFiscal ='N'" ng-model="asesor.igualFiscal">
+                   <option value="S">SI</option>
+                   <option value="N">NO</option>
+               </select>
+           </div>
+           <div class="col-xs-6 form-group">
+               <label for="lblentidadFamiliarBen" class="control-label col-xs-12">Entidad</label>
+               <div class="col-sm-13">
+                   <select class="selectpicker form-control" name="entidadActual" ng-model="beneficiarioPolizaFamiiliar.entidadF" ng-options="entidad.codigo_entidad as entidad.nombre_entidad for entidad in ListEntidadesR.ListEntidades" ng-change="getEntidadesFedR(formulario.paisR);municipioDom(formulario.paisR,beneficiarioPolizaFamiiliar.entidadF)">
+                       <option value="">Selecione Entidad</option>
+                   </select>
+               </div>
+           </div>
+           <div class="col-xs-6 form-group">
+               <label for="lblmunicipioFamiliarDom" class="control-label col-xs-12">Minicipio</label>
+               <select class="selectpicker form-control" name="municipioActual" ng-model="beneficiarioPolizaFamiiliar.municipioF" ng-options="municipio.codigo_municipio as municipio.nombre_municipio for municipio in listMinucipiosDom.ListMunicipios" ng-change="municipioDom(formulario.paisR,beneficiarioPolizaFamiiliar.entidadF)">
+                   <option value="">Selecione Municipio</option>
+               </select>
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblCiudad" class="control-label col-xs-12">Ciudad</label>
+               <input type="text" class="form-control" id="ciudadActual" placeholder="" name="CiudadActual" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblColonia" class="control-label col-xs-12">Colonia</label>
+               <input type="text" class="form-control" id="ColoniaActual" placeholder="" name="ColoniaActual" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">Domicilio/Calle</label>
+               <input type="text" class="form-control" id="DomicilioActual" placeholder="" name="DomicilioActual" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">No Exterior</label>
+               <input type="text" class="form-control" id="NoExtActual" placeholder="" name="NoExtActual" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">No Interior</label>
+               <input type="text" class="form-control" id="NoIntActual" placeholder="" name="NoIntActual" />
+           </div>
+           <div class="form-group col-xs-6">
+               <label for="lblDomicilio" class="control-label col-xs-12">Codigo Postal</label>
+               <input type="text" class="form-control" id="CodPostalActual" placeholder="" name="CodPostalActual" />
+           </div>
+       </div>
+    </form>
+</div>

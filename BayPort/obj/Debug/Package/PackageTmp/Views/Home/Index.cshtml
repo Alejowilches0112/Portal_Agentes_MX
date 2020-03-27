@@ -1,0 +1,49 @@
+﻿@using System.Web.Optimization
+@model Models.Login
+@{
+
+    ViewBag.Title = "Login";
+    ViewBag.Message = ViewBag.msg;
+    var className = ViewBag.Message != "" ? "alert alert-warning alert-dismissible" : "oculto";
+
+}
+
+<div id="login">
+    <h5 class="page-header " style="margin-top: 0px;margin-bottom:  0px;">
+        <img src="~/images/logo.png" class="img-responsive" alt="logo" style="width: 140px;height: 120px;">
+        Sistema de Comisiones
+    </h5>
+    <br />
+    <div class="row rd-mobilepanel">
+        <div class="col-xs-4"></div>
+        <div class="col-xs-5">
+            <div class="panel panel-default">
+                <div class="panel-heading">Acceso al sistema</div>
+                <div class="panel-body">
+                    @using (Html.BeginForm("Authenticate", "Home", FormMethod.Post))
+                    {
+                        <h5 class="form-signin-heading"><strong>Iniciar Sesión</strong></h5>
+                        @Html.Label("inputUser", new { @class = "sr-only" })
+                        @Html.TextBoxFor(x => x.userName, new { @class = "form-control", @placeholder = "Digite Usuario", required = "required", autofocus = "autofocus", autocomplete = "off"   })
+                        @Html.ValidationMessageFor(x => x.userName, null, new { @class = "label label-warning" })
+                        <br />
+                        @Html.Label("inputPassword", new { @class = "sr-only" })
+                        @Html.TextBoxFor(x => x.password, new { @type = "password", @class = "form-control", @placeholder = "Digite Contraseña", required = "required", autocomplete = "off" })
+                        @Html.ValidationMessageFor(x => x.password, null, new { @class = "label label-warning" })
+                        <br />
+                        @Html.AntiForgeryToken()
+                        <button class="btn btn-lg btn-primary btn-block" type="submit" onclick="localStorage.clear();">Ingresar</button>
+                        <br />
+                        <div class="@className">
+                            @ViewBag.Message
+                        </div>
+                    }
+                    @section scripts{
+                        @Scripts.Render("~/bundles/bootstrap")
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

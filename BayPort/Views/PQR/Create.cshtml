@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "Crear PQR";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+    ViewBag.identificacion = ViewBag.documentoAsesor;
+}
+
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+
+<ol class="breadcrumb">
+    <li><a href="#">Aclaraciones</a></li>
+    <li><a href="#">Crear</a></li>
+</ol>
+
+<div ng-controller="PQRController" ng-init="GetFlow();" ng-submit="submit();">
+    <form name="PQRCreate" autocomplete="off">
+        <fieldset class="form-group container-fluid">
+            <legend>Crear Aclaración</legend>
+            <div class="col-xs-12 col-sm-6  col-md-6  col-lg-6  form-group">
+                <label for="lblDocumentAsesor" class="control-label col-xs-6">RFC Asesor</label>
+                <input type="text" class="form-control" name="numDocAse" placeholder="Digite documento Asesor" ng-value="@ViewBag.identificacion" ng-disabled="true">
+            </div>
+            @*<div class="col-xs-12 col-sm-6  col-md-6  col-lg-6 form-group">
+                <label for="lblDocumentCliente" class="control-label col-xs-6">Documento Cliente</label>
+                <input type="text" class="form-control" name="numDocCli" placeholder="Digite documento Cliente" ng-value="@ViewBag.identificacion" ng-disabled="true" >
+            </div>*@
+
+            <div class="col-xs-12 col-sm-4  col-md-4  col-lg-4 form-group">
+                <label for="lblTipoFlujo" class="control-label col-xs-6">Tipo Flujo</label>
+                <div class="col-sm-12">
+                    <select class="selectpicker form-control" ng-model="PQR.TipoFlujo" ng-options="flujo.flowType as flujo.flowName for flujo in Flows.lstFlowType" ng-change="GetJustify();">
+                        <option value="">Seleccione Tipo Flujo</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4  col-md-4  col-lg-4 form-group">
+                <label for="lblMotivo" class="control-label col-xs-6">Motivo Radicación</label>
+                <div class="col-sm-12">
+                    <select class="selectpicker form-control" ng-model="PQR.TipoJustificacion" ng-options="justificacion.justificationType as justificacion.justificationName for justificacion in JustifyList.lstJustification">
+                        <option value="">Seleccione Motivo Radicación</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-xs-12 col-sm-4  col-md-4  col-lg-4 form-group">
+                <label for="lblDocumentCliente" class="control-label col-xs-6">Número Crédito</label>
+                <input type="text" class="form-control" ng-model="PQR.NumeroCredito" placeholder="Digite número de crédito" ng-blur="ValidateLoanNumber();">
+            </div>
+            <div class="col-xs-12 form-group">
+                <label for="lblObservaciones" class="control-label col-xs-6">Observaciones</label>
+                <textarea rows="5" class="form-control" ng-model="PQR.Observaciones" ></textarea>
+            </div>
+            <div class="panel-group text-right">
+                <button type="submit" class="btn btn-primary btn-xs" ng-click="procesarFormularioPQR(PQRCreate.$valid)"><i></i>Crear</button>
+            </div>
+        </fieldset>
+    </form>
+</div>
+

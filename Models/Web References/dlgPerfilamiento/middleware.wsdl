@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://produccion.clientesbayport.com/middleware" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns="http://schemas.xmlsoap.org/wsdl/" targetNamespace="http://produccion.clientesbayport.com/middleware" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://produccion.clientesbayport.com/middleware">
+      <xsd:import namespace="http://schemas.xmlsoap.org/soap/encoding/" />
+      <xsd:import namespace="http://schemas.xmlsoap.org/wsdl/" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="testRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="testResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="procesarOfertaRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="cedula" type="xsd:string" />
+    <wsdl:part name="nombre" type="xsd:string" />
+    <wsdl:part name="segundo_nombre" type="xsd:string" />
+    <wsdl:part name="primer_apellido" type="xsd:string" />
+    <wsdl:part name="segundo_apellido" type="xsd:string" />
+    <wsdl:part name="genero" type="xsd:int" />
+    <wsdl:part name="fecha_nacimiento" type="xsd:date" />
+    <wsdl:part name="pagaduria" type="xsd:int" />
+    <wsdl:part name="fecha_ingreso" type="xsd:date" />
+    <wsdl:part name="tipo_contrato" type="xsd:int" />
+    <wsdl:part name="tipo_credito" type="xsd:int" />
+    <wsdl:part name="linea_credito" type="xsd:int" />
+    <wsdl:part name="activo_pensionado" type="xsd:int" />
+    <wsdl:part name="docente" type="xsd:string" />
+    <wsdl:part name="plazo" type="xsd:int" />
+    <wsdl:part name="monto" type="xsd:int" />
+    <wsdl:part name="cuota1" type="xsd:int" />
+    <wsdl:part name="saldo1" type="xsd:int" />
+    <wsdl:part name="entidad1" type="xsd:string" />
+    <wsdl:part name="cuota2" type="xsd:int" />
+    <wsdl:part name="saldo2" type="xsd:int" />
+    <wsdl:part name="entidad2" type="xsd:string" />
+    <wsdl:part name="cuota3" type="xsd:int" />
+    <wsdl:part name="saldo3" type="xsd:int" />
+    <wsdl:part name="entidad3" type="xsd:string" />
+    <wsdl:part name="cuota4" type="xsd:int" />
+    <wsdl:part name="saldo4" type="xsd:int" />
+    <wsdl:part name="entidad4" type="xsd:string" />
+    <wsdl:part name="cuota5" type="xsd:int" />
+    <wsdl:part name="saldo5" type="xsd:int" />
+    <wsdl:part name="entidad5" type="xsd:string" />
+    <wsdl:part name="cuota6" type="xsd:int" />
+    <wsdl:part name="saldo6" type="xsd:int" />
+    <wsdl:part name="entidad6" type="xsd:string" />
+    <wsdl:part name="cuota_refinanciacion" type="xsd:int" />
+    <wsdl:part name="sucursal" type="xsd:int" />
+    <wsdl:part name="regional" type="xsd:string" />
+    <wsdl:part name="agente" type="xsd:int" />
+    <wsdl:part name="salario" type="xsd:int" />
+    <wsdl:part name="url_formato" type="xsd:string" />
+    <wsdl:part name="salud" type="xsd:int" />
+    <wsdl:part name="pension" type="xsd:int" />
+    <wsdl:part name="retefuente" type="xsd:int" />
+    <wsdl:part name="fondosolidaridad" type="xsd:int" />
+    <wsdl:part name="otros_descuentos" type="xsd:int" />
+    <wsdl:part name="compracartera_val" type="xsd:int" />
+    <wsdl:part name="ingresosadicionales" type="xsd:int" />
+    <wsdl:part name="otro_intento" type="xsd:int" />
+    <wsdl:part name="numero_carpeta" type="xsd:int" />
+    <wsdl:part name="telefono" type="xsd:string" />
+    <wsdl:part name="campo_numerico1" type="xsd:int" />
+    <wsdl:part name="campo_numerico2" type="xsd:int" />
+    <wsdl:part name="campo_numerico3" type="xsd:int" />
+    <wsdl:part name="campo_numerico4" type="xsd:int" />
+    <wsdl:part name="campo_numerico5" type="xsd:int" />
+    <wsdl:part name="campo_numerico6" type="xsd:int" />
+    <wsdl:part name="campo_numerico7" type="xsd:int" />
+    <wsdl:part name="campo_numerico8" type="xsd:int" />
+    <wsdl:part name="campo_numerico9" type="xsd:int" />
+    <wsdl:part name="campo_numerico10" type="xsd:int" />
+    <wsdl:part name="campo_numerico11" type="xsd:int" />
+    <wsdl:part name="campo_numerico12" type="xsd:int" />
+    <wsdl:part name="campo_numerico13" type="xsd:int" />
+    <wsdl:part name="campo_numerico14" type="xsd:int" />
+    <wsdl:part name="campo_numerico15" type="xsd:int" />
+    <wsdl:part name="campo_numerico16" type="xsd:int" />
+    <wsdl:part name="campo_numerico17" type="xsd:int" />
+    <wsdl:part name="campo_numerico18" type="xsd:int" />
+    <wsdl:part name="campo_numerico19" type="xsd:int" />
+    <wsdl:part name="campo_numerico20" type="xsd:int" />
+    <wsdl:part name="campo_texto1" type="xsd:string" />
+    <wsdl:part name="campo_texto2" type="xsd:string" />
+    <wsdl:part name="campo_texto3" type="xsd:string" />
+    <wsdl:part name="campo_texto4" type="xsd:string" />
+    <wsdl:part name="campo_texto5" type="xsd:string" />
+    <wsdl:part name="campo_texto6" type="xsd:string" />
+    <wsdl:part name="campo_texto7" type="xsd:string" />
+    <wsdl:part name="campo_texto8" type="xsd:string" />
+    <wsdl:part name="campo_texto9" type="xsd:string" />
+    <wsdl:part name="campo_texto10" type="xsd:string" />
+    <wsdl:part name="campo_texto11" type="xsd:string" />
+    <wsdl:part name="campo_texto12" type="xsd:string" />
+    <wsdl:part name="campo_texto13" type="xsd:string" />
+    <wsdl:part name="campo_texto14" type="xsd:string" />
+    <wsdl:part name="campo_texto15" type="xsd:string" />
+    <wsdl:part name="campo_texto16" type="xsd:string" />
+    <wsdl:part name="campo_texto17" type="xsd:string" />
+    <wsdl:part name="campo_texto18" type="xsd:string" />
+    <wsdl:part name="campo_texto19" type="xsd:string" />
+    <wsdl:part name="campo_texto20" type="xsd:string" />
+    <wsdl:part name="campo_fecha1" type="xsd:date" />
+    <wsdl:part name="campo_fecha2" type="xsd:date" />
+    <wsdl:part name="campo_fecha3" type="xsd:date" />
+    <wsdl:part name="campo_fecha4" type="xsd:date" />
+    <wsdl:part name="campo_fecha5" type="xsd:date" />
+    <wsdl:part name="convenio" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="procesarOfertaResponse">
+    <wsdl:part name="return" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="insertarCasoDecrimRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="UUID" type="xsd:string" />
+    <wsdl:part name="observaciones" type="xsd:string" />
+    <wsdl:part name="idTipIde" type="xsd:int" />
+    <wsdl:part name="NIdentificacion" type="xsd:int" />
+    <wsdl:part name="pApellido" type="xsd:string" />
+    <wsdl:part name="sApellido" type="xsd:string" />
+    <wsdl:part name="pNombre" type="xsd:string" />
+    <wsdl:part name="sNombre" type="xsd:string" />
+    <wsdl:part name="fecNac" type="xsd:date" />
+    <wsdl:part name="sexo" type="xsd:string" />
+    <wsdl:part name="rh" type="xsd:string" />
+    <wsdl:part name="imagenes" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="insertarCasoDecrimResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="buscarIdCasoDecrimRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="id_caso" type="xsd:int" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="UUID" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="buscarIdCasoDecrimResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="buscarCedulaDecrimRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="cedula" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="UUID" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="buscarCedulaDecrimResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="generarSmsRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="celular" type="xsd:string" />
+    <wsdl:part name="mensaje" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="generarSmsResponse">
+    <wsdl:part name="notificacion" type="xsd:Array" />
+  </wsdl:message>
+  <wsdl:message name="actualizarCondicionesOfertaRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="tasa" type="xsd:string" />
+    <wsdl:part name="plazo" type="xsd:int" />
+    <wsdl:part name="monto" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="actualizarCondicionesOfertaResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="rechazarCondicionesOfertaRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="observaciones" type="xsd:string" />
+    <wsdl:part name="agente" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="rechazarCondicionesOfertaResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="crearCasoDecrimRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:string" />
+    <wsdl:part name="identificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="crearCasoDecrimResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consultaCasoDecrimRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:string" />
+    <wsdl:part name="idCaso" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consultaCasoDecrimResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="pruebasDatalaftRequest">
+    <wsdl:part name="identificacion" type="xsd:string" />
+    <wsdl:part name="nombre" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="pruebasDatalaftResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="envioCorreoRequest">
+    <wsdl:part name="cuerpo" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="envioCorreoResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consultaReconocerRequest">
+    <wsdl:part name="cedula" type="xsd:string" />
+    <wsdl:part name="apellido" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="consultaReconocerResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="aceptarOpcionSeguroRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="codigoPlan" type="xsd:int" />
+    <wsdl:part name="valorPlan" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="aceptarOpcionSeguroResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="actualizacionDatacreditoRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="primerApellido" type="xsd:string" />
+    <wsdl:part name="cedula" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="actualizacionDatacreditoResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="actualizacionDemandasRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="cedula" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="actualizacionDemandasResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:message name="actualizacionCifinRequest">
+    <wsdl:part name="usuario" type="xsd:string" />
+    <wsdl:part name="contrasena" type="xsd:string" />
+    <wsdl:part name="carpeta" type="xsd:int" />
+    <wsdl:part name="cedula" type="xsd:int" />
+  </wsdl:message>
+  <wsdl:message name="actualizacionCifinResponse">
+    <wsdl:part name="notificacion" type="xsd:string" />
+  </wsdl:message>
+  <wsdl:portType name="SOAP ServerPortType">
+    <wsdl:operation name="test">
+      <documentation>Prueba de conexion al WS</documentation>
+      <wsdl:input message="tns:testRequest" />
+      <wsdl:output message="tns:testResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="procesarOferta">
+      <documentation>Procesar Oferta de perfilamiento</documentation>
+      <wsdl:input message="tns:procesarOfertaRequest" />
+      <wsdl:output message="tns:procesarOfertaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="insertarCasoDecrim">
+      <documentation>Envio de imagenes para consulta con Decrim</documentation>
+      <wsdl:input message="tns:insertarCasoDecrimRequest" />
+      <wsdl:output message="tns:insertarCasoDecrimResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarIdCasoDecrim">
+      <documentation>Consulta Decrim por id del caso</documentation>
+      <wsdl:input message="tns:buscarIdCasoDecrimRequest" />
+      <wsdl:output message="tns:buscarIdCasoDecrimResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="buscarCedulaDecrim">
+      <documentation>Consulta Decrim por cedula</documentation>
+      <wsdl:input message="tns:buscarCedulaDecrimRequest" />
+      <wsdl:output message="tns:buscarCedulaDecrimResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="generarSms">
+      <documentation>Procesar envio de mensajes de texto</documentation>
+      <wsdl:input message="tns:generarSmsRequest" />
+      <wsdl:output message="tns:generarSmsResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCondicionesOferta">
+      <documentation>Actualizar condiciones de oferta</documentation>
+      <wsdl:input message="tns:actualizarCondicionesOfertaRequest" />
+      <wsdl:output message="tns:actualizarCondicionesOfertaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="rechazarCondicionesOferta">
+      <documentation>Actualizar condiciones de oferta</documentation>
+      <wsdl:input message="tns:rechazarCondicionesOfertaRequest" />
+      <wsdl:output message="tns:rechazarCondicionesOfertaResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="crearCasoDecrim">
+      <documentation>creacion de caso decrim para analisis de documentos</documentation>
+      <wsdl:input message="tns:crearCasoDecrimRequest" />
+      <wsdl:output message="tns:crearCasoDecrimResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultaCasoDecrim">
+      <documentation>consulta de estado caso decrim</documentation>
+      <wsdl:input message="tns:consultaCasoDecrimRequest" />
+      <wsdl:output message="tns:consultaCasoDecrimResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="pruebasDatalaft">
+      <documentation>pruebas consultas datalaft</documentation>
+      <wsdl:input message="tns:pruebasDatalaftRequest" />
+      <wsdl:output message="tns:pruebasDatalaftResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="envioCorreo">
+      <documentation>envio de correos</documentation>
+      <wsdl:input message="tns:envioCorreoRequest" />
+      <wsdl:output message="tns:envioCorreoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="consultaReconocer">
+      <documentation>Consulta de informacion de contacto de una persona natural</documentation>
+      <wsdl:input message="tns:consultaReconocerRequest" />
+      <wsdl:output message="tns:consultaReconocerResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="aceptarOpcionSeguro">
+      <documentation>Tomar una opciÃ³n de seguro</documentation>
+      <wsdl:input message="tns:aceptarOpcionSeguroRequest" />
+      <wsdl:output message="tns:aceptarOpcionSeguroResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizacionDatacredito">
+      <documentation>ActualizaciÃ³n de datacredito</documentation>
+      <wsdl:input message="tns:actualizacionDatacreditoRequest" />
+      <wsdl:output message="tns:actualizacionDatacreditoResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizacionDemandas">
+      <documentation>ActualizaciÃ³n de demandas judiciales</documentation>
+      <wsdl:input message="tns:actualizacionDemandasRequest" />
+      <wsdl:output message="tns:actualizacionDemandasResponse" />
+    </wsdl:operation>
+    <wsdl:operation name="actualizacionCifin">
+      <documentation>ActualizaciÃ³n de cifin</documentation>
+      <wsdl:input message="tns:actualizacionCifinRequest" />
+      <wsdl:output message="tns:actualizacionCifinResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SOAP ServerBinding" type="tns:SOAP ServerPortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" style="rpc" />
+    <wsdl:operation name="test">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/test" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="procesarOferta">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/procesarOferta" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="insertarCasoDecrim">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/insertarCasoDecrim" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarIdCasoDecrim">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/buscarIdCasoDecrim" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="buscarCedulaDecrim">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/buscarCedulaDecrim" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="generarSms">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/generarSms" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizarCondicionesOferta">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/actualizarCondicionesOferta" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="rechazarCondicionesOferta">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/actualizarCondicionesOferta" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="crearCasoDecrim">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/crearCasoDecrim" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaCasoDecrim">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/consultaCasoDecrim" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="pruebasDatalaft">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/pruebasDatalaft" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="envioCorreo">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/envioCorreo" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="consultaReconocer">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/consultaReconocer" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="aceptarOpcionSeguro">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/aceptarOpcionSeguro" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizacionDatacredito">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/actualizacionDatacredito" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizacionDemandas">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/actualizacionDemandas" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="actualizacionCifin">
+      <soap:operation soapAction="urn:http://produccion.clientesbayport.com/middleware/actualizacionCifin" style="rpc" />
+      <wsdl:input>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="encoded" namespace="urn:SOAPServerWSDL" encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SOAP Server">
+    <wsdl:port name="SOAP ServerPort" binding="tns:SOAP ServerBinding">
+      <soap:address location="http://dialogo.clientesbayport.com/middleware/index.php/middleware" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
