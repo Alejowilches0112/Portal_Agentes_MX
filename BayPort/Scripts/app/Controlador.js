@@ -15,10 +15,12 @@ app.controller('DocumentosController', function ($scope, BayportService, $filter
     $scope.uploadedFileGuia = function (element) {
         $scope.$apply(function ($scope) {
             $scope.file = element.files[0];
+            console.log($scope.file);
             var boton = element.id;
             //var prueba = "#" + boton;
             $scope.nombreArchivo = element.files["0"].name;
             var nombreLabel = "#" + boton + 'Doc';
+            console.log(boton)
             $scope.nameLab = nombreLabel;
             $(nombreLabel).text($scope.nombreArchivo);
             var reader = new FileReader();
@@ -33,6 +35,43 @@ app.controller('DocumentosController', function ($scope, BayportService, $filter
             reader.onload = function (e) {
                 //$scope.file64 = e.target.result.split("base64,")[1];
                 $scope.guia.file = e.target.result.split("base64,")[1];
+                var fileCom = atob($scope.guia.file);
+                switch ($scope.file.type) {
+                    case 'application/pdf':
+                        if (fileCom.indexOf('%PDF-1.') === -1) {
+                            $scope.guia.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/png':
+                        if (fileCom.indexOf('PNG') === -1) {
+                            $scope.guia.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/jpeg':
+                        if (fileCom.indexOf('JFIF') > -1 && ($scope.file.name.indexOf('.jpg') === -1 && $scope.file.name.indexOf('.jpeg') === -1)) {
+                            $scope.guia.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    default:
+                        $scope.guia.file = null;
+                        alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                        $(nombreLabel).text('');
+                        document.getElementById(botom).value = '';
+                        return;
+                        break;
+                }
                 $scope.guia.nombre = $scope.nombreArchivo;
             }
             reader.readAsDataURL(value);
@@ -42,6 +81,7 @@ app.controller('DocumentosController', function ($scope, BayportService, $filter
     $scope.uploadedFileTabla = function (element) {
         $scope.$apply(function ($scope) {
             $scope.file = element.files[0];
+            
             var boton = element.id;
             //var prueba = "#" + boton;
             $scope.nombreArchivo = element.files["0"].name;
@@ -57,8 +97,44 @@ app.controller('DocumentosController', function ($scope, BayportService, $filter
             var value = element.files[0];
             var reader = new FileReader();
             reader.onload = function (e) {
-                //$scope.file64 = e.target.result.split("base64,")[1];
                 $scope.tabla.file = e.target.result.split("base64,")[1];
+                var fileCom = atob($scope.tabla.file);
+                switch ($scope.file.type) {
+                    case 'application/pdf':
+                        if (fileCom.indexOf('%PDF-1.') === -1) {
+                            $scope.tabla.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/png':
+                        if (fileCom.indexOf('PNG') === -1) {
+                            $scope.tabla.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/jpeg':
+                        if (fileCom.indexOf('JFIF') > -1 && ($scope.file.name.indexOf('.jpg') === -1 && $scope.file.name.indexOf('.jpeg') === -1)) {
+                            $scope.tabla.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    default:
+                        $scope.tabla.file = null;
+                        alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                        $(nombreLabel).text('');
+                        document.getElementById(botom).value = '';
+                        return;
+                        break;
+                }
                 $scope.tabla.nombre = $scope.nombreArchivo;
             }
             reader.readAsDataURL(value);
@@ -3325,6 +3401,7 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
     $scope.uploadedFilePlantilla = function (element) {
         $scope.$apply(function ($scope) {
             $scope.file = element.files[0];
+            
             var boton = element.id;
             var prueba = "#" + boton;
             $scope.nombreArchivo = element.files["0"].name;
@@ -3340,8 +3417,47 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
             var value = element.files[0];
             var reader = new FileReader();
             reader.onload = function (e) {
+
                 //$scope.file64 = e.target.result.split("base64,")[1];
-                //$scope.newDocumento.file = e.target.result.split("base64,")[1];
+                $scope.newDocumento.file = e.target.result.split("base64,")[1];
+                var fileCom = atob($scope.newDocumento.file);
+                switch ($scope.file.type) {
+                    case 'application/pdf':
+                        if (fileCom.indexOf('%PDF-1.') === -1) {
+                            $scope.newDocumento.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/png':
+                        if (fileCom.indexOf('PNG') === -1) {
+                            $scope.newDocumento.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/jpeg':
+                        if (fileCom.indexOf('JFIF') > -1 && ($scope.file.name.indexOf('.jpg') === -1 && $scope.file.name.indexOf('.jpeg') === -1)) {
+                            $scope.newDocumento.file = null; 
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(botom).value = '';
+                            return;
+                        }
+                        break;
+                    default:
+                        $scope.newDocumento.file = null;
+                        alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                        $(nombreLabel).text('');
+                        document.getElementById(botom).value = '';
+                        return;
+                        break;
+                }
+                $scope.newDocumento.file = null;
                 $scope.newDocumento.nombreDoc = $scope.nombreArchivo;
             }
             reader.readAsDataURL(value);
@@ -3366,7 +3482,45 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
             var reader = new FileReader();
             reader.onload = function (e) {
                 //$scope.file64 = e.target.result.split("base64,")[1];
-                //$scope.Documento.file = e.target.result.split("base64,")[1];
+                $scope.Documento.file = e.target.result.split("base64,")[1];
+                var fileCom = atob($scope.Documento.file);
+                switch ($scope.file.type) {
+                    case 'application/pdf':
+                        if (fileCom.indexOf('%PDF-1.') === -1) {
+                            $scope.Documento.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(boton).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/png':
+                        if (fileCom.indexOf('PNG') === -1) {
+                            $scope.Documento.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(boton).value = '';
+                            return;
+                        }
+                        break;
+                    case 'image/jpeg':
+                        if (fileCom.indexOf('JFIF') > -1 && ($scope.file.name.indexOf('.jpg') === -1 && $scope.file.name.indexOf('.jpeg') === -1)) {
+                            $scope.Documento.file = null;
+                            alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                            $(nombreLabel).text('');
+                            document.getElementById(boton).value = '';
+                            return;
+                        }
+                        break;
+                    default:
+                        $scope.Documento.file = null;
+                        alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
+                        $(nombreLabel).text('');
+                        document.getElementById(boton).value = '';
+                        return;
+                        break;
+                }
+                $scope.Documento.file = null;
                 $scope.Documento.nombreDoc = $scope.nombreArchivo;
             }
             reader.readAsDataURL(value);
@@ -3824,7 +3978,9 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
     $scope.formulario.estado = '';
     $scope.formulario.cartera = [];
     $scope.formulario.expediente_completo = 0;
+    $scope.formulario.cliente_siebel = 0;
     $scope.fchsolicitud = new Date();
+    $scope.NoSpecialCharactersNombres = /^[A-Za-z'ñÑáéíóú/-]+$/; //'^[a-zA-Z0-9]+$';
     $scope.NoSpecialCharacters = /^[A-Za-zñÑáéíóú\s]+$/; //'^[a-zA-Z0-9]+$';
     $scope.NoSpecialCharactersRfc = /^[A-Za-zñÑ0-9\s]+$/
     $scope.NoSpecialCharactersCodigo = /^[0-9\s]+$/
@@ -3991,7 +4147,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
             $scope.formulario.CelularRef1 = Number($scope.formulario.CelularRef1);
             $scope.formulario.CelularRef2 = Number($scope.formulario.CelularRef2);
             $scope.formulario.CompanyPhone = Number($scope.formulario.CompanyPhone);
-            $scope.formulario.nss = Number($scope.formulario.nss);
+            //$scope.formulario.nss = Number($scope.formulario.nss);
             $scope.formulario.matricula1 = Number($scope.formulario.matricula1);
             $scope.formulario.matricula2 = Number($scope.formulario.matricula2);
             $scope.formulario.Pagaduria = Number($scope.formulario.Pagaduria);
@@ -4031,7 +4187,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
             $scope.formularioAlterno.CelularRef1 = Number($scope.formulario.CelularRef1);
             $scope.formularioAlterno.CelularRef2 = Number($scope.formulario.CelularRef2);
             $scope.formularioAlterno.CompanyPhone = Number($scope.formulario.CompanyPhone);
-            $scope.formularioAlterno.nss = Number($scope.formulario.nss);
+            //$scope.formularioAlterno.nss = Number($scope.formulario.nss);
             $scope.formularioAlterno.matricula1 = Number($scope.formulario.matricula1);
             $scope.formularioAlterno.matricula2 = Number($scope.formulario.matricula2);
             $scope.formularioAlterno.Pagaduria = Number($scope.formulario.Pagaduria);
@@ -4044,18 +4200,19 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
             $scope.formularioAlterno.Hora1Ref2 = ($scope.formularioAlterno.Hora1Ref2) ? new Date(($scope.formularioAlterno.Hora1Ref2)) : "";
             $scope.formularioAlterno.Hora2Ref2 = ($scope.formularioAlterno.Hora1Ref2) ? new Date(($scope.formularioAlterno.Hora2Ref2)) : "";
             //Paramteros
-            $scope.formularioAlterno.sector = ($scope.formularioAlterno.sector == 0) ? null : $scope.formularioAlterno.sector;
-            $scope.formularioAlterno.periodo = ($scope.formularioAlterno.periodo == 0) ? null : $scope.formularioAlterno.periodo;
-            $scope.formularioAlterno.Dependencia = ($scope.formularioAlterno.Dependencia == 0) ? null : $scope.formularioAlterno.Dependencia;
-            $scope.formularioAlterno.paisN = ($scope.formularioAlterno.paisN == 0) ? null : $scope.formularioAlterno.paisN;
-            $scope.formularioAlterno.paisR = ($scope.formularioAlterno.paisR == 0) ? null : $scope.formularioAlterno.paisR;
-            $scope.formularioAlterno.entidadT = ($scope.formularioAlterno.entidadT == 0) ? null : $scope.formularioAlterno.entidadT;
-            $scope.formularioAlterno.entidadDom = ($scope.formularioAlterno.entidadDom == 0) ? null : $scope.formularioAlterno.entidadDom;
-            $scope.formularioAlterno.puesto = ($scope.formularioAlterno.puesto == 0) ? null : $scope.formularioAlterno.puesto;
-            $scope.formularioAlterno.medioDisp = ($scope.formularioAlterno.medioDisp == 0) ? null : $scope.formularioAlterno.medioDisp;
-            $scope.formularioAlterno.medioDispAlt = ($scope.formularioAlterno.medioDispAlt == 0) ? null : $scope.formularioAlterno.medioDispAlt;
+            $scope.formularioAlterno.sector = ($scope.formularioAlterno.sector == -1) ? null : $scope.formularioAlterno.sector;
+            $scope.formularioAlterno.periodo = ($scope.formularioAlterno.periodo == -1) ? null : $scope.formularioAlterno.periodo;
+            $scope.formularioAlterno.Dependencia = ($scope.formularioAlterno.Dependencia == -1) ? null : $scope.formularioAlterno.Dependencia;
+            $scope.formularioAlterno.paisN = ($scope.formularioAlterno.paisN == -1) ? null : $scope.formularioAlterno.paisN;
+            $scope.formularioAlterno.paisR = ($scope.formularioAlterno.paisR == -1) ? null : $scope.formularioAlterno.paisR;
+            $scope.formularioAlterno.entidadT = ($scope.formularioAlterno.entidadT == -1) ? null : $scope.formularioAlterno.entidadT;
+            $scope.formularioAlterno.entidadDom = ($scope.formularioAlterno.entidadDom == -1) ? null : $scope.formularioAlterno.entidadDom;
+            $scope.formularioAlterno.puesto = ($scope.formularioAlterno.puesto == -1) ? null : $scope.formularioAlterno.puesto;
+            $scope.formularioAlterno.medioDisp = ($scope.formularioAlterno.medioDisp == -1) ? null : $scope.formularioAlterno.medioDisp;
+            $scope.formularioAlterno.medioDispAlt = ($scope.formularioAlterno.medioDispAlt == -1) ? null : $scope.formularioAlterno.medioDispAlt;
             $scope.formularioAlterno.yearResidencia = Number($scope.formularioAlterno.yearResidencia)
-            $scope.formularioAlterno.reca = ($scope.formularioAlterno.reca == 0) ? null : $scope.formularioAlterno.reca;
+            $scope.formularioAlterno.reca = ($scope.formularioAlterno.reca == -1) ? null : $scope.formularioAlterno.reca;
+            $scope.selecCliente = ($scope.formulario.cliente_siebel == 0) ? false : true;
             //funciones
             $scope.getPlazosPeriodo($scope.formulario.periodo);
             if ($scope.formulario.tipoDoc != 0) $scope.identificacionOficial($scope.formulario.tipoDoc);
@@ -4082,7 +4239,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                 $scope.findExpCompleto($scope.formulario.folderNumber);
             }
             if ($scope.formulario.RFC) {
-                $scope.selecCliente = true;
+                $scope.rfc_ant = $scope.formulario.RFC;
             }
             $("#solicitud1").attr('data-toggle', 'tab');
             $("#datos1").attr('data-toggle', 'tab');
@@ -5198,6 +5355,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
         }
         $scope.analizaCurp($scope.formulario.CURP);
         $scope.selecCliente = true;
+        $scope.formulario.cliente_siebel = 1;
         $scope.closeModal('modalRfcs');
         //}
     };
@@ -5347,7 +5505,6 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                     var fileCom = atob($scope.originacionDoc.file);
                     switch ($scope.file.type) {
                         case 'application/pdf':
-                            console.log('hola')
                             if (fileCom.indexOf('%PDF-1.') === -1) {
                                 alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                                 $(nombreLabel).text('');
@@ -5764,14 +5921,18 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
         }
     }
     $scope.soloFirmas = function () {
-            BayportService.DocSoloFirmas($scope.formulario.Dependencia, $scope.formulario.producto, $scope.formulario.folderNumber).then(function (d) {
+        BayportService.DocSoloFirmas($scope.formulario.Dependencia, $scope.formulario.producto, $scope.formulario.folderNumber).then(
+            function (d) {
                 if (d.data.virtualpath != "" && d.data.virtualpath != null) {
                     console.log('soloFirmas ' + d.data.virtualpath);
                     d.data.virtualpath = (d.data.virtualpath.indexOf('http://originacionbayport') > -1) ? d.data.virtualpath.replace('http', 'https') : d.data.virtualpath;
-
+                    console.log()
                     $window.open(d.data.virtualpath, '_blank', '');
                 }
-            })
+            }, function (err) {
+                alert(err);
+                console.log('prueba',err)
+            });
         
     }
     $scope.expedientillo = function () {
@@ -5809,7 +5970,6 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                         $scope.formularioAlterno[key] = cambio[key];
                     }
                 }
-                console.log('allDocs '+d.data.virtualpath);
                 d.data.virtualpath = (d.data.virtualpath.indexOf('http://originacionbayport') > -1) ? d.data.virtualpath.replace('http', 'https') :  d.data.virtualpath;
                 $window.open(d.data.virtualpath, '_blank', '');
             }
