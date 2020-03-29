@@ -146,7 +146,7 @@ namespace Entities
         public string NumCuentaBancAlt2 { get; set; }
         public double? expediente_completo { get; set; }
         //Cartera
-        public string depositoCliente { get; set; }
+        public double depositoCliente { get; set; }
         public string DiasPagar { get; set; }
         public List<compra_cartera> cartera { get; set; }
         public double cliente_siebel { get; set; }

@@ -2349,6 +2349,7 @@ namespace Models
             campos.Add("TIPO_NOMINA");
             campos.Add("DESCUENTO");
             campos.Add("DESCUENTO_ESCRITO");
+            campos.Add("CENTAVOS_DESCUENTO_ESCRITO");
             campos.Add("TASA_ANUAL");
             campos.Add("CAT");
             campos.Add("SUCURSAL");
