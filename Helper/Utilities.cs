@@ -55,7 +55,7 @@ namespace Helper
                 tw.Close();
             }
         }
-        public bool sendEmailAuxliar(string folder, string[] emailAuxiliar, string pdf, string cuerpo)
+        public bool sendEmailAuxliar(string folder, string[] emailAuxiliar, string[] pdf, string cuerpo)
         {
             List<string> emails = new List<string>();
             for (var i = 1; i < emailAuxiliar.Length; i++)
@@ -95,8 +95,11 @@ namespace Helper
                 mail.Subject = email.Subject;
                 mail.Body = email.Body;
                 mail.IsBodyHtml = true;
-                if (!"".Equals(pdf) || pdf != "null")
-                    mail.Attachments.Add(new System.Net.Mail.Attachment(pdf));
+                for(var i = 0; i < pdf.Length; i++)
+                {
+                    if ("".Equals(pdf[0]) || pdf[0] != null)
+                        mail.Attachments.Add(new System.Net.Mail.Attachment(pdf[i]));
+                }
 
                 try
                 {
@@ -105,6 +108,7 @@ namespace Helper
                         smtp.Credentials = new NetworkCredential(email.from, email.password);
                         smtp.EnableSsl = email.EnableSsl;
                         smtp.Send(mail);
+                        LogHelper.WriteLog("Helper", "Utilities", "sendEmail", new Exception(), null);
                         return true;
                     }
                 }

@@ -93,6 +93,7 @@ namespace DAO
                         param.Add(new OracleParameter("fa_genero", OracleDbType.Varchar2, form.gender, ParameterDirection.Input));
                         param.Add(new OracleParameter("fa_estado_civil", OracleDbType.Double, form.estadoCivil, ParameterDirection.Input));
                         param.Add(new OracleParameter("fa_genero", OracleDbType.Varchar2, form.nacionalidad, ParameterDirection.Input));
+                        param.Add(new OracleParameter("fa_cliente_siebel", OracleDbType.Varchar2, form.cliente_siebel, ParameterDirection.Input));
                         break;
                     case "ocupacion":
                         sp = "sp_insert_formulario_ocupacion";
@@ -311,7 +312,8 @@ namespace DAO
                 param.Add(new OracleParameter("fa_folder", OracleDbType.Varchar2, folder, ParameterDirection.Input));
                 param.Add(new OracleParameter("fa_fch_contrato", OracleDbType.Varchar2, cartera.fecha, ParameterDirection.Input));
                 param.Add(new OracleParameter("fa_casa_financiera", OracleDbType.Varchar2, cartera.entidad, ParameterDirection.Input));
-                param.Add(new OracleParameter("fa_monto_capital", OracleDbType.Double, cartera.totPagar, ParameterDirection.Input));
+                param.Add(new OracleParameter("fa_monto_capital", OracleDbType.Double, cartera.capital, ParameterDirection.Input));
+                param.Add(new OracleParameter("fa_monto_total", OracleDbType.Double, cartera.totPagar, ParameterDirection.Input));
                 param.Add(new OracleParameter("fa_descuento", OracleDbType.Double, cartera.descuento, ParameterDirection.Input));
                 param.Add(new OracleParameter("fa_plazo", OracleDbType.Double, cartera.plazo, ParameterDirection.Input));
                 param.Add(new OracleParameter("fa_saldo_insoluto", OracleDbType.Double, cartera.saldoInsoluto, ParameterDirection.Input));
@@ -622,6 +624,7 @@ namespace DAO
                     data.depositoCliente = DBNull.Value.Equals(rdr["DEPOSITO_CLIENTE"]) ? "" : rdr["DEPOSITO_CLIENTE"].ToString();
                     data.expediente_completo = DBNull.Value.Equals(rdr["EXPEDIENTE_COMPLETO"]) ? 0 : double.Parse(rdr["EXPEDIENTE_COMPLETO"].ToString());
                     data.DiasPagar = DBNull.Value.Equals(rdr["DIAS_A_PAGAR"]) ? "" : rdr["DIAS_A_PAGAR"].ToString();
+                    data.cliente_siebel = DBNull.Value.Equals(rdr["IND_CLI_EXIS_SIEBEL"]) ? -1 : double.Parse(rdr["IND_CLI_EXIS_SIEBEL"].ToString());
                     data.tiene_seguro = DBNull.Value.Equals(rdr["TIENE_POLIZA"]) ? -1 : double.Parse(rdr["TIENE_POLIZA"].ToString());
                     data.codePlan = DBNull.Value.Equals(rdr["CODIGO_POLIZA"]) ? -1 : double.Parse(rdr["CODIGO_POLIZA"].ToString());
                     data.planValue = DBNull.Value.Equals(rdr["VALOR_POLIZA"]) ? -1 : double.Parse(rdr["VALOR_POLIZA"].ToString());
@@ -654,7 +657,7 @@ namespace DAO
             string command = null;
             try
             {
-                command = "SELECT C.ITEM_CARTERA,C.FECHA_CONTRATO,B.NOMBRE_CASA, C.CASA_FINANCIERA,C.MONTO_CAPITAL,C.DESCUENTO,C.SALDO_INSOLUTO,C.TASA,C.PLAZO ";
+                command = "SELECT C.ITEM_CARTERA,C.FECHA_CONTRATO,B.NOMBRE_CASA, C.CASA_FINANCIERA,C.MONTO_CAPITAL,C.MONTO_TOTAL_CAPITAL,C.DESCUENTO,C.SALDO_INSOLUTO,C.TASA,C.PLAZO ";
                 command += "FROM COMPRA_CARTERA C, DLG_PARAM_CASAS_FINANCIERAS B ";
                 command += string.Format("WHERE B.RFC_CASA(+) = C.CASA_FINANCIERA AND C.NUMERO_FOLDER = '{0}' ORDER BY C.ITEM_CARTERA", folder);
                 var rdr = ora.ExecuteCommand(command);
@@ -671,6 +674,7 @@ namespace DAO
                     cartera.saldoInsoluto = DBNull.Value.Equals(rdr["SALDO_INSOLUTO"]) ? 0 : double.Parse(rdr["SALDO_INSOLUTO"].ToString());
                     cartera.tasa = DBNull.Value.Equals(rdr["TASA"]) ? 0 : double.Parse(rdr["TASA"].ToString());
                     cartera.rfc_casa = DBNull.Value.Equals(rdr["CASA_FINANCIERA"]) ? "" : (rdr["CASA_FINANCIERA"].ToString());
+                    cartera.totPagar = DBNull.Value.Equals(rdr["MONTO_TOTAL_CAPITAL"]) ? 0 : double.Parse(rdr["MONTO_TOTAL_CAPITAL"].ToString());
                     data.Add(cartera);
                 }
                 rdr.Close();
@@ -694,7 +698,7 @@ namespace DAO
             string command = null;
             try
             {
-                command = "SELECT C.ITEM_CARTERA,C.FECHA_CONTRATO,B.NOMBRE_CASA, C.CASA_FINANCIERA,C.MONTO_CAPITAL,C.DESCUENTO,C.SALDO_INSOLUTO,C.TASA,C.PLAZO ";
+                command = "SELECT C.ITEM_CARTERA,C.FECHA_CONTRATO,B.NOMBRE_CASA, C.CASA_FINANCIERA,C.MONTO_CAPITAL,C.MONTO_TOTAL_CAPITAL,C.DESCUENTO,C.SALDO_INSOLUTO,C.TASA,C.PLAZO ";
                 command += "FROM COMPRA_CARTERA C, DLG_PARAM_CASAS_FINANCIERAS B ";
                 command += string.Format("WHERE B.RFC_CASA(+) = C.CASA_FINANCIERA AND C.NUMERO_FOLDER = '{0}' ORDER BY  B.RFC_CASA", folder);
                 var rdr = ora.ExecuteCommand(command);
@@ -711,6 +715,8 @@ namespace DAO
                     cartera.saldoInsoluto = DBNull.Value.Equals(rdr["SALDO_INSOLUTO"]) ? 0 : double.Parse(rdr["SALDO_INSOLUTO"].ToString());
                     cartera.tasa = DBNull.Value.Equals(rdr["TASA"]) ? 0 : double.Parse(rdr["TASA"].ToString());
                     cartera.rfc_casa = DBNull.Value.Equals(rdr["CASA_FINANCIERA"]) ? "" : (rdr["CASA_FINANCIERA"].ToString());
+                    cartera.totPagar = DBNull.Value.Equals(rdr["MONTO_TOTAL_CAPITAL"]) ? 0 : double.Parse(rdr["MONTO_TOTAL_CAPITAL"].ToString());
+
                     data.Add(cartera);
                 }
                 rdr.Close();

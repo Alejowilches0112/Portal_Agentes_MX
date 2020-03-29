@@ -149,6 +149,7 @@ namespace Entities
         public string depositoCliente { get; set; }
         public string DiasPagar { get; set; }
         public List<compra_cartera> cartera { get; set; }
+        public double cliente_siebel { get; set; }
         //Polizas
         public double tiene_seguro { get; set; }
         public double? codePlan { get; set; }
@@ -343,6 +344,7 @@ namespace Entities
         //Cartera
         public string depositoCliente { get; set; }
         public string DiasPagar { get; set; }
+        public double cliente_siebel { get; set; }
         public List<compra_cartera> cartera { get; set; }
         //Polizas
         public double codePlan { get; set; }

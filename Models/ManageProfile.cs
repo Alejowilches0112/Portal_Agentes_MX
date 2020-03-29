@@ -2,6 +2,7 @@
 using Entities;
 using Helper;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Collections.Generic;
 using System.Linq;
@@ -774,7 +775,7 @@ namespace Models
                                 break;
                             case "MES_SOLICITUD_LETRAS":
                                 n = int.Parse(fecha_solicitud[1]);
-                                config.valor = meses[n-1];
+                                config.valor = meses[n - 1];
                                 break;
                             case "AÑO_SOLICITUD_4_DIGITOS":
                                 config.valor = fecha_solicitud[2];
@@ -786,7 +787,7 @@ namespace Models
                                 config.valor = formulario.tipoSolicitud;
                                 break;
                             case "MONTO":
-                                config.valor = formulario.monto;
+                                config.valor = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "PERIODO":
                                 config.valor = formulario.periodo;
@@ -795,7 +796,7 @@ namespace Models
                                 config.valor = formulario.plazo;
                                 break;
                             case "LIQUIDO_BASE":
-                                config.valor = formulario.LBase;
+                                config.valor = double.Parse(formulario.LBase).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "NO_PLAZAS":
                                 config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
@@ -813,7 +814,7 @@ namespace Models
                                 config.valor = formulario.tNomina;
                                 break;
                             case "DESCUENTO":
-                                config.valor = formulario.dscto;
+                                config.valor = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "TASA_ANUAL":
                                 config.valor = formulario.tAnual;
@@ -847,7 +848,7 @@ namespace Models
                                 if (fecha_primer_pago.Length == 3)
                                 {
                                     n = int.Parse(fecha_primer_pago[1]);
-                                    config.valor = meses[n-1];
+                                    config.valor = meses[n - 1];
                                 }
                                 else
                                 {
@@ -880,7 +881,7 @@ namespace Models
                                 if (fecha_primer_pago.Length == 3)
                                 {
                                     n = int.Parse(fecha_ultimo_pago[1]);
-                                    config.valor = meses[n-1];
+                                    config.valor = meses[n - 1];
                                 }
                                 else
                                 {
@@ -894,13 +895,13 @@ namespace Models
                                 config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
                                 break;
                             case "CAPACIDAD_PAGO":
-                                config.valor = formulario.cPago;
+                                config.valor = double.Parse(formulario.cPago).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "MONTO_MAXIMO":
-                                config.valor = formulario.mMaxPlaz;
+                                config.valor = double.Parse(formulario.mMaxPlaz).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "MONTO_DEUDOR":
-                                config.valor = (formulario.monto_deudor.Equals("0")) ?  "" : formulario.monto_deudor;
+                                config.valor = (formulario.monto_deudor.Equals("0")) ? "" : double.Parse(formulario.monto_deudor).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "MATRICULA":
                                 config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
@@ -946,7 +947,7 @@ namespace Models
                                 break;
                             case "MES_NACIMIENTO_LETRAS":
                                 n = int.Parse(fecha_solicitud[1]);
-                                config.valor = meses[n-1];
+                                config.valor = meses[n - 1];
                                 break;
                             case "AÑO_NACIMIENTO_2_DIGITOS":
                                 config.valor = fecha_nacimiento[2].Substring(2, 2);
@@ -1169,10 +1170,10 @@ namespace Models
                                 config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
                                 break;
                             case "HORA1_REF2":
-                                config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
+                                config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", CultureInfo.CurrentCulture);
                                 break;
                             case "HORA2_REF2":
-                                config.valor = Convert.ToDateTime(formulario.Hora2Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
+                                config.valor = Convert.ToDateTime(formulario.Hora2Ref2).ToString("hh:mm", CultureInfo.CurrentCulture);
                                 break;
                             case "DIA1_REF2":
                                 config.valor = formulario.dia1Ref2;
@@ -1211,7 +1212,7 @@ namespace Models
                                 config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
                                 break;
                             case "CLABE_CUENTA DIGITO 8":
-                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "": "";
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
                                 break;
                             case "CLABE_CUENTA DIGITO 9":
                                 config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
@@ -1235,13 +1236,13 @@ namespace Models
                                 config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
                                 break;
                             case "CLABE_CUENTA DIGITO 16":
-                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15)  + "" : "";
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
                                 break;
                             case "CLABE_CUENTA DIGITO 17":
-                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16)  + "" : "";
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
                                 break;
                             case "CLABE_CUENTA DIGITO 18":
-                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17)  + "" : "";
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
                                 break;
                             case "BANCO":
                                 config.valor = formulario.NombreBanco;
@@ -1486,6 +1487,9 @@ namespace Models
                             case "MONTO_ESCRITO":
                                 config.valor = dao.monto_escrito(double.Parse(formulario.monto));
                                 break;
+                            case "MONTO_ESCRITO_SIN_PESOS":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                break;
                             case "LIQUIDO_BASE_ESCRITO":
                                 config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
                                 break;
@@ -1505,20 +1509,20 @@ namespace Models
                                 DateTime fechaActual = DateTime.Today;
                                 var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
                                 edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
-                                config.valor = edad +"";
+                                config.valor = edad + "";
                                 break;
                             case "TASA_MENSUAL":
-                                config.valor = double.Parse(formulario.tAnual)/12+"";
+                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
                                 break;
                             case "TOTAL_A_PAGAR_CON_INTERES":
-                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo))+"";
+                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
                                 var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
                                 config.valor = config.valor = dao.monto_escrito(dto);
                                 break;
                             case "NOMBRE_COMPLETO":
-                                config.valor = formulario.pNombre + " "+formulario.sNombre+" "+formulario.pApellido+" "+formulario.sApellido;
+                                config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
                                 break;
                         }
                     }
@@ -1952,818 +1956,834 @@ namespace Models
 
                             var config = configuraciones.ListConfiguracion.ElementAt(i);
                             config_anterior = config.valor;
-                            if (config.tipo_optencion == "2")
-                            {
-                                switch (config.valor)
+                        switch (config.valor)
+                        {
+                            case "NUMERO_FOLDER":
+                                config.valor = formulario.folderNumber;
+                                break;
+                            case "ASESOR":
+                                config.valor = formulario.asesor;
+                                break;
+                            case "FECHA_SOLICITUD":
+                                config.valor = formulario.fchsolicitud;
+                                break;
+                            case "DIA_SOLICITUD":
+                                config.valor = fecha_solicitud[0];
+                                break;
+                            case "MES_SOLICITUD":
+                                config.valor = fecha_solicitud[1];
+                                break;
+                            case "MES_SOLICITUD_LETRAS":
+                                n = int.Parse(fecha_solicitud[1]);
+                                config.valor = meses[n - 1];
+                                break;
+                            case "AÑO_SOLICITUD_4_DIGITOS":
+                                config.valor = fecha_solicitud[2];
+                                break;
+                            case "AÑO_SOLICITUD_2_DIGITOS":
+                                config.valor = fecha_solicitud[2].Substring(2, 2);
+                                break;
+                            case "TIPO_SOLICITUD":
+                                config.valor = formulario.tipoSolicitud;
+                                break;
+                            case "MONTO":
+                                config.valor = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "PERIODO":
+                                config.valor = formulario.periodo;
+                                break;
+                            case "PLAZO":
+                                config.valor = formulario.plazo;
+                                break;
+                            case "LIQUIDO_BASE":
+                                config.valor = double.Parse(formulario.LBase).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "NO_PLAZAS":
+                                config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
+                                break;
+                            case "DEPENDENCIA":
+                                config.valor = formulario.Dependencia;
+                                break;
+                            case "PRODUCTO":
+                                config.valor = formulario.producto;
+                                break;
+                            case "DESTINO_CREDITO":
+                                config.valor = formulario.destino;
+                                break;
+                            case "TIPO_NOMINA":
+                                config.valor = formulario.tNomina;
+                                break;
+                            case "DESCUENTO":
+                                config.valor = formulario.dscto;
+                                break;
+                            case "TASA_ANUAL":
+                                config.valor = formulario.tAnual;
+                                break;
+                            case "CAT":
+                                config.valor = formulario.cat;
+                                break;
+                            case "SUCURSAL":
+                                config.valor = formulario.sucursal;
+                                break;
+                            case "QUINCENA_DSCTO":
+                                config.valor = formulario.quincenaDscto;
+                                break;
+                            case "FECHA_PRIMER_PAGO":
+                                config.valor = formulario.fchPrPago;
+                                break;
+                            case "DIA_PRIMER_PAGO":
+                                config.valor = config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[0] : "";
+                                break;
+                            case "MES_PRIMER_PAGO":
+                                if (fecha_primer_pago.Length == 3)
                                 {
-                                    case "NUMERO_FOLDER":
-                                        config.valor = formulario.folderNumber;
-                                        break;
-                                    case "ASESOR":
-                                        config.valor = formulario.asesor;
-                                        break;
-                                    case "FECHA_SOLICITUD":
-                                        config.valor = formulario.fchsolicitud;
-                                        break;
-                                    case "DIA_SOLICITUD":
-                                        config.valor = fecha_solicitud[0];
-                                        break;
-                                    case "MES_SOLICITUD":
-                                        config.valor = fecha_solicitud[1];
-                                        break;
-                                    case "MES_SOLICITUD_LETRAS":
-                                        n = int.Parse(fecha_solicitud[1]);
-                                        config.valor = meses[n - 1];
-                                        break;
-                                    case "AÑO_SOLICITUD_4_DIGITOS":
-                                        config.valor = fecha_solicitud[2];
-                                        break;
-                                    case "AÑO_SOLICITUD_2_DIGITOS":
-                                        config.valor = fecha_solicitud[2].Substring(2, 2);
-                                        break;
-                                    case "TIPO_SOLICITUD":
-                                        config.valor = formulario.tipoSolicitud;
-                                        break;
-                                    case "MONTO":
-                                        config.valor = formulario.monto;
-                                        break;
-                                    case "PERIODO":
-                                        config.valor = formulario.periodo;
-                                        break;
-                                    case "PLAZO":
-                                        config.valor = formulario.plazo;
-                                        break;
-                                    case "LIQUIDO_BASE":
-                                        config.valor = formulario.LBase;
-                                        break;
-                                    case "NO_PLAZAS":
-                                        config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
-                                        break;
-                                    case "DEPENDENCIA":
-                                        config.valor = formulario.Dependencia;
-                                        break;
-                                    case "PRODUCTO":
-                                        config.valor = formulario.producto;
-                                        break;
-                                    case "DESTINO_CREDITO":
-                                        config.valor = formulario.destino;
-                                        break;
-                                    case "TIPO_NOMINA":
-                                        config.valor = formulario.tNomina;
-                                        break;
-                                    case "DESCUENTO":
-                                        config.valor = formulario.dscto;
-                                        break;
-                                    case "TASA_ANUAL":
-                                        config.valor = formulario.tAnual;
-                                        break;
-                                    case "CAT":
-                                        config.valor = formulario.cat;
-                                        break;
-                                    case "SUCURSAL":
-                                        config.valor = formulario.sucursal;
-                                        break;
-                                    case "QUINCENA_DSCTO":
-                                        config.valor = formulario.quincenaDscto;
-                                        break;
-                                    case "FECHA_PRIMER_PAGO":
-                                        config.valor = formulario.fchPrPago;
-                                        break;
-                                    case "DIA_PRIMER_PAGO":
-                                        config.valor = config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[0] : "";
-                                        break;
-                                    case "MES_PRIMER_PAGO":
-                                        if (fecha_primer_pago.Length == 3)
-                                        {
-                                            config.valor = fecha_primer_pago[1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MES_PRIMER_PAGO_LETRAS":
-                                        if (fecha_primer_pago.Length == 3)
-                                        {
-                                            n = int.Parse(fecha_primer_pago[1]);
-                                            config.valor = meses[n - 1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "AÑO_PRIMER_PAGO_2_DIGITOS":
-                                        config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2].Substring(2, 2) : "";
-                                        break;
-                                    case "AÑO_PRIMER_PAGO_4_DIGITOS":
-                                        config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2] : "";
-                                        break;
-                                    case "FECHA_ULTIMO_PAGO":
-                                        config.valor = formulario.fchUltPago;
-                                        break;
-                                    case "DIA_ULTIMO_PAGO":
-                                        config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[0] : "";
-                                        break;
-                                    case "MES_ULTIMO_PAGO":
-                                        if (fecha_ultimo_pago.Length == 3)
-                                        {
-                                            config.valor = fecha_ultimo_pago[1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MES_ULTIMO_PAGO_LETRAS":
-                                        if (fecha_primer_pago.Length == 3)
-                                        {
-                                            n = int.Parse(fecha_ultimo_pago[1]);
-                                            config.valor = meses[n - 1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "AÑO_ULTIMO_PAGO_2_DIGITOS":
-                                        config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2].Substring(2, 2) : "";
-                                        break;
-                                    case "AÑO_ULTIMO_PAGO_4_DIGITOS":
-                                        config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
-                                        break;
-                                    case "CAPACIDAD_PAGO":
-                                        config.valor = formulario.cPago;
-                                        break;
-                                    case "MONTO_MAXIMO":
-                                        config.valor = formulario.mMaxPlaz;
-                                        break;
-                                    case "MONTO_DEUDOR":
-                                        config.valor = (formulario.monto_deudor.Equals("0")) ? "" : formulario.monto_deudor;
-                                        break;
-                                    case "MATRICULA":
-                                        config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
-                                        break;
-                                    case "NSS":
-                                        config.valor = (formulario.nss.Equals("0")) ? "" : formulario.nss;
-                                        break;
-                                    case "GRUPO":
-                                        config.valor = (formulario.grupo.Equals("0")) ? "" : formulario.grupo;
-                                        break;
-                                    case "CLAVE_TRABAJADOR":
-                                        config.valor = (formulario.clave_trabajdor.Equals("0")) ? "" : formulario.clave_trabajdor;
-                                        break;
-                                    case "ESPECIFICAR":
-                                        config.valor = formulario.especificar;
-                                        break;
-                                    case "RECA":
-                                        config.valor = formulario.reca;
-                                        break;
-                                    case "RFC":
-                                        config.valor = formulario.RFC;
-                                        break;
-                                    case "NOMBRES":
-                                        config.valor = formulario.pNombre + " " + formulario.sNombre;
-                                        break;
-                                    case "PRIMER_APELLIDO":
-                                        config.valor = formulario.pApellido;
-                                        break;
-                                    case "SEGUNDO_APELLIDO":
-                                        config.valor = formulario.sApellido;
-                                        break;
-                                    case "IDENTIFICACION_OFICIAL":
-                                        config.valor = formulario.tipoDoc;
-                                        break;
-                                    case "FECHA_NACIMIENTO":
-                                        config.valor = formulario.fecNac;
-                                        break;
-                                    case "DIA_NACIMIENTO":
-                                        config.valor = fecha_nacimiento[0];
-                                        break;
-                                    case "MES_NACIMIENTO":
-                                        config.valor = fecha_nacimiento[1];
-                                        break;
-                                    case "MES_NACIMIENTO_LETRAS":
-                                        n = int.Parse(fecha_solicitud[1]);
-                                        config.valor = meses[n - 1];
-                                        break;
-                                    case "AÑO_NACIMIENTO_2_DIGITOS":
-                                        config.valor = fecha_nacimiento[2].Substring(2, 2);
-                                        break;
-                                    case "AÑO_NACIMIENTO_4_DIGITOS":
-                                        config.valor = fecha_nacimiento[2];
-                                        break;
-                                    case "PAIS_NACIMIENTO":
-                                        config.valor = formulario.paisN;
-                                        break;
-                                    case "ENTIDAD_NACIMIENTO":
-                                        config.valor = formulario.entidadN;
-                                        break;
-                                    case "PAIS_RESIDENCIA":
-                                        config.valor = formulario.paisR;
-                                        break;
-                                    case "FORMA_MIGRATORIA":
-                                        config.valor = formulario.fMigratoria;
-                                        break;
-                                    case "GENERO":
-                                        config.valor = formulario.gender;
-                                        break;
-                                    case "SECTOR":
-                                        config.valor = formulario.sector;
-                                        break;
-                                    case "OTRO_SECTOR":
-                                        config.valor = formulario.otroSector;
-                                        break;
-                                    case "PUESTO":
-                                        config.valor = formulario.puesto;
-                                        break;
-                                    case "ANTIGUEDAD":
-                                        config.valor = formulario.antiguedad;
-                                        break;
-                                    case "INGRESO_MENSUAL":
-                                        config.valor = formulario.ingresos;
-                                        break;
-                                    case "NUMERO_PERSONAL":
-                                        config.valor = formulario.Celular;
-                                        break;
-                                    case "CLAVE_PRESUPUESTAL":
-                                        config.valor = formulario.cPresupuestal;
-                                        break;
-                                    case "PAGADURIA":
-                                        config.valor = formulario.Pagaduria;
-                                        break;
-                                    case "FECHA_INGRESO":
-                                        config.valor = formulario.fchIngreso;
-                                        break;
-                                    case "CLAVE":
-                                        config.valor = formulario.clave;
-                                        break;
-                                    case "LUGAR_TRABAJO":
-                                        config.valor = formulario.lugTrabajo;
-                                        break;
-                                    case "CALLE":
-                                        config.valor = formulario.calle;
-                                        break;
-                                    case "NUMERO_EXTERIOR":
-                                        config.valor = formulario.nExterior;
-                                        break;
-                                    case "COLONIA":
-                                        config.valor = formulario.colonia;
-                                        break;
-                                    case "OTRA_COLONIA":
-                                        config.valor = formulario.otraColonia;
-                                        break;
-                                    case "TELEFONO_FIJO":
-                                        config.valor = formulario.telFijo;
-                                        break;
-                                    case "EXTENSION":
-                                        config.valor = formulario.extension;
-                                        break;
-                                    case "ENTIDAD":
-                                        config.valor = formulario.entidadT;
-                                        break;
-                                    case "MUNICIPIO":
-                                        config.valor = formulario.municipio;
-                                        break;
-                                    case "CODIGO_POSTAL_OCUPACION":
-                                        config.valor = formulario.CodigoPost;
-                                        break;
-                                    case "TIENE_CARGO_PUBLICO":
-                                        config.valor = formulario.tCargoPu;
-                                        break;
-                                    case "PERIODO_DE_EJECUCION":
-                                        config.valor = formulario.pEjecucion;
-                                        break;
-                                    case "CARGO_PUBLICO_FAMILIAR":
-                                        config.valor = formulario.tCargoPuF;
-                                        break;
-                                    case "NOMBRE_FAMILIAR":
-                                        config.valor = formulario.nombFamiliar;
-                                        break;
-                                    case "PUESTO_FAMILIAR":
-                                        config.valor = formulario.puestoFam;
-                                        break;
-                                    case "PERIODO_EJERCICO_FAMILIAR":
-                                        config.valor = formulario.perEjecucionFam;
-                                        break;
-                                    case "BENEFICIARIO":
-                                        config.valor = formulario.tBeneneficiario;
-                                        break;
-                                    case "NOMBRE_BENEFICIARIO":
-                                        config.valor = formulario.nombBene;
-                                        break;
-                                    case "TIPO_PENSION":
-                                        config.valor = formulario.tipPension;
-                                        break;
-                                    case "ADSCRIPCION_PAGO":
-                                        config.valor = formulario.ubiPago;
-                                        break;
-                                    case "DELEGACION":
-                                        config.valor = formulario.delegacionImss;
-                                        break;
-                                    case "NOMBRE_TESTIGO1":
-                                        config.valor = formulario.nombTest1;
-                                        break;
-                                    case "MATRICULA_TESTIGO1":
-                                        config.valor = formulario.matricula1;
-                                        break;
-                                    case "GAFETE_TESTIGO1":
-                                        config.valor = formulario.gafete1;
-                                        break;
-                                    case "NOMBRE_TESTIGO2":
-                                        config.valor = formulario.nombTest2;
-                                        break;
-                                    case "MATRICULA_TESTIGO2":
-                                        config.valor = formulario.matricula2;
-                                        break;
-                                    case "GAFETE_TESTIGO2":
-                                        config.valor = formulario.gafete1;
-                                        break;
-                                    case "CODIGO_POSTAL_DOMICILIO":
-                                        config.valor = formulario.codPostDom;
-                                        break;
-                                    case "TIEMPO_RESIDENCIA":
-                                        config.valor = formulario.yearResidencia;
-                                        break;
-                                    case "ENTIDAD_DOMICILIO":
-                                        config.valor = formulario.entidadDom;
-                                        break;
-                                    case "DELEGACION_DOMICILIO":
-                                        config.valor = formulario.municipioDom;
-                                        break;
-                                    case "COLONIA_DOMICILIO":
-                                        config.valor = formulario.coloniaDom;
-                                        break;
-                                    case "OTRA_COLONIA_DOMICILIO":
-                                        config.valor = formulario.otraColoniaDom;
-                                        break;
-                                    case "DOMICILIO_CALLE":
-                                        config.valor = formulario.domicilioCalle;
-                                        break;
-                                    case "NUMERO_EXTERIOR_DOMICILIO":
-                                        config.valor = formulario.noExteriorDom;
-                                        break;
-                                    case "NUMERO_INTERIOR_DOMICILIO":
-                                        config.valor = formulario.noInteriorDom;
-                                        break;
-                                    case "ENTRE_CALLES_DOMICILIO":
-                                        config.valor = formulario.entreCalleDom;
-                                        break;
-                                    case "EMAIL_CONTACTO":
-                                        config.valor = formulario.emailContacto;
-                                        break;
-                                    case "CELULAR":
-                                        config.valor = formulario.CelularContacto;
-                                        break;
-                                    case "EMPRESA_TELEFONICA":
-                                        config.valor = formulario.CompanyPhone;
-                                        break;
-                                    case "TELEFONO_PROPIO":
-                                        config.valor = formulario.telefonoPropio;
-                                        break;
-                                    case "NOMBRE_REFERENCIA1":
-                                        config.valor = formulario.nombreRef1;
-                                        break;
-                                    case "APELLIDO1_REFERENCIA1":
-                                        config.valor = formulario.pApellidoRef1;
-                                        break;
-                                    case "APELLIDO2_REFERENCIA1":
-                                        config.valor = formulario.sApellidoRef1;
-                                        break;
-                                    case "TELEFONO_REFERENCIA1":
-                                        config.valor = (formulario.TelefonoRef1.Equals("0")) ? "" : formulario.TelefonoRef1;
-                                        break;
-                                    case "CELULAR_REFERENCIA1":
-                                        config.valor = (formulario.CelularRef1.Equals("0")) ? "" : formulario.CelularRef1;
-                                        break;
-                                    case "HORA1_REF1":
-                                        config.valor = formulario.Hora1Ref1.ToString().Substring(11, 17);
-                                        break;
-                                    case "HORA2_REF1":
-                                        config.valor = formulario.Hora2Ref1.ToString().Substring(11, 17);
-                                        break;
-                                    case "DIA1_REF1":
-                                        config.valor = formulario.dia1Ref1;
-                                        break;
-                                    case "DIA2_REF1":
-                                        config.valor = formulario.dia2Ref1;
-                                        break;
-                                    case "PARENTESCO_REFERENCIA1":
-                                        config.valor = formulario.ParentescoRef1;
-                                        break;
-                                    case "NOMBRE_REFERENCIA2":
-                                        config.valor = formulario.nombreRef2;
-                                        break;
-                                    case "APELLIDO1_REFERENCIA2":
-                                        config.valor = formulario.pApellidoRef2;
-                                        break;
-                                    case "APELLIDO2_REFERENCIA2":
-                                        config.valor = formulario.sApellidoRef2;
-                                        break;
-                                    case "TELEFONO_REFERENCIA2":
-                                        config.valor = (formulario.TelefonoRef2.Equals("0")) ? "" : formulario.TelefonoRef2;
-                                        break;
-                                    case "CELULAR_REFERENCIA2":
-                                        config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
-                                        break;
-                                    case "HORA1_REF2":
-                                        config.valor = formulario.Hora1Ref2.ToString();
-                                        break;
-                                    case "HORA2_REF2":
-                                        config.valor = formulario.Hora2Ref2.ToString();
-                                        break;
-                                    case "DIA1_REF2":
-                                        config.valor = formulario.dia1Ref2;
-                                        break;
-                                    case "DIA2_REF2":
-                                        config.valor = formulario.dia2Ref2;
-                                        break;
-                                    case "PARENTESCO_REFERENCIA2":
-                                        config.valor = formulario.ParentescoRef2;
-                                        break;
-                                    case "MEDIO_DISPOSICION":
-                                        config.valor = formulario.medioDisp;
-                                        break;
-                                    case "CLABE_CUENTA":
-                                        config.valor = formulario.ClabeDisp;
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 1":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(0) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 2":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(1) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 3":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(2) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 4":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(3) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 5":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(4) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 6":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(5) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 7":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 8":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 9":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 10":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(9) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 11":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(10) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 12":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(11) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 13":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(12) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 14":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 15":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 16":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 17":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 18":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
-                                        break;
-                                    case "BANCO":
-                                        config.valor = formulario.NombreBanco;
-                                        break;
-                                    case "NUMERO_CUENTA":
-                                        config.valor = formulario.NumCuentaBanc;
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 1":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(0) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 2":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(1) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 3":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(2) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 4":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(3) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 5":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(4) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 6":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(5) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 7":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(6) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 8":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(7) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 9":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(8) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 10":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(9) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 11":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(10) + "" : "";
-                                        break;
-                                    case "MEDIO_DISPOSICION_ALTERNO":
-                                        config.valor = formulario.medioDispAlt;
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO":
-                                        config.valor = formulario.ClabeDispAlt;
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 1":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(0) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 2":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(1) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 3":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(2) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 4":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(3) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 5":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(4) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 6":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(5) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 7":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(6) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 8":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(7) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 9":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(8) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 10":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(9) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 11":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(10) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 12":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(11) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 13":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(12) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 14":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 15":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 16":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 17":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 18":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
-                                        break;
-                                    case "BANCO_ALTERNO":
-                                        config.valor = formulario.NombreBancoAlt;
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO":
-                                        config.valor = formulario.NumCuentaBancAlt;
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 1":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(0) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 2":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(1) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 3":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(2) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 4":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(3) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 5":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(4) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 6":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(5) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 7":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(6) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 8":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(7) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 9":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(8) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 10":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(9) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 11":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(10) + "" : "";
-                                        break;
-                                case "MEDIO_DISPOSICION_ALTERNO_2":
-                                    config.valor = formulario.medioDispAlt2;
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2":
-                                    config.valor = formulario.ClabeDispAlt2;
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 1":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(0) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 2":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(1) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 3":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(2) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 4":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(3) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 5":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(4) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 6":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(5) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 7":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(6) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 8":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(7) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 9":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(8) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 10":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(9) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 11":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(10) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 12":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(11) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 13":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(12) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 14":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(13) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 15":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(14) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 16":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(15) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 17":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(16) + "" : "";
-                                    break;
-                                case "CLABE_CUENTA_ALTERNO_2 DIGITO 18":
-                                    config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(17) + "" : "";
-                                    break;
-                                case "BANCO_ALTERNO_2":
-                                    config.valor = formulario.NombreBancoAlt2;
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2":
-                                    config.valor = formulario.NumCuentaBancAlt2;
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 1":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(0) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 2":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(1) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 3":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(2) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 4":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(3) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 5":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(4) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 6":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(5) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 7":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(6) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 8":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(7) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 9":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(8) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 10":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(9) + "" : "";
-                                    break;
-                                case "NUMERO_CUENTA_ALTERNO_2 DIGITO 11":
-                                    config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(10) + "" : "";
-                                    break;
-                                case "CURP":
-                                        config.valor = formulario.CURP;
-                                        break;
-                                    case "MONTO_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.monto));
-                                        break;
-                                    case "LIQUIDO_BASE_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
-                                        break;
-                                    case "DESCUENTO_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.dscto));
-                                        break;
-                                    case "MONTO_MAXIMO_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.mMaxPlaz));
-                                        break;
-                                    case "MONTO_DEUDOR_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.monto_deudor));
-                                        break;
-                                    case "NACIONALIDAD":
-                                        config.valor = formulario.nacionalidad;
-                                        break;
-                                    case "EDAD_CLIENTE":
-                                        DateTime fechaActual = DateTime.Today;
-                                        var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
-                                        edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
-                                        config.valor = edad + "";
-                                        break;
-                                    case "TASA_MENSUAL":
-                                        config.valor = double.Parse(formulario.tAnual) / 12 + "";
-                                        break;
-                                    case "TOTAL_A_PAGAR_CON_INTERES":
-                                        config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)) + "";
-                                        break;
-                                    case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
-                                        var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
-                                        config.valor = config.valor = dao.monto_escrito(dto);
-                                        break;
-                                    case "NOMBRE_COMPLETO":
-                                        config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
-                                        break;
-                                    case "CASA_FINANCIERA":
-                                        config.valor = cart.ElementAt(x).entidad;
-                                        break;
-                                    case "SUMA_SALDO_INSOLUTO":
-                                        sum = 0;
-                                        for (var q = 0; q < cart.Count(); q++)
-                                        {
-                                            sum += cart.ElementAt(q).saldoInsoluto;
-                                        }
-                                        config.valor = sum + "";
-                                        break;
-                                case "SUMA_SALDO_INSOLUTO_LETRAS":
-                                    sum = 0;
-                                    for (var q = 0; q < cart.Count(); q++)
-                                    {
-                                        sum += cart.ElementAt(q).saldoInsoluto;
-                                    }
-                                    config.valor = dao.monto_escrito(sum);
-                                    break;
-                                case "DEPOSITO_CLIENTE":
-                                        config.valor = formulario.depositoCliente;
-                                        break;
-                                    case "DIAS_A_PAGAR":
-                                        config.valor = formulario.DiasPagar;
-                                        break;
-                                    case "FECHA_CONTRATO_COMPRA":
-                                        config.valor = cart.ElementAt(x).fecha.Substring(0,10);
-                                        break;
-                                    case "MONTO_CREDITO_COMPRA":
-                                        config.valor = cart.ElementAt(x).capital+"";
-                                        break;
-                                    case "MONTO_TOTAL":
-                                        config.valor = cart.ElementAt(x).totPagar+"";
-                                        break;
-                                    case "PLAZO_COMPRA":
-                                        config.valor = cart.ElementAt(x).plazo+"";
-                                        break;
-                                    case "SALDO_INSOLUTO":
-                                        config.valor = cart.ElementAt(x).saldoInsoluto+"";
-                                        break;
-                                    case "TASA_COMPRA":
-                                        config.valor = cart.ElementAt(x).tasa+"";
-                                        break;
+                                    config.valor = fecha_primer_pago[1];
                                 }
-                            }
-                            if (pagina_mayor < config.pagina)
+                                else
+                                {
+                                    config.valor = "";
+                                }
+                                break;
+                            case "MES_PRIMER_PAGO_LETRAS":
+                                if (fecha_primer_pago.Length == 3)
+                                {
+                                    n = int.Parse(fecha_primer_pago[1]);
+                                    config.valor = meses[n - 1];
+                                }
+                                else
+                                {
+                                    config.valor = "";
+                                }
+                                break;
+                            case "AÑO_PRIMER_PAGO_2_DIGITOS":
+                                config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2].Substring(2, 2) : "";
+                                break;
+                            case "AÑO_PRIMER_PAGO_4_DIGITOS":
+                                config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2] : "";
+                                break;
+                            case "FECHA_ULTIMO_PAGO":
+                                config.valor = formulario.fchUltPago;
+                                break;
+                            case "DIA_ULTIMO_PAGO":
+                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[0] : "";
+                                break;
+                            case "MES_ULTIMO_PAGO":
+                                if (fecha_ultimo_pago.Length == 3)
+                                {
+                                    config.valor = fecha_ultimo_pago[1];
+                                }
+                                else
+                                {
+                                    config.valor = "";
+                                }
+                                break;
+                            case "MES_ULTIMO_PAGO_LETRAS":
+                                if (fecha_primer_pago.Length == 3)
+                                {
+                                    n = int.Parse(fecha_ultimo_pago[1]);
+                                    config.valor = meses[n - 1];
+                                }
+                                else
+                                {
+                                    config.valor = "";
+                                }
+                                break;
+                            case "AÑO_ULTIMO_PAGO_2_DIGITOS":
+                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2].Substring(2, 2) : "";
+                                break;
+                            case "AÑO_ULTIMO_PAGO_4_DIGITOS":
+                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
+                                break;
+                            case "CAPACIDAD_PAGO":
+                                config.valor = double.Parse(formulario.cPago).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "MONTO_MAXIMO":
+                                config.valor = double.Parse(formulario.mMaxPlaz).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "MONTO_DEUDOR":
+                                config.valor = (formulario.monto_deudor.Equals("0")) ? "" : double.Parse(formulario.monto_deudor).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "MATRICULA":
+                                config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
+                                break;
+                            case "NSS":
+                                config.valor = (formulario.nss.Equals("0")) ? "" : formulario.nss;
+                                break;
+                            case "GRUPO":
+                                config.valor = (formulario.grupo.Equals("0")) ? "" : formulario.grupo;
+                                break;
+                            case "CLAVE_TRABAJADOR":
+                                config.valor = (formulario.clave_trabajdor.Equals("0")) ? "" : formulario.clave_trabajdor;
+                                break;
+                            case "ESPECIFICAR":
+                                config.valor = formulario.especificar;
+                                break;
+                            case "RECA":
+                                config.valor = formulario.reca;
+                                break;
+                            case "RFC":
+                                config.valor = formulario.RFC;
+                                break;
+                            case "NOMBRES":
+                                config.valor = formulario.pNombre + " " + formulario.sNombre;
+                                break;
+                            case "PRIMER_APELLIDO":
+                                config.valor = formulario.pApellido;
+                                break;
+                            case "SEGUNDO_APELLIDO":
+                                config.valor = formulario.sApellido;
+                                break;
+                            case "IDENTIFICACION_OFICIAL":
+                                config.valor = formulario.tipoDoc;
+                                break;
+                            case "FECHA_NACIMIENTO":
+                                config.valor = formulario.fecNac;
+                                break;
+                            case "DIA_NACIMIENTO":
+                                config.valor = fecha_nacimiento[0];
+                                break;
+                            case "MES_NACIMIENTO":
+                                config.valor = fecha_nacimiento[1];
+                                break;
+                            case "MES_NACIMIENTO_LETRAS":
+                                n = int.Parse(fecha_solicitud[1]);
+                                config.valor = meses[n - 1];
+                                break;
+                            case "AÑO_NACIMIENTO_2_DIGITOS":
+                                config.valor = fecha_nacimiento[2].Substring(2, 2);
+                                break;
+                            case "AÑO_NACIMIENTO_4_DIGITOS":
+                                config.valor = fecha_nacimiento[2];
+                                break;
+                            case "PAIS_NACIMIENTO":
+                                config.valor = formulario.paisN;
+                                break;
+                            case "ENTIDAD_NACIMIENTO":
+                                config.valor = formulario.entidadN;
+                                break;
+                            case "PAIS_RESIDENCIA":
+                                config.valor = formulario.paisR;
+                                break;
+                            case "FORMA_MIGRATORIA":
+                                config.valor = formulario.fMigratoria;
+                                break;
+                            case "GENERO":
+                                config.valor = formulario.gender;
+                                break;
+                            case "SECTOR":
+                                config.valor = formulario.sector;
+                                break;
+                            case "OTRO_SECTOR":
+                                config.valor = formulario.otroSector;
+                                break;
+                            case "PUESTO":
+                                config.valor = formulario.puesto;
+                                break;
+                            case "ANTIGUEDAD":
+                                config.valor = formulario.antiguedad;
+                                break;
+                            case "INGRESO_MENSUAL":
+                                config.valor = formulario.ingresos;
+                                break;
+                            case "NUMERO_PERSONAL":
+                                config.valor = formulario.Celular;
+                                break;
+                            case "CLAVE_PRESUPUESTAL":
+                                config.valor = formulario.cPresupuestal;
+                                break;
+                            case "PAGADURIA":
+                                config.valor = formulario.Pagaduria;
+                                break;
+                            case "FECHA_INGRESO":
+                                config.valor = formulario.fchIngreso;
+                                break;
+                            case "CLAVE":
+                                config.valor = formulario.clave;
+                                break;
+                            case "LUGAR_TRABAJO":
+                                config.valor = formulario.lugTrabajo;
+                                break;
+                            case "CALLE":
+                                config.valor = formulario.calle;
+                                break;
+                            case "NUMERO_EXTERIOR":
+                                config.valor = formulario.nExterior;
+                                break;
+                            case "COLONIA":
+                                config.valor = formulario.colonia;
+                                break;
+                            case "OTRA_COLONIA":
+                                config.valor = formulario.otraColonia;
+                                break;
+                            case "TELEFONO_FIJO":
+                                config.valor = formulario.telFijo;
+                                break;
+                            case "EXTENSION":
+                                config.valor = formulario.extension;
+                                break;
+                            case "ENTIDAD":
+                                config.valor = formulario.entidadT;
+                                break;
+                            case "MUNICIPIO":
+                                config.valor = formulario.municipio;
+                                break;
+                            case "CODIGO_POSTAL_OCUPACION":
+                                config.valor = formulario.CodigoPost;
+                                break;
+                            case "TIENE_CARGO_PUBLICO":
+                                config.valor = formulario.tCargoPu;
+                                break;
+                            case "PERIODO_DE_EJECUCION":
+                                config.valor = formulario.pEjecucion;
+                                break;
+                            case "CARGO_PUBLICO_FAMILIAR":
+                                config.valor = formulario.tCargoPuF;
+                                break;
+                            case "NOMBRE_FAMILIAR":
+                                config.valor = formulario.nombFamiliar;
+                                break;
+                            case "PUESTO_FAMILIAR":
+                                config.valor = formulario.puestoFam;
+                                break;
+                            case "PERIODO_EJERCICO_FAMILIAR":
+                                config.valor = formulario.perEjecucionFam;
+                                break;
+                            case "BENEFICIARIO":
+                                config.valor = formulario.tBeneneficiario;
+                                break;
+                            case "NOMBRE_BENEFICIARIO":
+                                config.valor = formulario.nombBene;
+                                break;
+                            case "TIPO_PENSION":
+                                config.valor = formulario.tipPension;
+                                break;
+                            case "ADSCRIPCION_PAGO":
+                                config.valor = formulario.ubiPago;
+                                break;
+                            case "DELEGACION":
+                                config.valor = formulario.delegacionImss;
+                                break;
+                            case "NOMBRE_TESTIGO1":
+                                config.valor = formulario.nombTest1;
+                                break;
+                            case "MATRICULA_TESTIGO1":
+                                config.valor = formulario.matricula1;
+                                break;
+                            case "GAFETE_TESTIGO1":
+                                config.valor = formulario.gafete1;
+                                break;
+                            case "NOMBRE_TESTIGO2":
+                                config.valor = formulario.nombTest2;
+                                break;
+                            case "MATRICULA_TESTIGO2":
+                                config.valor = formulario.matricula2;
+                                break;
+                            case "GAFETE_TESTIGO2":
+                                config.valor = formulario.gafete1;
+                                break;
+                            case "CODIGO_POSTAL_DOMICILIO":
+                                config.valor = formulario.codPostDom;
+                                break;
+                            case "TIEMPO_RESIDENCIA":
+                                config.valor = formulario.yearResidencia;
+                                break;
+                            case "ENTIDAD_DOMICILIO":
+                                config.valor = formulario.entidadDom;
+                                break;
+                            case "DELEGACION_DOMICILIO":
+                                config.valor = formulario.municipioDom;
+                                break;
+                            case "COLONIA_DOMICILIO":
+                                config.valor = formulario.coloniaDom;
+                                break;
+                            case "OTRA_COLONIA_DOMICILIO":
+                                config.valor = formulario.otraColoniaDom;
+                                break;
+                            case "DOMICILIO_CALLE":
+                                config.valor = formulario.domicilioCalle;
+                                break;
+                            case "NUMERO_EXTERIOR_DOMICILIO":
+                                config.valor = formulario.noExteriorDom;
+                                break;
+                            case "NUMERO_INTERIOR_DOMICILIO":
+                                config.valor = formulario.noInteriorDom;
+                                break;
+                            case "ENTRE_CALLES_DOMICILIO":
+                                config.valor = formulario.entreCalleDom;
+                                break;
+                            case "EMAIL_CONTACTO":
+                                config.valor = formulario.emailContacto;
+                                break;
+                            case "CELULAR":
+                                config.valor = formulario.CelularContacto;
+                                break;
+                            case "EMPRESA_TELEFONICA":
+                                config.valor = formulario.CompanyPhone;
+                                break;
+                            case "TELEFONO_PROPIO":
+                                config.valor = formulario.telefonoPropio;
+                                break;
+                            case "NOMBRE_REFERENCIA1":
+                                config.valor = formulario.nombreRef1;
+                                break;
+                            case "APELLIDO1_REFERENCIA1":
+                                config.valor = formulario.pApellidoRef1;
+                                break;
+                            case "APELLIDO2_REFERENCIA1":
+                                config.valor = formulario.sApellidoRef1;
+                                break;
+                            case "TELEFONO_REFERENCIA1":
+                                config.valor = (formulario.TelefonoRef1.Equals("0")) ? "" : formulario.TelefonoRef1;
+                                break;
+                            case "CELULAR_REFERENCIA1":
+                                config.valor = (formulario.CelularRef1.Equals("0")) ? "" : formulario.CelularRef1;
+                                break;
+                            case "HORA1_REF1":
+                                config.valor = formulario.Hora1Ref1.ToString().Substring(11, 17);
+                                break;
+                            case "HORA2_REF1":
+                                config.valor = formulario.Hora2Ref1.ToString().Substring(11, 17);
+                                break;
+                            case "DIA1_REF1":
+                                config.valor = formulario.dia1Ref1;
+                                break;
+                            case "DIA2_REF1":
+                                config.valor = formulario.dia2Ref1;
+                                break;
+                            case "PARENTESCO_REFERENCIA1":
+                                config.valor = formulario.ParentescoRef1;
+                                break;
+                            case "NOMBRE_REFERENCIA2":
+                                config.valor = formulario.nombreRef2;
+                                break;
+                            case "APELLIDO1_REFERENCIA2":
+                                config.valor = formulario.pApellidoRef2;
+                                break;
+                            case "APELLIDO2_REFERENCIA2":
+                                config.valor = formulario.sApellidoRef2;
+                                break;
+                            case "TELEFONO_REFERENCIA2":
+                                config.valor = (formulario.TelefonoRef2.Equals("0")) ? "" : formulario.TelefonoRef2;
+                                break;
+                            case "CELULAR_REFERENCIA2":
+                                config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
+                                break;
+                            case "HORA1_REF2":
+                                config.valor = formulario.Hora1Ref2.ToString();
+                                break;
+                            case "HORA2_REF2":
+                                config.valor = formulario.Hora2Ref2.ToString();
+                                break;
+                            case "DIA1_REF2":
+                                config.valor = formulario.dia1Ref2;
+                                break;
+                            case "DIA2_REF2":
+                                config.valor = formulario.dia2Ref2;
+                                break;
+                            case "PARENTESCO_REFERENCIA2":
+                                config.valor = formulario.ParentescoRef2;
+                                break;
+                            case "MEDIO_DISPOSICION":
+                                config.valor = formulario.medioDisp;
+                                break;
+                            case "CLABE_CUENTA":
+                                config.valor = formulario.ClabeDisp;
+                                break;
+                            case "CLABE_CUENTA DIGITO 1":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(0) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 2":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(1) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 3":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(2) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 4":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(3) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 5":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(4) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 6":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(5) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 7":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 8":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 9":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 10":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(9) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 11":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(10) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 12":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(11) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 13":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(12) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 14":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 15":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 16":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 17":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
+                                break;
+                            case "CLABE_CUENTA DIGITO 18":
+                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
+                                break;
+                            case "BANCO":
+                                config.valor = formulario.NombreBanco;
+                                break;
+                            case "NUMERO_CUENTA":
+                                config.valor = formulario.NumCuentaBanc;
+                                break;
+                            case "NUMERO_CUENTA DIGITO 1":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(0) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 2":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(1) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 3":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(2) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 4":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(3) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 5":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(4) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 6":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(5) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 7":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(6) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 8":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(7) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 9":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(8) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 10":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(9) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA DIGITO 11":
+                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(10) + "" : "";
+                                break;
+                            case "MEDIO_DISPOSICION_ALTERNO":
+                                config.valor = formulario.medioDispAlt;
+                                break;
+                            case "CLABE_CUENTA_ALTERNO":
+                                config.valor = formulario.ClabeDispAlt;
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 1":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(0) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 2":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(1) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 3":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(2) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 4":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(3) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 5":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(4) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 6":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(5) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 7":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(6) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 8":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(7) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 9":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(8) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 10":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(9) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 11":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(10) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 12":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(11) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 13":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(12) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 14":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 15":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 16":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 17":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO DIGITO 18":
+                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
+                                break;
+                            case "BANCO_ALTERNO":
+                                config.valor = formulario.NombreBancoAlt;
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO":
+                                config.valor = formulario.NumCuentaBancAlt;
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 1":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(0) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 2":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(1) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 3":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(2) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 4":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(3) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 5":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(4) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 6":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(5) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 7":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(6) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 8":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(7) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 9":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(8) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 10":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(9) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO DIGITO 11":
+                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(10) + "" : "";
+                                break;
+                            case "MEDIO_DISPOSICION_ALTERNO_2":
+                                config.valor = formulario.medioDispAlt2;
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2":
+                                config.valor = formulario.ClabeDispAlt2;
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 1":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(0) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 2":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(1) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 3":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(2) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 4":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(3) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 5":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(4) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 6":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(5) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 7":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(6) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 8":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(7) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 9":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(8) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 10":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(9) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 11":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(10) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 12":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(11) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 13":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(12) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 14":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(13) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 15":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(14) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 16":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(15) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 17":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(16) + "" : "";
+                                break;
+                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 18":
+                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(17) + "" : "";
+                                break;
+                            case "BANCO_ALTERNO_2":
+                                config.valor = formulario.NombreBancoAlt2;
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2":
+                                config.valor = formulario.NumCuentaBancAlt2;
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 1":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(0) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 2":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(1) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 3":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(2) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 4":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(3) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 5":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(4) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 6":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(5) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 7":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(6) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 8":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(7) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 9":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(8) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 10":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(9) + "" : "";
+                                break;
+                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 11":
+                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(10) + "" : "";
+                                break;
+                            case "CURP":
+                                config.valor = formulario.CURP;
+                                break;
+                            case "MONTO_ESCRITO":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.monto));
+                                break;
+                            case "MONTO_ESCRITO_SIN_PESOS":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                break;
+                            case "CENTAVOS_MONTO_ESCRITO":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                break;
+                            case "LIQUIDO_BASE_ESCRITO":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
+                                break;
+                            case "DESCUENTO_ESCRITO":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.dscto));
+                                break;
+                            case "MONTO_MAXIMO_ESCRITO":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.mMaxPlaz));
+                                break;
+                            case "MONTO_DEUDOR_ESCRITO":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.monto_deudor));
+                                break;
+                            case "NACIONALIDAD":
+                                config.valor = formulario.nacionalidad;
+                                break;
+                            case "EDAD_CLIENTE":
+                                DateTime fechaActual = DateTime.Today;
+                                var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
+                                edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
+                                config.valor = edad + "";
+                                break;
+                            case "TASA_MENSUAL":
+                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                break;
+                            case "TOTAL_A_PAGAR_CON_INTERES":
+                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
+                                var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
+                                config.valor = config.valor = dao.monto_escrito(dto);
+                                break;
+                            case "NOMBRE_COMPLETO":
+                                config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
+                                break;
+                            case "CASA_FINANCIERA":
+                                config.valor = cart.ElementAt(x).entidad;
+                                break;
+                            case "SUMA_SALDO_INSOLUTO":
+                                sum = 0;
+                                for (var q = 0; q < cart.Count(); q++)
+                                {
+                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                }
+                                config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "SUMA_SALDO_INSOLUTO_LETRAS":
+                                sum = 0;
+                                for (var q = 0; q < cart.Count(); q++)
+                                {
+                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                }
+                                config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
+                                break;
+                            case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
+                                sum = 0;
+                                for (var q = 0; q < cart.Count(); q++)
+                                {
+                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                }
+                                break;
+                            case "DEPOSITO_CLIENTE":
+                                config.valor = formulario.depositoCliente;
+                                break;
+                            case "DEPOSITO_CLIENTE_LETRA":
+                                config.valor = dao.monto_escrito(double.Parse(formulario.depositoCliente)).Replace("PESOS", "");
+                                break;
+                            case "CENTAVOS_DEPOSITO_CLIENTE_LETRA":
+                                config.valor = formulario.depositoCliente;
+                                break;
+                            case "DIAS_A_PAGAR":
+                                config.valor = formulario.DiasPagar;
+                                break;
+                            case "FECHA_CONTRATO_COMPRA":
+                                config.valor = cart.ElementAt(x).fecha.Substring(0, 10);
+                                break;
+                            case "MONTO_CREDITO_COMPRA":
+                                config.valor = cart.ElementAt(x).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "MONTO_TOTAL":
+                                config.valor = cart.ElementAt(x).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "PLAZO_COMPRA":
+                                config.valor = cart.ElementAt(x).plazo + "";
+                                break;
+                            case "SALDO_INSOLUTO":
+                                config.valor = cart.ElementAt(x).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
+                            case "TASA_COMPRA":
+                                config.valor = cart.ElementAt(x).tasa + "";
+                                break;
+                        }
+                        if (pagina_mayor < config.pagina)
                             {
                                 pagina_mayor = (int)config.pagina;
                             }
@@ -2970,16 +2990,16 @@ namespace Models
                                             config.valor = cart.ElementAt(x).fecha.Substring(0, 10);
                                             break;
                                         case "MONTO_CREDITO_COMPRA":
-                                            config.valor = cart.ElementAt(x).capital + "";
+                                            config.valor = cart.ElementAt(x).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "MONTO_TOTAL":
-                                            config.valor = cart.ElementAt(x).totPagar + "";
+                                            config.valor = cart.ElementAt(x).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "PLAZO_COMPRA":
                                             config.valor = cart.ElementAt(x).plazo + "";
                                             break;
                                         case "SALDO_INSOLUTO":
-                                            config.valor = cart.ElementAt(x).saldoInsoluto + "";
+                                            config.valor = cart.ElementAt(x).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "TASA_COMPRA":
                                             config.valor = cart.ElementAt(x).tasa + "";
@@ -3483,2200 +3503,6 @@ namespace Models
                             reader = new PdfReader(data1.ListDocumentos[i].path);
                         }
                         doc1 = new PdfDocument(reader);
-                        page1 = doc1.GetPage((int)data1.ListDocumentos[i].pagina_firma);
-                        doc.AddPage(page1.CopyTo(doc));
-
-                        OutParamConfiguracionDoc configuraciones = new ParamsDAO().getConfigDocumentosFirma(dependencia, producto, data.ListDocumentos[i].codigo_doc, data.ListDocumentos[i].pagina_firma);
-                        for (var j = 0; j < configuraciones.ListConfiguracion.Count(); j++)
-                        {
-                            var config = configuraciones.ListConfiguracion.ElementAt(j);
-                            if (config.tipo_optencion == "2")
-                            {
-                                switch (config.valor)
-                                {
-                                    case "NUMERO_FOLDER":
-                                        config.valor = formulario.folderNumber;
-                                        break;
-                                    case "ASESOR":
-                                        config.valor = formulario.asesor;
-                                        break;
-                                    case "FECHA_SOLICITUD":
-                                        config.valor = formulario.fchsolicitud;
-                                        break;
-                                    case "DIA_SOLICITUD":
-                                        config.valor = fecha_solicitud[0];
-                                        break;
-                                    case "MES_SOLICITUD":
-                                        config.valor = fecha_solicitud[1];
-                                        break;
-                                    case "MES_SOLICITUD_LETRAS":
-                                        n = int.Parse(fecha_solicitud[1]);
-                                        config.valor = meses[n - 1];
-                                        break;
-                                    case "AÑO_SOLICITUD_4_DIGITOS":
-                                        config.valor = fecha_solicitud[2];
-                                        break;
-                                    case "AÑO_SOLICITUD_2_DIGITOS":
-                                        config.valor = fecha_solicitud[2].Substring(2, 2);
-                                        break;
-                                    case "TIPO_SOLICITUD":
-                                        config.valor = formulario.tipoSolicitud;
-                                        break;
-                                    case "MONTO":
-                                        config.valor = formulario.monto;
-                                        break;
-                                    case "PERIODO":
-                                        config.valor = formulario.periodo;
-                                        break;
-                                    case "PLAZO":
-                                        config.valor = formulario.plazo;
-                                        break;
-                                    case "LIQUIDO_BASE":
-                                        config.valor = formulario.LBase;
-                                        break;
-                                    case "NO_PLAZAS":
-                                        config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
-                                        break;
-                                    case "DEPENDENCIA":
-                                        config.valor = formulario.Dependencia;
-                                        break;
-                                    case "PRODUCTO":
-                                        config.valor = formulario.producto;
-                                        break;
-                                    case "DESTINO_CREDITO":
-                                        config.valor = formulario.destino;
-                                        break;
-                                    case "TIPO_NOMINA":
-                                        config.valor = formulario.tNomina;
-                                        break;
-                                    case "DESCUENTO":
-                                        config.valor = formulario.dscto;
-                                        break;
-                                    case "TASA_ANUAL":
-                                        config.valor = formulario.tAnual;
-                                        break;
-                                    case "CAT":
-                                        config.valor = formulario.cat;
-                                        break;
-                                    case "SUCURSAL":
-                                        config.valor = formulario.sucursal;
-                                        break;
-                                    case "QUINCENA_DSCTO":
-                                        config.valor = formulario.quincenaDscto;
-                                        break;
-                                    case "FECHA_PRIMER_PAGO":
-                                        config.valor = formulario.fchPrPago;
-                                        break;
-                                    case "DIA_PRIMER_PAGO":
-                                        config.valor = config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[0] : "";
-                                        break;
-                                    case "MES_PRIMER_PAGO":
-                                        if (fecha_primer_pago.Length == 3)
-                                        {
-                                            config.valor = fecha_primer_pago[1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MES_PRIMER_PAGO_LETRAS":
-                                        if (fecha_primer_pago.Length == 3)
-                                        {
-                                            n = int.Parse(fecha_primer_pago[1]);
-                                            config.valor = meses[n - 1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "AÑO_PRIMER_PAGO_2_DIGITOS":
-                                        config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2].Substring(2, 2) : "";
-                                        break;
-                                    case "AÑO_PRIMER_PAGO_4_DIGITOS":
-                                        config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2] : "";
-                                        break;
-                                    case "FECHA_ULTIMO_PAGO":
-                                        config.valor = formulario.fchUltPago;
-                                        break;
-                                    case "DIA_ULTIMO_PAGO":
-                                        config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[0] : "";
-                                        break;
-                                    case "MES_ULTIMO_PAGO":
-                                        if (fecha_ultimo_pago.Length == 3)
-                                        {
-                                            config.valor = fecha_ultimo_pago[1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MES_ULTIMO_PAGO_LETRAS":
-                                        if (fecha_primer_pago.Length == 3)
-                                        {
-                                            n = int.Parse(fecha_ultimo_pago[1]);
-                                            config.valor = meses[n - 1];
-                                        }
-                                        else
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "AÑO_ULTIMO_PAGO_2_DIGITOS":
-                                        config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2].Substring(2, 2) : "";
-                                        break;
-                                    case "AÑO_ULTIMO_PAGO_4_DIGITOS":
-                                        config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
-                                        break;
-                                    case "CAPACIDAD_PAGO":
-                                        config.valor = formulario.cPago;
-                                        break;
-                                    case "MONTO_MAXIMO":
-                                        config.valor = formulario.mMaxPlaz;
-                                        break;
-                                    case "MONTO_DEUDOR":
-                                        config.valor = (formulario.monto_deudor.Equals("0")) ? "" : formulario.monto_deudor;
-                                        break;
-                                    case "MATRICULA":
-                                        config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
-                                        break;
-                                    case "NSS":
-                                        config.valor = (formulario.nss.Equals("0")) ? "" : formulario.nss;
-                                        break;
-                                    case "GRUPO":
-                                        config.valor = (formulario.grupo.Equals("0")) ? "" : formulario.grupo;
-                                        break;
-                                    case "CLAVE_TRABAJADOR":
-                                        config.valor = (formulario.clave_trabajdor.Equals("0")) ? "" : formulario.clave_trabajdor;
-                                        break;
-                                    case "ESPECIFICAR":
-                                        config.valor = formulario.especificar;
-                                        break;
-                                    case "RECA":
-                                        config.valor = formulario.reca;
-                                        break;
-                                    case "RFC":
-                                        config.valor = formulario.RFC;
-                                        break;
-                                    case "NOMBRES":
-                                        config.valor = formulario.pNombre + " " + formulario.sNombre;
-                                        break;
-                                    case "PRIMER_APELLIDO":
-                                        config.valor = formulario.pApellido;
-                                        break;
-                                    case "SEGUNDO_APELLIDO":
-                                        config.valor = formulario.sApellido;
-                                        break;
-                                    case "IDENTIFICACION_OFICIAL":
-                                        config.valor = formulario.tipoDoc;
-                                        break;
-                                    case "FECHA_NACIMIENTO":
-                                        config.valor = formulario.fecNac;
-                                        break;
-                                    case "DIA_NACIMIENTO":
-                                        config.valor = fecha_nacimiento[0];
-                                        break;
-                                    case "MES_NACIMIENTO":
-                                        config.valor = fecha_nacimiento[1];
-                                        break;
-                                    case "MES_NACIMIENTO_LETRAS":
-                                        n = int.Parse(fecha_solicitud[1]);
-                                        config.valor = meses[n - 1];
-                                        break;
-                                    case "AÑO_NACIMIENTO_2_DIGITOS":
-                                        config.valor = fecha_nacimiento[2].Substring(2, 2);
-                                        break;
-                                    case "AÑO_NACIMIENTO_4_DIGITOS":
-                                        config.valor = fecha_nacimiento[2];
-                                        break;
-                                    case "PAIS_NACIMIENTO":
-                                        config.valor = formulario.paisN;
-                                        break;
-                                    case "ENTIDAD_NACIMIENTO":
-                                        config.valor = formulario.entidadN;
-                                        break;
-                                    case "PAIS_RESIDENCIA":
-                                        config.valor = formulario.paisR;
-                                        break;
-                                    case "FORMA_MIGRATORIA":
-                                        config.valor = formulario.fMigratoria;
-                                        break;
-                                    case "GENERO":
-                                        config.valor = formulario.gender;
-                                        break;
-                                    case "SECTOR":
-                                        config.valor = formulario.sector;
-                                        break;
-                                    case "OTRO_SECTOR":
-                                        config.valor = formulario.otroSector;
-                                        break;
-                                    case "PUESTO":
-                                        config.valor = formulario.puesto;
-                                        break;
-                                    case "ANTIGUEDAD":
-                                        config.valor = formulario.antiguedad;
-                                        break;
-                                    case "INGRESO_MENSUAL":
-                                        config.valor = formulario.ingresos;
-                                        break;
-                                    case "NUMERO_PERSONAL":
-                                        config.valor = formulario.Celular;
-                                        break;
-                                    case "CLAVE_PRESUPUESTAL":
-                                        config.valor = formulario.cPresupuestal;
-                                        break;
-                                    case "PAGADURIA":
-                                        config.valor = formulario.Pagaduria;
-                                        break;
-                                    case "FECHA_INGRESO":
-                                        config.valor = formulario.fchIngreso;
-                                        break;
-                                    case "CLAVE":
-                                        config.valor = formulario.clave;
-                                        break;
-                                    case "LUGAR_TRABAJO":
-                                        config.valor = formulario.lugTrabajo;
-                                        break;
-                                    case "CALLE":
-                                        config.valor = formulario.calle;
-                                        break;
-                                    case "NUMERO_EXTERIOR":
-                                        config.valor = formulario.nExterior;
-                                        break;
-                                    case "COLONIA":
-                                        config.valor = formulario.colonia;
-                                        break;
-                                    case "OTRA_COLONIA":
-                                        config.valor = formulario.otraColonia;
-                                        break;
-                                    case "TELEFONO_FIJO":
-                                        config.valor = formulario.telFijo;
-                                        break;
-                                    case "EXTENSION":
-                                        config.valor = formulario.extension;
-                                        break;
-                                    case "ENTIDAD":
-                                        config.valor = formulario.entidadT;
-                                        break;
-                                    case "MUNICIPIO":
-                                        config.valor = formulario.municipio;
-                                        break;
-                                    case "CODIGO_POSTAL_OCUPACION":
-                                        config.valor = formulario.CodigoPost;
-                                        break;
-                                    case "TIENE_CARGO_PUBLICO":
-                                        config.valor = formulario.tCargoPu;
-                                        break;
-                                    case "PERIODO_DE_EJECUCION":
-                                        config.valor = formulario.pEjecucion;
-                                        break;
-                                    case "CARGO_PUBLICO_FAMILIAR":
-                                        config.valor = formulario.tCargoPuF;
-                                        break;
-                                    case "NOMBRE_FAMILIAR":
-                                        config.valor = formulario.nombFamiliar;
-                                        break;
-                                    case "PUESTO_FAMILIAR":
-                                        config.valor = formulario.puestoFam;
-                                        break;
-                                    case "PERIODO_EJERCICO_FAMILIAR":
-                                        config.valor = formulario.perEjecucionFam;
-                                        break;
-                                    case "BENEFICIARIO":
-                                        config.valor = formulario.tBeneneficiario;
-                                        break;
-                                    case "NOMBRE_BENEFICIARIO":
-                                        config.valor = formulario.nombBene;
-                                        break;
-                                    case "TIPO_PENSION":
-                                        config.valor = formulario.tipPension;
-                                        break;
-                                    case "ADSCRIPCION_PAGO":
-                                        config.valor = formulario.ubiPago;
-                                        break;
-                                    case "DELEGACION":
-                                        config.valor = formulario.delegacionImss;
-                                        break;
-                                    case "NOMBRE_TESTIGO1":
-                                        config.valor = formulario.nombTest1;
-                                        break;
-                                    case "MATRICULA_TESTIGO1":
-                                        config.valor = formulario.matricula1;
-                                        break;
-                                    case "GAFETE_TESTIGO1":
-                                        config.valor = formulario.gafete1;
-                                        break;
-                                    case "NOMBRE_TESTIGO2":
-                                        config.valor = formulario.nombTest2;
-                                        break;
-                                    case "MATRICULA_TESTIGO2":
-                                        config.valor = formulario.matricula2;
-                                        break;
-                                    case "GAFETE_TESTIGO2":
-                                        config.valor = formulario.gafete1;
-                                        break;
-                                    case "CODIGO_POSTAL_DOMICILIO":
-                                        config.valor = formulario.codPostDom;
-                                        break;
-                                    case "TIEMPO_RESIDENCIA":
-                                        config.valor = formulario.yearResidencia;
-                                        break;
-                                    case "ENTIDAD_DOMICILIO":
-                                        config.valor = formulario.entidadDom;
-                                        break;
-                                    case "DELEGACION_DOMICILIO":
-                                        config.valor = formulario.municipioDom;
-                                        break;
-                                    case "COLONIA_DOMICILIO":
-                                        config.valor = formulario.coloniaDom;
-                                        break;
-                                    case "OTRA_COLONIA_DOMICILIO":
-                                        config.valor = formulario.otraColoniaDom;
-                                        break;
-                                    case "DOMICILIO_CALLE":
-                                        config.valor = formulario.domicilioCalle;
-                                        break;
-                                    case "NUMERO_EXTERIOR_DOMICILIO":
-                                        config.valor = formulario.noExteriorDom;
-                                        break;
-                                    case "NUMERO_INTERIOR_DOMICILIO":
-                                        config.valor = formulario.noInteriorDom;
-                                        break;
-                                    case "ENTRE_CALLES_DOMICILIO":
-                                        config.valor = formulario.entreCalleDom;
-                                        break;
-                                    case "EMAIL_CONTACTO":
-                                        config.valor = formulario.emailContacto;
-                                        break;
-                                    case "CELULAR":
-                                        config.valor = formulario.CelularContacto;
-                                        break;
-                                    case "EMPRESA_TELEFONICA":
-                                        config.valor = formulario.CompanyPhone;
-                                        break;
-                                    case "TELEFONO_PROPIO":
-                                        config.valor = formulario.telefonoPropio;
-                                        break;
-                                    case "NOMBRE_REFERENCIA1":
-                                        config.valor = formulario.nombreRef1;
-                                        break;
-                                    case "APELLIDO1_REFERENCIA1":
-                                        config.valor = formulario.pApellidoRef1;
-                                        break;
-                                    case "APELLIDO2_REFERENCIA1":
-                                        config.valor = formulario.sApellidoRef1;
-                                        break;
-                                    case "TELEFONO_REFERENCIA1":
-                                        config.valor = (formulario.TelefonoRef1.Equals("0")) ? "" : formulario.TelefonoRef1;
-                                        break;
-                                    case "CELULAR_REFERENCIA1":
-                                        config.valor = (formulario.CelularRef1.Equals("0")) ? "" : formulario.CelularRef1;
-                                        break;
-                                    case "HORA1_REF1":
-                                        var hora = Convert.ToDateTime(formulario.Hora1Ref1);
-                                        config.valor = hora.ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
-                                        break;
-                                    case "HORA2_REF1":
-                                        config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
-                                        break;
-                                    case "DIA1_REF1":
-                                        config.valor = formulario.dia1Ref1;
-                                        break;
-                                    case "DIA2_REF1":
-                                        config.valor = formulario.dia2Ref1;
-                                        break;
-                                    case "PARENTESCO_REFERENCIA1":
-                                        config.valor = formulario.ParentescoRef1;
-                                        break;
-                                    case "NOMBRE_REFERENCIA2":
-                                        config.valor = formulario.nombreRef2;
-                                        break;
-                                    case "APELLIDO1_REFERENCIA2":
-                                        config.valor = formulario.pApellidoRef2;
-                                        break;
-                                    case "APELLIDO2_REFERENCIA2":
-                                        config.valor = formulario.sApellidoRef2;
-                                        break;
-                                    case "TELEFONO_REFERENCIA2":
-                                        config.valor = (formulario.TelefonoRef2.Equals("0")) ? "" : formulario.TelefonoRef2;
-                                        break;
-                                    case "CELULAR_REFERENCIA2":
-                                        config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
-                                        break;
-                                    case "HORA1_REF2":
-                                        config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
-                                        break;
-                                    case "HORA2_REF2":
-                                        config.valor = Convert.ToDateTime(formulario.Hora2Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
-                                        break;
-                                    case "DIA1_REF2":
-                                        config.valor = formulario.dia1Ref2;
-                                        break;
-                                    case "DIA2_REF2":
-                                        config.valor = formulario.dia2Ref2;
-                                        break;
-                                    case "PARENTESCO_REFERENCIA2":
-                                        config.valor = formulario.ParentescoRef2;
-                                        break;
-                                    case "MEDIO_DISPOSICION":
-                                        config.valor = formulario.medioDisp;
-                                        break;
-                                    case "CLABE_CUENTA":
-                                        config.valor = formulario.ClabeDisp;
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 1":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(0) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 2":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(1) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 3":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(2) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 4":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(3) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 5":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(4) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 6":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(5) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 7":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 8":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 9":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 10":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(9) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 11":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(10) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 12":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(11) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 13":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(12) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 14":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 15":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 16":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 17":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA DIGITO 18":
-                                        config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
-                                        break;
-                                    case "BANCO":
-                                        config.valor = formulario.NombreBanco;
-                                        break;
-                                    case "NUMERO_CUENTA":
-                                        config.valor = formulario.NumCuentaBanc;
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 1":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(0) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 2":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(1) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 3":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(2) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 4":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(3) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 5":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(4) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 6":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(5) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 7":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(6) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 8":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(7) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 9":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(8) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 10":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(9) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA DIGITO 11":
-                                        config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(10) + "" : "";
-                                        break;
-                                    case "MEDIO_DISPOSICION_ALTERNO":
-                                        config.valor = formulario.medioDispAlt;
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO":
-                                        config.valor = formulario.ClabeDispAlt;
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 1":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(0) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 2":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(1) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 3":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(2) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 4":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(3) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 5":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(4) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 6":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(5) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 7":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(6) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 8":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(7) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 9":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(8) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 10":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(9) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 11":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(10) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 12":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(11) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 13":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(12) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 14":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(13) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 15":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(14) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 16":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(15) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 17":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(16) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO DIGITO 18":
-                                        config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(17) + "" : "";
-                                        break;
-                                    case "BANCO_ALTERNO":
-                                        config.valor = formulario.NombreBancoAlt;
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO":
-                                        config.valor = formulario.NumCuentaBancAlt;
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 1":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(0) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 2":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(1) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 3":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(2) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 4":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(3) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 5":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(4) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 6":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(5) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 7":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(6) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 8":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(7) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 9":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(8) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 10":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(9) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO DIGITO 11":
-                                        config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(10) + "" : "";
-                                        break;
-                                    case "MEDIO_DISPOSICION_ALTERNO_2":
-                                        config.valor = formulario.medioDispAlt2;
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2":
-                                        config.valor = formulario.ClabeDispAlt2;
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 1":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(0) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 2":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(1) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 3":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(2) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 4":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(3) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 5":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(4) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 6":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(5) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 7":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(6) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 8":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(7) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 9":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(8) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 10":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(9) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 11":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(10) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 12":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(11) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 13":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(12) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 14":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(13) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 15":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(14) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 16":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(15) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 17":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(16) + "" : "";
-                                        break;
-                                    case "CLABE_CUENTA_ALTERNO_2 DIGITO 18":
-                                        config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(17) + "" : "";
-                                        break;
-                                    case "BANCO_ALTERNO_2":
-                                        config.valor = formulario.NombreBancoAlt2;
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2":
-                                        config.valor = formulario.NumCuentaBancAlt2;
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 1":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(0) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 2":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(1) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 3":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(2) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 4":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(3) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 5":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(4) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 6":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(5) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 7":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(6) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 8":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(7) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 9":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(8) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 10":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(9) + "" : "";
-                                        break;
-                                    case "NUMERO_CUENTA_ALTERNO_2 DIGITO 11":
-                                        config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(10) + "" : "";
-                                        break;
-                                    case "CURP":
-                                        config.valor = formulario.CURP;
-                                        break;
-                                    case "MONTO_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.monto));
-                                        break;
-                                    case "LIQUIDO_BASE_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
-                                        break;
-                                    case "DESCUENTO_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.dscto));
-                                        break;
-                                    case "MONTO_MAXIMO_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.mMaxPlaz));
-                                        break;
-                                    case "MONTO_DEUDOR_ESCRITO":
-                                        config.valor = dao.monto_escrito(double.Parse(formulario.monto_deudor));
-                                        break;
-                                    case "NACIONALIDAD":
-                                        config.valor = formulario.nacionalidad;
-                                        break;
-                                    case "EDAD_CLIENTE":
-                                        DateTime fechaActual = DateTime.Today;
-                                        var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
-                                        edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
-                                        config.valor = edad + "";
-                                        break;
-                                    case "TASA_MENSUAL":
-                                        config.valor = double.Parse(formulario.tAnual) / 12 + "";
-                                        break;
-                                    case "TOTAL_A_PAGAR_CON_INTERES":
-                                        config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)) + "";
-                                        break;
-                                    case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
-                                        var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
-                                        config.valor = config.valor = dao.monto_escrito(dto);
-                                        break;
-                                    case "NOMBRE_COMPLETO":
-                                        config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
-                                        break;
-                                }
-
-                            }
-                            if (config.tvalidacion == "S")
-                            {
-                                switch (config.campoValidar)
-                                {
-                                    case "TIPO_SOLICITUD":
-                                        if (formulario.tipoSolicitud != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "PERIODO":
-                                        if (formulario.periodo != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "DEPENDENCIA":
-                                        if (formulario.Dependencia != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "PRODUCTO":
-                                        if (formulario.producto != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "DESTINO":
-                                        if (formulario.destino != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "QUINCENA_DSCTO":
-                                        if (formulario.quincenaDscto != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "IDENTIFICACION":
-                                        if (formulario.tipoDoc != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "OTRA_IDENTIFICACION":
-                                        if (formulario.otraIdentificacion != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "GENERO":
-                                        if (formulario.gender != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "SECTOR":
-                                        if (formulario.sector != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "PUESTO":
-                                        if (formulario.puesto != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "INGRESOS":
-                                        if (formulario.ingresos != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "CARGO_PUBLICO":
-                                        if (formulario.tCargoPu != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "CARGO_PUBLICO_FAM":
-                                        if (formulario.tCargoPuF != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "BENEFICIARIO":
-                                        if (formulario.tBeneneficiario != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "EMP_TEL":
-                                        if (formulario.CompanyPhone != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MED_DISP":
-                                        if (formulario.medioDisp != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MED_DISP_ALT1":
-                                        if (formulario.medioDispAlt != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "MED_DISP_ALT2":
-                                        if (formulario.medioDispAlt2 != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "BANCO":
-                                        if (formulario.NombreBanco != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "BANCO_ALT1":
-                                        if (formulario.NombreBancoAlt != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "BANCO_ALT2":
-                                        if (formulario.NombreBancoAlt2 != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "RECA":
-                                        if (formulario.reca != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "ESTADO_CIVIL":
-                                        if (formulario.estadoCivil != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                    case "NACIONALIDAD":
-                                        if (formulario.nacionalidad.ToUpper().IndexOf("MEXICAN") > -1)
-                                        {
-                                            if (config.valor_validacion != "MEXICANO")
-                                            {
-                                                config.valor = "";
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            if (config.valor_validacion != "OTRA")
-                                            {
-                                                config.valor = "";
-                                            }
-                                        }
-                                        break;
-                                    case "PAIS_RESIDENCIA":
-                                        if (formulario.paisR.ToUpper().IndexOf("MÉXICO") > -1)
-                                        {
-                                            if (config.valor_validacion != "MÉXICO")
-                                            {
-                                                config.valor = "";
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            if (config.valor_validacion != "OTRA")
-                                            {
-                                                config.valor = "";
-                                            }
-                                        }
-                                        break;
-                                    case "PAIS_NACIMIENTO":
-                                        if (formulario.paisN.ToUpper().IndexOf("MÉXICO") > -1)
-                                        {
-                                            if (config.valor_validacion != "MÉXICO")
-                                            {
-                                                config.valor = "";
-                                            }
-
-                                        }
-                                        else
-                                        {
-                                            if (config.valor_validacion != "OTRA")
-                                            {
-                                                config.valor = "";
-                                            }
-                                        }
-                                        break;
-                                    case "CLAVE_TRABAJADOR":
-                                        if (formulario.clave_trabajdor != config.valor_validacion)
-                                        {
-                                            config.valor = "";
-                                        }
-                                        break;
-                                }
-                            }
-                            var font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-                            page = doc.GetPage(pageDoc);
-                            canvas = new PdfCanvas(page);
-                            Color myColor = new DeviceRgb(010, 010, 010);
-                            canvas.BeginText().SetColor(myColor, true).SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
-                            canvas.SaveState();
-                            canvas.RestoreState();
-                        }
-                        pageDoc++;
-                    }
-                    else if (data.ListDocumentos[i].compra == 1)
-                    {
-                        if (i > 0)
-                        {
-                            reader.Close();
-                            reader = new PdfReader(data1.ListDocumentos[i].path);
-                        }
-                        doc1 = new PdfDocument(reader);
-                        for (var m = 0; m < cartera.Count(); m++)
-                        {
-                            var cart = cartera.ElementAt(m);
-                            Found:
-                            if (item > 0)
-                            {
-                                if (item >= cart.Count())
-                                {
-                                    h = 0;
-                                    goto Finish;
-                                }
-                                h = (int)item;
-                            }
-                            for (var k = 1; k <= doc1.GetNumberOfPages(); k++)
-                            {
-                                page1 = doc1.GetPage(k);
-                                doc.AddPage(page1.CopyTo(doc));
-                                OutParamConfiguracionDoc configuraciones = new ParamsDAO().getConfigDocumentosFirma(dependencia, producto, data1.ListDocumentos[i].codigo_doc, k);
-                                for (var j = 0; j < configuraciones.ListConfiguracion.Count(); j++)
-                                {
-                                    var config = configuraciones.ListConfiguracion.ElementAt(j);
-                                    config_anterior = config.valor;
-                                    if (config.tipo_optencion == "2")
-                                    {
-                                        switch (config.valor)
-                                        {
-                                            case "NUMERO_FOLDER":
-                                                config.valor = formulario.folderNumber;
-                                                break;
-                                            case "ASESOR":
-                                                config.valor = formulario.asesor;
-                                                break;
-                                            case "FECHA_SOLICITUD":
-                                                config.valor = formulario.fchsolicitud;
-                                                break;
-                                            case "DIA_SOLICITUD":
-                                                config.valor = fecha_solicitud[0];
-                                                break;
-                                            case "MES_SOLICITUD":
-                                                config.valor = fecha_solicitud[1];
-                                                break;
-                                            case "MES_SOLICITUD_LETRAS":
-                                                n = int.Parse(fecha_solicitud[1]);
-                                                config.valor = meses[n - 1];
-                                                break;
-                                            case "AÑO_SOLICITUD_4_DIGITOS":
-                                                config.valor = fecha_solicitud[2];
-                                                break;
-                                            case "AÑO_SOLICITUD_2_DIGITOS":
-                                                config.valor = fecha_solicitud[2].Substring(2, 2);
-                                                break;
-                                            case "TIPO_SOLICITUD":
-                                                config.valor = formulario.tipoSolicitud;
-                                                break;
-                                            case "MONTO":
-                                                config.valor = formulario.monto;
-                                                break;
-                                            case "PERIODO":
-                                                config.valor = formulario.periodo;
-                                                break;
-                                            case "PLAZO":
-                                                config.valor = formulario.plazo;
-                                                break;
-                                            case "LIQUIDO_BASE":
-                                                config.valor = formulario.LBase;
-                                                break;
-                                            case "NO_PLAZAS":
-                                                config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
-                                                break;
-                                            case "DEPENDENCIA":
-                                                config.valor = formulario.Dependencia;
-                                                break;
-                                            case "PRODUCTO":
-                                                config.valor = formulario.producto;
-                                                break;
-                                            case "DESTINO_CREDITO":
-                                                config.valor = formulario.destino;
-                                                break;
-                                            case "TIPO_NOMINA":
-                                                config.valor = formulario.tNomina;
-                                                break;
-                                            case "DESCUENTO":
-                                                config.valor = formulario.dscto;
-                                                break;
-                                            case "TASA_ANUAL":
-                                                config.valor = formulario.tAnual;
-                                                break;
-                                            case "CAT":
-                                                config.valor = formulario.cat;
-                                                break;
-                                            case "SUCURSAL":
-                                                config.valor = formulario.sucursal;
-                                                break;
-                                            case "QUINCENA_DSCTO":
-                                                config.valor = formulario.quincenaDscto;
-                                                break;
-                                            case "FECHA_PRIMER_PAGO":
-                                                config.valor = formulario.fchPrPago;
-                                                break;
-                                            case "DIA_PRIMER_PAGO":
-                                                config.valor = config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[0] : "";
-                                                break;
-                                            case "MES_PRIMER_PAGO":
-                                                if (fecha_primer_pago.Length == 3)
-                                                {
-                                                    config.valor = fecha_primer_pago[1];
-                                                }
-                                                else
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MES_PRIMER_PAGO_LETRAS":
-                                                if (fecha_primer_pago.Length == 3)
-                                                {
-                                                    n = int.Parse(fecha_primer_pago[1]);
-                                                    config.valor = meses[n - 1];
-                                                }
-                                                else
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "AÑO_PRIMER_PAGO_2_DIGITOS":
-                                                config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2].Substring(2, 2) : "";
-                                                break;
-                                            case "AÑO_PRIMER_PAGO_4_DIGITOS":
-                                                config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2] : "";
-                                                break;
-                                            case "FECHA_ULTIMO_PAGO":
-                                                config.valor = formulario.fchUltPago;
-                                                break;
-                                            case "DIA_ULTIMO_PAGO":
-                                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[0] : "";
-                                                break;
-                                            case "MES_ULTIMO_PAGO":
-                                                if (fecha_ultimo_pago.Length == 3)
-                                                {
-                                                    config.valor = fecha_ultimo_pago[1];
-                                                }
-                                                else
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MES_ULTIMO_PAGO_LETRAS":
-                                                if (fecha_primer_pago.Length == 3)
-                                                {
-                                                    n = int.Parse(fecha_ultimo_pago[1]);
-                                                    config.valor = meses[n - 1];
-                                                }
-                                                else
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "AÑO_ULTIMO_PAGO_2_DIGITOS":
-                                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2].Substring(2, 2) : "";
-                                                break;
-                                            case "AÑO_ULTIMO_PAGO_4_DIGITOS":
-                                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
-                                                break;
-                                            case "CAPACIDAD_PAGO":
-                                                config.valor = formulario.cPago;
-                                                break;
-                                            case "MONTO_MAXIMO":
-                                                config.valor = formulario.mMaxPlaz;
-                                                break;
-                                            case "MONTO_DEUDOR":
-                                                config.valor = (formulario.monto_deudor.Equals("0")) ? "" : formulario.monto_deudor;
-                                                break;
-                                            case "MATRICULA":
-                                                config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
-                                                break;
-                                            case "NSS":
-                                                config.valor = (formulario.nss.Equals("0")) ? "" : formulario.nss;
-                                                break;
-                                            case "GRUPO":
-                                                config.valor = (formulario.grupo.Equals("0")) ? "" : formulario.grupo;
-                                                break;
-                                            case "CLAVE_TRABAJADOR":
-                                                config.valor = (formulario.clave_trabajdor.Equals("0")) ? "" : formulario.clave_trabajdor;
-                                                break;
-                                            case "ESPECIFICAR":
-                                                config.valor = formulario.especificar;
-                                                break;
-                                            case "RECA":
-                                                config.valor = formulario.reca;
-                                                break;
-                                            case "RFC":
-                                                config.valor = formulario.RFC;
-                                                break;
-                                            case "NOMBRES":
-                                                config.valor = formulario.pNombre + " " + formulario.sNombre;
-                                                break;
-                                            case "PRIMER_APELLIDO":
-                                                config.valor = formulario.pApellido;
-                                                break;
-                                            case "SEGUNDO_APELLIDO":
-                                                config.valor = formulario.sApellido;
-                                                break;
-                                            case "IDENTIFICACION_OFICIAL":
-                                                config.valor = formulario.tipoDoc;
-                                                break;
-                                            case "FECHA_NACIMIENTO":
-                                                config.valor = formulario.fecNac;
-                                                break;
-                                            case "DIA_NACIMIENTO":
-                                                config.valor = fecha_nacimiento[0];
-                                                break;
-                                            case "MES_NACIMIENTO":
-                                                config.valor = fecha_nacimiento[1];
-                                                break;
-                                            case "MES_NACIMIENTO_LETRAS":
-                                                n = int.Parse(fecha_solicitud[1]);
-                                                config.valor = meses[n - 1];
-                                                break;
-                                            case "AÑO_NACIMIENTO_2_DIGITOS":
-                                                config.valor = fecha_nacimiento[2].Substring(2, 2);
-                                                break;
-                                            case "AÑO_NACIMIENTO_4_DIGITOS":
-                                                config.valor = fecha_nacimiento[2];
-                                                break;
-                                            case "PAIS_NACIMIENTO":
-                                                config.valor = formulario.paisN;
-                                                break;
-                                            case "ENTIDAD_NACIMIENTO":
-                                                config.valor = formulario.entidadN;
-                                                break;
-                                            case "PAIS_RESIDENCIA":
-                                                config.valor = formulario.paisR;
-                                                break;
-                                            case "FORMA_MIGRATORIA":
-                                                config.valor = formulario.fMigratoria;
-                                                break;
-                                            case "GENERO":
-                                                config.valor = formulario.gender;
-                                                break;
-                                            case "SECTOR":
-                                                config.valor = formulario.sector;
-                                                break;
-                                            case "OTRO_SECTOR":
-                                                config.valor = formulario.otroSector;
-                                                break;
-                                            case "PUESTO":
-                                                config.valor = formulario.puesto;
-                                                break;
-                                            case "ANTIGUEDAD":
-                                                config.valor = formulario.antiguedad;
-                                                break;
-                                            case "INGRESO_MENSUAL":
-                                                config.valor = formulario.ingresos;
-                                                break;
-                                            case "NUMERO_PERSONAL":
-                                                config.valor = formulario.Celular;
-                                                break;
-                                            case "CLAVE_PRESUPUESTAL":
-                                                config.valor = formulario.cPresupuestal;
-                                                break;
-                                            case "PAGADURIA":
-                                                config.valor = formulario.Pagaduria;
-                                                break;
-                                            case "FECHA_INGRESO":
-                                                config.valor = formulario.fchIngreso;
-                                                break;
-                                            case "CLAVE":
-                                                config.valor = formulario.clave;
-                                                break;
-                                            case "LUGAR_TRABAJO":
-                                                config.valor = formulario.lugTrabajo;
-                                                break;
-                                            case "CALLE":
-                                                config.valor = formulario.calle;
-                                                break;
-                                            case "NUMERO_EXTERIOR":
-                                                config.valor = formulario.nExterior;
-                                                break;
-                                            case "COLONIA":
-                                                config.valor = formulario.colonia;
-                                                break;
-                                            case "OTRA_COLONIA":
-                                                config.valor = formulario.otraColonia;
-                                                break;
-                                            case "TELEFONO_FIJO":
-                                                config.valor = formulario.telFijo;
-                                                break;
-                                            case "EXTENSION":
-                                                config.valor = formulario.extension;
-                                                break;
-                                            case "ENTIDAD":
-                                                config.valor = formulario.entidadT;
-                                                break;
-                                            case "MUNICIPIO":
-                                                config.valor = formulario.municipio;
-                                                break;
-                                            case "CODIGO_POSTAL_OCUPACION":
-                                                config.valor = formulario.CodigoPost;
-                                                break;
-                                            case "TIENE_CARGO_PUBLICO":
-                                                config.valor = formulario.tCargoPu;
-                                                break;
-                                            case "PERIODO_DE_EJECUCION":
-                                                config.valor = formulario.pEjecucion;
-                                                break;
-                                            case "CARGO_PUBLICO_FAMILIAR":
-                                                config.valor = formulario.tCargoPuF;
-                                                break;
-                                            case "NOMBRE_FAMILIAR":
-                                                config.valor = formulario.nombFamiliar;
-                                                break;
-                                            case "PUESTO_FAMILIAR":
-                                                config.valor = formulario.puestoFam;
-                                                break;
-                                            case "PERIODO_EJERCICO_FAMILIAR":
-                                                config.valor = formulario.perEjecucionFam;
-                                                break;
-                                            case "BENEFICIARIO":
-                                                config.valor = formulario.tBeneneficiario;
-                                                break;
-                                            case "NOMBRE_BENEFICIARIO":
-                                                config.valor = formulario.nombBene;
-                                                break;
-                                            case "TIPO_PENSION":
-                                                config.valor = formulario.tipPension;
-                                                break;
-                                            case "ADSCRIPCION_PAGO":
-                                                config.valor = formulario.ubiPago;
-                                                break;
-                                            case "DELEGACION":
-                                                config.valor = formulario.delegacionImss;
-                                                break;
-                                            case "NOMBRE_TESTIGO1":
-                                                config.valor = formulario.nombTest1;
-                                                break;
-                                            case "MATRICULA_TESTIGO1":
-                                                config.valor = formulario.matricula1;
-                                                break;
-                                            case "GAFETE_TESTIGO1":
-                                                config.valor = formulario.gafete1;
-                                                break;
-                                            case "NOMBRE_TESTIGO2":
-                                                config.valor = formulario.nombTest2;
-                                                break;
-                                            case "MATRICULA_TESTIGO2":
-                                                config.valor = formulario.matricula2;
-                                                break;
-                                            case "GAFETE_TESTIGO2":
-                                                config.valor = formulario.gafete1;
-                                                break;
-                                            case "CODIGO_POSTAL_DOMICILIO":
-                                                config.valor = formulario.codPostDom;
-                                                break;
-                                            case "TIEMPO_RESIDENCIA":
-                                                config.valor = formulario.yearResidencia;
-                                                break;
-                                            case "ENTIDAD_DOMICILIO":
-                                                config.valor = formulario.entidadDom;
-                                                break;
-                                            case "DELEGACION_DOMICILIO":
-                                                config.valor = formulario.municipioDom;
-                                                break;
-                                            case "COLONIA_DOMICILIO":
-                                                config.valor = formulario.coloniaDom;
-                                                break;
-                                            case "OTRA_COLONIA_DOMICILIO":
-                                                config.valor = formulario.otraColoniaDom;
-                                                break;
-                                            case "DOMICILIO_CALLE":
-                                                config.valor = formulario.domicilioCalle;
-                                                break;
-                                            case "NUMERO_EXTERIOR_DOMICILIO":
-                                                config.valor = formulario.noExteriorDom;
-                                                break;
-                                            case "NUMERO_INTERIOR_DOMICILIO":
-                                                config.valor = formulario.noInteriorDom;
-                                                break;
-                                            case "ENTRE_CALLES_DOMICILIO":
-                                                config.valor = formulario.entreCalleDom;
-                                                break;
-                                            case "EMAIL_CONTACTO":
-                                                config.valor = formulario.emailContacto;
-                                                break;
-                                            case "CELULAR":
-                                                config.valor = formulario.CelularContacto;
-                                                break;
-                                            case "EMPRESA_TELEFONICA":
-                                                config.valor = formulario.CompanyPhone;
-                                                break;
-                                            case "TELEFONO_PROPIO":
-                                                config.valor = formulario.telefonoPropio;
-                                                break;
-                                            case "NOMBRE_REFERENCIA1":
-                                                config.valor = formulario.nombreRef1;
-                                                break;
-                                            case "APELLIDO1_REFERENCIA1":
-                                                config.valor = formulario.pApellidoRef1;
-                                                break;
-                                            case "APELLIDO2_REFERENCIA1":
-                                                config.valor = formulario.sApellidoRef1;
-                                                break;
-                                            case "TELEFONO_REFERENCIA1":
-                                                config.valor = (formulario.TelefonoRef1.Equals("0")) ? "" : formulario.TelefonoRef1;
-                                                break;
-                                            case "CELULAR_REFERENCIA1":
-                                                config.valor = (formulario.CelularRef1.Equals("0")) ? "" : formulario.CelularRef1;
-                                                break;
-                                            case "HORA1_REF1":
-                                                config.valor = formulario.Hora1Ref1.ToString().Substring(11, 17);
-                                                break;
-                                            case "HORA2_REF1":
-                                                config.valor = formulario.Hora2Ref1.ToString().Substring(11, 17);
-                                                break;
-                                            case "DIA1_REF1":
-                                                config.valor = formulario.dia1Ref1;
-                                                break;
-                                            case "DIA2_REF1":
-                                                config.valor = formulario.dia2Ref1;
-                                                break;
-                                            case "PARENTESCO_REFERENCIA1":
-                                                config.valor = formulario.ParentescoRef1;
-                                                break;
-                                            case "NOMBRE_REFERENCIA2":
-                                                config.valor = formulario.nombreRef2;
-                                                break;
-                                            case "APELLIDO1_REFERENCIA2":
-                                                config.valor = formulario.pApellidoRef2;
-                                                break;
-                                            case "APELLIDO2_REFERENCIA2":
-                                                config.valor = formulario.sApellidoRef2;
-                                                break;
-                                            case "TELEFONO_REFERENCIA2":
-                                                config.valor = (formulario.TelefonoRef2.Equals("0")) ? "" : formulario.TelefonoRef2;
-                                                break;
-                                            case "CELULAR_REFERENCIA2":
-                                                config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
-                                                break;
-                                            case "HORA1_REF2":
-                                                config.valor = formulario.Hora1Ref2.ToString();
-                                                break;
-                                            case "HORA2_REF2":
-                                                config.valor = formulario.Hora2Ref2.ToString();
-                                                break;
-                                            case "DIA1_REF2":
-                                                config.valor = formulario.dia1Ref2;
-                                                break;
-                                            case "DIA2_REF2":
-                                                config.valor = formulario.dia2Ref2;
-                                                break;
-                                            case "PARENTESCO_REFERENCIA2":
-                                                config.valor = formulario.ParentescoRef2;
-                                                break;
-                                            case "MEDIO_DISPOSICION":
-                                                config.valor = formulario.medioDisp;
-                                                break;
-                                            case "CLABE_CUENTA":
-                                                config.valor = formulario.ClabeDisp;
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 1":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(0) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 2":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(1) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 3":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(2) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 4":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(3) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 5":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(4) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 6":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(5) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 7":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 8":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 9":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 10":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(9) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 11":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(10) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 12":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(11) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 13":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(12) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 14":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 15":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 16":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 17":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA DIGITO 18":
-                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
-                                                break;
-                                            case "BANCO":
-                                                config.valor = formulario.NombreBanco;
-                                                break;
-                                            case "NUMERO_CUENTA":
-                                                config.valor = formulario.NumCuentaBanc;
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 1":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(0) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 2":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(1) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 3":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(2) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 4":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(3) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 5":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(4) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 6":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(5) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 7":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(6) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 8":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(7) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 9":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(8) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 10":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(9) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA DIGITO 11":
-                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(10) + "" : "";
-                                                break;
-                                            case "MEDIO_DISPOSICION_ALTERNO":
-                                                config.valor = formulario.medioDispAlt;
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO":
-                                                config.valor = formulario.ClabeDispAlt;
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 1":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(0) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 2":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(1) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 3":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(2) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 4":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(3) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 5":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(4) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 6":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(5) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 7":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(6) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 8":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(7) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 9":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(8) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 10":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(9) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 11":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(10) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 12":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(11) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 13":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(12) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 14":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 15":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 16":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 17":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO DIGITO 18":
-                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
-                                                break;
-                                            case "BANCO_ALTERNO":
-                                                config.valor = formulario.NombreBancoAlt;
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO":
-                                                config.valor = formulario.NumCuentaBancAlt;
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 1":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(0) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 2":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(1) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 3":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(2) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 4":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(3) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 5":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(4) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 6":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(5) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 7":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(6) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 8":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(7) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 9":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(8) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 10":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(9) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO DIGITO 11":
-                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(10) + "" : "";
-                                                break;
-                                            case "MEDIO_DISPOSICION_ALTERNO_2":
-                                                config.valor = formulario.medioDispAlt2;
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2":
-                                                config.valor = formulario.ClabeDispAlt2;
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 1":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(0) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 2":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(1) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 3":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(2) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 4":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(3) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 5":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(4) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 6":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(5) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 7":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(6) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 8":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(7) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 9":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(8) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 10":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(9) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 11":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(10) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 12":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(11) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 13":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(12) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 14":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(13) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 15":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(14) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 16":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(15) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 17":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(16) + "" : "";
-                                                break;
-                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 18":
-                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(17) + "" : "";
-                                                break;
-                                            case "BANCO_ALTERNO_2":
-                                                config.valor = formulario.NombreBancoAlt2;
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2":
-                                                config.valor = formulario.NumCuentaBancAlt2;
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 1":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(0) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 2":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(1) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 3":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(2) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 4":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(3) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 5":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(4) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 6":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(5) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 7":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(6) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 8":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(7) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 9":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(8) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 10":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(9) + "" : "";
-                                                break;
-                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 11":
-                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(10) + "" : "";
-                                                break;
-                                            case "CURP":
-                                                config.valor = formulario.CURP;
-                                                break;
-                                            case "MONTO_ESCRITO":
-                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto));
-                                                break;
-                                            case "LIQUIDO_BASE_ESCRITO":
-                                                config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
-                                                break;
-                                            case "DESCUENTO_ESCRITO":
-                                                config.valor = dao.monto_escrito(double.Parse(formulario.dscto));
-                                                break;
-                                            case "MONTO_MAXIMO_ESCRITO":
-                                                config.valor = dao.monto_escrito(double.Parse(formulario.mMaxPlaz));
-                                                break;
-                                            case "MONTO_DEUDOR_ESCRITO":
-                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto_deudor));
-                                                break;
-                                            case "NACIONALIDAD":
-                                                config.valor = formulario.nacionalidad;
-                                                break;
-                                            case "EDAD_CLIENTE":
-                                                DateTime fechaActual = DateTime.Today;
-                                                var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
-                                                edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
-                                                config.valor = edad + "";
-                                                break;
-                                            case "TASA_MENSUAL":
-                                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
-                                                break;
-                                            case "TOTAL_A_PAGAR_CON_INTERES":
-                                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)) + "";
-                                                break;
-                                            case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
-                                                var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
-                                                config.valor = config.valor = dao.monto_escrito(dto);
-                                                break;
-                                            case "NOMBRE_COMPLETO":
-                                                config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
-                                                break;
-                                            case "CASA_FINANCIERA":
-                                                config.valor = cart.ElementAt(h).entidad;
-                                                break;
-                                            case "SUMA_SALDO_INSOLUTO":
-                                                sum = 0;
-                                                for (var q = 0; q < cart.Count(); q++)
-                                                {
-                                                    sum += cart.ElementAt(q).saldoInsoluto;
-                                                }
-                                                config.valor = sum + "";
-                                                break;
-                                            case "SUMA_SALDO_INSOLUTO_LETRAS":
-                                                sum = 0;
-                                                for (var q = 0; q < cart.Count(); q++)
-                                                {
-                                                    sum += cart.ElementAt(q).saldoInsoluto;
-                                                }
-                                                config.valor = dao.monto_escrito(sum);
-                                                break;
-                                            case "DEPOSITO_CLIENTE":
-                                                config.valor = formulario.depositoCliente;
-                                                break;
-                                            case "DIAS_A_PAGAR":
-                                                config.valor = formulario.DiasPagar;
-                                                break;
-                                            case "FECHA_CONTRATO_COMPRA":
-                                                config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
-                                                break;
-                                            case "MONTO_CREDITO_COMPRA":
-                                                config.valor = cart.ElementAt(h).capital + "";
-                                                break;
-                                            case "MONTO_TOTAL":
-                                                config.valor = cart.ElementAt(h).totPagar + "";
-                                                break;
-                                            case "PLAZO_COMPRA":
-                                                config.valor = cart.ElementAt(h).plazo + "";
-                                                break;
-                                            case "SALDO_INSOLUTO":
-                                                config.valor = cart.ElementAt(h).saldoInsoluto + "";
-                                                break;
-                                            case "TASA_COMPRA":
-                                                config.valor = cart.ElementAt(h).tasa + "";
-                                                break;
-                                        }
-                                    }
-                                    if (config.tvalidacion == "S")
-                                    {
-                                        switch (config.campoValidar)
-                                        {
-                                            case "TIPO_SOLICITUD":
-                                                if (formulario.tipoSolicitud != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "PERIODO":
-                                                if (formulario.periodo != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "DEPENDENCIA":
-                                                if (formulario.Dependencia != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "PRODUCTO":
-                                                if (formulario.producto != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "DESTINO":
-                                                if (formulario.destino != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "QUINCENA_DSCTO":
-                                                if (formulario.quincenaDscto != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "IDENTIFICACION":
-                                                if (formulario.tipoDoc != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "OTRA_IDENTIFICACION":
-                                                if (formulario.otraIdentificacion != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "GENERO":
-                                                if (formulario.gender != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "SECTOR":
-                                                if (formulario.sector != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "PUESTO":
-                                                if (formulario.puesto != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "INGRESOS":
-                                                if (formulario.ingresos != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "CARGO_PUBLICO":
-                                                if (formulario.tCargoPu != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "CARGO_PUBLICO_FAM":
-                                                if (formulario.tCargoPuF != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BENEFICIARIO":
-                                                if (formulario.tBeneneficiario != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "EMP_TEL":
-                                                if (formulario.CompanyPhone != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MED_DISP":
-                                                if (formulario.medioDisp != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MED_DISP_ALT1":
-                                                if (formulario.medioDispAlt != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MED_DISP_ALT2":
-                                                if (formulario.medioDispAlt2 != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BANCO":
-                                                if (formulario.NombreBanco != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BANCO_ALT1":
-                                                if (formulario.NombreBancoAlt != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BANCO_ALT2":
-                                                if (formulario.NombreBancoAlt2 != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "RECA":
-                                                if (formulario.reca != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "ESTADO_CIVIL":
-                                                if (formulario.estadoCivil != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "NACIONALIDAD":
-                                                if (formulario.nacionalidad.ToUpper().IndexOf("MEXICAN") > -1)
-                                                {
-                                                    if (config.valor_validacion != "MEXICANO")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    if (config.valor_validacion != "OTRA")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-                                                }
-                                                break;
-                                            case "PAIS_RESIDENCIA":
-                                                if (formulario.paisR.ToUpper().IndexOf("MÉXICO") > -1)
-                                                {
-                                                    if (config.valor_validacion != "MÉXICO")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    if (config.valor_validacion != "OTRA")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-                                                }
-                                                break;
-                                            case "PAIS_NACIMIENTO":
-                                                if (formulario.paisN.ToUpper().IndexOf("MÉXICO") > -1)
-                                                {
-                                                    if (config.valor_validacion != "MÉXICO")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    if (config.valor_validacion != "OTRA")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-                                                }
-                                                break;
-                                            case "CLAVE_TRABAJADOR":
-                                                if (formulario.clave_trabajdor != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                        }
-                                    }
-                                    var font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
-                                    page = doc.GetPage(pageDoc);
-                                    canvas = new PdfCanvas(page);
-                                    Color myColor = new DeviceRgb(000, 000, 000);
-                                    canvas.BeginText().SetColor(myColor, true).SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
-                                    if (data1.ListDocumentos[i].max_item > 0 && config.aumentoy > 0 && cart.Count() >= data1.ListDocumentos[i].max_item)
-                                    {
-                                        h++;
-                                        if (h < cart.Count())
-                                        {
-                                            for (var l = 1; l < data1.ListDocumentos[i].max_item; l++)
-                                            {
-                                                switch (config_anterior)
-                                                {
-                                                    case "CASA_FINANCIERA":
-                                                        config.valor = cart.ElementAt(h).entidad;
-                                                        break;
-                                                    case "FECHA_CONTRATO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
-                                                        break;
-                                                    case "MONTO_CREDITO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).capital + "";
-                                                        break;
-                                                    case "MONTO_TOTAL":
-                                                        config.valor = cart.ElementAt(h).totPagar + "";
-                                                        break;
-                                                    case "PLAZO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).plazo + "";
-                                                        break;
-                                                    case "SALDO_INSOLUTO":
-                                                        config.valor = cart.ElementAt(h).saldoInsoluto + "";
-                                                        break;
-                                                    case "TASA_COMPRA":
-                                                        config.valor = cart.ElementAt(h).tasa + "";
-                                                        break;
-                                                }
-                                                config.posicion_y -= config.aumentoy;
-                                                canvas.BeginText().SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
-                                            }
-                                        }
-                                        h = (int)item;
-                                    }
-                                    canvas.SaveState();
-                                    canvas.RestoreState();
-                                }
-                                pageDoc++;
-                                if (data1.ListDocumentos[i].max_item > 0)
-                                {
-                                    item = (item == 0) ? item = (double)data1.ListDocumentos[i].max_item : item += (double)data1.ListDocumentos[i].max_item;
-                                    goto Found;
-                                }
-                            }
-                            Finish:
-                            item = 0;
-                        }
-                    }
-
-                }
-                doc.Close();
-                writer.Close();
-                reader.Close();
-                fs.Close();
-                filevirtual += "Documento_solo_firmas_" + folder + ".pdf";
-                pdf.filename = pdfOut;
-                pdf.virtualpath = filevirtual;
-            }
-            catch (Exception ex)
-            {
-                fs.Close();
-                LogHelper.WriteLog("Models", "ManageProfile", "soloFirmas", ex, "");
-            }
-            return pdf;
-        }
-        public OutGetDocument Imprimir(double dependencia, double? producto, string folder, string rootPath, string baseURL)
-        {
-            OutGetDocument pdf = new OutGetDocument();
-            string pdfOut = rootPath;
-            string filevirtual = baseURL + "/Files/";
-            var dao = new ProfileDAO();
-            pdfOut += "\\impresion_" + folder + ".pdf";
-            bool existe = File.Exists(pdfOut);
-            if (existe)
-            {
-                File.Delete(pdfOut);
-            }
-            FileStream fs = new FileStream(pdfOut, FileMode.Create, FileAccess.Write, FileShare.None);
-            try
-            {
-                var data1 = new ProfileDAO().allDocumentsImpresion(dependencia, producto);               
-                PdfReader reader = new PdfReader(data1.ListDocumentos[0].path);
-                PdfWriter writer = new PdfWriter(fs);
-                PdfDocument doc = new PdfDocument(writer);
-                PdfDocument doc1;
-                Document pdf1;
-                PdfPage page;
-                PdfPage page1;
-                PdfCanvas canvas;
-                var config_anterior = "";
-                var h = 0;
-                double item = 0;
-                string[] meses = {"ENERO","FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE"
-                        ,"OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
-                var formulario = dao.solicitud(folder);
-                List<List<compra_cartera>> cartera = new List<List<compra_cartera>>();
-                List<compra_cartera> carteras = new List<compra_cartera>();
-                var casa = "";
-                for (var l = 0; l < formulario.cartera.Count(); l++)
-                {
-                    if (casa != formulario.cartera.ElementAt(l).rfc_casa)
-                    {
-                        if (carteras.Count > 0)
-                        {
-                            cartera.Add(carteras);
-                            carteras = new List<compra_cartera>();
-                            carteras.Add(formulario.cartera.ElementAt(l));
-                        }
-                        else
-                        {
-                            carteras.Add(formulario.cartera.ElementAt(l));
-                        }
-                        casa = formulario.cartera.ElementAt(l).rfc_casa;
-                    }
-                    else
-                    {
-                        carteras.Add(formulario.cartera.ElementAt(l));
-                    }
-                }
-                if (carteras.Count > 0)
-                {
-                    cartera.Add(carteras);
-                }
-                var fecha_solicitud = formulario.fchsolicitud.Split('/');
-                var fecha_primer_pago = formulario.fchPrPago.Split('/');
-                var fecha_ultimo_pago = formulario.fchUltPago.Split('/');
-                var fecha_nacimiento = formulario.fecNac.Split('/');
-                formulario.colonia = (formulario.colonia.Equals("OTRA")) ? "" : formulario.colonia;
-                formulario.coloniaDom = (formulario.coloniaDom.Equals("OTRA")) ? "" : formulario.coloniaDom;
-                int n = -1;
-                var pageDoc = 1;
-                var pagina = 0;
-                double sum = 0;
-                for (var i = 0; i < data1.ListDocumentos.Count; i++)
-                {
-
-                    if (data1.ListDocumentos[i].llena_auto == 1 && data1.ListDocumentos[i].compra == 0)
-                    {
-                        if (i > 0)
-                        {
-                            reader.Close();
-                            reader = new PdfReader(data1.ListDocumentos[i].path);
-                        }
-                        doc1 = new PdfDocument(reader);
                         for (var k = 1; k <= doc1.GetNumberOfPages(); k++)
                         {
                             page1 = doc1.GetPage(k);
@@ -5718,7 +3544,7 @@ namespace Models
                                             config.valor = formulario.tipoSolicitud;
                                             break;
                                         case "MONTO":
-                                            config.valor = formulario.monto;
+                                            config.valor = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "PERIODO":
                                             config.valor = formulario.periodo;
@@ -5727,7 +3553,7 @@ namespace Models
                                             config.valor = formulario.plazo;
                                             break;
                                         case "LIQUIDO_BASE":
-                                            config.valor = formulario.LBase;
+                                            config.valor = double.Parse(formulario.LBase).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "NO_PLAZAS":
                                             config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
@@ -5745,7 +3571,7 @@ namespace Models
                                             config.valor = formulario.tNomina;
                                             break;
                                         case "DESCUENTO":
-                                            config.valor = formulario.dscto;
+                                            config.valor = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "TASA_ANUAL":
                                             config.valor = formulario.tAnual;
@@ -5826,13 +3652,13 @@ namespace Models
                                             config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
                                             break;
                                         case "CAPACIDAD_PAGO":
-                                            config.valor = formulario.cPago;
+                                            config.valor = double.Parse(formulario.cPago).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "MONTO_MAXIMO":
-                                            config.valor = formulario.mMaxPlaz;
+                                            config.valor = double.Parse(formulario.mMaxPlaz).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "MONTO_DEUDOR":
-                                            config.valor = (formulario.monto_deudor.Equals("0")) ? "" : formulario.monto_deudor;
+                                            config.valor = (formulario.monto_deudor.Equals("0")) ? "" : double.Parse(formulario.monto_deudor).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "MATRICULA":
                                             config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
@@ -6101,10 +3927,10 @@ namespace Models
                                             config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
                                             break;
                                         case "HORA1_REF2":
-                                            config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
+                                            config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", CultureInfo.CurrentCulture);
                                             break;
                                         case "HORA2_REF2":
-                                            config.valor = Convert.ToDateTime(formulario.Hora2Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
+                                            config.valor = Convert.ToDateTime(formulario.Hora2Ref2).ToString("hh:mm", CultureInfo.CurrentCulture);
                                             break;
                                         case "DIA1_REF2":
                                             config.valor = formulario.dia1Ref2;
@@ -6418,6 +4244,9 @@ namespace Models
                                         case "MONTO_ESCRITO":
                                             config.valor = dao.monto_escrito(double.Parse(formulario.monto));
                                             break;
+                                        case "MONTO_ESCRITO_SIN_PESOS":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                            break;
                                         case "LIQUIDO_BASE_ESCRITO":
                                             config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
                                             break;
@@ -6443,7 +4272,7 @@ namespace Models
                                             config.valor = double.Parse(formulario.tAnual) / 12 + "";
                                             break;
                                         case "TOTAL_A_PAGAR_CON_INTERES":
-                                            config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)) + "";
+                                            config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
                                             var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
@@ -6458,209 +4287,209 @@ namespace Models
                                 if (config.tvalidacion == "S")
                                 {
                                     switch (config.campoValidar)
-                                        {
-                                            case "TIPO_SOLICITUD":
-                                                if (formulario.tipoSolicitud != config.valor_validacion)
+                                    {
+                                        case "TIPO_SOLICITUD":
+                                            if (formulario.tipoSolicitud != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "PERIODO":
+                                            if (formulario.periodo != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "DEPENDENCIA":
+                                            if (formulario.Dependencia != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "PRODUCTO":
+                                            if (formulario.producto != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "DESTINO":
+                                            if (formulario.destino != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "QUINCENA_DSCTO":
+                                            if (formulario.quincenaDscto != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "IDENTIFICACION":
+                                            if (formulario.tipoDoc != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "OTRA_IDENTIFICACION":
+                                            if (formulario.otraIdentificacion != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "GENERO":
+                                            if (formulario.gender != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "SECTOR":
+                                            if (formulario.sector != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "PUESTO":
+                                            if (formulario.puesto != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "INGRESOS":
+                                            if (formulario.ingresos != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "CARGO_PUBLICO":
+                                            if (formulario.tCargoPu != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "CARGO_PUBLICO_FAM":
+                                            if (formulario.tCargoPuF != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BENEFICIARIO":
+                                            if (formulario.tBeneneficiario != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "EMP_TEL":
+                                            if (formulario.CompanyPhone != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MED_DISP":
+                                            if (formulario.medioDisp != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MED_DISP_ALT1":
+                                            if (formulario.medioDispAlt != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MED_DISP_ALT2":
+                                            if (formulario.medioDispAlt2 != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BANCO":
+                                            if (formulario.NombreBanco != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BANCO_ALT1":
+                                            if (formulario.NombreBancoAlt != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BANCO_ALT2":
+                                            if (formulario.NombreBancoAlt2 != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "RECA":
+                                            if (formulario.reca != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "ESTADO_CIVIL":
+                                            if (formulario.estadoCivil != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "NACIONALIDAD":
+                                            if (formulario.nacionalidad.ToUpper().IndexOf("MEXICAN") > -1)
+                                            {
+                                                if (config.valor_validacion != "MEXICANO")
                                                 {
                                                     config.valor = "";
                                                 }
-                                                break;
-                                            case "PERIODO":
-                                                if (formulario.periodo != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "DEPENDENCIA":
-                                                if (formulario.Dependencia != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "PRODUCTO":
-                                                if (formulario.producto != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "DESTINO":
-                                                if (formulario.destino != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "QUINCENA_DSCTO":
-                                                if (formulario.quincenaDscto != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "IDENTIFICACION":
-                                                if (formulario.tipoDoc != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "OTRA_IDENTIFICACION":
-                                                if (formulario.otraIdentificacion != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "GENERO":
-                                                if (formulario.gender != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "SECTOR":
-                                                if (formulario.sector != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "PUESTO":
-                                                if (formulario.puesto != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "INGRESOS":
-                                                if (formulario.ingresos != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "CARGO_PUBLICO":
-                                                if (formulario.tCargoPu != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "CARGO_PUBLICO_FAM":
-                                                if (formulario.tCargoPuF != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BENEFICIARIO":
-                                                if (formulario.tBeneneficiario != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "EMP_TEL":
-                                                if (formulario.CompanyPhone != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MED_DISP":
-                                                if (formulario.medioDisp != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MED_DISP_ALT1":
-                                                if (formulario.medioDispAlt != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "MED_DISP_ALT2":
-                                                if (formulario.medioDispAlt2 != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BANCO":
-                                                if (formulario.NombreBanco != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BANCO_ALT1":
-                                                if (formulario.NombreBancoAlt != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "BANCO_ALT2":
-                                                if (formulario.NombreBancoAlt2 != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "RECA":
-                                                if (formulario.reca != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "ESTADO_CIVIL":
-                                                if (formulario.estadoCivil != config.valor_validacion)
-                                                {
-                                                    config.valor = "";
-                                                }
-                                                break;
-                                            case "NACIONALIDAD":
-                                                if (formulario.nacionalidad.ToUpper().IndexOf("MEXICAN") > -1)
-                                                {
-                                                    if (config.valor_validacion != "MEXICANO")
-                                                    {
-                                                        config.valor = "";
-                                                    }
 
-                                                }
-                                                else
-                                                {
-                                                    if (config.valor_validacion != "OTRA")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-                                                }
-                                                break;
-                                            case "PAIS_RESIDENCIA":
-                                                if (formulario.paisR.ToUpper().IndexOf("MÉXICO") > -1)
-                                                {
-                                                    if (config.valor_validacion != "MÉXICO")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    if (config.valor_validacion != "OTRA")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-                                                }
-                                                break;
-                                            case "PAIS_NACIMIENTO":
-                                                if (formulario.paisN.ToUpper().IndexOf("MÉXICO") > -1)
-                                                {
-                                                    if (config.valor_validacion != "MÉXICO")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-
-                                                }
-                                                else
-                                                {
-                                                    if (config.valor_validacion != "OTRA")
-                                                    {
-                                                        config.valor = "";
-                                                    }
-                                                }
-                                                break;
-                                            case "CLAVE_TRABAJADOR":
-                                                if (formulario.clave_trabajdor != config.valor_validacion)
+                                            }
+                                            else
+                                            {
+                                                if (config.valor_validacion != "OTRA")
                                                 {
                                                     config.valor = "";
                                                 }
-                                                break;
-                                        }
+                                            }
+                                            break;
+                                        case "PAIS_RESIDENCIA":
+                                            if (formulario.paisR.ToUpper().IndexOf("MÉXICO") > -1)
+                                            {
+                                                if (config.valor_validacion != "MÉXICO")
+                                                {
+                                                    config.valor = "";
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (config.valor_validacion != "OTRA")
+                                                {
+                                                    config.valor = "";
+                                                }
+                                            }
+                                            break;
+                                        case "PAIS_NACIMIENTO":
+                                            if (formulario.paisN.ToUpper().IndexOf("MÉXICO") > -1)
+                                            {
+                                                if (config.valor_validacion != "MÉXICO")
+                                                {
+                                                    config.valor = "";
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (config.valor_validacion != "OTRA")
+                                                {
+                                                    config.valor = "";
+                                                }
+                                            }
+                                            break;
+                                        case "CLAVE_TRABAJADOR":
+                                            if (formulario.clave_trabajdor != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                    }
                                 }
                                 var font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
                                 page = doc.GetPage(pageDoc);
@@ -6677,8 +4506,8 @@ namespace Models
                             //break;
                         }
                     }
-                    else if (data1.ListDocumentos[i].llena_auto == 1 && data1.ListDocumentos[i].compra == 1)
-                    {                  
+                    else if (data.ListDocumentos[i].compra == 1)
+                    {
                         if (i > 0)
                         {
                             reader.Close();
@@ -6688,7 +4517,7 @@ namespace Models
                         for (var m = 0; m < cartera.Count(); m++)
                         {
                             var cart = cartera.ElementAt(m);
-                            Found:
+                        Found:
                             if (item > 0)
                             {
                                 if (item >= cart.Count())
@@ -6740,7 +4569,7 @@ namespace Models
                                                 config.valor = formulario.tipoSolicitud;
                                                 break;
                                             case "MONTO":
-                                                config.valor = formulario.monto;
+                                                config.valor = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "PERIODO":
                                                 config.valor = formulario.periodo;
@@ -6749,7 +4578,7 @@ namespace Models
                                                 config.valor = formulario.plazo;
                                                 break;
                                             case "LIQUIDO_BASE":
-                                                config.valor = formulario.LBase;
+                                                config.valor = double.Parse(formulario.LBase).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "NO_PLAZAS":
                                                 config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
@@ -6848,13 +4677,13 @@ namespace Models
                                                 config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
                                                 break;
                                             case "CAPACIDAD_PAGO":
-                                                config.valor = formulario.cPago;
+                                                config.valor = double.Parse(formulario.cPago).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "MONTO_MAXIMO":
-                                                config.valor = formulario.mMaxPlaz;
+                                                config.valor = double.Parse(formulario.mMaxPlaz).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "MONTO_DEUDOR":
-                                                config.valor = (formulario.monto_deudor.Equals("0")) ? "" : formulario.monto_deudor;
+                                                config.valor = (formulario.monto_deudor.Equals("0")) ? "" : double.Parse(formulario.monto_deudor).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "MATRICULA":
                                                 config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
@@ -7439,6 +5268,12 @@ namespace Models
                                             case "MONTO_ESCRITO":
                                                 config.valor = dao.monto_escrito(double.Parse(formulario.monto));
                                                 break;
+                                            case "MONTO_ESCRITO_SIN_PESOS":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                                break;
+                                            case "CENTAVOS_MONTO_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                                break;
                                             case "LIQUIDO_BASE_ESCRITO":
                                                 config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
                                                 break;
@@ -7464,7 +5299,7 @@ namespace Models
                                                 config.valor = double.Parse(formulario.tAnual) / 12 + "";
                                                 break;
                                             case "TOTAL_A_PAGAR_CON_INTERES":
-                                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)) + "";
+                                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
                                                 var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
@@ -7482,7 +5317,7 @@ namespace Models
                                                 {
                                                     sum += cart.ElementAt(q).saldoInsoluto;
                                                 }
-                                                config.valor = sum + "";
+                                                config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "SUMA_SALDO_INSOLUTO_LETRAS":
                                                 sum = 0;
@@ -7490,9 +5325,22 @@ namespace Models
                                                 {
                                                     sum += cart.ElementAt(q).saldoInsoluto;
                                                 }
-                                                config.valor = dao.monto_escrito(sum);
+                                                config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
+                                                break;
+                                            case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
+                                                sum = 0;
+                                                for (var q = 0; q < cart.Count(); q++)
+                                                {
+                                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                                }
                                                 break;
                                             case "DEPOSITO_CLIENTE":
+                                                config.valor = formulario.depositoCliente;
+                                                break;
+                                            case "DEPOSITO_CLIENTE_LETRA":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.depositoCliente)).Replace("PESOS", "");
+                                                break;
+                                            case "CENTAVOS_DEPOSITO_CLIENTE_LETRA":
                                                 config.valor = formulario.depositoCliente;
                                                 break;
                                             case "DIAS_A_PAGAR":
@@ -7502,16 +5350,16 @@ namespace Models
                                                 config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
                                                 break;
                                             case "MONTO_CREDITO_COMPRA":
-                                                config.valor = cart.ElementAt(h).capital + "";
+                                                config.valor = cart.ElementAt(h).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "MONTO_TOTAL":
-                                                config.valor = cart.ElementAt(h).totPagar + "";
+                                                config.valor = cart.ElementAt(h).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "PLAZO_COMPRA":
                                                 config.valor = cart.ElementAt(h).plazo + "";
                                                 break;
                                             case "SALDO_INSOLUTO":
-                                                config.valor = cart.ElementAt(h).saldoInsoluto + "";
+                                                config.valor = cart.ElementAt(h).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "TASA_COMPRA":
                                                 config.valor = cart.ElementAt(h).tasa + "";
@@ -7746,16 +5594,16 @@ namespace Models
                                                         config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
                                                         break;
                                                     case "MONTO_CREDITO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).capital + "";
+                                                        config.valor = cart.ElementAt(h).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                         break;
                                                     case "MONTO_TOTAL":
-                                                        config.valor = cart.ElementAt(h).totPagar + "";
+                                                        config.valor = cart.ElementAt(h).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                         break;
                                                     case "PLAZO_COMPRA":
                                                         config.valor = cart.ElementAt(h).plazo + "";
                                                         break;
                                                     case "SALDO_INSOLUTO":
-                                                        config.valor = cart.ElementAt(h).saldoInsoluto + "";
+                                                        config.valor = cart.ElementAt(h).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                         break;
                                                     case "TASA_COMPRA":
                                                         config.valor = cart.ElementAt(h).tasa + "";
@@ -7777,7 +5625,2228 @@ namespace Models
                                     goto Found;
                                 }
                             }
-                            Finish:
+                        Finish:
+                            item = 0;
+                        }
+                    }
+
+                }
+                doc.Close();
+                writer.Close();
+                reader.Close();
+                fs.Close();
+                filevirtual += "Documento_solo_firmas_" + folder + ".pdf";
+                pdf.filename = pdfOut;
+                pdf.virtualpath = filevirtual;
+            }
+            catch (Exception ex)
+            {
+                fs.Close();
+                LogHelper.WriteLog("Models", "ManageProfile", "soloFirmas", ex, "");
+            }
+            return pdf;
+        }
+        public OutGetDocument Imprimir(double dependencia, double? producto, string folder, string rootPath, string baseURL)
+        {
+            OutGetDocument pdf = new OutGetDocument();
+            string pdfOut = rootPath;
+            string filevirtual = baseURL + "/Files/";
+            var dao = new ProfileDAO();
+            pdfOut += "\\impresion_" + folder + ".pdf";
+            bool existe = File.Exists(pdfOut);
+            if (existe)
+            {
+                File.Delete(pdfOut);
+            }
+            FileStream fs = new FileStream(pdfOut, FileMode.Create, FileAccess.Write, FileShare.None);
+            try
+            {
+                var data1 = new ProfileDAO().allDocumentsImpresion(dependencia, producto);               
+                PdfReader reader = new PdfReader(data1.ListDocumentos[0].path);
+                PdfWriter writer = new PdfWriter(fs);
+                PdfDocument doc = new PdfDocument(writer);
+                PdfDocument doc1;
+                Document pdf1;
+                PdfPage page;
+                PdfPage page1;
+                PdfCanvas canvas;
+                var config_anterior = "";
+                var h = 0;
+                double item = 0;
+                string[] meses = {"ENERO","FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE"
+                        ,"OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
+                var formulario = dao.solicitud(folder);
+                List<List<compra_cartera>> cartera = new List<List<compra_cartera>>();
+                List<compra_cartera> carteras = new List<compra_cartera>();
+                var casa = "";
+                for (var l = 0; l < formulario.cartera.Count(); l++)
+                {
+                    if (casa != formulario.cartera.ElementAt(l).rfc_casa)
+                    {
+                        if (carteras.Count > 0)
+                        {
+                            cartera.Add(carteras);
+                            carteras = new List<compra_cartera>();
+                            carteras.Add(formulario.cartera.ElementAt(l));
+                        }
+                        else
+                        {
+                            carteras.Add(formulario.cartera.ElementAt(l));
+                        }
+                        casa = formulario.cartera.ElementAt(l).rfc_casa;
+                    }
+                    else
+                    {
+                        carteras.Add(formulario.cartera.ElementAt(l));
+                    }
+                }
+                if (carteras.Count > 0)
+                {
+                    cartera.Add(carteras);
+                }
+                var fecha_solicitud = formulario.fchsolicitud.Split('/');
+                var fecha_primer_pago = formulario.fchPrPago.Split('/');
+                var fecha_ultimo_pago = formulario.fchUltPago.Split('/');
+                var fecha_nacimiento = formulario.fecNac.Split('/');
+                formulario.colonia = (formulario.colonia.Equals("OTRA")) ? "" : formulario.colonia;
+                formulario.coloniaDom = (formulario.coloniaDom.Equals("OTRA")) ? "" : formulario.coloniaDom;
+                int n = -1;
+                var pageDoc = 1;
+                var pagina = 0;
+                double sum = 0;
+                for (var i = 0; i < data1.ListDocumentos.Count; i++)
+                {
+                    if (data1.ListDocumentos[i].llena_auto == 1 && data1.ListDocumentos[i].compra == 0)
+                    {
+                        if (i > 0)
+                        {
+                            reader.Close();
+                            reader = new PdfReader(data1.ListDocumentos[i].path);
+                        }
+                        doc1 = new PdfDocument(reader);
+                        for (var k = 1; k <= doc1.GetNumberOfPages(); k++)
+                        {
+                            page1 = doc1.GetPage(k);
+                            doc.AddPage(page1.CopyTo(doc));
+                            OutParamConfiguracionDoc configuraciones = new ParamsDAO().getConfigDocumentosFirma(dependencia, producto, data1.ListDocumentos[i].codigo_doc, k);
+                            for (var j = 0; j < configuraciones.ListConfiguracion.Count(); j++)
+                            {
+                                var config = configuraciones.ListConfiguracion.ElementAt(j);
+                                if (config.tipo_optencion == "2")
+                                {
+                                    switch (config.valor)
+                                    {
+                                        case "NUMERO_FOLDER":
+                                            config.valor = formulario.folderNumber;
+                                            break;
+                                        case "ASESOR":
+                                            config.valor = formulario.asesor;
+                                            break;
+                                        case "FECHA_SOLICITUD":
+                                            config.valor = formulario.fchsolicitud;
+                                            break;
+                                        case "DIA_SOLICITUD":
+                                            config.valor = fecha_solicitud[0];
+                                            break;
+                                        case "MES_SOLICITUD":
+                                            config.valor = fecha_solicitud[1];
+                                            break;
+                                        case "MES_SOLICITUD_LETRAS":
+                                            n = int.Parse(fecha_solicitud[1]);
+                                            config.valor = meses[n - 1];
+                                            break;
+                                        case "AÑO_SOLICITUD_4_DIGITOS":
+                                            config.valor = fecha_solicitud[2];
+                                            break;
+                                        case "AÑO_SOLICITUD_2_DIGITOS":
+                                            config.valor = fecha_solicitud[2].Substring(2, 2);
+                                            break;
+                                        case "TIPO_SOLICITUD":
+                                            config.valor = formulario.tipoSolicitud;
+                                            break;
+                                        case "MONTO":
+                                            config.valor = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "PERIODO":
+                                            config.valor = formulario.periodo;
+                                            break;
+                                        case "PLAZO":
+                                            config.valor = formulario.plazo;
+                                            break;
+                                        case "LIQUIDO_BASE":
+                                            config.valor = double.Parse(formulario.LBase).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "NO_PLAZAS":
+                                            config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
+                                            break;
+                                        case "DEPENDENCIA":
+                                            config.valor = formulario.Dependencia;
+                                            break;
+                                        case "PRODUCTO":
+                                            config.valor = formulario.producto;
+                                            break;
+                                        case "DESTINO_CREDITO":
+                                            config.valor = formulario.destino;
+                                            break;
+                                        case "TIPO_NOMINA":
+                                            config.valor = formulario.tNomina;
+                                            break;
+                                        case "DESCUENTO":
+                                            config.valor = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "TASA_ANUAL":
+                                            config.valor = formulario.tAnual;
+                                            break;
+                                        case "CAT":
+                                            config.valor = formulario.cat;
+                                            break;
+                                        case "SUCURSAL":
+                                            config.valor = formulario.sucursal;
+                                            break;
+                                        case "QUINCENA_DSCTO":
+                                            config.valor = formulario.quincenaDscto;
+                                            break;
+                                        case "FECHA_PRIMER_PAGO":
+                                            config.valor = formulario.fchPrPago;
+                                            break;
+                                        case "DIA_PRIMER_PAGO":
+                                            config.valor = config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[0] : "";
+                                            break;
+                                        case "MES_PRIMER_PAGO":
+                                            if (fecha_primer_pago.Length == 3)
+                                            {
+                                                config.valor = fecha_primer_pago[1];
+                                            }
+                                            else
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MES_PRIMER_PAGO_LETRAS":
+                                            if (fecha_primer_pago.Length == 3)
+                                            {
+                                                n = int.Parse(fecha_primer_pago[1]);
+                                                config.valor = meses[n - 1];
+                                            }
+                                            else
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "AÑO_PRIMER_PAGO_2_DIGITOS":
+                                            config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2].Substring(2, 2) : "";
+                                            break;
+                                        case "AÑO_PRIMER_PAGO_4_DIGITOS":
+                                            config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2] : "";
+                                            break;
+                                        case "FECHA_ULTIMO_PAGO":
+                                            config.valor = formulario.fchUltPago;
+                                            break;
+                                        case "DIA_ULTIMO_PAGO":
+                                            config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[0] : "";
+                                            break;
+                                        case "MES_ULTIMO_PAGO":
+                                            if (fecha_ultimo_pago.Length == 3)
+                                            {
+                                                config.valor = fecha_ultimo_pago[1];
+                                            }
+                                            else
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MES_ULTIMO_PAGO_LETRAS":
+                                            if (fecha_primer_pago.Length == 3)
+                                            {
+                                                n = int.Parse(fecha_ultimo_pago[1]);
+                                                config.valor = meses[n - 1];
+                                            }
+                                            else
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "AÑO_ULTIMO_PAGO_2_DIGITOS":
+                                            config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2].Substring(2, 2) : "";
+                                            break;
+                                        case "AÑO_ULTIMO_PAGO_4_DIGITOS":
+                                            config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
+                                            break;
+                                        case "CAPACIDAD_PAGO":
+                                            config.valor = double.Parse(formulario.cPago).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "MONTO_MAXIMO":
+                                            config.valor = double.Parse(formulario.mMaxPlaz).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "MONTO_DEUDOR":
+                                            config.valor = (formulario.monto_deudor.Equals("0")) ? "" : double.Parse(formulario.monto_deudor).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "MATRICULA":
+                                            config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
+                                            break;
+                                        case "NSS":
+                                            config.valor = (formulario.nss.Equals("0")) ? "" : formulario.nss;
+                                            break;
+                                        case "GRUPO":
+                                            config.valor = (formulario.grupo.Equals("0")) ? "" : formulario.grupo;
+                                            break;
+                                        case "CLAVE_TRABAJADOR":
+                                            config.valor = (formulario.clave_trabajdor.Equals("0")) ? "" : formulario.clave_trabajdor;
+                                            break;
+                                        case "ESPECIFICAR":
+                                            config.valor = formulario.especificar;
+                                            break;
+                                        case "RECA":
+                                            config.valor = formulario.reca;
+                                            break;
+                                        case "RFC":
+                                            config.valor = formulario.RFC;
+                                            break;
+                                        case "NOMBRES":
+                                            config.valor = formulario.pNombre + " " + formulario.sNombre;
+                                            break;
+                                        case "PRIMER_APELLIDO":
+                                            config.valor = formulario.pApellido;
+                                            break;
+                                        case "SEGUNDO_APELLIDO":
+                                            config.valor = formulario.sApellido;
+                                            break;
+                                        case "IDENTIFICACION_OFICIAL":
+                                            config.valor = formulario.tipoDoc;
+                                            break;
+                                        case "FECHA_NACIMIENTO":
+                                            config.valor = formulario.fecNac;
+                                            break;
+                                        case "DIA_NACIMIENTO":
+                                            config.valor = fecha_nacimiento[0];
+                                            break;
+                                        case "MES_NACIMIENTO":
+                                            config.valor = fecha_nacimiento[1];
+                                            break;
+                                        case "MES_NACIMIENTO_LETRAS":
+                                            n = int.Parse(fecha_solicitud[1]);
+                                            config.valor = meses[n - 1];
+                                            break;
+                                        case "AÑO_NACIMIENTO_2_DIGITOS":
+                                            config.valor = fecha_nacimiento[2].Substring(2, 2);
+                                            break;
+                                        case "AÑO_NACIMIENTO_4_DIGITOS":
+                                            config.valor = fecha_nacimiento[2];
+                                            break;
+                                        case "PAIS_NACIMIENTO":
+                                            config.valor = formulario.paisN;
+                                            break;
+                                        case "ENTIDAD_NACIMIENTO":
+                                            config.valor = formulario.entidadN;
+                                            break;
+                                        case "PAIS_RESIDENCIA":
+                                            config.valor = formulario.paisR;
+                                            break;
+                                        case "FORMA_MIGRATORIA":
+                                            config.valor = formulario.fMigratoria;
+                                            break;
+                                        case "GENERO":
+                                            config.valor = formulario.gender;
+                                            break;
+                                        case "SECTOR":
+                                            config.valor = formulario.sector;
+                                            break;
+                                        case "OTRO_SECTOR":
+                                            config.valor = formulario.otroSector;
+                                            break;
+                                        case "PUESTO":
+                                            config.valor = formulario.puesto;
+                                            break;
+                                        case "ANTIGUEDAD":
+                                            config.valor = formulario.antiguedad;
+                                            break;
+                                        case "INGRESO_MENSUAL":
+                                            config.valor = formulario.ingresos;
+                                            break;
+                                        case "NUMERO_PERSONAL":
+                                            config.valor = formulario.Celular;
+                                            break;
+                                        case "CLAVE_PRESUPUESTAL":
+                                            config.valor = formulario.cPresupuestal;
+                                            break;
+                                        case "PAGADURIA":
+                                            config.valor = formulario.Pagaduria;
+                                            break;
+                                        case "FECHA_INGRESO":
+                                            config.valor = formulario.fchIngreso;
+                                            break;
+                                        case "CLAVE":
+                                            config.valor = formulario.clave;
+                                            break;
+                                        case "LUGAR_TRABAJO":
+                                            config.valor = formulario.lugTrabajo;
+                                            break;
+                                        case "CALLE":
+                                            config.valor = formulario.calle;
+                                            break;
+                                        case "NUMERO_EXTERIOR":
+                                            config.valor = formulario.nExterior;
+                                            break;
+                                        case "COLONIA":
+                                            config.valor = formulario.colonia;
+                                            break;
+                                        case "OTRA_COLONIA":
+                                            config.valor = formulario.otraColonia;
+                                            break;
+                                        case "TELEFONO_FIJO":
+                                            config.valor = formulario.telFijo;
+                                            break;
+                                        case "EXTENSION":
+                                            config.valor = formulario.extension;
+                                            break;
+                                        case "ENTIDAD":
+                                            config.valor = formulario.entidadT;
+                                            break;
+                                        case "MUNICIPIO":
+                                            config.valor = formulario.municipio;
+                                            break;
+                                        case "CODIGO_POSTAL_OCUPACION":
+                                            config.valor = formulario.CodigoPost;
+                                            break;
+                                        case "TIENE_CARGO_PUBLICO":
+                                            config.valor = formulario.tCargoPu;
+                                            break;
+                                        case "PERIODO_DE_EJECUCION":
+                                            config.valor = formulario.pEjecucion;
+                                            break;
+                                        case "CARGO_PUBLICO_FAMILIAR":
+                                            config.valor = formulario.tCargoPuF;
+                                            break;
+                                        case "NOMBRE_FAMILIAR":
+                                            config.valor = formulario.nombFamiliar;
+                                            break;
+                                        case "PUESTO_FAMILIAR":
+                                            config.valor = formulario.puestoFam;
+                                            break;
+                                        case "PERIODO_EJERCICO_FAMILIAR":
+                                            config.valor = formulario.perEjecucionFam;
+                                            break;
+                                        case "BENEFICIARIO":
+                                            config.valor = formulario.tBeneneficiario;
+                                            break;
+                                        case "NOMBRE_BENEFICIARIO":
+                                            config.valor = formulario.nombBene;
+                                            break;
+                                        case "TIPO_PENSION":
+                                            config.valor = formulario.tipPension;
+                                            break;
+                                        case "ADSCRIPCION_PAGO":
+                                            config.valor = formulario.ubiPago;
+                                            break;
+                                        case "DELEGACION":
+                                            config.valor = formulario.delegacionImss;
+                                            break;
+                                        case "NOMBRE_TESTIGO1":
+                                            config.valor = formulario.nombTest1;
+                                            break;
+                                        case "MATRICULA_TESTIGO1":
+                                            config.valor = formulario.matricula1;
+                                            break;
+                                        case "GAFETE_TESTIGO1":
+                                            config.valor = formulario.gafete1;
+                                            break;
+                                        case "NOMBRE_TESTIGO2":
+                                            config.valor = formulario.nombTest2;
+                                            break;
+                                        case "MATRICULA_TESTIGO2":
+                                            config.valor = formulario.matricula2;
+                                            break;
+                                        case "GAFETE_TESTIGO2":
+                                            config.valor = formulario.gafete1;
+                                            break;
+                                        case "CODIGO_POSTAL_DOMICILIO":
+                                            config.valor = formulario.codPostDom;
+                                            break;
+                                        case "TIEMPO_RESIDENCIA":
+                                            config.valor = formulario.yearResidencia;
+                                            break;
+                                        case "ENTIDAD_DOMICILIO":
+                                            config.valor = formulario.entidadDom;
+                                            break;
+                                        case "DELEGACION_DOMICILIO":
+                                            config.valor = formulario.municipioDom;
+                                            break;
+                                        case "COLONIA_DOMICILIO":
+                                            config.valor = formulario.coloniaDom;
+                                            break;
+                                        case "OTRA_COLONIA_DOMICILIO":
+                                            config.valor = formulario.otraColoniaDom;
+                                            break;
+                                        case "DOMICILIO_CALLE":
+                                            config.valor = formulario.domicilioCalle;
+                                            break;
+                                        case "NUMERO_EXTERIOR_DOMICILIO":
+                                            config.valor = formulario.noExteriorDom;
+                                            break;
+                                        case "NUMERO_INTERIOR_DOMICILIO":
+                                            config.valor = formulario.noInteriorDom;
+                                            break;
+                                        case "ENTRE_CALLES_DOMICILIO":
+                                            config.valor = formulario.entreCalleDom;
+                                            break;
+                                        case "EMAIL_CONTACTO":
+                                            config.valor = formulario.emailContacto;
+                                            break;
+                                        case "CELULAR":
+                                            config.valor = formulario.CelularContacto;
+                                            break;
+                                        case "EMPRESA_TELEFONICA":
+                                            config.valor = formulario.CompanyPhone;
+                                            break;
+                                        case "TELEFONO_PROPIO":
+                                            config.valor = formulario.telefonoPropio;
+                                            break;
+                                        case "NOMBRE_REFERENCIA1":
+                                            config.valor = formulario.nombreRef1;
+                                            break;
+                                        case "APELLIDO1_REFERENCIA1":
+                                            config.valor = formulario.pApellidoRef1;
+                                            break;
+                                        case "APELLIDO2_REFERENCIA1":
+                                            config.valor = formulario.sApellidoRef1;
+                                            break;
+                                        case "TELEFONO_REFERENCIA1":
+                                            config.valor = (formulario.TelefonoRef1.Equals("0")) ? "" : formulario.TelefonoRef1;
+                                            break;
+                                        case "CELULAR_REFERENCIA1":
+                                            config.valor = (formulario.CelularRef1.Equals("0")) ? "" : formulario.CelularRef1;
+                                            break;
+                                        case "HORA1_REF1":
+                                            var hora = Convert.ToDateTime(formulario.Hora1Ref1);
+                                            config.valor = hora.ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
+                                            break;
+                                        case "HORA2_REF1":
+                                            config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", System.Globalization.CultureInfo.CurrentCulture);
+                                            break;
+                                        case "DIA1_REF1":
+                                            config.valor = formulario.dia1Ref1;
+                                            break;
+                                        case "DIA2_REF1":
+                                            config.valor = formulario.dia2Ref1;
+                                            break;
+                                        case "PARENTESCO_REFERENCIA1":
+                                            config.valor = formulario.ParentescoRef1;
+                                            break;
+                                        case "NOMBRE_REFERENCIA2":
+                                            config.valor = formulario.nombreRef2;
+                                            break;
+                                        case "APELLIDO1_REFERENCIA2":
+                                            config.valor = formulario.pApellidoRef2;
+                                            break;
+                                        case "APELLIDO2_REFERENCIA2":
+                                            config.valor = formulario.sApellidoRef2;
+                                            break;
+                                        case "TELEFONO_REFERENCIA2":
+                                            config.valor = (formulario.TelefonoRef2.Equals("0")) ? "" : formulario.TelefonoRef2;
+                                            break;
+                                        case "CELULAR_REFERENCIA2":
+                                            config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
+                                            break;
+                                        case "HORA1_REF2":
+                                            config.valor = Convert.ToDateTime(formulario.Hora1Ref2).ToString("hh:mm", CultureInfo.CurrentCulture);
+                                            break;
+                                        case "HORA2_REF2":
+                                            config.valor = Convert.ToDateTime(formulario.Hora2Ref2).ToString("hh:mm", CultureInfo.CurrentCulture);
+                                            break;
+                                        case "DIA1_REF2":
+                                            config.valor = formulario.dia1Ref2;
+                                            break;
+                                        case "DIA2_REF2":
+                                            config.valor = formulario.dia2Ref2;
+                                            break;
+                                        case "PARENTESCO_REFERENCIA2":
+                                            config.valor = formulario.ParentescoRef2;
+                                            break;
+                                        case "MEDIO_DISPOSICION":
+                                            config.valor = formulario.medioDisp;
+                                            break;
+                                        case "CLABE_CUENTA":
+                                            config.valor = formulario.ClabeDisp;
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 1":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(0) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 2":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(1) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 3":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(2) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 4":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(3) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 5":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(4) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 6":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(5) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 7":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 8":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 9":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 10":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(9) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 11":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(10) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 12":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(11) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 13":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(12) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 14":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 15":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 16":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 17":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA DIGITO 18":
+                                            config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
+                                            break;
+                                        case "BANCO":
+                                            config.valor = formulario.NombreBanco;
+                                            break;
+                                        case "NUMERO_CUENTA":
+                                            config.valor = formulario.NumCuentaBanc;
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 1":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(0) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 2":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(1) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 3":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(2) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 4":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(3) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 5":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(4) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 6":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(5) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 7":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(6) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 8":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(7) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 9":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(8) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 10":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(9) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA DIGITO 11":
+                                            config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(10) + "" : "";
+                                            break;
+                                        case "MEDIO_DISPOSICION_ALTERNO":
+                                            config.valor = formulario.medioDispAlt;
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO":
+                                            config.valor = formulario.ClabeDispAlt;
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 1":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(0) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 2":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(1) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 3":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(2) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 4":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(3) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 5":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(4) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 6":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(5) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 7":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(6) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 8":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(7) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 9":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(8) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 10":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(9) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 11":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(10) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 12":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(11) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 13":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(12) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 14":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(13) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 15":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(14) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 16":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(15) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 17":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(16) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO DIGITO 18":
+                                            config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(17) + "" : "";
+                                            break;
+                                        case "BANCO_ALTERNO":
+                                            config.valor = formulario.NombreBancoAlt;
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO":
+                                            config.valor = formulario.NumCuentaBancAlt;
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 1":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(0) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 2":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(1) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 3":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(2) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 4":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(3) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 5":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(4) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 6":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(5) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 7":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(6) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 8":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(7) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 9":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(8) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 10":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(9) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO DIGITO 11":
+                                            config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(10) + "" : "";
+                                            break;
+                                        case "MEDIO_DISPOSICION_ALTERNO_2":
+                                            config.valor = formulario.medioDispAlt2;
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2":
+                                            config.valor = formulario.ClabeDispAlt2;
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 1":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(0) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 2":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(1) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 3":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(2) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 4":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(3) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 5":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(4) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 6":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(5) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 7":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(6) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 8":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(7) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 9":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(8) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 10":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(9) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 11":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(10) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 12":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(11) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 13":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(12) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 14":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(13) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 15":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(14) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 16":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(15) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 17":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(16) + "" : "";
+                                            break;
+                                        case "CLABE_CUENTA_ALTERNO_2 DIGITO 18":
+                                            config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(17) + "" : "";
+                                            break;
+                                        case "BANCO_ALTERNO_2":
+                                            config.valor = formulario.NombreBancoAlt2;
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2":
+                                            config.valor = formulario.NumCuentaBancAlt2;
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 1":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(0) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 2":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(1) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 3":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(2) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 4":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(3) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 5":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(4) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 6":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(5) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 7":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(6) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 8":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(7) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 9":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(8) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 10":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(9) + "" : "";
+                                            break;
+                                        case "NUMERO_CUENTA_ALTERNO_2 DIGITO 11":
+                                            config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(10) + "" : "";
+                                            break;
+                                        case "CURP":
+                                            config.valor = formulario.CURP;
+                                            break;
+                                        case "MONTO_ESCRITO":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.monto));
+                                            break;
+                                        case "MONTO_ESCRITO_SIN_PESOS":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                            break;
+                                        case "LIQUIDO_BASE_ESCRITO":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
+                                            break;
+                                        case "DESCUENTO_ESCRITO":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.dscto));
+                                            break;
+                                        case "MONTO_MAXIMO_ESCRITO":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.mMaxPlaz));
+                                            break;
+                                        case "MONTO_DEUDOR_ESCRITO":
+                                            config.valor = dao.monto_escrito(double.Parse(formulario.monto_deudor));
+                                            break;
+                                        case "NACIONALIDAD":
+                                            config.valor = formulario.nacionalidad;
+                                            break;
+                                        case "EDAD_CLIENTE":
+                                            DateTime fechaActual = DateTime.Today;
+                                            var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
+                                            edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
+                                            config.valor = edad + "";
+                                            break;
+                                        case "TASA_MENSUAL":
+                                            config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                            break;
+                                        case "TOTAL_A_PAGAR_CON_INTERES":
+                                            config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
+                                        case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
+                                            var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
+                                            config.valor = config.valor = dao.monto_escrito(dto);
+                                            break;
+                                        case "NOMBRE_COMPLETO":
+                                            config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
+                                            break;
+                                    }
+
+                                }
+                                if (config.tvalidacion == "S")
+                                {
+                                    switch (config.campoValidar)
+                                    {
+                                        case "TIPO_SOLICITUD":
+                                            if (formulario.tipoSolicitud != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "PERIODO":
+                                            if (formulario.periodo != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "DEPENDENCIA":
+                                            if (formulario.Dependencia != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "PRODUCTO":
+                                            if (formulario.producto != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "DESTINO":
+                                            if (formulario.destino != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "QUINCENA_DSCTO":
+                                            if (formulario.quincenaDscto != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "IDENTIFICACION":
+                                            if (formulario.tipoDoc != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "OTRA_IDENTIFICACION":
+                                            if (formulario.otraIdentificacion != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "GENERO":
+                                            if (formulario.gender != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "SECTOR":
+                                            if (formulario.sector != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "PUESTO":
+                                            if (formulario.puesto != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "INGRESOS":
+                                            if (formulario.ingresos != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "CARGO_PUBLICO":
+                                            if (formulario.tCargoPu != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "CARGO_PUBLICO_FAM":
+                                            if (formulario.tCargoPuF != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BENEFICIARIO":
+                                            if (formulario.tBeneneficiario != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "EMP_TEL":
+                                            if (formulario.CompanyPhone != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MED_DISP":
+                                            if (formulario.medioDisp != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MED_DISP_ALT1":
+                                            if (formulario.medioDispAlt != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "MED_DISP_ALT2":
+                                            if (formulario.medioDispAlt2 != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BANCO":
+                                            if (formulario.NombreBanco != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BANCO_ALT1":
+                                            if (formulario.NombreBancoAlt != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "BANCO_ALT2":
+                                            if (formulario.NombreBancoAlt2 != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "RECA":
+                                            if (formulario.reca != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "ESTADO_CIVIL":
+                                            if (formulario.estadoCivil != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                        case "NACIONALIDAD":
+                                            if (formulario.nacionalidad.ToUpper().IndexOf("MEXICAN") > -1)
+                                            {
+                                                if (config.valor_validacion != "MEXICANO")
+                                                {
+                                                    config.valor = "";
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (config.valor_validacion != "OTRA")
+                                                {
+                                                    config.valor = "";
+                                                }
+                                            }
+                                            break;
+                                        case "PAIS_RESIDENCIA":
+                                            if (formulario.paisR.ToUpper().IndexOf("MÉXICO") > -1)
+                                            {
+                                                if (config.valor_validacion != "MÉXICO")
+                                                {
+                                                    config.valor = "";
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (config.valor_validacion != "OTRA")
+                                                {
+                                                    config.valor = "";
+                                                }
+                                            }
+                                            break;
+                                        case "PAIS_NACIMIENTO":
+                                            if (formulario.paisN.ToUpper().IndexOf("MÉXICO") > -1)
+                                            {
+                                                if (config.valor_validacion != "MÉXICO")
+                                                {
+                                                    config.valor = "";
+                                                }
+
+                                            }
+                                            else
+                                            {
+                                                if (config.valor_validacion != "OTRA")
+                                                {
+                                                    config.valor = "";
+                                                }
+                                            }
+                                            break;
+                                        case "CLAVE_TRABAJADOR":
+                                            if (formulario.clave_trabajdor != config.valor_validacion)
+                                            {
+                                                config.valor = "";
+                                            }
+                                            break;
+                                    }
+                                }
+                                var font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                                page = doc.GetPage(pageDoc);
+                                //page.SetPageRotationInverseMatrixWritten();
+                                canvas = new PdfCanvas(page);
+                                Color myColor = new DeviceRgb(000, 000, 000);
+                                canvas.BeginText().SetColor(myColor, true).SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
+                                canvas.SaveState();
+                                canvas.RestoreState();
+                                //break;
+                            }
+                            //break;
+                            pageDoc++;
+                            //break;
+                        }
+                    }
+                    else if (data1.ListDocumentos[i].llena_auto == 1 && data1.ListDocumentos[i].compra == 1)
+                    {
+                        if (i > 0)
+                        {
+                            reader.Close();
+                            reader = new PdfReader(data1.ListDocumentos[i].path);
+                        }
+                        doc1 = new PdfDocument(reader);
+                        for (var m = 0; m < cartera.Count(); m++)
+                        {
+                            var cart = cartera.ElementAt(m);
+                        Found:
+                            if (item > 0)
+                            {
+                                if (item >= cart.Count())
+                                {
+                                    h = 0;
+                                    goto Finish;
+                                }
+                                h = (int)item;
+                            }
+                            for (var k = 1; k <= doc1.GetNumberOfPages(); k++)
+                            {
+                                page1 = doc1.GetPage(k);
+                                doc.AddPage(page1.CopyTo(doc));
+                                OutParamConfiguracionDoc configuraciones = new ParamsDAO().getConfigDocumentosFirma(dependencia, producto, data1.ListDocumentos[i].codigo_doc, k);
+                                for (var j = 0; j < configuraciones.ListConfiguracion.Count(); j++)
+                                {
+                                    var config = configuraciones.ListConfiguracion.ElementAt(j);
+                                    config_anterior = config.valor;
+                                    if (config.tipo_optencion == "2")
+                                    {
+                                        switch (config.valor)
+                                        {
+                                            case "NUMERO_FOLDER":
+                                                config.valor = formulario.folderNumber;
+                                                break;
+                                            case "ASESOR":
+                                                config.valor = formulario.asesor;
+                                                break;
+                                            case "FECHA_SOLICITUD":
+                                                config.valor = formulario.fchsolicitud;
+                                                break;
+                                            case "DIA_SOLICITUD":
+                                                config.valor = fecha_solicitud[0];
+                                                break;
+                                            case "MES_SOLICITUD":
+                                                config.valor = fecha_solicitud[1];
+                                                break;
+                                            case "MES_SOLICITUD_LETRAS":
+                                                n = int.Parse(fecha_solicitud[1]);
+                                                config.valor = meses[n - 1];
+                                                break;
+                                            case "AÑO_SOLICITUD_4_DIGITOS":
+                                                config.valor = fecha_solicitud[2];
+                                                break;
+                                            case "AÑO_SOLICITUD_2_DIGITOS":
+                                                config.valor = fecha_solicitud[2].Substring(2, 2);
+                                                break;
+                                            case "TIPO_SOLICITUD":
+                                                config.valor = formulario.tipoSolicitud;
+                                                break;
+                                            case "MONTO":
+                                                config.valor = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "PERIODO":
+                                                config.valor = formulario.periodo;
+                                                break;
+                                            case "PLAZO":
+                                                config.valor = formulario.plazo;
+                                                break;
+                                            case "LIQUIDO_BASE":
+                                                config.valor = double.Parse(formulario.LBase).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "NO_PLAZAS":
+                                                config.valor = (formulario.nPlazas.Equals("0")) ? "" : formulario.nPlazas;
+                                                break;
+                                            case "DEPENDENCIA":
+                                                config.valor = formulario.Dependencia;
+                                                break;
+                                            case "PRODUCTO":
+                                                config.valor = formulario.producto;
+                                                break;
+                                            case "DESTINO_CREDITO":
+                                                config.valor = formulario.destino;
+                                                break;
+                                            case "TIPO_NOMINA":
+                                                config.valor = formulario.tNomina;
+                                                break;
+                                            case "DESCUENTO":
+                                                config.valor = formulario.dscto;
+                                                break;
+                                            case "TASA_ANUAL":
+                                                config.valor = formulario.tAnual;
+                                                break;
+                                            case "CAT":
+                                                config.valor = formulario.cat;
+                                                break;
+                                            case "SUCURSAL":
+                                                config.valor = formulario.sucursal;
+                                                break;
+                                            case "QUINCENA_DSCTO":
+                                                config.valor = formulario.quincenaDscto;
+                                                break;
+                                            case "FECHA_PRIMER_PAGO":
+                                                config.valor = formulario.fchPrPago;
+                                                break;
+                                            case "DIA_PRIMER_PAGO":
+                                                config.valor = config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[0] : "";
+                                                break;
+                                            case "MES_PRIMER_PAGO":
+                                                if (fecha_primer_pago.Length == 3)
+                                                {
+                                                    config.valor = fecha_primer_pago[1];
+                                                }
+                                                else
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "MES_PRIMER_PAGO_LETRAS":
+                                                if (fecha_primer_pago.Length == 3)
+                                                {
+                                                    n = int.Parse(fecha_primer_pago[1]);
+                                                    config.valor = meses[n - 1];
+                                                }
+                                                else
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "AÑO_PRIMER_PAGO_2_DIGITOS":
+                                                config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2].Substring(2, 2) : "";
+                                                break;
+                                            case "AÑO_PRIMER_PAGO_4_DIGITOS":
+                                                config.valor = (fecha_primer_pago.Length == 3) ? fecha_primer_pago[2] : "";
+                                                break;
+                                            case "FECHA_ULTIMO_PAGO":
+                                                config.valor = formulario.fchUltPago;
+                                                break;
+                                            case "DIA_ULTIMO_PAGO":
+                                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[0] : "";
+                                                break;
+                                            case "MES_ULTIMO_PAGO":
+                                                if (fecha_ultimo_pago.Length == 3)
+                                                {
+                                                    config.valor = fecha_ultimo_pago[1];
+                                                }
+                                                else
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "MES_ULTIMO_PAGO_LETRAS":
+                                                if (fecha_primer_pago.Length == 3)
+                                                {
+                                                    n = int.Parse(fecha_ultimo_pago[1]);
+                                                    config.valor = meses[n - 1];
+                                                }
+                                                else
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "AÑO_ULTIMO_PAGO_2_DIGITOS":
+                                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2].Substring(2, 2) : "";
+                                                break;
+                                            case "AÑO_ULTIMO_PAGO_4_DIGITOS":
+                                                config.valor = (fecha_ultimo_pago.Length == 3) ? fecha_ultimo_pago[2] : "";
+                                                break;
+                                            case "CAPACIDAD_PAGO":
+                                                config.valor = double.Parse(formulario.cPago).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "MONTO_MAXIMO":
+                                                config.valor = double.Parse(formulario.mMaxPlaz).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "MONTO_DEUDOR":
+                                                config.valor = (formulario.monto_deudor.Equals("0")) ? "" : double.Parse(formulario.monto_deudor).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "MATRICULA":
+                                                config.valor = (formulario.matricula.Equals("0")) ? "" : formulario.matricula;
+                                                break;
+                                            case "NSS":
+                                                config.valor = (formulario.nss.Equals("0")) ? "" : formulario.nss;
+                                                break;
+                                            case "GRUPO":
+                                                config.valor = (formulario.grupo.Equals("0")) ? "" : formulario.grupo;
+                                                break;
+                                            case "CLAVE_TRABAJADOR":
+                                                config.valor = (formulario.clave_trabajdor.Equals("0")) ? "" : formulario.clave_trabajdor;
+                                                break;
+                                            case "ESPECIFICAR":
+                                                config.valor = formulario.especificar;
+                                                break;
+                                            case "RECA":
+                                                config.valor = formulario.reca;
+                                                break;
+                                            case "RFC":
+                                                config.valor = formulario.RFC;
+                                                break;
+                                            case "NOMBRES":
+                                                config.valor = formulario.pNombre + " " + formulario.sNombre;
+                                                break;
+                                            case "PRIMER_APELLIDO":
+                                                config.valor = formulario.pApellido;
+                                                break;
+                                            case "SEGUNDO_APELLIDO":
+                                                config.valor = formulario.sApellido;
+                                                break;
+                                            case "IDENTIFICACION_OFICIAL":
+                                                config.valor = formulario.tipoDoc;
+                                                break;
+                                            case "FECHA_NACIMIENTO":
+                                                config.valor = formulario.fecNac;
+                                                break;
+                                            case "DIA_NACIMIENTO":
+                                                config.valor = fecha_nacimiento[0];
+                                                break;
+                                            case "MES_NACIMIENTO":
+                                                config.valor = fecha_nacimiento[1];
+                                                break;
+                                            case "MES_NACIMIENTO_LETRAS":
+                                                n = int.Parse(fecha_solicitud[1]);
+                                                config.valor = meses[n - 1];
+                                                break;
+                                            case "AÑO_NACIMIENTO_2_DIGITOS":
+                                                config.valor = fecha_nacimiento[2].Substring(2, 2);
+                                                break;
+                                            case "AÑO_NACIMIENTO_4_DIGITOS":
+                                                config.valor = fecha_nacimiento[2];
+                                                break;
+                                            case "PAIS_NACIMIENTO":
+                                                config.valor = formulario.paisN;
+                                                break;
+                                            case "ENTIDAD_NACIMIENTO":
+                                                config.valor = formulario.entidadN;
+                                                break;
+                                            case "PAIS_RESIDENCIA":
+                                                config.valor = formulario.paisR;
+                                                break;
+                                            case "FORMA_MIGRATORIA":
+                                                config.valor = formulario.fMigratoria;
+                                                break;
+                                            case "GENERO":
+                                                config.valor = formulario.gender;
+                                                break;
+                                            case "SECTOR":
+                                                config.valor = formulario.sector;
+                                                break;
+                                            case "OTRO_SECTOR":
+                                                config.valor = formulario.otroSector;
+                                                break;
+                                            case "PUESTO":
+                                                config.valor = formulario.puesto;
+                                                break;
+                                            case "ANTIGUEDAD":
+                                                config.valor = formulario.antiguedad;
+                                                break;
+                                            case "INGRESO_MENSUAL":
+                                                config.valor = formulario.ingresos;
+                                                break;
+                                            case "NUMERO_PERSONAL":
+                                                config.valor = formulario.Celular;
+                                                break;
+                                            case "CLAVE_PRESUPUESTAL":
+                                                config.valor = formulario.cPresupuestal;
+                                                break;
+                                            case "PAGADURIA":
+                                                config.valor = formulario.Pagaduria;
+                                                break;
+                                            case "FECHA_INGRESO":
+                                                config.valor = formulario.fchIngreso;
+                                                break;
+                                            case "CLAVE":
+                                                config.valor = formulario.clave;
+                                                break;
+                                            case "LUGAR_TRABAJO":
+                                                config.valor = formulario.lugTrabajo;
+                                                break;
+                                            case "CALLE":
+                                                config.valor = formulario.calle;
+                                                break;
+                                            case "NUMERO_EXTERIOR":
+                                                config.valor = formulario.nExterior;
+                                                break;
+                                            case "COLONIA":
+                                                config.valor = formulario.colonia;
+                                                break;
+                                            case "OTRA_COLONIA":
+                                                config.valor = formulario.otraColonia;
+                                                break;
+                                            case "TELEFONO_FIJO":
+                                                config.valor = formulario.telFijo;
+                                                break;
+                                            case "EXTENSION":
+                                                config.valor = formulario.extension;
+                                                break;
+                                            case "ENTIDAD":
+                                                config.valor = formulario.entidadT;
+                                                break;
+                                            case "MUNICIPIO":
+                                                config.valor = formulario.municipio;
+                                                break;
+                                            case "CODIGO_POSTAL_OCUPACION":
+                                                config.valor = formulario.CodigoPost;
+                                                break;
+                                            case "TIENE_CARGO_PUBLICO":
+                                                config.valor = formulario.tCargoPu;
+                                                break;
+                                            case "PERIODO_DE_EJECUCION":
+                                                config.valor = formulario.pEjecucion;
+                                                break;
+                                            case "CARGO_PUBLICO_FAMILIAR":
+                                                config.valor = formulario.tCargoPuF;
+                                                break;
+                                            case "NOMBRE_FAMILIAR":
+                                                config.valor = formulario.nombFamiliar;
+                                                break;
+                                            case "PUESTO_FAMILIAR":
+                                                config.valor = formulario.puestoFam;
+                                                break;
+                                            case "PERIODO_EJERCICO_FAMILIAR":
+                                                config.valor = formulario.perEjecucionFam;
+                                                break;
+                                            case "BENEFICIARIO":
+                                                config.valor = formulario.tBeneneficiario;
+                                                break;
+                                            case "NOMBRE_BENEFICIARIO":
+                                                config.valor = formulario.nombBene;
+                                                break;
+                                            case "TIPO_PENSION":
+                                                config.valor = formulario.tipPension;
+                                                break;
+                                            case "ADSCRIPCION_PAGO":
+                                                config.valor = formulario.ubiPago;
+                                                break;
+                                            case "DELEGACION":
+                                                config.valor = formulario.delegacionImss;
+                                                break;
+                                            case "NOMBRE_TESTIGO1":
+                                                config.valor = formulario.nombTest1;
+                                                break;
+                                            case "MATRICULA_TESTIGO1":
+                                                config.valor = formulario.matricula1;
+                                                break;
+                                            case "GAFETE_TESTIGO1":
+                                                config.valor = formulario.gafete1;
+                                                break;
+                                            case "NOMBRE_TESTIGO2":
+                                                config.valor = formulario.nombTest2;
+                                                break;
+                                            case "MATRICULA_TESTIGO2":
+                                                config.valor = formulario.matricula2;
+                                                break;
+                                            case "GAFETE_TESTIGO2":
+                                                config.valor = formulario.gafete1;
+                                                break;
+                                            case "CODIGO_POSTAL_DOMICILIO":
+                                                config.valor = formulario.codPostDom;
+                                                break;
+                                            case "TIEMPO_RESIDENCIA":
+                                                config.valor = formulario.yearResidencia;
+                                                break;
+                                            case "ENTIDAD_DOMICILIO":
+                                                config.valor = formulario.entidadDom;
+                                                break;
+                                            case "DELEGACION_DOMICILIO":
+                                                config.valor = formulario.municipioDom;
+                                                break;
+                                            case "COLONIA_DOMICILIO":
+                                                config.valor = formulario.coloniaDom;
+                                                break;
+                                            case "OTRA_COLONIA_DOMICILIO":
+                                                config.valor = formulario.otraColoniaDom;
+                                                break;
+                                            case "DOMICILIO_CALLE":
+                                                config.valor = formulario.domicilioCalle;
+                                                break;
+                                            case "NUMERO_EXTERIOR_DOMICILIO":
+                                                config.valor = formulario.noExteriorDom;
+                                                break;
+                                            case "NUMERO_INTERIOR_DOMICILIO":
+                                                config.valor = formulario.noInteriorDom;
+                                                break;
+                                            case "ENTRE_CALLES_DOMICILIO":
+                                                config.valor = formulario.entreCalleDom;
+                                                break;
+                                            case "EMAIL_CONTACTO":
+                                                config.valor = formulario.emailContacto;
+                                                break;
+                                            case "CELULAR":
+                                                config.valor = formulario.CelularContacto;
+                                                break;
+                                            case "EMPRESA_TELEFONICA":
+                                                config.valor = formulario.CompanyPhone;
+                                                break;
+                                            case "TELEFONO_PROPIO":
+                                                config.valor = formulario.telefonoPropio;
+                                                break;
+                                            case "NOMBRE_REFERENCIA1":
+                                                config.valor = formulario.nombreRef1;
+                                                break;
+                                            case "APELLIDO1_REFERENCIA1":
+                                                config.valor = formulario.pApellidoRef1;
+                                                break;
+                                            case "APELLIDO2_REFERENCIA1":
+                                                config.valor = formulario.sApellidoRef1;
+                                                break;
+                                            case "TELEFONO_REFERENCIA1":
+                                                config.valor = (formulario.TelefonoRef1.Equals("0")) ? "" : formulario.TelefonoRef1;
+                                                break;
+                                            case "CELULAR_REFERENCIA1":
+                                                config.valor = (formulario.CelularRef1.Equals("0")) ? "" : formulario.CelularRef1;
+                                                break;
+                                            case "HORA1_REF1":
+                                                config.valor = formulario.Hora1Ref1.ToString().Substring(11, 17);
+                                                break;
+                                            case "HORA2_REF1":
+                                                config.valor = formulario.Hora2Ref1.ToString().Substring(11, 17);
+                                                break;
+                                            case "DIA1_REF1":
+                                                config.valor = formulario.dia1Ref1;
+                                                break;
+                                            case "DIA2_REF1":
+                                                config.valor = formulario.dia2Ref1;
+                                                break;
+                                            case "PARENTESCO_REFERENCIA1":
+                                                config.valor = formulario.ParentescoRef1;
+                                                break;
+                                            case "NOMBRE_REFERENCIA2":
+                                                config.valor = formulario.nombreRef2;
+                                                break;
+                                            case "APELLIDO1_REFERENCIA2":
+                                                config.valor = formulario.pApellidoRef2;
+                                                break;
+                                            case "APELLIDO2_REFERENCIA2":
+                                                config.valor = formulario.sApellidoRef2;
+                                                break;
+                                            case "TELEFONO_REFERENCIA2":
+                                                config.valor = (formulario.TelefonoRef2.Equals("0")) ? "" : formulario.TelefonoRef2;
+                                                break;
+                                            case "CELULAR_REFERENCIA2":
+                                                config.valor = (formulario.CelularRef2.Equals("0")) ? "" : formulario.CelularRef2;
+                                                break;
+                                            case "HORA1_REF2":
+                                                config.valor = formulario.Hora1Ref2.ToString();
+                                                break;
+                                            case "HORA2_REF2":
+                                                config.valor = formulario.Hora2Ref2.ToString();
+                                                break;
+                                            case "DIA1_REF2":
+                                                config.valor = formulario.dia1Ref2;
+                                                break;
+                                            case "DIA2_REF2":
+                                                config.valor = formulario.dia2Ref2;
+                                                break;
+                                            case "PARENTESCO_REFERENCIA2":
+                                                config.valor = formulario.ParentescoRef2;
+                                                break;
+                                            case "MEDIO_DISPOSICION":
+                                                config.valor = formulario.medioDisp;
+                                                break;
+                                            case "CLABE_CUENTA":
+                                                config.valor = formulario.ClabeDisp;
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 1":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(0) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 2":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(1) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 3":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(2) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 4":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(3) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 5":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(4) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 6":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(5) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 7":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(6) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 8":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(7) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 9":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(8) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 10":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(9) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 11":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(10) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 12":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(11) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 13":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(12) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 14":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 15":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 16":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 17":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA DIGITO 18":
+                                                config.valor = (formulario.ClabeDisp.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
+                                                break;
+                                            case "BANCO":
+                                                config.valor = formulario.NombreBanco;
+                                                break;
+                                            case "NUMERO_CUENTA":
+                                                config.valor = formulario.NumCuentaBanc;
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 1":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(0) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 2":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(1) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 3":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(2) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 4":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(3) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 5":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(4) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 6":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(5) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 7":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(6) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 8":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(7) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 9":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(8) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 10":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(9) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA DIGITO 11":
+                                                config.valor = (formulario.NumCuentaBanc.Length == 11) ? formulario.NumCuentaBanc.ElementAt(10) + "" : "";
+                                                break;
+                                            case "MEDIO_DISPOSICION_ALTERNO":
+                                                config.valor = formulario.medioDispAlt;
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO":
+                                                config.valor = formulario.ClabeDispAlt;
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 1":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(0) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 2":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(1) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 3":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(2) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 4":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(3) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 5":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(4) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 6":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(5) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 7":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(6) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 8":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(7) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 9":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(8) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 10":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(9) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 11":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(10) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 12":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(11) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 13":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDispAlt.ElementAt(12) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 14":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(13) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 15":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(14) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 16":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(15) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 17":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(16) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO DIGITO 18":
+                                                config.valor = (formulario.ClabeDispAlt.Length == 18) ? formulario.ClabeDisp.ElementAt(17) + "" : "";
+                                                break;
+                                            case "BANCO_ALTERNO":
+                                                config.valor = formulario.NombreBancoAlt;
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO":
+                                                config.valor = formulario.NumCuentaBancAlt;
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 1":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(0) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 2":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(1) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 3":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(2) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 4":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(3) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 5":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(4) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 6":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(5) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 7":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(6) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 8":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(7) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 9":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(8) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 10":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(9) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO DIGITO 11":
+                                                config.valor = (formulario.NumCuentaBancAlt.Length == 11) ? formulario.NumCuentaBancAlt.ElementAt(10) + "" : "";
+                                                break;
+                                            case "MEDIO_DISPOSICION_ALTERNO_2":
+                                                config.valor = formulario.medioDispAlt2;
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2":
+                                                config.valor = formulario.ClabeDispAlt2;
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 1":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(0) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 2":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(1) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 3":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(2) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 4":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(3) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 5":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(4) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 6":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(5) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 7":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(6) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 8":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(7) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 9":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(8) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 10":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(9) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 11":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(10) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 12":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(11) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 13":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(12) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 14":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(13) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 15":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(14) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 16":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(15) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 17":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(16) + "" : "";
+                                                break;
+                                            case "CLABE_CUENTA_ALTERNO_2 DIGITO 18":
+                                                config.valor = (formulario.ClabeDispAlt2.Length == 18) ? formulario.ClabeDispAlt2.ElementAt(17) + "" : "";
+                                                break;
+                                            case "BANCO_ALTERNO_2":
+                                                config.valor = formulario.NombreBancoAlt2;
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2":
+                                                config.valor = formulario.NumCuentaBancAlt2;
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 1":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(0) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 2":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(1) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 3":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(2) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 4":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(3) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 5":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(4) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 6":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(5) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 7":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(6) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 8":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(7) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 9":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(8) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 10":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(9) + "" : "";
+                                                break;
+                                            case "NUMERO_CUENTA_ALTERNO_2 DIGITO 11":
+                                                config.valor = (formulario.NumCuentaBancAlt2.Length == 11) ? formulario.NumCuentaBancAlt2.ElementAt(10) + "" : "";
+                                                break;
+                                            case "CURP":
+                                                config.valor = formulario.CURP;
+                                                break;
+                                            case "MONTO_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto));
+                                                break;
+                                            case "MONTO_ESCRITO_SIN_PESOS":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                                break;
+                                            case "CENTAVOS_MONTO_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto)).Replace("PESOS", "");
+                                                break;
+                                            case "LIQUIDO_BASE_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.LBase));
+                                                break;
+                                            case "DESCUENTO_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.dscto));
+                                                break;
+                                            case "MONTO_MAXIMO_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.mMaxPlaz));
+                                                break;
+                                            case "MONTO_DEUDOR_ESCRITO":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.monto_deudor));
+                                                break;
+                                            case "NACIONALIDAD":
+                                                config.valor = formulario.nacionalidad;
+                                                break;
+                                            case "EDAD_CLIENTE":
+                                                DateTime fechaActual = DateTime.Today;
+                                                var edad = fechaActual.Year - int.Parse(fecha_nacimiento[2]);
+                                                edad = (fechaActual.Month < int.Parse(fecha_nacimiento[1])) ? edad - 1 : edad;
+                                                config.valor = edad + "";
+                                                break;
+                                            case "TASA_MENSUAL":
+                                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                                break;
+                                            case "TOTAL_A_PAGAR_CON_INTERES":
+                                                config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "TOTAL_A_PAGAR_CON_INTERES_LETRAS":
+                                                var dto = double.Parse(formulario.dscto) * double.Parse(formulario.plazo);
+                                                config.valor = config.valor = dao.monto_escrito(dto);
+                                                break;
+                                            case "NOMBRE_COMPLETO":
+                                                config.valor = formulario.pNombre + " " + formulario.sNombre + " " + formulario.pApellido + " " + formulario.sApellido;
+                                                break;
+                                            case "CASA_FINANCIERA":
+                                                config.valor = cart.ElementAt(h).entidad;
+                                                break;
+                                            case "SUMA_SALDO_INSOLUTO":
+                                                sum = 0;
+                                                for (var q = 0; q < cart.Count(); q++)
+                                                {
+                                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                                }
+                                                config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "SUMA_SALDO_INSOLUTO_LETRAS":
+                                                sum = 0;
+                                                for (var q = 0; q < cart.Count(); q++)
+                                                {
+                                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                                }
+                                                config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
+                                                break;
+                                            case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
+                                                sum = 0;
+                                                for (var q = 0; q < cart.Count(); q++)
+                                                {
+                                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                                }
+                                                break;
+                                            case "DEPOSITO_CLIENTE":
+                                                config.valor = formulario.depositoCliente;
+                                                break;
+                                            case "DEPOSITO_CLIENTE_LETRA":
+                                                config.valor = dao.monto_escrito(double.Parse(formulario.depositoCliente)).Replace("PESOS", "");
+                                                break;
+                                            case "CENTAVOS_DEPOSITO_CLIENTE_LETRA":
+                                                config.valor = formulario.depositoCliente;
+                                                break;
+                                            case "DIAS_A_PAGAR":
+                                                config.valor = formulario.DiasPagar;
+                                                break;
+                                            case "FECHA_CONTRATO_COMPRA":
+                                                config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
+                                                break;
+                                            case "MONTO_CREDITO_COMPRA":
+                                                config.valor = cart.ElementAt(h).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "MONTO_TOTAL":
+                                                config.valor = cart.ElementAt(h).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "PLAZO_COMPRA":
+                                                config.valor = cart.ElementAt(h).plazo + "";
+                                                break;
+                                            case "SALDO_INSOLUTO":
+                                                config.valor = cart.ElementAt(h).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
+                                            case "TASA_COMPRA":
+                                                config.valor = cart.ElementAt(h).tasa + "";
+                                                break;
+                                        }
+                                    }
+                                    if (config.tvalidacion == "S")
+                                    {
+                                        switch (config.campoValidar)
+                                        {
+                                            case "TIPO_SOLICITUD":
+                                                if (formulario.tipoSolicitud != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "PERIODO":
+                                                if (formulario.periodo != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "DEPENDENCIA":
+                                                if (formulario.Dependencia != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "PRODUCTO":
+                                                if (formulario.producto != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "DESTINO":
+                                                if (formulario.destino != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "QUINCENA_DSCTO":
+                                                if (formulario.quincenaDscto != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "IDENTIFICACION":
+                                                if (formulario.tipoDoc != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "OTRA_IDENTIFICACION":
+                                                if (formulario.otraIdentificacion != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "GENERO":
+                                                if (formulario.gender != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "SECTOR":
+                                                if (formulario.sector != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "PUESTO":
+                                                if (formulario.puesto != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "INGRESOS":
+                                                if (formulario.ingresos != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "CARGO_PUBLICO":
+                                                if (formulario.tCargoPu != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "CARGO_PUBLICO_FAM":
+                                                if (formulario.tCargoPuF != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "BENEFICIARIO":
+                                                if (formulario.tBeneneficiario != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "EMP_TEL":
+                                                if (formulario.CompanyPhone != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "MED_DISP":
+                                                if (formulario.medioDisp != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "MED_DISP_ALT1":
+                                                if (formulario.medioDispAlt != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "MED_DISP_ALT2":
+                                                if (formulario.medioDispAlt2 != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "BANCO":
+                                                if (formulario.NombreBanco != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "BANCO_ALT1":
+                                                if (formulario.NombreBancoAlt != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "BANCO_ALT2":
+                                                if (formulario.NombreBancoAlt2 != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "RECA":
+                                                if (formulario.reca != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "ESTADO_CIVIL":
+                                                if (formulario.estadoCivil != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                            case "NACIONALIDAD":
+                                                if (formulario.nacionalidad.ToUpper().IndexOf("MEXICAN") > -1)
+                                                {
+                                                    if (config.valor_validacion != "MEXICANO")
+                                                    {
+                                                        config.valor = "";
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    if (config.valor_validacion != "OTRA")
+                                                    {
+                                                        config.valor = "";
+                                                    }
+                                                }
+                                                break;
+                                            case "PAIS_RESIDENCIA":
+                                                if (formulario.paisR.ToUpper().IndexOf("MÉXICO") > -1)
+                                                {
+                                                    if (config.valor_validacion != "MÉXICO")
+                                                    {
+                                                        config.valor = "";
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    if (config.valor_validacion != "OTRA")
+                                                    {
+                                                        config.valor = "";
+                                                    }
+                                                }
+                                                break;
+                                            case "PAIS_NACIMIENTO":
+                                                if (formulario.paisN.ToUpper().IndexOf("MÉXICO") > -1)
+                                                {
+                                                    if (config.valor_validacion != "MÉXICO")
+                                                    {
+                                                        config.valor = "";
+                                                    }
+
+                                                }
+                                                else
+                                                {
+                                                    if (config.valor_validacion != "OTRA")
+                                                    {
+                                                        config.valor = "";
+                                                    }
+                                                }
+                                                break;
+                                            case "CLAVE_TRABAJADOR":
+                                                if (formulario.clave_trabajdor != config.valor_validacion)
+                                                {
+                                                    config.valor = "";
+                                                }
+                                                break;
+                                        }
+                                    }
+                                    var font = PdfFontFactory.CreateFont(StandardFonts.HELVETICA_BOLD);
+                                    page = doc.GetPage(pageDoc);
+                                    canvas = new PdfCanvas(page);
+                                    Color myColor = new DeviceRgb(000, 000, 000);
+                                    canvas.BeginText().SetColor(myColor, true).SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
+                                    if (data1.ListDocumentos[i].max_item > 0 && config.aumentoy > 0 && cart.Count() >= data1.ListDocumentos[i].max_item)
+                                    {
+                                        h++;
+                                        if (h < cart.Count())
+                                        {
+                                            for (var l = 1; l < data1.ListDocumentos[i].max_item; l++)
+                                            {
+                                                switch (config_anterior)
+                                                {
+                                                    case "CASA_FINANCIERA":
+                                                        config.valor = cart.ElementAt(h).entidad;
+                                                        break;
+                                                    case "FECHA_CONTRATO_COMPRA":
+                                                        config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
+                                                        break;
+                                                    case "MONTO_CREDITO_COMPRA":
+                                                        config.valor = cart.ElementAt(h).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                        break;
+                                                    case "MONTO_TOTAL":
+                                                        config.valor = cart.ElementAt(h).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                        break;
+                                                    case "PLAZO_COMPRA":
+                                                        config.valor = cart.ElementAt(h).plazo + "";
+                                                        break;
+                                                    case "SALDO_INSOLUTO":
+                                                        config.valor = cart.ElementAt(h).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                        break;
+                                                    case "TASA_COMPRA":
+                                                        config.valor = cart.ElementAt(h).tasa + "";
+                                                        break;
+                                                }
+                                                config.posicion_y -= config.aumentoy;
+                                                canvas.BeginText().SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
+                                            }
+                                        }
+                                        h = (int)item;
+                                    }
+                                    canvas.SaveState();
+                                    canvas.RestoreState();
+                                }
+                                pageDoc++;
+                                if (data1.ListDocumentos[i].max_item > 0)
+                                {
+                                    item = (item == 0) ? item = (double)data1.ListDocumentos[i].max_item : item += (double)data1.ListDocumentos[i].max_item;
+                                    goto Found;
+                                }
+                            }
+                        Finish:
                             item = 0;
                         }
                     }
@@ -7880,99 +7949,109 @@ namespace Models
                         
                     }
                 }
-                OutDocumentoOriginacion data = new ProfileDAO().expedientillo(folder);               
-                PdfWriter writer = new PdfWriter(fs);
-                PdfDocument documento = new PdfDocument(writer);
-                PdfDocument doc1;
-                Document pdf1;
-                PdfPage page;
-                PdfCanvas canvas;
-                var docCargado = data.ListDocumentos.ElementAt(0);
-                Regex regex = new Regex("(.png|.jpeg|.jpg)$");
-                Match match = regex.Match(docCargado.path);
-                var isImage = false;
-                var i = 0;
-                var width = 575f;
-                var height = 822f;
-                if (match.Success)
+                OutDocumentoOriginacion data = new ProfileDAO().expedientillo(folder);
+                if(data.ListDocumentos.Count > 0)
                 {
-                    ImageData img = ImageDataFactory.Create(docCargado.path);
-                    if (img.GetWidth() < width)
-                        width = img.GetWidth();
-                    if (img.GetHeight() < height)
-                        height = img.GetHeight();
-                    var pagina = documento.GetNumberOfPages();
-                    canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
-                    PdfLayer pdflayer = new PdfLayer("", documento);
-                    canvas.BeginLayer(pdflayer);
-                    canvas.AddImage(img, 15, 15, width, false);
-                    canvas.EndLayer();
-                    canvas.SaveState();
-                    canvas.RestoreState();
-                    canvas.SaveState();
-                    canvas.RestoreState();
-                    i++;
-                }
-                width = 575f;
-                height = 822f;
-                docCargado = data.ListDocumentos.ElementAt(i);
-                PdfReader reader = new PdfReader(docCargado.path);
-                doc1 = new PdfDocument(reader);
-                for (; i < data.ListDocumentos.Count; i++)
-                {
-                    if (i > 0)
+                    PdfWriter writer = new PdfWriter(fs);
+                    PdfDocument documento = new PdfDocument(writer);
+                    PdfDocument doc1;
+                    Document pdf1;
+                    PdfPage page;
+                    PdfCanvas canvas;
+                    var docCargado = data.ListDocumentos.ElementAt(0);
+                    Regex regex = new Regex("(.png|.jpeg|.jpg)$");
+                    Match match = regex.Match(docCargado.path);
+                    var isImage = false;
+                    var i = 0;
+                    var width = 575f;
+                    var height = 822f;
+                    if (match.Success)
                     {
-                        docCargado = data.ListDocumentos.ElementAt(i);
-                        match = regex.Match(docCargado.path);
-                        if (match.Success)
+                        ImageData img = ImageDataFactory.Create(docCargado.path);
+                        if (img.GetWidth() < width)
+                            width = img.GetWidth();
+                        if (img.GetHeight() < height)
+                            height = img.GetHeight();
+                        var pagina = documento.GetNumberOfPages();
+                        canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
+                        PdfLayer pdflayer = new PdfLayer("", documento);
+                        canvas.BeginLayer(pdflayer);
+                        canvas.AddImage(img, 15, 15, width, false);
+                        canvas.EndLayer();
+                        canvas.SaveState();
+                        canvas.RestoreState();
+                        canvas.SaveState();
+                        canvas.RestoreState();
+                        i++;
+                    }
+                    width = 575f;
+                    height = 822f;
+                    docCargado = data.ListDocumentos.ElementAt(i);
+                    PdfReader reader = new PdfReader(docCargado.path);
+                    doc1 = new PdfDocument(reader);
+                    for (; i < data.ListDocumentos.Count; i++)
+                    {
+                        if (i > 0)
                         {
-                            isImage = true;
-                            ImageData img = ImageDataFactory.Create(docCargado.path);
-                            var pagina = documento.GetNumberOfPages();
-                            if (img.GetWidth() < width)
-                                width = img.GetWidth();
-                            if (img.GetHeight() < height)
-                                height = img.GetHeight();
-                            canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
-                            PdfLayer pdflayer = new PdfLayer("", documento);
-                            canvas.BeginLayer(pdflayer);
-                            canvas.AddImage(img, 15, 15, width, false);
-                            canvas.EndLayer();
-                            canvas.SaveState();
-                            canvas.RestoreState();
-                            isImage = true;
-                            width = 575f;
-                            height = 822f;
+                            docCargado = data.ListDocumentos.ElementAt(i);
+                            match = regex.Match(docCargado.path);
+                            if (match.Success)
+                            {
+                                isImage = true;
+                                ImageData img = ImageDataFactory.Create(docCargado.path);
+                                var pagina = documento.GetNumberOfPages();
+                                if (img.GetWidth() < width)
+                                    width = img.GetWidth();
+                                if (img.GetHeight() < height)
+                                    height = img.GetHeight();
+                                canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
+                                PdfLayer pdflayer = new PdfLayer("", documento);
+                                canvas.BeginLayer(pdflayer);
+                                canvas.AddImage(img, 15, 15, width, false);
+                                canvas.EndLayer();
+                                canvas.SaveState();
+                                canvas.RestoreState();
+                                isImage = true;
+                                width = 575f;
+                                height = 822f;
+                            }
+                            else
+                            {
+                                isImage = false;
+                                reader.Close();
+                                reader = new PdfReader(docCargado.path);
+                                doc1 = new PdfDocument(reader);
+                                pdf1 = new Document(doc1);
+                            }
                         }
-                        else
+                        if (!isImage)
                         {
-                            isImage = false;
-                            reader.Close();
-                            reader = new PdfReader(docCargado.path);
-                            doc1 = new PdfDocument(reader);
-                            pdf1 = new Document(doc1);
+                            for (var j = 1; j <= doc1.GetNumberOfPages(); j++)
+                            {
+                                page = doc1.GetPage(j);
+                                documento.AddPage(page.CopyTo(documento));
+                            }
                         }
                     }
-                    if (!isImage)
-                    {
-                        for (var j = 1; j <= doc1.GetNumberOfPages(); j++)
-                        {
-                            page = doc1.GetPage(j);
-                            documento.AddPage(page.CopyTo(documento));
-                        }
-                    }
+                    documento.Close();
+                    writer.Close();
+                    reader.Close();
+                    fs.Dispose();
+                    documento.Close();
+                    writer.Close();
+                    reader.Close();
+                    fs.Close();
+                    filevirtual += "Expedientillo_" + folder + ".pdf";
+                    doc.filename = pdfOut;
+                    doc.virtualpath = filevirtual;
                 }
-                documento.Close();
-                writer.Close();
-                reader.Close();
-                fs.Dispose();
-                documento.Close();
-                writer.Close();
-                reader.Close();
-                fs.Close();
-                filevirtual += "Expedientillo_" + folder + ".pdf";
-                doc.filename = pdfOut;
-                doc.virtualpath = filevirtual;
+                else
+                {
+                    fs.Close();
+                    doc.filename = "";
+                    doc.virtualpath = "";
+                }
+
             }
             catch (Exception ex)
             {
@@ -8015,93 +8094,102 @@ namespace Models
                     }
                 }
                 OutDocumentoOriginacion data = new ProfileDAO().allDocuments(folder);
-                PdfWriter writer = new PdfWriter(fs);
-                PdfDocument documento = new PdfDocument(writer);
-                PdfDocument doc1;
-                Document pdf1;
-                PdfPage page;
-                PdfCanvas canvas;
-                var docCargado = data.ListDocumentos.ElementAt(0);
-                Regex regex = new Regex("(.png|.jpeg|.jpg)$");
-                Match match = regex.Match(docCargado.path);
-                var isImage = false;
-                var i = 0;
-                var width = 575f;
-                var height = 822f;
-                if (match.Success)
+                if (data.ListDocumentos.Count > 0)
                 {
-                    ImageData img = ImageDataFactory.Create(docCargado.path);
-                    if (img.GetWidth() < width)
-                        width = img.GetWidth();
-                    if (img.GetHeight() < height)
-                        height = img.GetHeight();
-                    var pagina = documento.GetNumberOfPages();
-                    canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
-                    PdfLayer pdflayer = new PdfLayer("", documento);
-                    canvas.BeginLayer(pdflayer);
-                    canvas.AddImage(img, 15, 15, width, false);
-                    canvas.EndLayer();
-                    canvas.SaveState();
-                    canvas.RestoreState();
-                    canvas.SaveState();
-                    canvas.RestoreState();
-                    i++;
-                }
-                width = 575f;
-                height = 822f;
-                PdfReader reader = new PdfReader(docCargado.path);
-                doc1 = new PdfDocument(reader);
-                for (; i < data.ListDocumentos.Count; i++)
-                {
-                    if (i > 0)
+                    PdfWriter writer = new PdfWriter(fs);
+                    PdfDocument documento = new PdfDocument(writer);
+                    PdfDocument doc1;
+                    Document pdf1;
+                    PdfPage page;
+                    PdfCanvas canvas;
+                    var docCargado = data.ListDocumentos.ElementAt(0);
+                    Regex regex = new Regex("(.png|.jpeg|.jpg)$");
+                    Match match = regex.Match(docCargado.path);
+                    var isImage = false;
+                    var i = 0;
+                    var width = 575f;
+                    var height = 822f;
+                    if (match.Success)
                     {
-                        docCargado = data.ListDocumentos.ElementAt(i);
-                        match = regex.Match(docCargado.path);
-                        if (match.Success)
+                        ImageData img = ImageDataFactory.Create(docCargado.path);
+                        if (img.GetWidth() < width)
+                            width = img.GetWidth();
+                        if (img.GetHeight() < height)
+                            height = img.GetHeight();
+                        var pagina = documento.GetNumberOfPages();
+                        canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
+                        PdfLayer pdflayer = new PdfLayer("", documento);
+                        canvas.BeginLayer(pdflayer);
+                        canvas.AddImage(img, 15, 15, width, false);
+                        canvas.EndLayer();
+                        canvas.SaveState();
+                        canvas.RestoreState();
+                        canvas.SaveState();
+                        canvas.RestoreState();
+                        i++;
+                    }
+                    width = 575f;
+                    height = 822f;
+                    PdfReader reader = new PdfReader(docCargado.path);
+                    doc1 = new PdfDocument(reader);
+                    for (; i < data.ListDocumentos.Count; i++)
+                    {
+                        if (i > 0)
                         {
-                            isImage = true;
-                            ImageData img = ImageDataFactory.Create(docCargado.path);
-                            if (img.GetWidth() < width)
-                                width = img.GetWidth();
-                            if (img.GetHeight() < height)
-                                height = img.GetHeight();
-                            var pagina = documento.GetNumberOfPages();
-                            canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
-                            PdfLayer pdflayer = new PdfLayer("", documento);
-                            canvas.BeginLayer(pdflayer);
-                            canvas.AddImage(img, 15, 15, width, false);
-                            canvas.EndLayer();
-                            canvas.SaveState();
-                            canvas.RestoreState();
-                            isImage = true;
-                            width = 575f;
-                            height = 822f;
+                            docCargado = data.ListDocumentos.ElementAt(i);
+                            match = regex.Match(docCargado.path);
+                            if (match.Success)
+                            {
+                                isImage = true;
+                                ImageData img = ImageDataFactory.Create(docCargado.path);
+                                if (img.GetWidth() < width)
+                                    width = img.GetWidth();
+                                if (img.GetHeight() < height)
+                                    height = img.GetHeight();
+                                var pagina = documento.GetNumberOfPages();
+                                canvas = new PdfCanvas(documento.AddNewPage(pagina + 1, PageSize.A4));
+                                PdfLayer pdflayer = new PdfLayer("", documento);
+                                canvas.BeginLayer(pdflayer);
+                                canvas.AddImage(img, 15, 15, width, false);
+                                canvas.EndLayer();
+                                canvas.SaveState();
+                                canvas.RestoreState();
+                                isImage = true;
+                                width = 575f;
+                                height = 822f;
+                            }
+                            else
+                            {
+                                isImage = false;
+                                reader.Close();
+                                reader = new PdfReader(docCargado.path);
+                                doc1 = new PdfDocument(reader);
+                                pdf1 = new Document(doc1);
+                            }
                         }
-                        else
+                        if (!isImage)
                         {
-                            isImage = false;
-                            reader.Close();
-                            reader = new PdfReader(docCargado.path);
-                            doc1 = new PdfDocument(reader);
-                            pdf1 = new Document(doc1);
+                            for (var j = 1; j <= doc1.GetNumberOfPages(); j++)
+                            {
+                                page = doc1.GetPage(j);
+                                documento.AddPage(page.CopyTo(documento));
+                            }
                         }
                     }
-                    if (!isImage)
-                    {
-                        for (var j = 1; j <= doc1.GetNumberOfPages(); j++)
-                        {
-                            page = doc1.GetPage(j);
-                            documento.AddPage(page.CopyTo(documento));
-                        }
-                    }
+                    documento.Close();
+                    writer.Close();
+                    reader.Close();
+                    fs.Dispose();
+                    filevirtual += "Originacion_" + folder + ".pdf";
+                    doc.filename = pdfOut;
+                    doc.virtualpath = filevirtual;
                 }
-                documento.Close();
-                writer.Close();
-                reader.Close();
-                fs.Dispose();
-                filevirtual += "Originacion_" + folder + ".pdf";
-                doc.filename = pdfOut;
-                doc.virtualpath = filevirtual;
+                else
+                {
+                    fs.Close();
+                    doc.filename = "";
+                    doc.virtualpath = "";
+                }
             }
             catch (Exception ex)
             {
@@ -8509,15 +8597,16 @@ namespace Models
             {
                 return false;
             }
-            var pdf = "";
+            var pdf = new string[2];
             if (expediente == 0)
             {
-                pdf = allDocuments(dependencia, producto, folder, rootPath, baseURL,0).filename;
+                pdf[0] = allDocuments(dependencia, producto, folder, rootPath, baseURL,0).filename;
+                pdf[1] = expedientillo(dependencia, producto, folder, rootPath, baseURL, 0).filename;
             }
             else {
-                pdf = findExpCompleto(folder).ListDocumentos[0].path;
+                pdf[0] = findExpCompleto(folder).ListDocumentos[0].path;
             }
-            if ("".Equals(pdf) || pdf == null)
+            if ("".Equals(pdf[0]) || pdf[0] == null)
             {
                 return false;
             }

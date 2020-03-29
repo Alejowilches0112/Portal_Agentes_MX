@@ -2336,6 +2336,8 @@ namespace Models
             campos.Add("TIPO_SOLICITUD");
             campos.Add("MONTO");
             campos.Add("MONTO_ESCRITO");
+            campos.Add("MONTO_ESCRITO_SIN_PESOS");
+            campos.Add("CENTAVOS_MONTO_ESCRITO");
             campos.Add("PERIODO");
             campos.Add("PLAZO");
             campos.Add("LIQUIDO_BASE");
@@ -2571,7 +2573,11 @@ namespace Models
             campos.Add("NOMBRE_COMPLETO");
             campos.Add("CASA_FINANCIERA");
             campos.Add("SUMA_SALDO_INSOLUTO");
+            campos.Add("SUMA_SALDO_INSOLUTO_LETRA");
+            campos.Add("CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA");
             campos.Add("DEPOSITO_CLIENTE");
+            campos.Add("DEPOSITO_CLIENTE_LETRA");
+            campos.Add("CENTAVOS_DEPOSITO_CLIENTE_LETRA");
             campos.Add("DIAS_A_PAGAR");
             campos.Add("FECHA_CONTRATO_COMPRA");
             campos.Add("MONTO_CREDITO_COMPRA");
