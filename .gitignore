@@ -1,10 +1,10 @@
 #Carpeta de bin para .net
 .vs/
-BayPort/bin/
-BayPort/Files/*.pdf
-BayPort/Files/*.jpg
-BayPort/Files/*.png
-BayPort/obj/
+BayPort\bin\
+/BayPort/Files/*.pdf
+/BayPort/Files/*.jpg
+/BayPort/Files/*.png
+/BayPort/obj/
 
 
 # Compiled class file
