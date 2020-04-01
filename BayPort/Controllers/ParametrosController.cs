@@ -367,6 +367,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[]{ "SELECT", "FROM", "WHERE", "="};
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (dependencia.IndexOf(wordKey[i]) > -1 || estado.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveDependencia(codigo_dep, dependencia, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -377,6 +386,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (dependencia.IndexOf(wordKey[i]) > -1 || estado.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updDependencia(secuencia, dependencia, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -437,6 +455,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (tipoSolicitud.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveTipoSolicitud(tipoSolicitud);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -448,6 +475,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (tipoSolicitud.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updTipoSolicitud(secuencia, tipoSolicitud);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -498,6 +534,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Periodo.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().savePeriodos(Periodo);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -509,6 +554,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (periodo.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updPeriodos(secuencia, periodo);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -571,6 +625,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (plazo.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().savePlazo(periodo, plazo);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -582,6 +645,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (plazo.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updPlazo(secuencia, plazo);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -632,6 +704,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (descuetno.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveQuincenaDscto(descuetno);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -643,6 +724,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (descuento.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updQuincenaDscto(secuencia, descuento);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -693,6 +783,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (destinoCredito.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveDestinoCredito(destinoCredito);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -704,6 +803,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (destinoCredito.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updDestinoCredito(secuencia, destinoCredito);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -748,6 +856,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (empresaTelefonica.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveEmpresaTelefonica(empresaTelefonica);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -759,6 +876,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (empresaTelefonica.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updEmpresaTelefonica(secuencia, empresaTelefonica);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -809,6 +935,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (tipoIdentificacion.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveTiposIdentificacion(tipoIdentificacion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -820,6 +955,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (tipoIdentificacion.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updTiposIdetificacion(secuencia, tipoIdentificacion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -870,6 +1014,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (estadoCivil.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveEstadoCivil(estadoCivil);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -881,6 +1034,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (estadoCivil.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updEstadoCivil(secuencia, estadoCivil);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -931,6 +1093,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Ingresos.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveIngresos(Ingresos);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -942,6 +1113,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Ingresos.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updIngresos(secuencia, Ingresos);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -986,6 +1166,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Medios.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveMedios(Medios);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -997,6 +1186,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Medios.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updMedios(secuencia, Medios);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1047,6 +1245,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (tipoNomina.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveNomina(tipoNomina);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1058,6 +1265,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (tipoNomina.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updNomina(secuencia, tipoNomina);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1108,6 +1324,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (puestos.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().savePuestos(sector, puestos);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1119,6 +1344,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (puestos.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updPuestos(secuencia, puestos);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1180,6 +1414,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Reca.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveReca(Reca);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1191,6 +1434,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (Reca.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updReca(secuencia, Reca);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1241,6 +1493,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sector.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveSector(sector);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1252,6 +1513,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sector.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updSector(secuencia, sector);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1302,6 +1572,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sector.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveSectorGuias(sector,estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1313,6 +1592,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sector.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updSectorGuias(secuencia, sector, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1363,6 +1651,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sector.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveSectorTablas(sector, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1374,6 +1671,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sector.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updSectorTablas(secuencia, sector, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1424,6 +1730,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sucursal.IndexOf(wordKey[i]) > -1 || id_sucursal.IndexOf(wordKey[i]) > -1 || division.IndexOf(wordKey[i]) > -1 || emailCoordinador.IndexOf(wordKey[i]) > -1 || emailAuxiliar.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveSucursal(sucursal, id_sucursal, tipo, division, region, emailCoordinador, emailAuxiliar);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1435,6 +1750,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (sucursal.IndexOf(wordKey[i]) > -1 || sucursal.IndexOf(wordKey[i]) > -1 || emailCoordinador.IndexOf(wordKey[i]) > -1 || emailAuxiliar.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updSucursal(secuencia, sucursal, tipo_sucursal, emailCoordinador, emailAuxiliar);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1497,6 +1821,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (producto.IndexOf(wordKey[i]) > -1 || estado.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveProductos(codigo_pro,dependencia, producto, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1508,6 +1841,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (producto.IndexOf(wordKey[i]) > -1 || estado.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updProductos(secuencia, producto, estado);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1525,7 +1867,7 @@ namespace BayPortColombia.Controllers
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         /*Carga Archivo CSV*/
-        [HttpPost]
+        /*[HttpPost]
         public JsonResult savePlazoCSV(string periodo, string plazo)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
@@ -1607,7 +1949,7 @@ namespace BayPortColombia.Controllers
                 data = new ManageParams().saveCampos(solicit, objDependencia.secuencia, product, period, campo, dato, opciones, obligatorio);
             }
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
+        }*/
         /*Division*/
         public JsonResult getDivision()
         {
@@ -1627,6 +1969,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (division.IndexOf(wordKey[i]) > -1 )
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().getRegionDivision(division);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1650,6 +2001,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (nombre.IndexOf(wordKey[i]) > -1 || codigo_pais.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().savePais(codigo, nombre, codigo_pais, usr.userName);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1684,6 +2044,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (nombre_pais.IndexOf(wordKey[i]) > -1 || codigo_pais.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().updPais(id_pais, nombre_pais, codigo_pais, usr.userName);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1707,6 +2076,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (nombre.IndexOf(wordKey[i]) > -1 || abreviatura.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveEntidad(codigo_pais, codigo, nombre, usr.userName, abreviatura);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1717,6 +2095,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (nombre_entidad.IndexOf(wordKey[i]) > -1 || abreviatura.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updEntidad(codigo_entidad, nombre_entidad, usr.userName, abreviatura);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -1766,7 +2153,7 @@ namespace BayPortColombia.Controllers
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         /*Municipios*/
-        [HttpPost]
+        /*[HttpPost]
         public JsonResult saveMunicipio(double cod_pais, double codigo_entidad, double codigo, string nombre)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
@@ -1833,7 +2220,7 @@ namespace BayPortColombia.Controllers
             }
             var data = new ManageParams().getIdMunicipios(codigo_municipio, pais, entidad);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
-        }
+        }*/
         /* Campos Parámetrizables */
         [HttpPost]
         public JsonResult saveCampos(double? tipoSolicitud, double dependencia, double? producto, double? periodo, string campo, string tipo, string opciones, string requerido)
@@ -1843,6 +2230,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (campo.IndexOf(wordKey[i]) > -1 || tipo.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             producto = (producto == 0) ? null : producto;
             var data = new ManageParams().saveCampos(tipoSolicitud, dependencia, producto, periodo, campo, tipo, opciones, requerido);
@@ -1869,6 +2265,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (campo.IndexOf(wordKey[i]) > -1 || tipo.IndexOf(wordKey[i]) > -1 || opciones.IndexOf(wordKey[i]) > -1 || requerido.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().updCampos(cod_campo, campo, tipo, opciones, requerido);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1881,6 +2286,7 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+
             var data = new ManageParams().getIdCampos(cod_campo);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -1931,6 +2337,15 @@ namespace BayPortColombia.Controllers
                 return null;
             }
             documents _documents = JsonConvert.DeserializeObject<documents>(Request.Form["Documento"]);
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (_documents.nombre.IndexOf(wordKey[i]) > -1 || _documents.nombreDoc.IndexOf(wordKey[i]) > -1 || _documents.dependencia.IndexOf(wordKey[i]) > -1 || _documents.path.IndexOf(wordKey[i]) > -1 || _documents.producto.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             if (Request.Files.Count > 0)
             {
                 _documents.file = "EXISTE";
@@ -1950,12 +2365,22 @@ namespace BayPortColombia.Controllers
                 return null;
             }
             documents _documents = JsonConvert.DeserializeObject<documents>(Request.Form["Documento"]);
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (_documents.nombre.IndexOf(wordKey[i]) > -1 || _documents.nombreDoc.IndexOf(wordKey[i]) > -1 || _documents.dependencia.IndexOf(wordKey[i]) > -1 || _documents.path.IndexOf(wordKey[i]) > -1 || _documents.producto.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             HttpPostedFileBase hpf = null;
             if (Request.Files.Count > 0)
             {
                 _documents.file = "EXISTE";
                 hpf = Request.Files[0] as HttpPostedFileBase;
             }
+
             var data = new ManageParams().updDocumentos(ref _documents, usr.asesor, hpf);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -2005,6 +2430,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (dato.IndexOf(wordKey[i]) > -1 || valida.IndexOf(wordKey[i]) > -1 || campoComparar.IndexOf(wordKey[i]) > -1 || valorComparar.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveConfigDoc(documento, obtencion, x, y, dato, pagina, fuente, valida, campoComparar, valorComparar, variacion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -2016,6 +2450,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (dato.IndexOf(wordKey[i]) > -1 || valida.IndexOf(wordKey[i]) > -1 || campoComparar.IndexOf(wordKey[i]) > -1 || valorComparar.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updConfigDoc(codigo, documento, obtencion, x, y, dato, pagina, fuente, valida, campoComparar, valorComparar, variacion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -2088,6 +2531,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (codigo.IndexOf(wordKey[i]) > -1 || banco.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveBanco(codigo, banco, usr.userName);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -2098,6 +2550,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (codigo.IndexOf(wordKey[i]) > -1 || banco.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updBanco(codigo, banco, usr.userName);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -2131,6 +2592,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (codigo.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().getIdBanco(codigo);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -2181,6 +2651,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (rfc.IndexOf(wordKey[i]) > -1 || casa_financiera.IndexOf(wordKey[i]) > -1 || estado.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().saveCasa(rfc, casa_financiera, estado, usr.asesor);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -2191,6 +2670,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (rfc.IndexOf(wordKey[i]) > -1 || casa_financiera.IndexOf(wordKey[i]) > -1 || estado.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().updCasa(rfc, casa_financiera, estado, usr.asesor);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -2213,6 +2701,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (rfc.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().getIdCasas(rfc);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -2237,6 +2734,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (cod.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().getIdClaves(cod);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -2247,6 +2753,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (cod.IndexOf(wordKey[i]) > -1 || delg.IndexOf(wordKey[i]) > -1 )
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().saveClaves(cod, delg, usr.userName);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -2259,6 +2774,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (cod.IndexOf(wordKey[i]) > -1 || delg.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             var data = new ManageParams().updClaves(cod, delg, usr.userName);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -2269,6 +2793,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (cod.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageParams().deleteClaves(cod);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

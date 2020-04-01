@@ -174,7 +174,7 @@ namespace BayPortColombia.Controllers
             LogHelper.WriteLog("Controller", "ProfileController", "guardaDocumentoOriginacion1", new Exception(), "Respuesta Carga de Expediente Completo");
             return new JsonResult { Data = _doc, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult buscarDocumentos(string folder, double codigoDoc)
+        public JsonResult buscarDocumentos(double folder, double codigoDoc)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -182,7 +182,7 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().buscarDocumentos(folder, codigoDoc);
+            var data = new ManageProfile().buscarDocumentos(folder.ToString(), codigoDoc);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult eliminaDocumentosOriginacion(double codigoDoc)
@@ -196,7 +196,7 @@ namespace BayPortColombia.Controllers
             var data = new ManageProfile().eliminaDocumentosOriginacion(codigoDoc);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult eliminarItemCartera(double item, string folder)
+        public JsonResult eliminarItemCartera(double item, double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -204,10 +204,10 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().eliminarItemCartera(item,folder);
+            var data = new ManageProfile().eliminarItemCartera(item,folder.ToString());
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult documentoOriginacion(double dependencia, double? producto, string folder, double doc)
+        public JsonResult documentoOriginacion(double dependencia, double? producto, double folder, double doc)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -217,10 +217,10 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().documentoOriginacion(dependencia, producto, folder, doc, rootPath, baseUrl);
+            var data = new ManageProfile().documentoOriginacion(dependencia, producto,folder.ToString(), doc, rootPath, baseUrl);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult documentoCartera(double dependencia, double? producto, string folder, double doc)
+        public JsonResult documentoCartera(double dependencia, double? producto, double folder, double doc)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -230,10 +230,10 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().documentoCartera(dependencia, producto, folder, doc, rootPath, baseUrl);
+            var data = new ManageProfile().documentoCartera(dependencia, producto,folder.ToString(), doc, rootPath, baseUrl);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult soloFirmas(double dependencia, double? producto,string folder)  
+        public JsonResult soloFirmas(double dependencia, double? producto,double folder)  
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -243,11 +243,11 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().soloFirmas(dependencia, producto, folder, rootPath, baseUrl);
+            var data = new ManageProfile().soloFirmas(dependencia, producto,folder.ToString(), rootPath, baseUrl);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         
-        public JsonResult Expedientillo(double dependencia, double? producto, string folder, double cambioDoc)
+        public JsonResult Expedientillo(double dependencia, double? producto, double folder, double cambioDoc)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -257,10 +257,10 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().expedientillo(dependencia, producto, folder, rootPath, baseUrl, cambioDoc);
+            var data = new ManageProfile().expedientillo(dependencia, producto,folder.ToString(), rootPath, baseUrl, cambioDoc);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult AllDocuments(double dependencia, double? producto, string folder, double cambioDoc)
+        public JsonResult AllDocuments(double dependencia, double? producto, double folder, double cambioDoc)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -270,10 +270,10 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().allDocuments(dependencia, producto, folder, rootPath, baseUrl, cambioDoc);
+            var data = new ManageProfile().allDocuments(dependencia, producto,folder.ToString(), rootPath, baseUrl, cambioDoc);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult impresion(double dependencia, double? producto, string folder)
+        public JsonResult impresion(double dependencia, double? producto, double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -283,10 +283,10 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().Imprimir(dependencia, producto, folder, rootPath, baseUrl);
+            var data = new ManageProfile().Imprimir(dependencia, producto,folder.ToString(), rootPath, baseUrl);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult getIdSolicitud(string folder)
+        public JsonResult getIdSolicitud(double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -294,10 +294,10 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().getIdSolicitud(folder);
+            var data = new ManageProfile().getIdSolicitud(folder.ToString());
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult getOfertasSeguros(string folder, double vlr_solcitado, double vlr_maximo )
+        public JsonResult getOfertasSeguros(double folder, double vlr_solcitado, double vlr_maximo )
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -305,7 +305,7 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().getOfertasSeguros(folder, vlr_solcitado, vlr_maximo, usr.asesor);
+            var data = new ManageProfile().getOfertasSeguros(folder.ToString(), vlr_solcitado, vlr_maximo, usr.asesor);
             TempData["offerPolicy"] = data.ofertas;
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -322,7 +322,7 @@ namespace BayPortColombia.Controllers
             var data = new ManageProfile().aceptarOferta(ref _doc, usr.asesor);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult procesarOferta(string folder, double dependencia, double? producto)
+        public JsonResult procesarOferta(double folder, double dependencia, double? producto)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -332,17 +332,17 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().createSolicitud(folder, dependencia, producto, rootPath, baseUrl, usr.sucursal);
+            var data = new ManageProfile().createSolicitud(folder.ToString().ToString(), dependencia, producto, rootPath, baseUrl, usr.sucursal);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult beneficiariosPoliza(string folder) {
+        public JsonResult beneficiariosPoliza(double folder) {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
             {
                 Login();
                 return null;
             }
-            var data = new ManageProfile().beneficiariosPoliza(folder);
+            var data = new ManageProfile().beneficiariosPoliza(folder.ToString());
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult guardarBeneficiarioPoliza (string beneficiario, double poliza)
@@ -369,7 +369,7 @@ namespace BayPortColombia.Controllers
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         /*Danny 2019 10*/
-        public JsonResult getComentarios(string folder)
+        public JsonResult getComentarios(double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -377,7 +377,7 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().getComentarios(folder);
+            var data = new ManageProfile().getComentarios(folder.ToString());
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         [HttpGet]
@@ -393,7 +393,7 @@ namespace BayPortColombia.Controllers
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         /*Danny 2019 10*/
-        public JsonResult docPoliza(string folder)
+        public JsonResult docPoliza(double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -403,7 +403,7 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().docPoliza(folder, rootPath, baseUrl);
+            var data = new ManageProfile().docPoliza(folder.ToString(), rootPath, baseUrl);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult findEntidad(string entidadFederativa)
@@ -439,7 +439,7 @@ namespace BayPortColombia.Controllers
             var data = new ManageProfile().BuscaCodigoPostal(codigoPostal);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult cancelarFolio(string folder)
+        public JsonResult cancelarFolio(double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -447,10 +447,10 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().cancelarFolio(folder);
+            var data = new ManageProfile().cancelarFolio(folder.ToString());
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult findExpCompleto (string folder)
+        public JsonResult findExpCompleto (double folder)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -458,7 +458,7 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            var data = new ManageProfile().findExpCompleto(folder);
+            var data = new ManageProfile().findExpCompleto(folder.ToString());
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }

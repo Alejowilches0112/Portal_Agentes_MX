@@ -141,3 +141,16 @@ C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-A
 C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.csproj.CopyComplete
 C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.dll
 C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\DAO\obj\Debug\DAO.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\DAO.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\DAO.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\Entities.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\Helper.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\Oracle.ManagedDataAccess.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\Entities.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\bin\Debug\Helper.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\obj\Debug\DAO.csprojAssemblyReference.cache
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\obj\Debug\DAO.csproj.CoreCompileInputs.cache
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\obj\Debug\DAO.csproj.CopyComplete
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\obj\Debug\DAO.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\DAO\obj\Debug\DAO.pdb

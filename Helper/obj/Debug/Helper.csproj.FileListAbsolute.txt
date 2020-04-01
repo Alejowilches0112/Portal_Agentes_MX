@@ -104,3 +104,12 @@ C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-A
 C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Helper\obj\Debug\Helper.csproj.CopyComplete
 C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Helper\obj\Debug\Helper.dll
 C:\Users\cristian.wilches\Documents\PortalMexico-AjustesSeguridad\PortalMexico-AjustesSeguridad\Helper\obj\Debug\Helper.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\bin\Debug\Helper.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\bin\Debug\Helper.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\bin\Debug\Entities.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\bin\Debug\Entities.pdb
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\obj\Debug\Helper.csprojAssemblyReference.cache
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\obj\Debug\Helper.csproj.CoreCompileInputs.cache
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\obj\Debug\Helper.csproj.CopyComplete
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\obj\Debug\Helper.dll
+C:\Users\Alejo\Documents\GitHub\Portal_Agentes_MX\Helper\obj\Debug\Helper.pdb

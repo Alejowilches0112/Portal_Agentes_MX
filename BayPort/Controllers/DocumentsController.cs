@@ -66,6 +66,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (FileName.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             try
             {
                 char[] s = new char[FileName.Length - FileName.LastIndexOf("\\") - 1];
@@ -127,6 +136,12 @@ namespace BayPortColombia.Controllers
         }
         public JsonResult GetTablasAs()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
             var data = new ManageDocuments().GetTablasAs();
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -183,6 +198,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (opcion.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             ParamGuias _doc = JsonConvert.DeserializeObject<ParamGuias>(archivo);
             var data = new ManageDocuments().GuardarArchvio(ref _doc, opcion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -195,6 +219,15 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (opcion.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
+            }
             ParamGuias _doc = JsonConvert.DeserializeObject<ParamGuias>(archivo);
             var data = new ManageDocuments().EditarArchivo(ref _doc, opcion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -206,6 +239,15 @@ namespace BayPortColombia.Controllers
             {
                 Login();
                 return null;
+            }
+            string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
+            for (var i = 0; i < wordKey.Length; i++)
+            {
+                if (opcion.IndexOf(wordKey[i]) > -1)
+                {
+                    Login();
+                    return null;
+                }
             }
             var data = new ManageDocuments().EliminarArchvio(codigo, opcion);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

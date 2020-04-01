@@ -5,6 +5,7 @@ using System;
 using System.IO;
 using System.Web;
 using System.Text.RegularExpressions;
+using System.Configuration;
 namespace Models
 {
     public class ManageDocuments
@@ -81,7 +82,7 @@ namespace Models
                 
                 documents.nombreDoc = regex.Replace(documents.nombreDoc, "_plantilla" + extension);
                 documents.nombreDoc = documents.nombreDoc.Replace(" ", "_");
-                documents.path = "D:\\PORTAL_MEXICO_QA\\PLANTILLAS_DOCS\\" + documents.dependencia;
+                documents.path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\PLANTILLAS_DOCS\\" + documents.dependencia;
                 documents.path += (documents.producto != null) ? "\\"+documents.producto : "";
                 if (!Directory.Exists(documents.path))
                     Directory.CreateDirectory(documents.path);
@@ -135,7 +136,7 @@ namespace Models
                 {
                     extension = match.Value;
                 }
-                documents.path = "D:\\PORTAL_MEXICO_QA\\DOCUMENTOS_ORIGINACION\\"+ documents.folder + "\\"+ documents.dependencia;
+                documents.path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION\"+ documents.folder + "\\"+ documents.dependencia;
                 documents.path += (documents.producto != null) ? "\\"+documents.producto : "";
                 var firma = (documents.firma == 1) ? "_firma" : "";
                 var expediente = (documents.expedienteCompleto == 1) ? "_expediente_completo" : ""; 
@@ -228,7 +229,7 @@ namespace Models
                 {
                     extension = match.Value;
                 }
-                var path = "D:\\PORTAL_MEXICO_QA\\DOCUMENTOS_ORIGINACION\\" + documents.folder + "\\" + documents.dependencia;
+                var path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION\\" + documents.folder + "\\" + documents.dependencia;
                 path += (documents.producto != null) ? "\\" + documents.producto : "";
                 var firma = (documents.firma == 1) ? "_firma" : "";
                 var expediente = (documents.expedienteCompleto == 1) ? "_expediente_completo" : "";
@@ -294,7 +295,7 @@ namespace Models
                 {
                     extension = match.Value;
                 }
-                documents.path = "D:\\PORTAL_MEXICO_QA\\DOCUMENTOS_ORIGINACION \\"+ documents.folder + "\\" + documents.dependencia;
+                documents.path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION \\"+ documents.folder + "\\" + documents.dependencia;
                 documents.path += (documents.producto != null) ? "\\" + documents.producto : "";
                 var firma = (documents.firma == 1) ? "_firma" : "";
                 var expediente = (documents.expedienteCompleto == 1) ? "_expediente_completo" : "";
@@ -498,7 +499,7 @@ namespace Models
             var sector = documento.nsector;
             //var sector = (documento.sector == 1) ? "EDUCACION" : ((documento.sector == 2) ? "GOBIERNO" : "SALUD");
             documento.nombre = documento.nombre.Replace(" ", "_");
-            documento.path = "D:\\PORTAL_MEXICO_QA\\"+tabla +"\\"+sector;
+            documento.path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\"+tabla +"\\"+sector;
             try
             {
                 if (!Directory.Exists(documento.path))
@@ -534,7 +535,7 @@ namespace Models
             var sector = documento.nsector;
             //var sector = (documento.sector == 1) ? "EDUCACION" : ((documento.sector == 2) ? "GOBIERNO" : "SALUD");
             documento.nombre = documento.nombre.Replace(" ", "_");
-            documento.path = "D:\\PORTAL_MEXICO_QA\\" + tabla + "\\" + sector;
+            documento.path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\" + tabla + "\\" + sector;
             try
             {
                 if (documento.file != "" && documento.file != null)

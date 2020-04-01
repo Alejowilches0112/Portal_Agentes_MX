@@ -698,7 +698,7 @@ namespace Models
         public string documentoOriginacion(double dependencia, double? producto, string folder, double? documento, string rootPath, string baseURL)
         {
             string filevirtual = "";
-            string Outpdf = "D:\\PORTAL_MEXICO_QA\\DOCUMENTOS_ORIGINACION";
+            string Outpdf = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION";
             ParamDocumentos _document = new ParamDocumentos();
             try
             {
@@ -1795,7 +1795,7 @@ namespace Models
             List<string> dataResult = new List<string>();
             List<string> docsExistentes = new List<string>();
 
-            string Outpdf = "D:\\PORTAL_MEXICO_QA\\DOCUMENTOS_ORIGINACION";
+            string Outpdf = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION";
             OutGetDocument data;
             var dao = new ProfileDAO();
             ParamDocumentos _document = new ParamDocumentos();
@@ -8243,7 +8243,7 @@ namespace Models
             {
                 File.Delete(pdfOut);
             }
-            PdfReader reader = new PdfReader("D:\\PORTAL_MEXICO_QA\\Certificado_Individual_Poliza.pdf");
+            PdfReader reader = new PdfReader("D:\\PORTAL_MEXICO\\Certificado_Individual_Poliza.pdf");
             FileStream fs = new FileStream(pdfOut, FileMode.Create, FileAccess.Write, FileShare.None);
             PdfWriter writer = new PdfWriter(fs);
             PdfDocument pdf = new PdfDocument(reader, writer);

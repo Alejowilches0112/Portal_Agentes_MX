@@ -55,7 +55,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblTipoCredito" class="control-label col-sm-12">TIPO <a style="color:red;font-size:30px;">*</a></label>
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     required name="tipoCredito" class="selectpicker form-control" ng-model="formulario.tipoSolicitud" ng-options="tipcredito.secuencia as tipcredito.tipoSolicitud for tipcredito in tipoSolicitudList.ListTipoSolicitud" ng-change="getTipoSolicitud();validaCampos();ChangeSolicitud(formulario.tipoSolicitud);">
                                 <option value="">SELECCIONE TIPO</option>
                             </select>
@@ -64,13 +64,13 @@
                         <div class="col-sm-6 form-group">
                             <label for="lblMonto" class="control-label col-sm-12">MONTO <a style="color:red;font-size:30px;">*</a></label>
 
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    required type="number" class="form-control" id="inputMonto" placeholder="Digite monto" name="monto" ng-model="formulario.monto" ng-blur="calcularOferta();">
                             <span id="valid-solicitud3"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblLineaCredito" class="control-label col-sm-12">PERIODO <a style="color:red;font-size:30px;">*</a></label>
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     required name="Periodo_Solicitud" class="selectpicker form-control" ng-model="formulario.periodo" ng-options="periodos.secuencia as periodos.periodo for periodos in periodosAplicables.ListPeriodos" ng-change="getPeriodos();getPlazosPeriodo(formulario.periodo);validaCampos();calcularOferta();">
                                 <option value="">SELECCIONE PERIODO</option>
                             </select>
@@ -80,7 +80,7 @@
                         <div class="col-sm-6 form-group">
                             <label for="lblMonto" class="control-label col-sm-12">PLAZO <a style="color:red;font-size:30px;">*</a></label>
 
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     required class="selectpicker form-control" name="Plazo" ng-model="formulario.plazo" ng-options="periodos.value as periodos.plazo for periodos in plazosList" ng-change="calcularOferta();">
                                 <option value="">SELECCIONE PLAZO</option>
                             </select>
@@ -88,13 +88,13 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblLBase" class="control-label col-sm-12">LIQUIDO BASE <a style="color:red;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    required type="number" ng-keyup="validaValor(1)" class="form-control" id="liquido_Base" placeholder="" name="LBase" ng-model="formulario.LBase" ng-blur="calcularOferta();">
                             <span id="valid-solicitud6"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblnPlazas" class="control-label col-sm-12">No PLAZAS</label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    type="number" class="form-control" ng-keyup="validaValor(2)" id="inputNPlazas" placeholder="" name="nPlazas" ng-model="formulario.nPlazas">
                             <span id="valid-solicitudPlaza"></span>
                         </div>
@@ -103,7 +103,7 @@
                         <div class="col-sm-6 form-group">
                             <label for="lblConvenio" class="control-label col-sm-12">DEPENDENCIA/EMPRESA DONDE TRABAJA <a style="color:red;font-size:30px;">*</a></label>
 
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     required name="Dependencia" class="selectpicker form-control" ng-model="formulario.Dependencia" ng-options="dependencia.secuencia as dependencia.dependencia for dependencia in dependenciaList.ListDependencias" ng-change="GetDependencias();getProductoDependencia(formulario.Dependencia);validaCampos();loadDocumentos();calcularOferta();">
                                 <option value="">{{DependenciaoTextToShow}}</option>
                             </select>
@@ -112,7 +112,7 @@
                         <div class="col-sm-6 form-group" ng-if="formulario.Dependencia && ProductosList.ListProductosDependencia.length > -1">
                             <label for="lblProducto" class="control-label col-sm-12">PRODUCTO <a style="color:red;font-size:30px;">*</a></label>
 
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     class="selectpicker form-control" name="Producto" ng-model="formulario.producto" ng-options="producto.secuencia as producto.producto for producto in ProductosList.ListProductosDependencia" ng-change="getProductoDependencia(formulario.Dependencia);validaCampos();loadDocumentos();calcularOferta();">
                                 <option value="">SELECCIONE...</option>
                             </select>
@@ -121,37 +121,37 @@
                         <!--Validar Condicional para estos Campos-->
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('ESPECIFICAR') > -1">
                             <label for="lblEspecificar" class="control-label col-sm-6">ESPECIFICAR <a ng-if="CamposAdicionales.indexOf('ESPECIFICAR') > -1 && obligatorio[CamposAdicionales.indexOf('ESPECIFICAR')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('ESPECIFICAR') > -1 && obligatorio[CamposAdicionales.indexOf('ESPECIFICAR')] == 'N'" style="color:white;font-size:30px;">*</a> </label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    type="text" ng-pattern="NoSpecialCharactersRfc" ng-maxlength="20" uppercase id="ESPECIFICAR" ng-model="formulario.especificar" class="form-control" placeholder="" name="especificar">
                             <span id="valid-solicitud18"></span>
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('GRUPO') > -1">
                             <label for="lblEspecificar" class="control-label col-sm-6">GRUPO<a ng-if="CamposAdicionales.indexOf('GRUPO') > -1 && obligatorio[CamposAdicionales.indexOf('GRUPO')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('GRUPO') > -1 && obligatorio[CamposAdicionales.indexOf('GRUPO')] == 'N'" style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    type="number" ng-maxlength="5" id="GRUPO" ng-model="formulario.grupo" class="form-control" placeholder="" name="grupoSolicitud">
                             <span id="valid-solicitud19"></span>
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('MATRICULA') > -1">
                             <label for="lblEspecificar" class="control-label col-sm-6">MATRÍCULA <a ng-if="CamposAdicionales.indexOf('MATRICULA') > -1 && obligatorio[CamposAdicionales.indexOf('MATRICULA')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('MATRICULA') > -1 && obligatorio[CamposAdicionales.indexOf('MATRICULA')] == 'N'" style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    type="text" ng-pattern="NoSpecialCharactersRfc" id="MATRICULA" ng-maxlength="30" ng-model="formulario.matricula" class="form-control" placeholder="" name="matricula">
                             <span id="valid-solicitud20"></span>
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('NSS') > -1">
                             <label for="lblEspecificar" class="control-label col-sm-6">NSS <a ng-if="CamposAdicionales.indexOf('NSS') > -1 && obligatorio[CamposAdicionales.indexOf('NSS')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('NSS') > -1 && obligatorio[CamposAdicionales.indexOf('NSS')] == 'N'" style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
-                                   type="number" id="NSS" ng-model="formulario.nss" class="form-control" placeholder="" name="nss">
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
+                                   type="text" ng-pattern="NoSpecialCharactersCodigo" id="NSS" ng-model="formulario.nss" class="form-control" placeholder="" name="nss">
                             <span id="valid-solicitud21"></span>
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('MONTO DEUDOR') > -1">
                             <label for="lblEspecificar" class="control-label col-sm-6">MONTO DEUDOR <a ng-if="CamposAdicionales.indexOf('MONTO DEUDOR') > -1 && obligatorio[CamposAdicionales.indexOf('MONTO DEUDOR')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('MONTO DEUDOR') > -1 && obligatorio[CamposAdicionales.indexOf('MONTO DEUDOR')] == 'N'" style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                    type="number" id="MONTO DEUDOR" ng-maxlength="11" ng-model="formulario.monto_deudor" class="form-control" placeholder="" name="monto_deudor">
                             <span id="valid-solicitud22"></span>
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('CLAVE TRABAJDOR') > -1">
                             <label for="lblDestinoCredito" class="control-label col-sm-6">CLAVE TRABAJADOR <a ng-if="CamposAdicionales.indexOf('CLAVE TRABAJDOR') > -1 && obligatorio[CamposAdicionales.indexOf('CLAVE TRABAJDOR')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('MONTO DEUDOR') > -1 && obligatorio[CamposAdicionales.indexOf('MONTO DEUDOR')] == 'N'" style="color:white;font-size:30px;">*</a></label>
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     id="clave_trabajador" class="selectpicker form-control" ng-pattern="NoSpecialCharactersRfc" name="clave_trabajor" ng-model="formulario.clave_trabajdor">
                                 <option value="">SELECCIONE...</option>
                                 <option ng-repeat="item in option['CLAVE TRABAJDOR']" value{{item}}>{{item}}</option>
@@ -160,7 +160,7 @@
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('RECA') > -1">
                             <label for="lblDestinoCredito" class="control-label col-sm-6">RECA <a ng-if="CamposAdicionales.indexOf('RECA') > -1 && obligatorio[CamposAdicionales.indexOf('RECA')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('RECA') > -1 && obligatorio[CamposAdicionales.indexOf('RECA')] == 'N'" style="color:white;font-size:30px;">*</a></label>
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     class="selectpicker form-control" name="reca" ng-model="formulario.reca" ng-options="reca.secuencia as reca.reca for reca in recaList.ListRecas">
                                 <option value="">SELECCIONE...</option>
                             </select>
@@ -168,7 +168,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblDestinoCredito" class="control-label col-sm-12">DESTINO CRÉDITO<a style="color:red;font-size:30px;">*</a></label>
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     required class="selectpicker form-control" name="destino_credito" ng-model="formulario.destino" ng-options="destino.secuencia as destino.destinoCredito for destino in destinoList.ListDestinoCred">
                                 <option value="">SELECCIONE...</option>
                             </select>
@@ -176,7 +176,7 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblTipoNomina" class="control-label col-sm-12">TIPO NOMINA<a style="color:red;font-size:30px;">*</a></label>
-                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                            <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                     required class="selectpicker form-control" name="tNomina" ng-model="formulario.tNomina" ng-options="nomina.secuencia as nomina.tipoNomina for nomina in nominaList.ListTipoNomina" ng-change="getNomina();" requiered>
                                 <option value="">SELECCIONE...</option>
                             </select>
@@ -194,7 +194,7 @@
                                     <tr>
                                         <td class="col-xs-8">DESCUENTO<a style="color:red;font-size:30px;">*</a></td>
                                         <td class="col-xs-4">
-                                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                    required type="number" class="form-control col-sm-6" id="inputDscto" placeholder="" name="dscto" ng-model="formulario.dscto">
                                             <span id="valid-solicitud11"></span>
                                         </td>
@@ -202,7 +202,7 @@
                                     <tr>
                                         <td> TASA ANUAL<a style="color:red;font-size:30px;">*</a></td>
                                         <td>
-                                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                    required type="number" class="form-control col-sm-6" id="inputTAnual" placeholder="" name="tAnual" ng-model="formulario.tAnual">
                                             <span id="valid-solicitud12"></span>
                                         </td>
@@ -210,7 +210,7 @@
                                     <tr>
                                         <td> CAT </td>
                                         <td>
-                                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                    type="number" class="form-control col-sm-6" id="inputCat" placeholder="" name="cat" ng-model="formulario.cat">
                                             <span id="valid-solicitud13"></span>
                                         </td>
@@ -230,7 +230,7 @@
                         </div>
                         <!--<div class="col-sm-6 form-group">
                         <label for="lblQncenaDscto" class="control-label col-sm-12">QUINCENA INCIO DSCTO<a style="color:red;font-size:30px;">*</a></label>
-                        <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                        <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                 required class="selectpicker form-control" name="quincena_dscto" ng-model="formulario.quincenaDscto" ng-options="dscto.secuencia as dscto.QuincenaDscto for dscto in descuentosList.ListQuincenaDscto" ng-change="getDescuentos();">
                             <option value="">Seleccione Quincena</option>
                         </select>
@@ -270,43 +270,44 @@
                     <div class="row">
                         <div class="col-sm-6 form-group">
                             <label for="lblDocumentNumber" class="control-label col-sm-12">RFC <a style="color:red;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Devolucion' ||
-                                   formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada' || formulario.estado == 'Devolucion Asesor' || formulario.estado == 'Recuperado' || selecCliente || (formulario.estado == 'NUEVA' && formulario.RFC && selecCliente)"
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' ||
+                                   formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada' || formulario.estado == 'Recuperado' || selecCliente "
                                    type="text" ng-pattern="NoSpecialCharactersRfc" uppercase class="form-control" id="unputRFC" name="numdoc" ng-model="formulario.RFC" placeholder="Digite RFC" ng-keyup="validaLongitud(formulario.RFC, 13, 8)" required ng-blur="buscarCliente()">
                             <span id="valid-datos1"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblDocumentNumber" class="control-label col-sm-12">CURP <a style="color:red;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' 
+                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' || selecCliente "
                                    type="text" ng-pattern="NoSpecialCharactersRfc" uppercase class="form-control col-sm-12" id="inputCurp" name="curp" ng-model="formulario.CURP" placeholder="Digite CURP" ng-keyup="validaLongitud(formulario.CURP, 18, 9)" required ng-blur="analizaCurp(formulario.CURP)">
                             <span id="valid-datos6"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblFirstName" class="control-label col-sm-12">PRIMER NOMBRE <a style="color:red;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Devolucion'
-                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada' || formulario.estado == 'Devolucion Asesor' || formulario.estado == 'Recuperado' || selecCliente || (formulario.estado == 'NUEVA' && formulario.RFC && selecCliente)"
-                                   required type="text" ng-pattern="NoSpecialCharacters" uppercase class="form-control col-sm-12" id="inputFirstName" placeholder="Digite primer nombre" name="pNombre" ng-model="formulario.pNombre">
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' 
+                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada'  || formulario.estado == 'Recuperado' || selecCliente"
+                                   required type="text" ng-pattern="NoSpecialCharactersNombres" uppercase class="form-control col-sm-12" id="inputFirstName" placeholder="Digite primer nombre" name="pNombre" ng-model="formulario.pNombre">
                             <span id="valid-datos2"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblFirstName" class="control-label col-sm-12">SEGUNDO NOMBRE <a style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Devolucion'
-                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada' || formulario.estado == 'Devolucion Asesor' || formulario.estado == 'Recuperado' || selecCliente || (formulario.estado == 'NUEVA' && formulario.RFC && selecCliente)"
-                                   type="text" ng-pattern="NoSpecialCharacters" class="form-control col-sm-12" id="inputSecondName" placeholder="Digite segundo nombre" name="sNombre" ng-model="formulario.sNombre">
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' 
+                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada'  || formulario.estado == 'Recuperado' || selecCliente"
+                                   type="text" ng-pattern="NoSpecialCharactersNombres" uppercase class="form-control col-sm-12" id="inputSecondName" placeholder="Digite segundo nombre" name="sNombre" ng-model="formulario.sNombre">
                             <span id="valid-datos2"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblFirstSurname" class="control-label col-sm-12">PRIMER APELLIDO <a style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Devolucion'
-                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada' || formulario.estado == 'Devolucion Asesor' || formulario.estado == 'Recuperado'|| selecCliente || (formulario.estado == 'NUEVA' && formulario.RFC && selecCliente)"
-                                   required type="text" ng-pattern="NoSpecialCharacters" class="form-control col-sm-12" id="inputFirstSurname" placeholder="Digite primer apellido" name="pApellido" ng-model="formulario.pApellido">
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' 
+                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada'  || formulario.estado == 'Recuperado'|| selecCliente"
+                                   required type="text" ng-pattern="NoSpecialCharactersNombres" uppercase class="form-control col-sm-12" id="inputFirstSurname" placeholder="Digite primer apellido" name="pApellido" ng-model="formulario.pApellido">
                             <span id="valid-datos3"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblSecondSurname" class="control-label col-sm-12">SEGUNDO APELLIDO <a style="color:white;font-size:30px;">*</a></label>
-                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Devolucion'
-                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada' || formulario.estado == 'Devolucion Asesor' || formulario.estado == 'Recuperado' || selecCliente || (formulario.estado == 'NUEVA' && formulario.RFC && selecCliente)"
-                                   type="text" ng-pattern="NoSpecialCharacters" class="form-control col-sm-12" id="inputSecondSurname" placeholder="Digite segundo apellido" name="sApellido" ng-model="formulario.sApellido">
+                            <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado'
+                                   || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Pre Capturada'  || formulario.estado == 'Recuperado' || selecCliente"
+                                   type="text" ng-pattern="NoSpecialCharactersNombres" uppercase class="form-control col-sm-12" id="inputSecondSurname" placeholder="Digite segundo apellido" name="sApellido" ng-model="formulario.sApellido">
                             <span id="valid-datos4"></span>
                         </div>
                     </div>
@@ -381,12 +382,10 @@
                         <div class="col-xs-5 form-group">
                             <label for="lblGenero" class="control-label col-sm-6">GENERO <a style="color:red;font-size:30px;">*</a> </label>
 
-                            <div class="col-sm-8 form-group" ng-init="formulario.gender='M'">
-                                <div class="col-sm-8 form-group" ng-init="formulario.gender='M'">
+                                <div class="col-sm-8 form-group">
                                     <label class="radio-inline col-xs-5"> <input disabled type="radio" name="gender" id="rbFemale" value="F" ng-checked="true" ng-model="formulario.gender"> Femenino </label>
                                     <label class="radio-inline col-xs-5"> <input disabled type="radio" name="gender" id="rbMale" value="M" ng-model="formulario.gender"> Masculino </label>
                                 </div>
-                            </div>
                         </div>
                         <div class="col-xs-7 form-group" ng-if="formulario.CURP.length == 18 && formulario.CURP.substring(11, 13) === 'NE'">
                             <label for="lblMigratoria" class="control-label col-sm-6">Tipo y No. de Forma Migratoria</label>
@@ -850,7 +849,7 @@
                                                type="time" class="form-control" name="Hora2Ref1" ng-model="formulario.Hora2Ref1">
                                 </label>
                                 <label class="control-label">
-                                    DE: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                    DE: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                 required name="tipoCredito" class="selectpicker form-control" ng-model="formulario.dia1Ref1">
                                         <option value="">SELECCIONE DIA</option>
                                         <option value="LUNES">LUNES</option>
@@ -862,7 +861,7 @@
                                     </select>
                                 </label>
                                 <label class="control-label">
-                                    A: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                    A: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                required name="tipoCredito" class="selectpicker form-control" ng-model="formulario.dia2Ref1">
                                         <option value="">SELECCIONE DIA</option>
                                         <option value="LUNES">LUNES</option>
@@ -927,7 +926,7 @@
                                                type="time" class="form-control" name="Hora2Ref1" ng-model="formulario.Hora2Ref2">
                                 </label>
                                 <label class="control-label">
-                                    DE: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                    DE: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                 required name="tipoCredito" class="selectpicker form-control" ng-model="formulario.dia1Ref2">
                                         <option value="">SELECCIONE DIA</option>
                                         <option value="LUNES">LUNES</option>
@@ -939,7 +938,7 @@
                                     </select>
                                 </label>
                                 <label class="control-label">
-                                    A: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  || formulario.estado == 'Devolucion'"
+                                    A: <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'  "
                                                required name="tipoCredito" class="selectpicker form-control" ng-model="formulario.dia2Ref2">
                                         <option value="">SELECCIONE DIA</option>
                                         <option value="LUNES">LUNES</option>
@@ -1078,14 +1077,14 @@
                         <div class="col-sm-6 form-group">
                             <label for="lblDepositoCliente" class="control-label col-sm-6">DEPÓSITO DEL CLIENTE</label>
                             <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion'
-                                   || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'   || formulario.estado == 'Devolucion'"
+                                   || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'   "
                                    type="number" class="form-control" id="inputDepositoCliente" name="depositoCliente" ng-model="formulario.depositoCliente">
                             <span id="valid-cartera1"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblDiasPagar" class="control-label col-sm-6">DÍAS A PAGAR</label>
                             <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion'
-                                   || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'   || formulario.estado == 'Devolucion'"
+                                   || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada'   "
                                    type="number" class="form-control" id="inputDiasPagar" placeholder="" name="DiasPagar" ng-model="formulario.DiasPagar">
                             <span id="valid-cartera2"></span>
                         </div>
@@ -1125,44 +1124,44 @@
                                     <tfoot>
                                         <tr>
                                             <td class="col-xs-2">
-                                                <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <select ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'   || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                         class="form-control" name="CasaFinanciera" ng-model="compraDeduda.casaFinanciera" ng-options="banco.rfc_casa as banco.casa_financera for banco in casasFinancierasList.ListCasas" ng-change="getCasasFinancierasActivas()"></select>
                                             </td>
                                             <td class="col-xs-2">
-                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'   || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                        type="number" inputmode="numeric" class="form-control" id="inputCapital" ng-model="compraDeduda.capital" placeholder="">
                                             </td>
                                             <td class="col-xs-2">
-                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'   || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                        type="number" inputmode="numeric" class="form-control" id="inputSaldo" ng-model="compraDeduda.saldo" placeholder="">
                                             </td>
                                             <td class="col-xs-2">
-                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'   || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                        type="number" inputmode="numeric" class="form-control" id="inputdsctoCompra" ng-model="compraDeduda.dsctoCompra" placeholder="">
                                             </td>
                                             <td class="col-xs-1">
-                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'   || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                        type="number" inputmode="numeric" class="form-control" id="inputPlazoCompra" ng-model="compraDeduda.plazoCompra" placeholder="">
                                             </td>
                                             <td class="col-xs-2">
-                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'   || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                        type="number" inputmode="numeric" class="form-control" id="inputSaldoInsoluto|" ng-model="compraDeduda.saldoInsolutoCompra" placeholder="">
                                             </td>
                                             <td class="col-xs-1">
-                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                        type="number" inputmode="numeric" class="form-control" id="inputTasa" ng-model="compraDeduda.tasaCompra" placeholder="">
                                             </td>
                                             <td class="col-xs-2">
                                                 <div class='input-group date'>
-                                                    <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                    <input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                            type="text" id='datetimepicker3' class="selectpicker form-control" name="fchContrato" ng-model="compraDeduda.fechaContrato" datepicker placeholder="DD/MM/AAAA" />
                                                 </div>
                                             </td>
                                             <td>
-                                                <span ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <span ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                       class="glyphicon glyphicon-plus" style="color:blue;align-content:center;" ng-click="addCompraCartera();"></span>
 
-                                                <!--<button ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Devolucion' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
+                                                <!--<button ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida'  || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' "
                                                     type="button" class="btn btn-primary btn-xs" ng-click="addCompraCartera()">
                                                 <i class="fa fa-plus"></i>
                                             </button>-->
@@ -1216,8 +1215,10 @@
                             <button type="button" class="btn btn-primary btn-xs" data-toggle="collapse" data-target="#dropdown">Cargar Expediente completo</button>
                             <div id="dropdown" class="collapse">
                                 <div class="checkbox">
-                                    <label class="dropdown-item"><input ng-disabled="formulario.estado != 'NUEVA' && formulario.estado != ''" type="radio" value="1" ng-model="expedienteCompletoLoad" id="siExp" ng-change="cambiaEstado();">Si</label><br />
-                                    <label class="dropdown-item"><input ng-disabled="formulario.estado != 'NUEVA' && formulario.estado != ''" type="radio" value="0" ng-model="expedienteCompletoLoad" id="noExp" ng-change="cambiaEstado();">No</label>
+                                    <label class="dropdown-item"><input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' " 
+                                                                        type="radio" value="1" ng-model="expedienteCompletoLoad" id="siExp" ng-change="cambiaEstado();">Si</label><br />
+                                    <label class="dropdown-item"><input ng-disabled="formulario.estado == 'Pre Capturada' || formulario.estado == 'Cancelada Portal'   ||  formulario.estado == 'Recibida' || formulario.estado == 'Asignado'  || formulario.estado == 'Recuperado' || formulario.estado == 'Pendiente Autorizacion' || formulario.estado == 'Autorizado' || formulario.estado == 'Atendida' || formulario.estado == 'Cancelado' || formulario.estado == 'Cancelada' " 
+                                                                        type="radio" value="0" ng-model="expedienteCompletoLoad" id="noExp" ng-change="cambiaEstado();">No</label>
                                 </div>
                             </div>
                         </div>
@@ -1242,10 +1243,10 @@
                                         <td>{{item.orden}}</td>
                                         <td>{{item.nombre}}</td>
                                         <td>
-                                            <button id="documento-{{item.orden}}" class="btn btn-link btn-xs" ng-click="crearDoc(item.cod_documento,formulario.folderNumber,formulario.Dependencia,formulario.producto, item.compra)" ng-if="(!formulario.estado || formulario.estado == '' || formulario.estado == 'NUEVA'   ||  formulario.estado == 'Devolucion Auxiliar' || formulario.estado == 'Devolucion') && item.llena_auto == 1">
+                                            <button id="documento-{{item.orden}}" class="btn btn-link btn-xs" ng-click="crearDoc(item.cod_documento,formulario.folderNumber,formulario.Dependencia,formulario.producto, item.compra)" ng-if="(!formulario.estado || formulario.estado == '' || formulario.estado == 'NUEVA' || formulario.estado == 'Devolucion Auxiliar' || formulario.estado == 'Devolucion') && item.llena_auto == 1">
                                                 <i class="fa fa-cloud-download" style="color:green;"> </i>
                                             </button>
-                                            <button id="cargarDocumento-{{item.orden}}" class="btn btn-link btn-xs" ng-if="(!formulario.estado || formulario.estado == '' || formulario.estado == 'NUEVA'   ||  formulario.estado == 'Devolucion Auxiliar' || formulario.estado == 'Devolucion') && (item.llena_auto == 0 || item.firma == 1 && item.compra == 0)" ng-click="openModal('modalDocumentos', item)">
+                                            <button id="cargarDocumento-{{item.orden}}" class="btn btn-link btn-xs" ng-if="(!formulario.estado || formulario.estado == '' || formulario.estado == 'NUEVA' || formulario.estado == 'Devolucion Auxiliar' || formulario.estado == 'Devolucion') && (item.llena_auto == 0 || item.firma == 1 && item.compra == 0)" ng-click="openModal('modalDocumentos', item)">
                                                 <i class="fa fa-cloud-upload" style="color:blue;"></i>
                                             </button>
                                             <button id="listarDocumentos-{{item.orden}}" class="btn btn-link btn-xs" ng-click="buscarDocumentos(item, formulario.folderNumber)">
@@ -1273,7 +1274,7 @@
                                             <button id="documento" class="btn btn-link btn-xs" ng-click="DownloadDocFiles(DocumentosCargados[0].path)" ng-if="(formulario.estado != 'Cancelado' || formulario.estado != 'Cancelada' || formulario.estado != 'Cancelada Portal' ) && DocumentosCargados.length > 0">
                                                 <i class="fa fa-cloud-download" style="color:green;"> </i>
                                             </button>
-                                            <button id="cargarDocumento" class="btn btn-link btn-xs" ng-if="formulario.estado != 'Cancelado'" ng-click="openModal('modalExpedienteCompleto')">
+                                            <button id="cargarDocumento" class="btn btn-link btn-xs" ng-if="!formulario.estado || formulario.estado == '' || formulario.estado == 'NUEVA' || formulario.estado == 'Devolucion Auxiliar' || formulario.estado == 'Devolucion'" ng-click="openModal('modalExpedienteCompleto')">
                                                 <i class="fa fa-cloud-upload" style="color:blue;"></i>
                                             </button>
                                         </td>
@@ -1296,7 +1297,7 @@
                                                 <i class="fa fa-times" style="color:red;"></i>
                                             </button>
                                         </td>
-                                        <td ng-if="(formulario.estado == 'NUEVA' || formulario.estado == 'Devolucion' || formulario.estado == 'Devolucion Auxiliar'|| formulario.estado == '') && (findDocumentos.compra == 1)">
+                                        <td ng-if="(!formulario.estado || formulario.estado == '' || formulario.estado == 'NUEVA' || formulario.estado == 'Devolucion Auxiliar' || formulario.estado == 'Devolucion') && (findDocumentos.compra == 1)">
                                             <button id="cargarDocumento-{{item.nombreDoc}}" class="btn btn-link btn-xs" ng-click="openModal('modalDocumentosCompra', item)">
                                                 <i class="fa fa-cloud-upload" style="color:blue;"></i>
                                             </button>
@@ -1596,7 +1597,7 @@
 
                         </div>
                         <div class="col-sm-3">
-                            <button ng-disabled="formulario.estado != 'NUEVA'" class="btn btn-primary btn-xs" ng-click="subirDocOriginacionExpediente()">
+                            <button class="btn btn-primary btn-xs" ng-click="subirDocOriginacionExpediente()">
                                 <i class="fa fa-cloud-upload"> Subir Documento</i>
                             </button>
                         </div>
