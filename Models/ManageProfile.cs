@@ -653,9 +653,9 @@ namespace Models
                 {
 
                     var idSibel = xt.GetElementsByTagName("idSolicitud").Item(0).InnerText;
-                    dao.updFormularioSibel(idSibel, folder, inOriginacionServicioSolicitud.estado);
                     try
                     {
+                        dao.updFormularioSibel(idSibel, folder, inOriginacionServicioSolicitud.estado);
                         var cuerpo1 = $@"{inOriginacionServicioSolicitud.asesor} ha iniciado la CAPTURA de una {inOriginacionServicioSolicitud.tipoSolicitud} solicitud de un crédito con el folio: {folder}. Ingrese al sistema para su seguimiento a la solicitud de BAYPORT.";
                         var cuerpo2 = $@"El estatus de este folio en el portal de Agentes es :{inOriginacionServicioSolicitud.estado}.";
                         var body = String.Format("<p>A quien corresponda:</p> <p></p> <p></p> <p></p> <p>{1}</p> <p></p> <p></p> {2}", Environment.NewLine,cuerpo1, cuerpo2);
@@ -700,10 +700,11 @@ namespace Models
             string filevirtual = "";
             string Outpdf = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION";
             ParamDocumentos _document = new ParamDocumentos();
+            FormularioSolicitudDocs formulario;
             try
             {
                 _document = new ManageParams().getIdDocumentos(documento).ListDocumentos[0];
-
+                formulario = new ProfileDAO().solicitud(folder);
             }
             catch (Exception ex)
             {
@@ -715,7 +716,7 @@ namespace Models
             var carpeta = Outpdf;
             _document.nombre = _document.nombre.ToLower();
             _document.nombre = _document.nombre.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
-            Outpdf += "\\" + _document.nombre.Replace(" ", "_") + "_" + folder + ".pdf";
+            Outpdf += "\\" + formulario.RFC + "_" + _document.nombre.Replace(" ", "_") + "_" + folder + ".pdf";
             bool existe = File.Exists(Outpdf);
             if (existe)
             {
@@ -737,7 +738,6 @@ namespace Models
                 
                 //Document doc = new Document(reader.GetPageSizeWithRotation(1));
                 
-                var formulario = new ProfileDAO().solicitud(folder);
                 var pag_actual = 1;
                 PdfReader reader = new PdfReader(_document.path);
                 PdfWriter writer = new PdfWriter(fs);
@@ -8642,6 +8642,7 @@ namespace Models
             {
                 return false;
             }
+            LogHelper.WriteLog("Models", "ManageProfile", "sendMailAuxiliar", "", cuerpo, folder);
 
             return new Helper.Utilities().sendEmailAuxliar(folder, emailAuxiliar, pdf, cuerpo);
         }

@@ -71,7 +71,7 @@ namespace Helper
             email.EnableSsl = true;
             email.from = ConfigurationManager.AppSettings["emailAgente"];
             email.password = ConfigurationManager.AppSettings["passAgente"];
-            email.Subject = ConfigurationManager.AppSettings["asuntoAgente"];
+            email.Subject = ConfigurationManager.AppSettings["asuntoAgente"] +" "+ folder;
             email.to =  ("".Equals(emailAuxiliar[0])) ? emailAuxiliar[1] : emailAuxiliar[0];
             if (emails.Count > 0)
             {
@@ -97,7 +97,7 @@ namespace Helper
                 mail.IsBodyHtml = true;
                 for(var i = 0; i < pdf.Length; i++)
                 {
-                    if ("".Equals(pdf[0]) || pdf[0] != null)
+                    if (!"".Equals(pdf[i]) && pdf[i] != null)
                         mail.Attachments.Add(new System.Net.Mail.Attachment(pdf[i]));
                 }
 
