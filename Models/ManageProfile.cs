@@ -695,7 +695,7 @@ namespace Models
         {
             return "<" + field + ">" + value + "</" + field + ">";
         }
-        public string documentoOriginacion(double dependencia, double? producto, string folder, double? documento, string rootPath, string baseURL)
+        public string documentoOriginacion(double dependencia, double? producto, string folder, double? documento, string rootPath, string baseURL, double file)
         {
             string filevirtual = "";
             string Outpdf = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\DOCUMENTOS_ORIGINACION";
@@ -1779,8 +1779,12 @@ namespace Models
                 {
                     dao.cargaDocumentosOriginacion(ref docs);
                 }
-                var data = DownloadDocFiles(Outpdf, rootPath, baseURL);
-                filevirtual = data.virtualpath;
+                if (file == 1)
+                {
+                    var data = DownloadDocFiles(Outpdf, rootPath, baseURL);
+                    filevirtual = data.virtualpath;
+                }
+                
             }
             catch (Exception ex)
             {
@@ -1790,7 +1794,7 @@ namespace Models
             }
             return filevirtual;
         }
-        public List<string> documentoCartera(double dependencia, double? producto, string folder, double? documento, string rootPath, string baseURL)
+        public List<string> documentoCartera(double dependencia, double? producto, string folder, double? documento, string rootPath, string baseURL, double file)
         {
             List<string> dataResult = new List<string>();
             List<string> docsExistentes = new List<string>();
@@ -1911,8 +1915,11 @@ namespace Models
                     if (k > 0)
                     {
                         dao.cargaDocumentosOriginacion(ref docs);
-                        data = DownloadDocFiles(Outpdf, rootPath, baseURL);
-                        dataResult.Add(data.virtualpath);
+                        if (file == 1)
+                        {
+                            data = DownloadDocFiles(Outpdf, rootPath, baseURL);
+                            dataResult.Add(data.virtualpath);
+                        }
                     }
                     Outpdf = outpdf1.Replace("_" + folder, "_" + folder + "_" + cart.ElementAt(0).rfc_casa);
                     docs.nombreDoc = _document.nombre.Replace(" ", "_")+ folder + "_" + cart.ElementAt(0).rfc_casa + ".pdf";
@@ -3061,8 +3068,11 @@ namespace Models
                     dao.cargaDocumentosOriginacion(ref docs);
                 }*/
                 dao.cargaDocumentosOriginacion(ref docs);
-                data = DownloadDocFiles(Outpdf, rootPath, baseURL);
-                dataResult.Add(data.virtualpath);
+                if (file == 1)
+                {
+                    data = DownloadDocFiles(Outpdf, rootPath, baseURL);
+                    dataResult.Add(data.virtualpath);
+                }
             }
             catch (Exception ex)
             {
@@ -3444,7 +3454,17 @@ namespace Models
             string pdfOut = rootPath;
             string filevirtual = baseURL + "/Files/";
             var dao = new ProfileDAO();
-            pdfOut += "\\Documento_solo_firmas_" + folder + ".pdf";
+            FormularioSolicitudDocs formulario = new FormularioSolicitudDocs();
+            try
+            {
+                formulario = new ProfileDAO().solicitud(folder);
+
+            }
+            catch (Exception ex)
+            {
+                return pdf;
+            }
+            pdfOut += $@"\\{formulario.RFC}-{folder}-Documento_solo_firmas_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
             bool existe = File.Exists(pdfOut);
             if (existe)
             {
@@ -3468,7 +3488,6 @@ namespace Models
                 double sum = 0;
                 string[] meses = {"ENERO","FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE"
                         ,"OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
-                var formulario = dao.solicitud(folder);
                 List<List<compra_cartera>> cartera = new List<List<compra_cartera>>();
                 List<compra_cartera> carteras = new List<compra_cartera>();
                 var casa = "";
@@ -5672,7 +5691,17 @@ namespace Models
             string pdfOut = rootPath;
             string filevirtual = baseURL + "/Files/";
             var dao = new ProfileDAO();
-            pdfOut += "\\impresion_" + folder + ".pdf";
+            FormularioSolicitudDocs formulario = new FormularioSolicitudDocs();
+            try
+            {
+                formulario = new ProfileDAO().solicitud(folder);
+
+            }
+            catch (Exception ex)
+            {
+                return pdf;
+            }
+            pdfOut += $@"\\{formulario.RFC}-{folder}-impresion_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
             bool existe = File.Exists(pdfOut);
             if (existe)
             {
@@ -5695,7 +5724,6 @@ namespace Models
                 double item = 0;
                 string[] meses = {"ENERO","FEBRERO", "MARZO", "ABRIL", "MAYO", "JUNIO", "JULIO", "AGOSTO", "SEPTIEMBRE"
                         ,"OCTUBRE", "NOVIEMBRE", "DICIEMBRE" };
-                var formulario = dao.solicitud(folder);
                 List<List<compra_cartera>> cartera = new List<List<compra_cartera>>();
                 List<compra_cartera> carteras = new List<compra_cartera>();
                 var casa = "";
@@ -7952,7 +7980,17 @@ namespace Models
             OutGetDocument doc = new OutGetDocument();
             string pdfOut = rootPath;
             string filevirtual = baseURL + "/Files/";
-            pdfOut += "\\Expedientillo_" + folder + ".pdf";
+            FormularioSolicitudDocs solicitud = new FormularioSolicitudDocs();
+            try
+            {
+                solicitud = new ProfileDAO().solicitud(folder);
+
+            }
+            catch (Exception ex)
+            {
+                return doc;
+            }
+            pdfOut += $@"\\{solicitud.RFC}-{folder}-Expedientillo_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
             bool existe = File.Exists(pdfOut);
             if (existe)
             {
@@ -7961,7 +7999,6 @@ namespace Models
             FileStream fs = new FileStream(pdfOut, FileMode.Create, FileAccess.Write, FileShare.None);
             try
             {
-                var solicitud = new ProfileDAO().solicitud(folder);
                 OutDocumentoOriginacion data1 = new ProfileDAO().expedientillo(dependencia, producto);
                 for (var k = 0; k < data1.ListDocumentos.Count(); k++)
                 {
@@ -7971,12 +8008,12 @@ namespace Models
                     {
                         if (file.compra == 0)
                         {
-                            documentoOriginacion(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL);
+                            documentoOriginacion(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL,0);
                         }
                         else
                         {
                             if (solicitud.tipoSolicitud.IndexOf("COMPRA") > -1)
-                                documentoCartera(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL);
+                                documentoCartera(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL,0);
                         }
                         
                     }
@@ -8097,8 +8134,18 @@ namespace Models
             OutGetDocument doc = new OutGetDocument();
             string pdfOut = rootPath;
             string filevirtual = baseURL + "/Files/";
-            pdfOut += "\\Originacion_" + folder + ".pdf";
+            
             bool existe = File.Exists(pdfOut);
+            FormularioSolicitudDocs solicitud;
+            try
+            {
+                solicitud = new ProfileDAO().solicitud(folder);
+            }
+            catch (Exception ex)
+            {
+                return doc;
+            }
+            pdfOut += $@"\\{solicitud.RFC}-{folder}-ORGINACION_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
             if (existe)
             {
                 File.Delete(pdfOut);
@@ -8106,7 +8153,6 @@ namespace Models
             FileStream fs = new FileStream(pdfOut, FileMode.Create, FileAccess.Write, FileShare.None);
             try
             {
-                var solicitud = new ProfileDAO().solicitud(folder);
                 var docOriginacion = new ProfileDAO().allDocuments(dependencia, producto);
                 for (var k = 0; k < docOriginacion.ListDocumentos.Count(); k++)
                 {
@@ -8116,12 +8162,12 @@ namespace Models
                     {
                         if (file.compra == 0)
                         {
-                            documentoOriginacion(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL);
+                            documentoOriginacion(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL,0);
                         }
                         else
                         {
                             if(solicitud.tipoSolicitud.IndexOf("COMPRA") > -1)
-                                documentoCartera(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL);
+                                documentoCartera(dependencia, producto, folder, file.codigo_doc, rootPath, baseURL,0);
                         }
                     }
                 }

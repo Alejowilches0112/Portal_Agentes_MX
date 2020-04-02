@@ -217,7 +217,7 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().documentoOriginacion(dependencia, producto,folder.ToString(), doc, rootPath, baseUrl);
+            var data = new ManageProfile().documentoOriginacion(dependencia, producto,folder.ToString(), doc, rootPath, baseUrl, 1);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult documentoCartera(double dependencia, double? producto, double folder, double doc)
@@ -230,7 +230,7 @@ namespace BayPortColombia.Controllers
             }
             string rootPath = Server.MapPath("~/Files");
             string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
-            var data = new ManageProfile().documentoCartera(dependencia, producto,folder.ToString(), doc, rootPath, baseUrl);
+            var data = new ManageProfile().documentoCartera(dependencia, producto,folder.ToString(), doc, rootPath, baseUrl, 1);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult soloFirmas(double dependencia, double? producto,double folder)  

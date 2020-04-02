@@ -2340,7 +2340,7 @@ namespace BayPortColombia.Controllers
             string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
             for (var i = 0; i < wordKey.Length; i++)
             {
-                if (_documents.nombre.IndexOf(wordKey[i]) > -1 || _documents.nombreDoc.IndexOf(wordKey[i]) > -1 || _documents.dependencia.IndexOf(wordKey[i]) > -1 || _documents.path.IndexOf(wordKey[i]) > -1 || _documents.producto.IndexOf(wordKey[i]) > -1)
+                if (_documents.nombre.IndexOf(wordKey[i]) > -1 || _documents.nombreDoc.IndexOf(wordKey[i]) > -1 || _documents.dependencia.IndexOf(wordKey[i]) > -1 || (_documents.path != null &&_documents.path.IndexOf(wordKey[i]) > -1) || _documents.producto.IndexOf(wordKey[i]) > -1)
                 {
                     Login();
                     return null;
@@ -2368,7 +2368,7 @@ namespace BayPortColombia.Controllers
             string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
             for (var i = 0; i < wordKey.Length; i++)
             {
-                if (_documents.nombre.IndexOf(wordKey[i]) > -1 || _documents.nombreDoc.IndexOf(wordKey[i]) > -1 || _documents.dependencia.IndexOf(wordKey[i]) > -1 || _documents.path.IndexOf(wordKey[i]) > -1 || _documents.producto.IndexOf(wordKey[i]) > -1)
+                if (_documents.nombre.IndexOf(wordKey[i]) > -1 || (_documents.nombreDoc != null && _documents.nombreDoc.IndexOf(wordKey[i]) > -1) || _documents.dependencia.IndexOf(wordKey[i]) > -1 || _documents.path.IndexOf(wordKey[i]) > -1 || (_documents.producto != null &&_documents.producto.IndexOf(wordKey[i]) > -1))
                 {
                     Login();
                     return null;
