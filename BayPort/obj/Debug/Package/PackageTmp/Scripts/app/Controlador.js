@@ -3427,7 +3427,8 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                             $scope.newDocumento.file = null;
                             alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                             $(nombreLabel).text('');
-                            document.getElementById(botom).value = '';
+                            document.getElementById(boton).value = '';
+                            $scope.nombreArchivo = '';
                             return;
                         }
                         break;
@@ -3436,7 +3437,8 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                             $scope.newDocumento.file = null;
                             alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                             $(nombreLabel).text('');
-                            document.getElementById(botom).value = '';
+                            document.getElementById(boton).value = '';
+                            $scope.nombreArchivo = '';
                             return;
                         }
                         break;
@@ -3445,7 +3447,8 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                             $scope.newDocumento.file = null; 
                             alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                             $(nombreLabel).text('');
-                            document.getElementById(botom).value = '';
+                            document.getElementById(boton).value = '';
+                            $scope.nombreArchivo = '';
                             return;
                         }
                         break;
@@ -3453,7 +3456,9 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                         $scope.newDocumento.file = null;
                         alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                         $(nombreLabel).text('');
-                        document.getElementById(botom).value = '';
+                        document.getElementById(boton).value = '';
+                        console.log(document.getElementById(boton))
+                        $scope.nombreArchivo = '';
                         return;
                         break;
                 }
@@ -5636,7 +5641,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                     if (fileCom.indexOf('%PDF-1.') == -1) {
                         alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf');
                         $(nombreLabel).text('');
-                        document.getElementById($scope.docLoad.nombre).value = '';
+                        document.getElementById(boton).value = '';
                         return;
                     }
                     //$scope.originacionDoc.file = formData;
@@ -5650,7 +5655,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
             } else {
                 alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf');
                 $(nombreLabel).text('');
-                document.getElementById($scope.docLoad.nombre).value = '';
+                document.getElementById(boton).value = '';
             }
         });
     }

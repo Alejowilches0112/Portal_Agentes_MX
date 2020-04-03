@@ -10,6 +10,11 @@ namespace BayPortColombia.Controllers
         // GET: ComplianceGoal
         public ActionResult Index()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 

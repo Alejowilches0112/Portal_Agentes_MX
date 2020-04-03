@@ -15,12 +15,22 @@ namespace BayPortColombia.Controllers
         // GET: UpdateExceutive
         public ActionResult Index()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         [HttpGet]
         public JsonResult GetCivilStatus()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return null;
+            }
             var civilStatus = new ManagerParameters().GetCivilStatus();
             return new JsonResult { Data = civilStatus, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -28,6 +38,11 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetDepartments()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return null;
+            }
             var departments = new ManagerParameters().GetDepartments();
             return new JsonResult { Data = departments, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -35,6 +50,11 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetHousingType()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return null;
+            }
             var housing = new ManagerParameters().GetHousingType();
             return new JsonResult { Data = housing, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -42,6 +62,11 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetAppliedStudies()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return null;
+            }
             var studies = new ManagerParameters().GetAppliedStudies();
             return new JsonResult { Data = studies, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -49,6 +74,11 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetAFP()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return null;
+            }
             var afp = new ManagerParameters().GetAFP();
             return new JsonResult { Data = afp, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
