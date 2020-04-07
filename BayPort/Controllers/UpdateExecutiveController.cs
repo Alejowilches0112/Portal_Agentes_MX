@@ -86,6 +86,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetARP()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var arp = new ManagerParameters().GetARP();
             return new JsonResult { Data = arp, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -93,6 +99,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetEPS()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var eps = new ManagerParameters().GetEPS();
             return new JsonResult { Data = eps, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -100,12 +112,24 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetBanks()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var banks = new ManagerParameters().GetBanks();
             return new JsonResult { Data = banks, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         [HttpGet]
         public JsonResult GetBornCity()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var bornCity = new ManagerParameters().GetBornCity();
             return new JsonResult { Data = bornCity, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -113,6 +137,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetCancellationCausal()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var cancellationCausal = new ManagerParameters().GetCancellationCausal();
             return new JsonResult { Data = cancellationCausal, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -120,6 +150,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetCategory()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var category = new ManagerParameters().GetCategory();
             return new JsonResult { Data = category, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -127,6 +163,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetBranches()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var branches = new ManagerParameters().GetBranches();
             return new JsonResult { Data = branches, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -134,6 +176,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetRegionals()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var regionals = new ManagerParameters().GetRegionals();
             return new JsonResult { Data = regionals, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -141,6 +189,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetCoordinators()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var coordinators = new ManagerParameters().GetCoordinators();
             return new JsonResult { Data = coordinators, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -148,6 +202,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetExecutiveType()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var executiveType = new ManagerParameters().GetExecutiveType();
             return new JsonResult { Data = executiveType, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -155,6 +215,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetChannelType()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var channelType = new ManagerParameters().GetChannelType();
             return new JsonResult { Data = channelType, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -169,6 +235,12 @@ namespace BayPortColombia.Controllers
         [HttpPost]
         public JsonResult GetCities(string departmentID)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             int value = int.Parse(departmentID);
             var cities = new ManagerParameters().GetCities(value);
             return new JsonResult { Data = cities, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -177,6 +249,12 @@ namespace BayPortColombia.Controllers
         [HttpPost]
         public JsonResult GetNeighborhood(string municipalityID)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             int value = int.Parse(municipalityID);
             var neighborhood = new ManagerParameters().GetNeighborhood(value);
             return new JsonResult { Data = neighborhood, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -186,6 +264,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetExecutiveInformation()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = String.Empty;
 
             if (usr != null)
@@ -198,6 +281,12 @@ namespace BayPortColombia.Controllers
         [HttpGet]
         public JsonResult GetLisDocuments()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var documents = new ManagerParameters().GetLisDocuments("ASESOR");
             return new JsonResult { Data = documents, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -205,6 +294,12 @@ namespace BayPortColombia.Controllers
         [HttpPost]
         public JsonResult UpdateExcecutive(InUpdateExecutiveService formulario, List<HttpPostedFile> files)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             InUpdateExecutive infoExecutive = new InUpdateExecutive();
             var response = new Response();
 
@@ -221,6 +316,10 @@ namespace BayPortColombia.Controllers
         public void PostFilesExcecutive()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+            }
             string executiveID = String.Empty;
             string path = string.Empty;
             string fileName = string.Empty;       

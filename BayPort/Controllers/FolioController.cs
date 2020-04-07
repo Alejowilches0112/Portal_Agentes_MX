@@ -24,6 +24,11 @@ namespace BayPortColombia.Controllers
         {
             DateTime startDate = new DateTime(), endDate = new DateTime();
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = string.Empty;
 
             if (!string.IsNullOrEmpty(pStartDate) && !string.IsNullOrEmpty(pEndDate))

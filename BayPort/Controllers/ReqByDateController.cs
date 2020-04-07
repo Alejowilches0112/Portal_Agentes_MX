@@ -28,7 +28,11 @@ namespace BayPortColombia.Controllers
         {
             DateTime startDate = new DateTime(), endDate = new DateTime();
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
-           
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             if (pStartDate != null && pEndDate != null)
             {
                 startDate = Convert.ToDateTime(pStartDate);
@@ -40,6 +44,12 @@ namespace BayPortColombia.Controllers
         }
         public JsonResult GetLoanHeader(string folder)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             double folderNumber = double.Parse(folder);
             var requisition = new MangerRequisition().GetLoanHeader(folderNumber);
             return new JsonResult { Data = requisition, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -47,6 +57,12 @@ namespace BayPortColombia.Controllers
 
         public JsonResult GetLoanDetail(string folder)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             double folderNumber = double.Parse(folder);
             var requisition = new MangerRequisition().GetLoanDetailList(folderNumber);
             return new JsonResult { Data = requisition, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

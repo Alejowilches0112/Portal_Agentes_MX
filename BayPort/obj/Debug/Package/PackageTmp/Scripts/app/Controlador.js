@@ -3985,7 +3985,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
     $scope.formulario.expediente_completo = 0;
     $scope.formulario.cliente_siebel = 0;
     $scope.fchsolicitud = new Date();
-    $scope.NoSpecialCharactersNombres = /^[A-Za-z'ñÑáéíóú/-]+$/; //'^[a-zA-Z0-9]+$';
+    $scope.NoSpecialCharactersNombres = /^[A-Za-z'ñÑáéíóú/-\s]+$/; //'^[a-zA-Z0-9]+$';
     $scope.NoSpecialCharacters = /^[A-Za-zñÑáéíóú\s]+$/; //'^[a-zA-Z0-9]+$';
     $scope.NoSpecialCharactersRfc = /^[A-Za-zñÑ0-9\s]+$/
     $scope.NoSpecialCharactersCodigo = /^[0-9\s]+$/

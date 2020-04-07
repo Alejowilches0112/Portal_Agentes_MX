@@ -624,7 +624,7 @@ namespace DAO
                     data.depositoCliente = DBNull.Value.Equals(rdr["DEPOSITO_CLIENTE"]) ? 0 : double.Parse(rdr["DEPOSITO_CLIENTE"].ToString());
                     data.expediente_completo = DBNull.Value.Equals(rdr["EXPEDIENTE_COMPLETO"]) ? 0 : double.Parse(rdr["EXPEDIENTE_COMPLETO"].ToString());
                     data.DiasPagar = DBNull.Value.Equals(rdr["DIAS_A_PAGAR"]) ? "" : rdr["DIAS_A_PAGAR"].ToString();
-                    data.cliente_siebel = DBNull.Value.Equals(rdr["IND_CLI_EXIS_SIEBEL"]) ? -1 : double.Parse(rdr["IND_CLI_EXIS_SIEBEL"].ToString());
+                    data.cliente_siebel = DBNull.Value.Equals(rdr["IND_CLI_EXIS_SIEBEL"]) ? 0 : double.Parse(rdr["IND_CLI_EXIS_SIEBEL"].ToString());
                     data.tiene_seguro = DBNull.Value.Equals(rdr["TIENE_POLIZA"]) ? -1 : double.Parse(rdr["TIENE_POLIZA"].ToString());
                     data.codePlan = DBNull.Value.Equals(rdr["CODIGO_POLIZA"]) ? -1 : double.Parse(rdr["CODIGO_POLIZA"].ToString());
                     data.planValue = DBNull.Value.Equals(rdr["VALOR_POLIZA"]) ? -1 : double.Parse(rdr["VALOR_POLIZA"].ToString());

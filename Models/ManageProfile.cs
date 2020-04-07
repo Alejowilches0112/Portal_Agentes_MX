@@ -2694,7 +2694,7 @@ namespace Models
                                 config.valor = dao.monto_escrito(double.Parse(formulario.monto));
                                 break;
                             case "MONTO_ESCRITO_SIN_PESOS":
-                                var monto = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",","");
+                                var monto = double.Parse(formulario.monto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", "");
                                 config.valor = dao.monto_escrito(double.Parse(monto)).Replace("PESOS", "");
                                 break;
                             case "CENTAVOS_MONTO_ESCRITO":
@@ -2705,7 +2705,7 @@ namespace Models
                                 config.valor = dao.monto_escrito(double.Parse(formulario.LBase)).Replace("PESOS", "");
                                 break;
                             case "DESCUENTO_ESCRITO":
-                                var dscto = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",","");
+                                var dscto = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", "");
                                 config.valor = dao.monto_escrito(double.Parse(dscto)).Replace("PESOS", "");
                                 break;
                             case "CENTAVOS_DESCUENTO_ESCRITO":
@@ -2745,26 +2745,36 @@ namespace Models
                                 break;
                             case "SUMA_SALDO_INSOLUTO":
                                 sum = 0;
-                                for (var q = 0; q < cart.Count(); q++)
+                                var q = (int)item;
+                                var lim = ((int)_document.max_item+q == 0) ? cart.Count() : (int)_document.max_item + q;
+                                
+                                for (; q < lim; q++)
                                 {
+                                    if (q >= cart.Count()) break;
                                     sum += cart.ElementAt(q).saldoInsoluto;
                                 }
                                 config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "SUMA_SALDO_INSOLUTO_LETRA":
                                 sum = 0;
-                                for (var q = 0; q < cart.Count(); q++)
+                                var q1 = (int)item;
+                                var lim1 = ((int)_document.max_item+q1 == 0) ? cart.Count() : (int)_document.max_item + q1;
+                                for (; q1 < lim1; q1++)
                                 {
-                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                    if (q1 == cart.Count()) break;
+                                    sum += cart.ElementAt(q1).saldoInsoluto;
                                 }
-                                sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",",""));
+                                sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", ""));
                                 config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
                                 break;
                             case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
                                 sum = 0;
-                                for (var q = 0; q < cart.Count(); q++)
+                                var q2 = (int)item;
+                                var lim2 = ((int)_document.max_item + q2 == 0) ? cart.Count() : (int)_document.max_item + q2;
+                                for (; q2 < lim2; q2++)
                                 {
-                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                    if (q2 >= cart.Count()) break;
+                                    sum += cart.ElementAt(q2).saldoInsoluto;
                                 }
                                 var arr = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.');
                                 config.valor = arr[1];
@@ -3026,6 +3036,7 @@ namespace Models
                                     }
                                     config.posicion_y -= config.aumentoy;
                                     canvas.BeginText().SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
+                                    x++;
                                 }
                             }
                             x = (int)item;
@@ -3464,7 +3475,8 @@ namespace Models
             {
                 return pdf;
             }
-            pdfOut += $@"\\{formulario.RFC}-{folder}-Documento_solo_firmas_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            var nombrepdf = $@"{formulario.RFC}-{folder}-Documento_solo_firmas_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            pdfOut += $@"\\{nombrepdf}";
             bool existe = File.Exists(pdfOut);
             if (existe)
             {
@@ -5348,26 +5360,36 @@ namespace Models
                                             break;
                                         case "SUMA_SALDO_INSOLUTO":
                                             sum = 0;
-                                            for (var q = 0; q < cart.Count(); q++)
+                                            var q = (int)item;
+                                            var lim = ((int)data1.ListDocumentos[i].max_item + q == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q;
+
+                                            for (; q < lim; q++)
                                             {
+                                                if (q >= cart.Count()) break;
                                                 sum += cart.ElementAt(q).saldoInsoluto;
                                             }
                                             config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "SUMA_SALDO_INSOLUTO_LETRA":
                                             sum = 0;
-                                            for (var q = 0; q < cart.Count(); q++)
+                                            var q1 = (int)item;
+                                            var lim1 = ((int)data1.ListDocumentos[i].max_item + q1 == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q1;
+                                            for (; q1 < lim1; q1++)
                                             {
-                                                sum += cart.ElementAt(q).saldoInsoluto;
+                                                if (q1 == cart.Count()) break;
+                                                sum += cart.ElementAt(q1).saldoInsoluto;
                                             }
                                             sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", ""));
                                             config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
                                             break;
                                         case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
                                             sum = 0;
-                                            for (var q = 0; q < cart.Count(); q++)
+                                            var q2 = (int)item;
+                                            var lim2 = ((int)data1.ListDocumentos[i].max_item + q2 == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q2;
+                                            for (; q2 < lim2; q2++)
                                             {
-                                                sum += cart.ElementAt(q).saldoInsoluto;
+                                                if (q2 >= cart.Count()) break;
+                                                sum += cart.ElementAt(q2).saldoInsoluto;
                                             }
                                             var arr = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.');
                                             config.valor = arr[1];
@@ -5620,37 +5642,39 @@ namespace Models
                                 canvas.BeginText().SetColor(myColor, true).SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
                                 if (data1.ListDocumentos[i].max_item > 0 && config.aumentoy > 0 && cart.Count() >= data1.ListDocumentos[i].max_item)
                                 {
+                                    var limite = data1.ListDocumentos[i].max_item + h;
                                     h++;
-                                    if (h < cart.Count())
+                                    for (var l = 1; l < limite; l++)
                                     {
-                                        for (var l = 1; l < data1.ListDocumentos[i].max_item; l++)
+                                        if (h < cart.Count())
                                         {
                                             switch (config_anterior)
                                             {
                                                 case "CASA_FINANCIERA":
-                                                    config.valor = cart.ElementAt(h).entidad;
+                                                    config.valor = cart.ElementAt(l).entidad;
                                                     break;
                                                 case "FECHA_CONTRATO_COMPRA":
-                                                    config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
+                                                    config.valor = cart.ElementAt(l).fecha.Substring(0, 10);
                                                     break;
                                                 case "MONTO_CREDITO_COMPRA":
-                                                    config.valor = cart.ElementAt(h).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                    config.valor = cart.ElementAt(l).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                     break;
                                                 case "MONTO_TOTAL":
-                                                    config.valor = cart.ElementAt(h).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                    config.valor = cart.ElementAt(l).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                     break;
                                                 case "PLAZO_COMPRA":
-                                                    config.valor = cart.ElementAt(h).plazo + "";
+                                                    config.valor = cart.ElementAt(l).plazo + "";
                                                     break;
                                                 case "SALDO_INSOLUTO":
-                                                    config.valor = cart.ElementAt(h).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                    config.valor = cart.ElementAt(l).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                     break;
                                                 case "TASA_COMPRA":
-                                                    config.valor = cart.ElementAt(h).tasa + "";
+                                                    config.valor = cart.ElementAt(l).tasa + "";
                                                     break;
                                             }
                                             config.posicion_y -= config.aumentoy;
                                             canvas.BeginText().SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
+                                            h++;
                                         }
                                     }
                                     h = (int)item;
@@ -5674,7 +5698,7 @@ namespace Models
                 writer.Close();
                 reader.Close();
                 fs.Close();
-                filevirtual += "Documento_solo_firmas_" + folder + ".pdf";
+                filevirtual += nombrepdf;
                 pdf.filename = pdfOut;
                 pdf.virtualpath = filevirtual;
             }
@@ -5701,7 +5725,8 @@ namespace Models
             {
                 return pdf;
             }
-            pdfOut += $@"\\{formulario.RFC}-{folder}-impresion_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            var nombrepdf = $@"{formulario.RFC}-{folder}-impresion_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            pdfOut += $@"\\{nombrepdf}";
             bool existe = File.Exists(pdfOut);
             if (existe)
             {
@@ -7589,25 +7614,34 @@ namespace Models
                                                 break;
                                             case "SUMA_SALDO_INSOLUTO":
                                                 sum = 0;
-                                                for (var q = 0; q < cart.Count(); q++)
+                                                var q3 = h;
+                                                var lim3 = (data1.ListDocumentos[i].max_item + q3 == 0) ? cart.Count() : data1.ListDocumentos[i].max_item + q3;
+                                                for (; q3 < lim3; q3++)
                                                 {
-                                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                                    if (q3 == cart.Count()) break;
+                                                    sum += cart.ElementAt(q3).saldoInsoluto;
                                                 }
                                                 config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "SUMA_SALDO_INSOLUTO_LETRA":
                                                 sum = 0;
-                                                for (var q = 0; q < cart.Count(); q++)
+                                                var q1 = h;
+                                                var lim2 = (data1.ListDocumentos[i].max_item + q1 == 0) ? cart.Count() : data1.ListDocumentos[i].max_item + q1;
+                                                for (; q1 < lim2; q1++)
                                                 {
-                                                    sum += cart.ElementAt(q).saldoInsoluto;
+                                                    if (q1 == cart.Count()) break;
+                                                    sum += cart.ElementAt(q1).saldoInsoluto;
                                                 }
                                                 sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", ""));
                                                 config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
                                                 break;
                                             case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
                                                 sum = 0;
-                                                for (var q = 0; q < cart.Count(); q++)
+                                                var q = h;
+                                                var lim = (data1.ListDocumentos[i].max_item + q == 0) ? cart.Count() : data1.ListDocumentos[i].max_item + q;
+                                                for (; q < lim; q++)
                                                 {
+                                                    if (q == cart.Count()) break;
                                                     sum += cart.ElementAt(q).saldoInsoluto;
                                                 }
                                                 var arr = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.');
@@ -7861,37 +7895,39 @@ namespace Models
                                     canvas.BeginText().SetColor(myColor, true).SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
                                     if (data1.ListDocumentos[i].max_item > 0 && config.aumentoy > 0 && cart.Count() >= data1.ListDocumentos[i].max_item)
                                     {
+                                        var limite = data1.ListDocumentos[i].max_item + h;
                                         h++;
-                                        if (h < cart.Count())
+                                        for (var l = 1; l < limite; l++)
                                         {
-                                            for (var l = 1; l < data1.ListDocumentos[i].max_item; l++)
+                                            if (h < cart.Count())
                                             {
                                                 switch (config_anterior)
                                                 {
                                                     case "CASA_FINANCIERA":
-                                                        config.valor = cart.ElementAt(h).entidad;
+                                                        config.valor = cart.ElementAt(l).entidad;
                                                         break;
                                                     case "FECHA_CONTRATO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).fecha.Substring(0, 10);
+                                                        config.valor = cart.ElementAt(l).fecha.Substring(0, 10);
                                                         break;
                                                     case "MONTO_CREDITO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                        config.valor = cart.ElementAt(l).capital.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                         break;
                                                     case "MONTO_TOTAL":
-                                                        config.valor = cart.ElementAt(h).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                        config.valor = cart.ElementAt(l).totPagar.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                         break;
                                                     case "PLAZO_COMPRA":
-                                                        config.valor = cart.ElementAt(h).plazo + "";
+                                                        config.valor = cart.ElementAt(l).plazo + "";
                                                         break;
                                                     case "SALDO_INSOLUTO":
-                                                        config.valor = cart.ElementAt(h).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                        config.valor = cart.ElementAt(l).saldoInsoluto.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                         break;
                                                     case "TASA_COMPRA":
-                                                        config.valor = cart.ElementAt(h).tasa + "";
+                                                        config.valor = cart.ElementAt(l).tasa + "";
                                                         break;
                                                 }
                                                 config.posicion_y -= config.aumentoy;
                                                 canvas.BeginText().SetFontAndSize(font, (float)config.fuente).MoveText((float)config.posicion_x, (float)config.posicion_y).ShowText(config.valor).EndText();
+                                                h++;
                                             }
                                         }
                                         h = (int)item;
@@ -7964,7 +8000,7 @@ namespace Models
                 reader.Close();
                 fs.Close();
 
-                filevirtual += "impresion_" + folder + ".pdf";
+                filevirtual += nombrepdf;
                 pdf.filename = pdfOut;
                 pdf.virtualpath = filevirtual;
             }
@@ -7990,7 +8026,8 @@ namespace Models
             {
                 return doc;
             }
-            pdfOut += $@"\\{solicitud.RFC}-{folder}-Expedientillo_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            var nombrepdf = $@"{solicitud.RFC}-{folder}-Expedientillo_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            pdfOut += $@"\\{nombrepdf}";
             bool existe = File.Exists(pdfOut);
             if (existe)
             {
@@ -8110,7 +8147,7 @@ namespace Models
                     writer.Close();
                     reader.Close();
                     fs.Close();
-                    filevirtual += "Expedientillo_" + folder + ".pdf";
+                    filevirtual += nombrepdf;
                     doc.filename = pdfOut;
                     doc.virtualpath = filevirtual;
                 }
@@ -8145,7 +8182,8 @@ namespace Models
             {
                 return doc;
             }
-            pdfOut += $@"\\{solicitud.RFC}-{folder}-ORGINACION_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf";
+            var nombrepdf = $@"{solicitud.RFC}-{folder}-ORGINACION_{DateTime.Now.ToString("MM-dd-yyyy")}.pdf"; 
+            pdfOut += $@"\\{nombrepdf}";
             if (existe)
             {
                 File.Delete(pdfOut);
@@ -8258,7 +8296,7 @@ namespace Models
                     writer.Close();
                     reader.Close();
                     fs.Dispose();
-                    filevirtual += "Originacion_" + folder + ".pdf";
+                    filevirtual += nombrepdf;
                     doc.filename = pdfOut;
                     doc.virtualpath = filevirtual;
                 }

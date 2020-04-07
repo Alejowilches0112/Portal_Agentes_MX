@@ -26,7 +26,11 @@ namespace BayPortColombia.Controllers
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             var commission = new OutCommissionsHeader();
             string executiveID = string.Empty;
-
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             if (type != 4)
                 executiveID = usr.userName;
 
@@ -41,6 +45,11 @@ namespace BayPortColombia.Controllers
         {
             DateTime startDate = new DateTime(), endDate = new DateTime();
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
             if (!string.IsNullOrEmpty(pStartDate)  && !string.IsNullOrEmpty(pEndDate))
             {
@@ -58,7 +67,11 @@ namespace BayPortColombia.Controllers
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             string executiveID = usr.userName;
-
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             if (type != 4)
                 executiveID = usr.userName;
 
@@ -72,6 +85,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetUploadDocuments()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
             var documents = new ManageDocuments().GetUploadDocuments(executiveID);
             return new JsonResult { Data = documents, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

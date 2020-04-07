@@ -24,6 +24,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetCategorySimulation(double amount)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
             var input = new InCategorySimulation()
             {

@@ -23,12 +23,23 @@ namespace BayPortColombia.Controllers
         }
         public JsonResult GetRequisitionByClient(string documentID)
         {
-
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var requisition = new MangerRequisition().GetLoanInformationByCustomer(double.Parse(documentID));
             return new JsonResult { Data = requisition, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult GetLoanHeader(string folder)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             double folderNumber = double.Parse(folder);
             var requisition = new MangerRequisition().GetLoanHeader(folderNumber);
             return new JsonResult { Data = requisition, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
@@ -36,6 +47,12 @@ namespace BayPortColombia.Controllers
 
         public JsonResult GetLoanDetail(string folder)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             double folderNumber = double.Parse(folder);
             var requisition = new MangerRequisition().GetLoanDetailList(folderNumber);
             return new JsonResult { Data = requisition, JsonRequestBehavior = JsonRequestBehavior.AllowGet };

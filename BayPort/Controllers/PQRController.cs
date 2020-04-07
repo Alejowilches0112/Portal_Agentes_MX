@@ -24,6 +24,11 @@ namespace BayPortColombia.Controllers
         public ActionResult Create()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             ViewBag.documentoAsesor = usr.userName;
             return View();
         }
@@ -34,6 +39,11 @@ namespace BayPortColombia.Controllers
         {
             DateTime startDate = new DateTime(), endDate = new DateTime();
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             if (!string.IsNullOrEmpty(pStartDate) && !string.IsNullOrEmpty(pEndDate))
@@ -50,18 +60,34 @@ namespace BayPortColombia.Controllers
 
         public JsonResult GetLogPQR(int processNumber)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var log = new ManagerPQR().GetLogPQR(processNumber);
             return new JsonResult { Data = log, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult GetNoveltyPQR(int processNumber)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var novelty = new ManagerPQR().GetNoveltyPQR(processNumber);
             return new JsonResult { Data = novelty, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult CreatePQR(FormCreatePQR input)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
-
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             InCreatePQR pqr = new InCreatePQR()
             {
                 company = 1,
@@ -83,24 +109,48 @@ namespace BayPortColombia.Controllers
 
         public JsonResult GetFlow()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var flow = new ManagerPQR().GetFlow();
             return new JsonResult { Data = flow, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public JsonResult GetJustification(int flowType)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var justify = new ManagerPQR().GetJustification(flowType);
             return new JsonResult { Data = justify, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public JsonResult GetLoanResume(string loanNumber)
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var justify = new ManagerPQR().GetLoanResume(double.Parse(loanNumber));
             return new JsonResult { Data = justify, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
 
         public JsonResult GetStates()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var flow = new ManagerPQR().GetStates();
             return new JsonResult { Data = flow, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -108,7 +158,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetSummaryPQR( string child, int type )
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
-
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var userName = string.Empty;
 
             if (type != 7)
@@ -123,6 +177,12 @@ namespace BayPortColombia.Controllers
 
         public JsonResult GetExecutiveLevel()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var levels = new ManagerParameters().GetExecutiveLevel();
             return new JsonResult { Data = levels, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
@@ -130,6 +190,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetExecutiveChilds(int level)
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             var childs = new ManageExecutive().GetExecutiveChilds(usr.userName, level);
             return new JsonResult { Data = childs, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }

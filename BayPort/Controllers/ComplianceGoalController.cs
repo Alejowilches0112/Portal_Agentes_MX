@@ -21,6 +21,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetNextCategory()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var detail = new ManageComplianceGoal().GetNextCategory(executiveID);
@@ -30,6 +35,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetAccumulatedLoan()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var accummulatedL = new ManageComplianceGoal().GetAccumulatedLoan(executiveID);
@@ -39,6 +49,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetAccumulatedClarifications()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var accummulatedC = new ManageComplianceGoal().GetAccumulatedClarifications(executiveID);
@@ -48,6 +63,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetGoalExecutive()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var goal = new ManageComplianceGoal().GetGoalExecutive(executiveID);
@@ -58,6 +78,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetProductivity()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var goal = new ManageComplianceGoal().GetProductivity(executiveID);
@@ -66,12 +91,22 @@ namespace BayPortColombia.Controllers
 
         public ActionResult ProgressReport()
         {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View();
         }
 
         public JsonResult GetCategoryRange()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var goal = new ManageComplianceGoal().GetCategoryRange();
@@ -82,6 +117,11 @@ namespace BayPortColombia.Controllers
         public JsonResult GetGoalSupervisor()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = usr.userName;
 
             var goal = new ManageComplianceGoal().GetGoalSupervisor(executiveID);
@@ -91,7 +131,12 @@ namespace BayPortColombia.Controllers
         public JsonResult GetProgress(string pStartDate, string pEndDate, string pChild)
         {
             DateTime startDate = new DateTime(), endDate = new DateTime();
-            //var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                RedirectToAction("Index", "Home");
+                return null;
+            }
             string executiveID = pChild;
 
             if (!string.IsNullOrEmpty(pStartDate) && !string.IsNullOrEmpty(pEndDate))
