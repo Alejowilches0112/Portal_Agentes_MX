@@ -121,7 +121,7 @@ namespace BayPortColombia.Controllers
             var data = new ManageProfile().findRFC(rfcR);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult guardaDocumentoOriginacion(string documento)
+        public JsonResult guardaDocumentoOriginacion()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -129,12 +129,27 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            DocumentoOriginacion _doc = JsonConvert.DeserializeObject<DocumentoOriginacion>(documento);
+            HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
+            DocumentoOriginacion _doc = new DocumentoOriginacion();
+            //Extraer Documentos
+            var ext = Path.GetExtension(hpf.FileName);
+            //Crea Entidad para guardar
+            _doc.folder = Request.Form["folder"];
+            _doc.dependencia = double.Parse(Request.Form["dependencia"]);
+            _doc.producto = double.Parse(Request.Form["producto"]);
+            _doc.firma = double.Parse(Request.Form["firma"]);
+            _doc.codigo_doc = double.Parse(Request.Form["codigo_doc"]);
+            _doc.nombreDoc = Request.Form["nombreDoc"];
+            _doc.expedienteCompleto = 0;
+            _doc.nombreDoc = hpf.FileName;
+            //DocumentoOriginacion _doc = JsonConvert.DeserializeObject<DocumentoOriginacion>(documento);
             ManageDocuments manage = new ManageDocuments();
-            manage.CargarArchivoOriginacion(ref _doc);
+            LogHelper.WriteLog("Controller", "ProfileController", "guardaDocumentoOriginacion", new Exception(), "Subir Expediente Completo");
+            manage.CargarArchivoOriginacion(ref _doc, hpf);
+            LogHelper.WriteLog("Controller", "ProfileController", "guardaDocumentoOriginacion", new Exception(), "Respuesta Carga de Expediente Completo");
             return new JsonResult { Data = _doc, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-        public JsonResult guardaDocumentoOriginacionCompra(string documento)
+        public JsonResult guardaDocumentoOriginacionCompra()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
             if (usr == null)
@@ -142,9 +157,25 @@ namespace BayPortColombia.Controllers
                 Login();
                 return null;
             }
-            DocumentoOriginacion _doc = JsonConvert.DeserializeObject<DocumentoOriginacion>(documento);
+            HttpPostedFileBase hpf = Request.Files[0] as HttpPostedFileBase;
+            DocumentoOriginacion _doc = new DocumentoOriginacion();
+            //Extraer Documentos
+            var ext = Path.GetExtension(hpf.FileName);
+            //Crea Entidad para guardar
+            _doc.folder = Request.Form["folder"];
+            _doc.dependencia = double.Parse(Request.Form["dependencia"]);
+            _doc.producto = double.Parse(Request.Form["producto"]);
+            _doc.firma = double.Parse(Request.Form["firma"]);
+            _doc.codigo_doc = double.Parse(Request.Form["codigo_doc"]);
+            _doc.nombreDoc = Request.Form["nombreDoc"];
+            _doc.path = Request.Form["path"];
+            _doc.codigo = double.Parse(Request.Form["codigo"]);
+            _doc.nombre_cartera = Request.Form["nombre_cartera"];
+            //DocumentoOriginacion _doc = JsonConvert.DeserializeObject<DocumentoOriginacion>(documento);
             ManageDocuments manage = new ManageDocuments();
-            manage.CargarArchivoOriginacionCompra(ref _doc);
+            LogHelper.WriteLog("Controller", "ProfileController", "guardaDocumentoOriginacion1", new Exception(), "Subir Expediente Completo");
+            manage.CargarArchivoOriginacionCompra(ref _doc, hpf);
+            LogHelper.WriteLog("Controller", "ProfileController", "guardaDocumentoOriginacion1", new Exception(), "Respuesta Carga de Expediente Completo");
             return new JsonResult { Data = _doc, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
         public JsonResult guardaDocumentoOriginacion1()
@@ -162,7 +193,7 @@ namespace BayPortColombia.Controllers
             //Crea Entidad para guardar
             _doc.folder = Request.Form["folder"];
             _doc.dependencia = double.Parse(Request.Form["dependencia"]);
-            _doc.producto = double.Parse(Request.Form["dependencia"]);
+            _doc.producto = double.Parse(Request.Form["producto"]);
             _doc.expedienteCompleto = 1;
             _doc.firma = 0;
             _doc.nombreDoc = hpf.FileName;

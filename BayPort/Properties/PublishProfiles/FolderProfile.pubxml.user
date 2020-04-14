@@ -22,10 +22,10 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>01/16/2020 17:58:05</publishTime>
     </File>
     <File Include="bin/BayPortColombia.dll">
-      <publishTime>04/07/2020 18:07:33</publishTime>
+      <publishTime>04/12/2020 16:21:44</publishTime>
     </File>
     <File Include="bin/BayPortColombia.pdb">
-      <publishTime>04/07/2020 18:07:33</publishTime>
+      <publishTime>04/12/2020 16:21:44</publishTime>
     </File>
     <File Include="bin/BayPortColombia.XmlSerializers.dll">
       <publishTime>10/08/2019 15:26:23</publishTime>
@@ -136,13 +136,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>07/25/2012 11:48:56</publishTime>
     </File>
     <File Include="bin/Models.dll">
-      <publishTime>04/07/2020 18:07:07</publishTime>
+      <publishTime>04/12/2020 15:34:23</publishTime>
     </File>
     <File Include="bin/Models.dll.config">
       <publishTime>09/09/2019 15:28:58</publishTime>
     </File>
     <File Include="bin/Models.pdb">
-      <publishTime>04/07/2020 18:07:07</publishTime>
+      <publishTime>04/12/2020 15:34:23</publishTime>
     </File>
     <File Include="bin/Models.XmlSerializers.dll">
       <publishTime>10/08/2019 15:26:15</publishTime>
@@ -595,76 +595,76 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>02/09/2018 22:20:07</publishTime>
     </File>
     <File Include="images/aceptarOferta.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/arrow.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/blank.gif">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/cambioCondiciones.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/camera-loader.gif">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/caution.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/error.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/fancybox_loading%402x.gif">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/fancybox_loading.gif">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/fancybox_overlay.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/fancybox_sprite%402x.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/fancybox_sprite.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/gmap_marker.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/gmap_marker_active.png">
-      <publishTime>02/09/2018 22:20:56</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/good.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/logo.png">
-      <publishTime>07/18/2018 21:31:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/logoBayport.png">
       <publishTime>02/09/2018 22:20:56</publishTime>
     </File>
     <File Include="images/msgInformacionCredito.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/pareja.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/perfilar.png">
-      <publishTime>02/09/2018 22:21:03</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/PortalAgentesBYP.png">
-      <publishTime>06/01/2018 14:29:55</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/rechazarOferta.png">
-      <publishTime>08/08/2019 12:41:41</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/solicitudesxcliente.png">
-      <publishTime>02/09/2018 22:21:04</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="images/solicitudesxmes.png">
-      <publishTime>02/09/2018 22:21:04</publishTime>
+      <publishTime>08/08/2019 12:41:42</publishTime>
     </File>
     <File Include="js/.jscsrc">
       <publishTime>02/09/2018 22:21:04</publishTime>
@@ -940,13 +940,13 @@ edite el archivo MSBuild. Visite https://go.microsoft.com/fwlink/?LinkID=208121 
       <publishTime>12/30/2015 21:52:54</publishTime>
     </File>
     <File Include="Scripts/app/Controlador.js">
-      <publishTime>04/06/2020 11:43:45</publishTime>
+      <publishTime>04/12/2020 16:01:41</publishTime>
     </File>
     <File Include="Scripts/app/module.js">
       <publishTime>10/06/2018 13:39:47</publishTime>
     </File>
     <File Include="Scripts/app/Services.js">
-      <publishTime>02/06/2020 15:45:49</publishTime>
+      <publishTime>04/12/2020 15:52:12</publishTime>
     </File>
     <File Include="Scripts/bootstrap.bundle.js">
       <publishTime>01/16/2020 17:57:56</publishTime>

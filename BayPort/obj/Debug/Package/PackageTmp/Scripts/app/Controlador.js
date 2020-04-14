@@ -3900,7 +3900,7 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
             if (d.data.errorCode == "0") {
                 $scope.objEliminar = {};
                 $scope.closeModal('myModalDelete');
-                $scope.getCasaFinanciera();
+                $scope.getClaves();
             } else {
                 alert(d.data.errorMessage);
             }
@@ -5491,7 +5491,8 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
         $scope.$apply(function ($scope) {
             $scope.file = element.files[0];
             var boton = element.id;
-            var prueba = "#" + boton;
+            var prueba = "#" + boton
+            $scope.docLoad.nombre = boton;
             $scope.ArchivoOriginacion = element.files["0"].name;
             var nombreLabel = "#data-docOriginacion";
             $(nombreLabel).text($scope.ArchivoOriginacion);
@@ -5540,6 +5541,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                             return;
                             break;
                     }
+                    $scope.originacionDoc.file = null;
                     $scope.originacionDoc.nombreDoc = $scope.ArchivoOriginacion;
                     $scope.originacionDoc.codigo_doc = $scope.docLoad.cod_documento;
                     $scope.originacionDoc.firma = $scope.docLoad.firma;
@@ -5576,7 +5578,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                             if (fileCom.indexOf('%PDF-1.') === -1) {
                                 alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                                 $(nombreLabel).text('');
-                                document.getElementById($scope.docLoad.nombre).value = '';
+                                document.getElementById(boton).value = '';
                                 return;
                             }
                             break;
@@ -5584,7 +5586,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                             if (fileCom.indexOf('PNG') === -1) {
                                 alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                                 $(nombreLabel).text('');
-                                document.getElementById($scope.docLoad.nombre).value = '';
+                                document.getElementById(boton).value = '';
                                 return;
                             }
                             break;
@@ -5592,17 +5594,18 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                             if (fileCom.indexOf('JFIF') > -1 && ($scope.file.name.indexOf('.jpg') === -1 && $scope.file.name.indexOf('.jpeg') === -1)) {
                                 alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                                 $(nombreLabel).text('');
-                                document.getElementById($scope.docLoad.nombre).value = '';
+                                document.getElementById(boton).value = '';
                                 return;
                             }
                             break;
                         default:
                             alert('Error El Archivo Cargado no es valido. Favor Cargue un archvio .pdf, .png o .jpg');
                             $(nombreLabel).text('');
-                            document.getElementById($scope.docLoad.nombre).value = '';
+                            document.getElementById(boton).value = '';
                             return;
                             break;
                     }
+                    $scope.originacionDoc.file = null;
                     $scope.originacionDoc.nombreDoc = $scope.ArchivoOriginacion;
                     $scope.originacionDoc.nombre_cartera = $scope.docLoad.nombreDoc;
                     $scope.originacionDoc.codigo_doc = $scope.docLoad.codigo_doc;
@@ -5610,6 +5613,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                     $scope.originacionDoc.firma = 1
                     $scope.originacionDoc.expedienteCompleto = 0;
                     $scope.originacionDoc.path = $scope.docLoad.path;
+                    $scope.docLoad.nombre = boton;
                     $scope.subirDocOriginacionCompra($scope.originacionDoc);
                 }
                 reader.readAsDataURL(value);
@@ -5645,6 +5649,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                         return;
                     }
                     //$scope.originacionDoc.file = formData;
+                    $scope.originacionDoc.file = null;
                     $scope.originacionDoc.nombreDoc = $scope.ArchivoOriginacion;
                     $scope.originacionDoc.codigo_doc = null;
                     $scope.originacionDoc.firma = 0;
@@ -5664,7 +5669,16 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
         doc.folder = $scope.formulario.folderNumber;
         doc.producto = $scope.formulario.producto;
         doc.dependencia = $scope.formulario.Dependencia;
-        BayportService.guardaDocumentoOriginacion(doc).then(function (d) {
+        var archivo = document.getElementById($scope.docLoad.nombre).files[0]
+        var fdata = new FormData();
+        fdata.append('file', archivo)
+        fdata.append('firma', doc.firma);
+        fdata.append('codigo_doc', doc.codigo_doc);
+        fdata.append('nombreDoc', doc.nombreDoc);
+        fdata.append('folder', doc.folder);
+        fdata.append('dependencia', doc.dependencia);
+        fdata.append('producto', doc.producto);
+        BayportService.guardaDocumentoOriginacion(fdata).then(function (d) {
             if (d.data.msg.errorCode != '0') {
                 alert(d.data.msg.errorMessage);
                 var nombreLabel = "#data-docOriginacion";
@@ -5699,12 +5713,26 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
             }
         }, function (err) {
             alert('No se púdo Cargar el Documento');
+            document.getElementById($scope.docLoad.nombre).value = '';
         });
     }
     $scope.subirDocOriginacionCompra = function (doc) {
         doc.folder = $scope.formulario.folderNumber;
         doc.producto = $scope.formulario.producto;
         doc.dependencia = $scope.formulario.Dependencia;
+        var archivo = document.getElementById($scope.docLoad.nombre).files[0]
+        var fdata = new FormData();
+        fdata.append('file', archivo)
+        fdata.append('firma', doc.firma);
+        fdata.append('codigo_doc', doc.codigo_doc);
+        fdata.append('nombreDoc', doc.nombreDoc);
+        fdata.append('folder', doc.folder);
+        fdata.append('dependencia', doc.dependencia);
+        fdata.append('producto', doc.producto);
+        fdata.append('path', doc.path);
+        fdata.append('codigo', doc.codigo);
+        fdata.append('nombre_cartera', doc.nombre_cartera);
+
         BayportService.guardaDocumentoOriginacionCompra(doc).then(function (d) {
             if (d.data.msg.errorCode != '0') {
                 alert(d.data.msg.errorMessage);

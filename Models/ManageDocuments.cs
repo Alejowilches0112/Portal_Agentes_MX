@@ -117,7 +117,7 @@ namespace Models
             }
         }
         
-        public bool CargarArchivoOriginacion(ref DocumentoOriginacion documents)
+        public bool CargarArchivoOriginacion(ref DocumentoOriginacion documents, HttpPostedFileBase hpf)
         {
             try
             {
@@ -146,16 +146,19 @@ namespace Models
                     Directory.CreateDirectory(documents.path);
                 if (File.Exists(documents.path+"\\"+documents.nombreDoc))
                     File.Delete(documents.path + "\\" + documents.nombreDoc);
-                File.WriteAllBytes(documents.path + "\\" + documents.nombreDoc, Convert.FromBase64String(documents.file));
-                if (!File.Exists(documents.path + "\\" + documents.nombreDoc))
-                    {
-                        documents.msg.errorCode = "310";
-                        documents.msg.errorMessage = "Error Al subir el Archivo Intente Nuevamente";
-                        LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", null, documents.nombreDoc);
-                        return false;
-                    }
+
+                var savedFileName = Path.Combine(documents.path, documents.nombreDoc);
+                hpf.SaveAs(savedFileName);
+                LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", new Exception(), "Guarda Expediente Completo");
+                if (!File.Exists(savedFileName))
+                {
+                    documents.msg.errorCode = "300";
+                    documents.msg.errorMessage = "Error Al subir el Archivo Intente Nuevamente";
+                    LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", null, savedFileName);
+                    return false;
+                }
                 documents.file = null;
-                documents.path = documents.path + "\\" + documents.nombreDoc;
+                documents.path = savedFileName;
                 ProfileDAO dao = new ProfileDAO();
                 if (documents.firma == 1)
                 {
@@ -180,18 +183,6 @@ namespace Models
                         //documents.msg = dao.actualizaDocOriginacion(double.Parse(existe[2]), documents.folder, documents.nombreDoc, documents.path);
                     }
                 }
-                else if (documents.expedienteCompleto == 1)
-                {
-                    var existe = dao.docExisteExpendiente(documents.folder);
-                    if (existe[0] == "0")
-                    {
-                        documents.msg = dao.cargaDocumentosOriginacion(ref documents);
-                    }
-                    else
-                    {
-                        documents.msg = dao.actualizaDocOriginacion(double.Parse(existe[2]), documents.folder, documents.nombreDoc, documents.path);
-                    }
-                }
                 else
                 {
                     documents.msg = dao.cargaDocumentosOriginacion(ref documents);
@@ -206,7 +197,7 @@ namespace Models
                 return false;
             }
         }
-        public bool CargarArchivoOriginacionCompra(ref DocumentoOriginacion documents)
+        public bool CargarArchivoOriginacionCompra(ref DocumentoOriginacion documents, HttpPostedFileBase hpf)
         {
             try
             {
@@ -242,16 +233,18 @@ namespace Models
                     Directory.CreateDirectory(path);
                 if (File.Exists(path + "\\" + documents.nombreDoc))
                     File.Delete(path + "\\" + documents.nombreDoc);
-                File.WriteAllBytes(path + "\\" + documents.nombreDoc, Convert.FromBase64String(documents.file));
-                if (!File.Exists(path + "\\" + documents.nombreDoc))
+                var savedFileName = Path.Combine(documents.path, documents.nombreDoc);
+                hpf.SaveAs(savedFileName);
+                LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", new Exception(), "Guarda Expediente Completo");
+                if (!File.Exists(savedFileName))
                 {
-                    documents.msg.errorCode = "310";
+                    documents.msg.errorCode = "300";
                     documents.msg.errorMessage = "Error Al subir el Archivo Intente Nuevamente";
-                    LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", null, documents.nombreDoc);
+                    LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", null, savedFileName);
                     return false;
                 }
                 documents.file = null;
-                path = path + "\\" + documents.nombreDoc;
+                documents.path = savedFileName;
                 ProfileDAO dao = new ProfileDAO();
 
                         var actualiza = new ManageProfile().updDocFirmaCompra(documents.codigo_doc, (double)(documents.codigo), documents.folder, path, documents.path, documents.nombre_cartera);
@@ -319,31 +312,6 @@ namespace Models
                 documents.file = null;
                 documents.path = savedFileName;
                 ProfileDAO dao = new ProfileDAO();
-                if (documents.firma == 1)
-                {
-                    var existe = dao.docExiste(documents.codigo_doc, documents.folder);
-                    if (existe[0] == "0")
-                    {
-                        documents.msg = dao.cargaDocumentosOriginacion(ref documents);
-                    }
-                    else
-                    {
-                        var actualiza = new ManageProfile().updDocFirma(documents.codigo_doc, double.Parse(existe[2]), documents.folder, documents.path, existe[1]);
-                        if (actualiza)
-                        {
-                            documents.msg.errorCode = "0";
-                            documents.msg.errorMessage = "Documento Actualizado con Exito";
-                        }
-                        else
-                        {
-                            documents.msg.errorCode = "88";
-                            documents.msg.errorMessage = "Error actualizando el documento. Por favor intente más tarde";
-                        }
-                        //documents.msg = dao.actualizaDocOriginacion(double.Parse(existe[2]), documents.folder, documents.nombreDoc, documents.path);
-                    }
-                }
-                else if (documents.expedienteCompleto == 1)
-                {
                     var existe = dao.docExisteExpendiente(documents.folder);
                     if (existe[0] == "0")
                     {
@@ -354,11 +322,6 @@ namespace Models
                         documents.msg = dao.actualizaDocOriginacion(double.Parse(existe[2]), documents.folder, documents.nombreDoc, documents.path);
                     }
                     LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", new Exception(), "Guarda Expediente Completo BD");
-                }
-                else
-                {
-                    documents.msg = dao.cargaDocumentosOriginacion(ref documents);
-                }
                 return true;
             }
             catch (Exception e)

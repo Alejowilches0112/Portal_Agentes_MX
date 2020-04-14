@@ -2433,7 +2433,7 @@ namespace BayPortColombia.Controllers
             string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
             for (var i = 0; i < wordKey.Length; i++)
             {
-                if (dato.IndexOf(wordKey[i]) > -1 || valida.IndexOf(wordKey[i]) > -1 || campoComparar.IndexOf(wordKey[i]) > -1 || valorComparar.IndexOf(wordKey[i]) > -1)
+                if (dato.IndexOf(wordKey[i]) > -1 || valida.IndexOf(wordKey[i]) > -1 || (campoComparar != null && campoComparar.IndexOf(wordKey[i]) > -1) || (valorComparar != null && valorComparar.IndexOf(wordKey[i]) > -1))
                 {
                     Login();
                     return null;
@@ -2454,7 +2454,7 @@ namespace BayPortColombia.Controllers
             string[] wordKey = new string[] { "SELECT", "FROM", "WHERE", "=" };
             for (var i = 0; i < wordKey.Length; i++)
             {
-                if (dato.IndexOf(wordKey[i]) > -1 || valida.IndexOf(wordKey[i]) > -1 || campoComparar.IndexOf(wordKey[i]) > -1 || valorComparar.IndexOf(wordKey[i]) > -1)
+                if (dato.IndexOf(wordKey[i]) > -1 || valida.IndexOf(wordKey[i]) > -1 || (campoComparar != null && campoComparar.IndexOf(wordKey[i]) > -1) || (campoComparar != null && valorComparar.IndexOf(wordKey[i]) > -1))
                 {
                     Login();
                     return null;

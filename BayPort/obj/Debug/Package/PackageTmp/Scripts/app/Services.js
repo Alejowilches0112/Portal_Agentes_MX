@@ -1814,16 +1814,18 @@
         return $http({
             method: 'POST',
             url: '/Profile/guardaDocumentoOriginacion',
-            data: { documento: JSON.stringify(data) },
-            headers: { 'Content-Type': 'application/json' },
+            data: data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined },
         });
     }
     fac.guardaDocumentoOriginacionCompra = function (data) {
         return $http({
             method: 'POST',
             url: '/Profile/guardaDocumentoOriginacionCompra',
-            data: { documento: JSON.stringify(data) },
-            headers: { 'Content-Type': 'application/json' },
+            data: data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined },
         });
     }
     fac.guardaDocumentoOriginacion1 = function (file) {
