@@ -21,6 +21,15 @@ namespace BayPortColombia.Controllers
             }
             return View();
         }
+        public ActionResult Avisos()
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+            return View();
+        }
         public ActionResult ListParametros()
         {
             var usr = (Login)System.Web.HttpContext.Current.Session["usr"];

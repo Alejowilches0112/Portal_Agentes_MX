@@ -1317,6 +1317,7 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Parametros\clave_delegacion.cshtml" />
+    <Content Include="Views\Parametros\Avisos.cshtml" />
     <None Include="Web References\dlgPerfilamiento\middleware.wsdl" />
     <Content Include="Web References\dlgPerfilamiento\Reference.map">
       <Generator>MSDiscoCodeGenerator</Generator>

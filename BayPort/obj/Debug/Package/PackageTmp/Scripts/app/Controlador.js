@@ -5614,7 +5614,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                     $scope.originacionDoc.expedienteCompleto = 0;
                     $scope.originacionDoc.path = $scope.docLoad.path;
                     $scope.docLoad.nombre = boton;
-                    $scope.subirDocOriginacionCompra($scope.originacionDoc);
+                    $scope.subirDocOriginacionCompra($scope.originacionDoc, boton);
                 }
                 reader.readAsDataURL(value);
         });
@@ -5666,6 +5666,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
     }
 
     $scope.subirDocOriginacion = function (doc) {
+
         doc.folder = $scope.formulario.folderNumber;
         doc.producto = $scope.formulario.producto;
         doc.dependencia = $scope.formulario.Dependencia;
@@ -5716,11 +5717,12 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
             document.getElementById($scope.docLoad.nombre).value = '';
         });
     }
-    $scope.subirDocOriginacionCompra = function (doc) {
+    $scope.subirDocOriginacionCompra = function (doc, boton) {
+        console.log(doc)
         doc.folder = $scope.formulario.folderNumber;
         doc.producto = $scope.formulario.producto;
         doc.dependencia = $scope.formulario.Dependencia;
-        var archivo = document.getElementById($scope.docLoad.nombre).files[0]
+        var archivo = document.getElementById(boton).files[0]
         var fdata = new FormData();
         fdata.append('file', archivo)
         fdata.append('firma', doc.firma);
@@ -5733,7 +5735,7 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
         fdata.append('codigo', doc.codigo);
         fdata.append('nombre_cartera', doc.nombre_cartera);
 
-        BayportService.guardaDocumentoOriginacionCompra(doc).then(function (d) {
+        BayportService.guardaDocumentoOriginacionCompra(fdata).then(function (d) {
             if (d.data.msg.errorCode != '0') {
                 alert(d.data.msg.errorMessage);
                 var nombreLabel = "#data-docOriginacionCompra";
@@ -5763,11 +5765,11 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                 };
                 var nombreLabel = "#data-docOriginacionCompra";
                 $(nombreLabel).text('');
-                document.getElementById($scope.docLoad.nombre).value = '';
+                document.getElementById(boton).value = '';
                 $scope.enviarSolicitud = true;
             }
         }, function (err) {
-            alert('No se púdo Cargar el Documento');
+            alert('No se pudo Cargar el Documento');
         });
     }
     $scope.subirDocOriginacionExpediente = function () {

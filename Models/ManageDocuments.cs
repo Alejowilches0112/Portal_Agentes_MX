@@ -233,7 +233,7 @@ namespace Models
                     Directory.CreateDirectory(path);
                 if (File.Exists(path + "\\" + documents.nombreDoc))
                     File.Delete(path + "\\" + documents.nombreDoc);
-                var savedFileName = Path.Combine(documents.path, documents.nombreDoc);
+                var savedFileName = Path.Combine(path, documents.nombreDoc);
                 hpf.SaveAs(savedFileName);
                 LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", new Exception(), "Guarda Expediente Completo");
                 if (!File.Exists(savedFileName))
@@ -247,7 +247,7 @@ namespace Models
                 documents.path = savedFileName;
                 ProfileDAO dao = new ProfileDAO();
 
-                        var actualiza = new ManageProfile().updDocFirmaCompra(documents.codigo_doc, (double)(documents.codigo), documents.folder, path, documents.path, documents.nombre_cartera);
+                        var actualiza = new ManageProfile().updDocFirmaCompra(documents.codigo_doc, (double)(documents.codigo), documents.folder, savedFileName, documents.path, documents.nombre_cartera);
                         if (actualiza)
                         {
                             documents.msg.errorCode = "0";

@@ -2573,6 +2573,7 @@ namespace Models
             campos.Add("TOTAL_A_PAGAR_CON_INTERES_LETRAS");
             campos.Add("NOMBRE_COMPLETO");
             campos.Add("CASA_FINANCIERA");
+            campos.Add("SUMA_SALDO_INSOLUTO_TABLA");
             campos.Add("SUMA_SALDO_INSOLUTO");
             campos.Add("SUMA_SALDO_INSOLUTO_LETRA");
             campos.Add("CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA");
