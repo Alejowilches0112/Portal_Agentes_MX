@@ -3531,15 +3531,20 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
             reader.readAsDataURL(value);
         });
     }
-    $scope.newAvisos = {}
+    /*
+     * Avisos
+     */
+    $scope.newAvisos = {};
     $scope.newAvisos["Imagenes"] = [];
+    $scope.newAvisos["Enlaces"] = [];
+    $scope.Aviso = {};
     $scope.uploadedFileSAvisos = function (element) {
         $scope.$apply(function ($scope) {
             console.log(element.files)
             var boton = element.id;
+            var files = [];
             for (let f of element.files) {
                 var error = false;
-                var prueba = "#" + boton;
                 var nombreDocActual = f.name;
                 var reader = new FileReader();
                 reader.onload = function (e) {
@@ -3571,22 +3576,291 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                         default:
                             error = true;
                             alert('Los Archivos Cargados no son validos. Por favor cargue un Archivo JPG o PNG ');
+                            document.getElementById(boton).value = '';
                             return;
                             break;
                     }
                     var data = {
                         'file': ((error)?'': f),
                         'imageDataUrl': file64,
-                        'name': nombreDocActual,
+                        'name': f.name,
                         'error': error
                     }
-                    $scope.newAvisos["Imagenes"] = [...$scope.newAvisos["Imagenes"], data]
-                    console.log($scope.newAvisos["Imagenes"])
+                    files = [...files , data]
                 }
                 reader.readAsDataURL(value);
             }
-            
+            setTimeout(function () {
+                document.getElementById(boton).value = '';
+                $scope.newAvisos["Imagenes"] = files;
+            }, 5000);
         });
+    }
+    $scope.updUploadedFileSAvisos = function (element) {
+        $scope.$apply(function ($scope) {
+            console.log(element.files)
+            var boton = '';
+            var files = [];
+            var f = element.files[0];
+                var error = false;
+                var nombreDocActual = f.name;
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    $scope.$apply(function () {
+                        $scope.file64 = e.target.result.split("base64,")[1];
+                    });
+                }
+                reader.readAsDataURL(f);
+                var value = f;
+                var reader = new FileReader();
+                reader.onload = function (e) {
+                    //$scope.file64 = e.target.result.split("base64,")[1];
+                    var file = e.target.result.split("base64,")[1];
+                    var file64 = e.target.result
+                    var fileCom = atob(file);
+                    switch (f.type) {
+                        case 'image/png':
+                            if (fileCom.indexOf('PNG') === -1) {
+                                error = true;
+                                break;
+                            }
+                            break;
+                        case 'image/jpeg':
+                            if (fileCom.indexOf('JFIF') > -1 && (f.name.indexOf('.jpg') === -1 && f.name.indexOf('.jpeg') === -1)) {
+                                error = true;
+                                break;
+                            }
+                            break;
+                        default:
+                            error = true;
+                            alert('Los Archivos Cargados no son validos. Por favor cargue un Archivo JPG o PNG ');
+                            document.getElementById(boton).value = '';
+                            return;
+                            break;
+                    }
+                    var data = {
+                        'file': ((error) ? '' : f),
+                        'imageDataUrl': file64,
+                        'name': f.name,
+                        'error': error
+                    }
+                    $scope.Aviso.imgs = [...$scope.Aviso.imgs, data]
+                    console.log($scope.Aviso.imgs)
+                }
+                reader.readAsDataURL(value);
+        });
+    }
+    $scope.eliminarImagen = function (item) {
+        $scope.newAvisos["Imagenes"] = $scope.newAvisos["Imagenes"].filter(d => d != item);
+    }
+    $scope.eliminarImagenAll = function () {
+        $scope.newAvisos["Imagenes"] = [];
+    }
+    $scope.addEnlace = function () {
+        var data = {
+            'titulo': $scope.tituloEnlace,
+            'enlace': $scope.enlace
+        }
+        $scope.newAvisos["Enlaces"] = [...$scope.newAvisos["Enlaces"], data];
+        $scope.tituloEnlace = '';
+        $scope.enlace = '';
+    }
+    $scope.removeEnlace = function (item) {
+        $scope.newAvisos["Enlaces"] = $scope.newAvisos["Enlaces"].filter(d => d != item);
+    }
+    $scope.addEnlaceUpd = function () {
+        $scope.Aviso.enlaces = [...$scope.Aviso.enlaces, { 'titulo': $scope.tituloEnlace, 'link': $scope.enlace }]
+        $scope.enlace = '';
+        $scope.tituloEnlace = '';
+    }
+    $scope.removeEnlaceUpd = function (item) {
+        $scope.Aviso.enlaces = $scope.Aviso.enlaces.filter(d => d != item);
+    }
+    $scope.removeImgsUpdate = function (item) {
+        $scope.Aviso["imgs"] = $scope.Aviso["imgs"].filter(d => d != item);
+        if (!item.file) {
+            $scope.Aviso['imgdelete'] = [...$scope.Aviso['imgdelete'], item.name];
+        }
+    }
+    $scope.removeimgAll = function () {
+        for (let item of $scope.Avisos["imgs"]) {
+            if (!item.file) {
+                if ($scope.Aviso['imgdelete'].indexOf() === -1) {
+                    $scope.Aviso['imgdelete'] = [...$scope.Aviso['imgdelete'], item];
+                }
+            }
+        }
+        $scope.Avisos["imgs"] = [];
+    }
+    $scope.getAvisos = function () {
+        BayportService.getAvisos().then(function (d) {
+            var data = d.data;
+            if (data.msg.errorCode === '0') {
+                $scope.Avisos = data.ListAvisos;
+            } else {
+                alert(data.msg.errorMessage);
+            }
+        });
+    }
+    $scope.getIdAviso = function (cod) {
+        BayportService.getIdAviso(cod).then(function (d) {
+            if (d.data.msg.errorCode === '0') {
+                $scope.Aviso = d.data.ListAvisos[0];
+                $scope.Aviso['imgdelete'] = []
+                $scope.openModal('myModalEdit');
+            } else {
+                alert(d.data.msg.errorMessage);
+            }
+        });
+    }
+    $scope.saveAviso = function () {
+        var fdata = new FormData();
+        if ($scope.newAvisos && $scope.newAvisos.title && $scope.newAvisos.fuente && $scope.newAvisos.fchIniVigencia && $scope.newAvisos.fchFinVigencia) {
+           
+            $('newTitulo').removeClass('text text-danger');
+            $('newTitulo').text('');
+         
+            $('newTamano').removeClass('text text-danger');
+            $('newTamano').text('');
+          
+            $('newFchI').removeClass('text text-danger');
+            $('newFchI').text('');
+            
+            $('newFchF').removeClass('text text-danger');
+            $('newFchF').text('');
+            
+            var contenido = ($scope.newAvisos.cuerpo) ? $scope.newAvisos.cuerpo : '';
+            var enlaces = '';
+            fdata.append('titulo', $scope.newAvisos.title);
+            fdata.append('fecha_inicio', $scope.newAvisos.fchIniVigencia);
+            fdata.append('fecha_fin', $scope.newAvisos.fchFinVigencia);
+            fdata.append('contenido', contenido);
+            fdata.append('fuente', $scope.newAvisos.fuente);
+            if ($scope.newAvisos["Imagenes"].length > 0) {
+                var i = 1;
+                for (let item of $scope.newAvisos["Imagenes"]) {
+                    var f = 'file' + i;
+                    if (!item.error) {
+                        fdata.append(f, item.file);
+                        i++;
+                    }
+                }
+            }
+            if ($scope.newAvisos["Enlaces"].length > 0) {
+                for (let item of $scope.newAvisos["Enlaces"]) {
+                    enlaces += (enlaces.length == 0) ? `${item.titulo};${item.enlace}` : `,${item.titulo};${item.enlace}`;
+                }
+            }
+            fdata.append('enlaces', enlaces);
+            BayportService.saveAviso(fdata).then(function (d) {
+                if (d.data.errorCode == '0') {
+                    $scope.newAvisos = {}
+                    $scope.newAvisos["Imagenes"] = [];
+                    $scope.newAvisos["Enlaces"] = [];
+                    $scope.getAvisos();
+                    $scope.closeModal('myModalNueva');
+                }
+                alert(d.data.errorMessage);
+            });
+        } else {
+            if (!$scope.newAvisos)
+            {
+                alert('Debe llenar todo el formulario');
+                return;
+            }
+            if (!$scope.newAvisos.title) {
+                $('newTitulo').addClass('text text-danger');
+                $('newTitulo').text('Este Campo es requerido');
+            }
+            if (!$scope.newAvisos.fuente) {
+                $('newTamano').addClass('text text-danger');
+                $('newTamano').text('Este Campo es requerido');}
+            if (!$scope.newAvisos.fchIniVigencia) {
+                $('newFchI').addClass('text text-danger');
+                $('newFchI').text('Este Campo es requerido');
+            }
+            if (!$scope.newAvisos.fchFinVigencia) {
+                $('newFchF').addClass('text text-danger');
+                $('newFchF').text('Este Campo es requerido');
+            }
+
+        }
+    }
+    $scope.updAviso = function () {
+        var fdata = new FormData();
+        var contenido = ($scope.Aviso.contenido) ? $scope.Aviso.contenido : '';
+        var enlaces = '';
+        fdata.append('secuencia', $scope.Aviso.secuencia);
+        fdata.append('titulo', $scope.Aviso.titulo);
+        fdata.append('fecha_inicio', $scope.Aviso.fch_inicio);
+        fdata.append('fecha_fin', $scope.Aviso.fch_fin);
+        fdata.append('contenido', contenido);
+        fdata.append('fuente', $scope.Aviso.fuente);
+        fdata.append('removeImgs', $scope.Aviso['imgdelete']);
+        if ($scope.Aviso.enlaces.length > 0) {
+            for (let item of $scope.Aviso.enlaces) {
+                enlaces += (enlaces.length == 0) ? `${item.titulo};${item.link}` : `,${item.titulo};${item.link}`;
+            }
+        }
+        var allImgs = '';
+        if ($scope.Aviso.imgs.length > 0) {
+            var i = 1;
+            for (let item of $scope.Aviso.imgs) {
+                var f = 'file' + i;
+                if (!item.error && item.file) {
+                    fdata.append(f, item.file);
+                    i++;
+                }
+                if (!item.file) {
+                    allImgs += (allImgs.length > 0) ? `;${item.name},${item.path}` : `${item.name},${item.path}`;
+                }
+            }
+        }
+        fdata.append('allImgs', allImgs);
+        fdata.append('enlaces', enlaces);
+        console.log($scope.Aviso['imgdelete'])
+        BayportService.updAviso(fdata).then(function (d) {
+            if (d.data.errorCode === '0') {
+                $scope.Aviso = {};
+                $scope.getAvisos();
+                $scope.closeModal('myModalEdit');
+            } else {
+                alert(d.data.errorMessage);
+            }
+        });
+    }
+    $scope.deleteAviso = function (cod) {
+        BayportService.deleteAviso(cod).then(function (d) {
+            if (d.data.errorCode == "0") {
+                $scope.objEliminar = {};
+                $scope.getAvisos();
+                $scope.closeModal('myModalDelete');
+            } else {
+                alert(d.data.errorMessage);
+            }
+        });
+    }
+    $scope.exportCVS = function () {
+        var table = document.getElementById('table');
+        var csvString = '';
+        for (var i = 0; i < table.rows.length; i++) {
+            var rowData = table.rows[i].cells;
+            for (var j = 0; j < rowData.length; j++) {
+                if (rowData[j].innerHTML && rowData[j].innerHTML.indexOf('<button') === -1) {
+                    csvString = csvString + rowData[j].innerHTML + ",";
+                }
+            }
+            csvString = csvString.substring(0, csvString.length - 1);
+            csvString = csvString + "\n";
+        }
+        csvString = csvString.substring(0, csvString.length - 1);
+        var a = $('<a/>', {
+            style: 'display:none',
+            href: 'data:application/octet-stream;base64,' + btoa(csvString),
+            download: 'Avisos.csv'
+        }).appendTo('body')
+        a[0].click()
+        a.remove();
     }
     $scope.listadoOpciones = [];
     $scope.opcionesConfigurar = function (campo) {
@@ -3977,6 +4251,19 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
     $scope.UserOptions9 = null;
     $scope.UserOptions10 = null;
     $scope.regexHoraContacto = /^(?=.*[0-9])(?=.*\d)?([0-9]\:?)*[0-9]$/;
+    $scope.GetAvisoActual = function () {
+        BayportService.getAvisoActual().then(function (d) {
+            console.log(d.data)
+            if (d.data.msg.errorCode === '0') {
+                $scope.Aviso = d.data.ListAvisos[0];
+                $('titulo_aviso').text($scope.Aviso.titulo);
+                $('titulo_aviso').css('font-size', $scope.Aviso.fuente+'px');
+                $('contenido_aviso').text($scope.Aviso.contenido);
+                $('contenido_aviso').css('font-size', $scope.Aviso.fuente + 'px');
+                $scope.openModal('aviso')
+            }
+        });
+    }
     $scope.GetUserOptions = function (i) {
         BayportService.GetUserOptions(i).then(function (d) {
             switch (i) {

@@ -3,6 +3,7 @@ using System.Web.Mvc;
 using Tags;
 using Models;
 using Entities;
+using System.Collections.Generic;
 using Newtonsoft.Json;
 using System.Web;
 using Helper;
@@ -2813,6 +2814,115 @@ namespace BayPortColombia.Controllers
                 }
             }
             var data = new ManageParams().deleteClaves(cod);
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        /*Avisos*/
+        public JsonResult getAvisos()
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
+            var data = new ManageParams().getAvisos();
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult getIdAviso(double cod)
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
+            string rootPath = Server.MapPath("~/Files");
+            string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+            var data = new ManageParams().getIdAviso(cod, rootPath, baseUrl);
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult saveAviso()
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
+            List<HttpPostedFileBase> listFiles = new List<HttpPostedFileBase>();
+            if (Request.Files.Count > 0)
+            {
+                for(var i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFileBase hpf = Request.Files[i] as HttpPostedFileBase;
+                    listFiles.Add(hpf);
+                }
+            }
+            ParamAviso av = new ParamAviso();
+            av.titulo = Request.Form["titulo"];
+            av.contenido = Request.Form["contenido"];
+            av.fch_inicio = Request.Form["fecha_inicio"];
+            av.fch_fin = Request.Form["fecha_fin"];
+            av.allenlaces = Request.Form["enlaces"];
+            av.fuente = double.Parse(Request.Form["fuente"]);
+            var data = new ManageParams().saveFilesAvisos(av, listFiles);
+            //var data = new ManageParams().saveAvisos();
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult updAviso()
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
+            List<HttpPostedFileBase> listFiles = new List<HttpPostedFileBase>();
+            if (Request.Files.Count > 0)
+            {
+                for (var i = 0; i < Request.Files.Count; i++)
+                {
+                    HttpPostedFileBase hpf = Request.Files[i] as HttpPostedFileBase;
+                    listFiles.Add(hpf);
+                }
+            }
+            ParamAviso av = new ParamAviso();
+            av.secuencia = double.Parse(Request.Form["secuencia"]);
+            av.titulo = Request.Form["titulo"];
+            av.contenido = Request.Form["contenido"];
+            av.fch_inicio = Request.Form["fecha_inicio"];
+            av.fch_fin = Request.Form["fecha_fin"];
+            av.allenlaces = Request.Form["enlaces"];
+            av.fuente = double.Parse(Request.Form["fuente"]);
+            var deleteImages = Request.Form["removeImgs"];
+            av.allimgs = Request.Form["allImgs"];
+            string baseUrl = Server.MapPath("~/Files");
+            var data = new ManageParams().updAvisos(av, listFiles, baseUrl, deleteImages);
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult deleteAviso(double cod)
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
+            var data = new ManageParams().deleteAvisos(cod);
+            return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
+        }
+        public JsonResult GetAvisoActual()
+        {
+            var usr = (Login)System.Web.HttpContext.Current.Session["usr"];
+            if (usr == null)
+            {
+                Login();
+                return null;
+            }
+            var fch = DateTime.Now.ToString("dd/MM/yyyy");
+            string rootPath = Server.MapPath("~/Files");
+            string baseUrl = Request.Url.GetLeftPart(UriPartial.Authority);
+            var data = new ManageParams().getAvisoActual(fch, rootPath, baseUrl);
             return new JsonResult { Data = data, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
     }

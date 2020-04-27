@@ -5,7 +5,7 @@ using System;
 using System.IO;
 using System.Web;
 using System.Collections.Generic;
-
+using System.Configuration;
 
 namespace Models
 {
@@ -2773,6 +2773,199 @@ namespace Models
                 data.errorCode = "200";
                 data.errorMessage = "Error Listando las Claves";
                 LogHelper.WriteLog("Models", "ManageParams", "deleteClaves", ex, "");
+            }
+            return data;
+        }
+        /*Avisos*/
+        public OutParamAvisos getAvisos()
+        {
+            OutParamAvisos data = new OutParamAvisos();
+            try
+            {
+                ParamsDAO dao = new ParamsDAO();
+                data = dao.getAvisos();
+            }
+            catch (Exception ex)
+            {
+                data.msg.errorCode = "200";
+                data.msg.errorMessage = "Error Listando los Avisos";
+                LogHelper.WriteLog("Models", "ManageParams", "getAvisos", ex, "");
+            }
+            return data;
+        }
+        public OutParamAvisos getAvisoActual(string fch, string baseUrl, string rootPath)
+        {
+            OutParamAvisos data = new OutParamAvisos();
+            try
+            {
+                ParamsDAO dao = new ParamsDAO();
+                data = dao.getAvisoActual(fch);
+                if (data.ListAvisos[0].imgs.Count > 0)
+                {
+                    for (var i = 0; i < data.ListAvisos[0].imgs.Count; i++)
+                    {
+                        rootPath = (rootPath.IndexOf("http://originacionbayport") > -1) ? rootPath.Replace("http", "https") : rootPath;
+                        var FileName = data.ListAvisos[0].imgs[i].path;
+                        char[] s = new char[FileName.Length - FileName.LastIndexOf("\\") - 1];
+                        FileName.CopyTo(FileName.LastIndexOf("\\") + 1, s, 0, FileName.Length - FileName.LastIndexOf("\\") - 1);
+                        string fileName = new string(s);
+                        if (File.Exists(baseUrl + "\\" + fileName))
+                        {
+                            File.Delete(baseUrl + "\\" + fileName);
+                        }
+                        File.Copy(FileName, baseUrl + "\\" + fileName);
+                        string filevirtual = rootPath + "/Files/" + fileName;
+                        data.ListAvisos[0].imgs[i].imageDataUrl = filevirtual;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                data.msg.errorCode = "200";
+                data.msg.errorMessage = "Error Listando los Avisos";
+                LogHelper.WriteLog("Models", "ManageParams", "getAvisos", ex, "");
+            }
+            return data;
+        }
+        public Response saveFilesAvisos(ParamAviso av, List<HttpPostedFileBase> hpfs)
+        {
+            Response data = new Response();
+            try
+            {
+                ParamsDAO dao = new ParamsDAO();
+                av.allimgs = "";
+                for (var i = 0; i < hpfs.Count; i++)
+                {
+                    HttpPostedFileBase hpf = hpfs[i];
+                    var fileName = hpf.FileName;
+                    fileName = fileName.Replace("Ñ", "N").Replace("ñ", "n");
+                    fileName = fileName.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+                    fileName = fileName.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U");
+
+                    var path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\IMGAVISOS\";
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    var saveFile = Path.Combine(path, fileName);
+                    if (File.Exists(saveFile))
+                        File.Delete(saveFile);
+                    hpf.SaveAs(saveFile);
+                    if (!File.Exists(saveFile))
+                    {
+                        data.errorCode = "300";
+                        data.errorMessage = "Error Al subir el Archivo Intente Nuevamente";
+                        LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", null, saveFile);
+                        return data;
+                    }
+                    av.allimgs += (av.allimgs.Length == 0) ? fileName + "," + saveFile : ";" + fileName + "," + saveFile;
+                }
+                data = dao.saveAviso(av);
+            }
+            catch (Exception ex)
+            {
+                data.errorCode = "200";
+                data.errorMessage = "Error Actualizando el Aviso";
+                LogHelper.WriteLog("Models", "ManageParams", "updAvisos", ex, "");
+            }
+            return data;
+        }
+        public OutParamAvisos getIdAviso(double cod, string baseUrl, string rootPath)
+        {
+            OutParamAvisos data = new OutParamAvisos();
+            try
+            {
+                ParamsDAO dao = new ParamsDAO();
+                data = dao.getIdAviso(cod);
+                if (data.ListAvisos[0].imgs.Count > 0)
+                {
+                    for (var i = 0; i < data.ListAvisos[0].imgs.Count; i++)
+                    {
+                        rootPath = (rootPath.IndexOf("http://originacionbayport") > -1) ? rootPath.Replace("http", "https") : rootPath;
+                        var FileName = data.ListAvisos[0].imgs[i].path;
+                        char[] s = new char[FileName.Length - FileName.LastIndexOf("\\") - 1];
+                        FileName.CopyTo(FileName.LastIndexOf("\\") + 1, s, 0, FileName.Length - FileName.LastIndexOf("\\") - 1);
+                        string fileName = new string(s);
+                        if (File.Exists(baseUrl + "\\" + fileName))
+                        {
+                            File.Delete(baseUrl + "\\" + fileName);
+                        }
+                        File.Copy(FileName, baseUrl + "\\" + fileName);
+                        string filevirtual = rootPath + "/Files/" + fileName;
+                        data.ListAvisos[0].imgs[i].imageDataUrl = filevirtual;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                data.msg.errorCode = "200";
+                data.msg.errorMessage = "Error Actualizando el Aviso";
+                LogHelper.WriteLog("Models", "ManageParams", "getIdAviso", ex, "");
+            }
+            return data;
+        }
+        public Response updAvisos(ParamAviso av, List<HttpPostedFileBase> hpfs, string baseUrl, string deleteImgs)
+        { 
+            Response data = new Response();
+            try
+            {
+                ParamsDAO dao = new ParamsDAO();
+                var path = $@"{ConfigurationManager.AppSettings["rutaRaiz"]}\IMGAVISOS\";
+                if (deleteImgs != null && deleteImgs.Length > 0)
+                {
+                    var img = deleteImgs.Split(',');
+                    for (var i = 0; i < img.Length; i++)
+                    {
+                        File.Delete(Path.Combine(path + img[i]));
+                        if(File.Exists(Path.Combine(baseUrl,img[i])))
+                            File.Delete(Path.Combine(baseUrl, img[i]));
+                    }
+                }
+                for (var i = 0; i < hpfs.Count; i++)
+                {
+                    HttpPostedFileBase hpf = hpfs[i];
+                    var fileName = hpf.FileName;
+                    fileName = fileName.Replace("Ñ", "N").Replace("ñ", "n");
+                    fileName = fileName.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+                    fileName = fileName.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U");
+
+                    
+                    if (!Directory.Exists(path))
+                        Directory.CreateDirectory(path);
+                    var saveFile = Path.Combine(path, fileName);
+                    if (File.Exists(saveFile))
+                        File.Delete(saveFile);
+                    hpf.SaveAs(saveFile);
+                    if (!File.Exists(saveFile))
+                    {
+                        data.errorCode = "300";
+                        data.errorMessage = "Error Al subir el Archivo Intente Nuevamente";
+                        LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", null, saveFile);
+                        return data;
+                    }
+                    av.allimgs += (av.allimgs.Length == 0) ? fileName + "," + saveFile : ";" + fileName + "," + saveFile;
+                }
+                data = dao.updAvisos(av);
+            }
+            catch (Exception ex)
+            {
+                data.errorCode = "200";
+                data.errorMessage = "Error Actualizando el Aviso";
+                LogHelper.WriteLog("Models", "ManageParams", "updAvisos", ex, "");
+            }
+            return data;
+        }
+        public Response deleteAvisos(double cod)
+        {
+            Response data = new Response();
+            try
+            {
+                ParamsDAO dao = new ParamsDAO();
+                data = dao.deleteAvisos(cod);
+            }
+            catch (Exception ex)
+            {
+                data.errorCode = "200";
+                data.errorMessage = "Error Eliminando el Aviso";
+                LogHelper.WriteLog("Models", "ManageParams", "deleteAvisos", ex, "");
             }
             return data;
         }

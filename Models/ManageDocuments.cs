@@ -6,6 +6,7 @@ using System.IO;
 using System.Web;
 using System.Text.RegularExpressions;
 using System.Configuration;
+using System.Collections.Generic;
 namespace Models
 {
     public class ManageDocuments
@@ -115,8 +116,7 @@ namespace Models
                 LogHelper.WriteLog("Models", "ManageDocuments", "CargarArchivo", e, documents.nombre);
                 return false;
             }
-        }
-        
+        }    
         public bool CargarArchivoOriginacion(ref DocumentoOriginacion documents, HttpPostedFileBase hpf)
         {
             try
@@ -347,7 +347,6 @@ namespace Models
             }
             return data;
         }
-
         public OutParamSectorTablas GetddSectorTablas()
         {
             OutParamSectorTablas data = new OutParamSectorTablas();
@@ -363,7 +362,6 @@ namespace Models
             }
             return data;
         }
-
         public OutParamGuias GetGuiasAs()
         {
             OutParamGuias data = new OutParamGuias();
@@ -379,7 +377,6 @@ namespace Models
             }
             return data;
         }
-
         public OutParamGuias GetGuias()
         {
             OutParamGuias data = new OutParamGuias();
@@ -455,7 +452,6 @@ namespace Models
             }
             return data;
         }
-
         public Response GuardarArchvio (ref ParamGuias documento, string tabla)
         {
             Response data = new Response();
@@ -491,7 +487,6 @@ namespace Models
             }
             return data;
         }
-
         public Response EditarArchivo(ref ParamGuias documento, string tabla)
         {
             Response data = new Response();

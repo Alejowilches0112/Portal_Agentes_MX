@@ -573,6 +573,47 @@
         });
     };
     //Parametros
+    /* Avisos */
+    fac.getAvisos = function () {
+        return $http.get('/Parametros/getAvisos');
+    }
+    fac.getAvisoActual = function () {
+        return $http.get('/Parametros/GetAvisoActual');
+    }
+    fac.getIdAviso = function (cod) {
+        return $http({
+            method: 'POST',
+            url: '/Parametros/getIdAviso',
+            data: { cod: cod },
+            headers: { 'Content-Type': 'application/json' }
+        });
+    };
+    fac.saveAviso = function (data) {
+        return $http({
+            method: 'POST',
+            url: '/Parametros/saveAviso',
+            data: data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined },
+        });
+    }
+    fac.updAviso = function (data) {
+        return $http({
+            method: 'POST',
+            url: '/Parametros/updAviso',
+            data: data,
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined },
+        });
+    }
+    fac.deleteAviso = function (cod) {
+        return $http({
+            method: 'POST',
+            url: '/Parametros/deleteAviso',
+            data: { cod: cod },
+            headers: { 'Content-Type': 'application/json' }
+        });
+    }
     /*
      * Dependencias
      */
