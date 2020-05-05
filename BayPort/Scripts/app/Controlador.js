@@ -3543,7 +3543,7 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
             console.log(element.files)
             var boton = element.id;
             var files = [];
-            for (let f of element.files) {
+            var f = element.files[0];
                 var error = false;
                 var nombreDocActual = f.name;
                 var reader = new FileReader();
@@ -3586,14 +3586,11 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                         'name': f.name,
                         'error': error
                     }
-                    files = [...files , data]
+                    $scope.newAvisos["Imagenes"] = [...$scope.newAvisos["Imagenes"], data]
+
                 }
                 reader.readAsDataURL(value);
             }
-            setTimeout(function () {
-                document.getElementById(boton).value = '';
-                $scope.newAvisos["Imagenes"] = files;
-            }, 5000);
         });
     }
     $scope.updUploadedFileSAvisos = function (element) {
