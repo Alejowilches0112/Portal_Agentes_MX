@@ -3590,7 +3590,6 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
 
                 }
                 reader.readAsDataURL(value);
-            }
         });
     }
     $scope.updUploadedFileSAvisos = function (element) {
@@ -4316,7 +4315,8 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
         });
     }
     $scope.expedienteCompletoLoad = "0";
-
+    $scope.codigoExisteDom = true;
+    $scope.codigoExisteOcp = true;
     $scope.checked = false;
     $scope.ofertaaceptada = {};
     $scope.formulario = {};
@@ -4411,15 +4411,22 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
     $scope.analizaCodigoPostal = function (codigo) {
         $scope.listColonias = [];
         BayportService.codigoPostal(codigo).then(function (d) {
-            console.log(d.data);
-            for (let item of d.data.colonias) {
-                item = item.toUpperCase();
-                var obj = { label: item, values: item };
-                $scope.listColonias = [...$scope.listColonias, obj];
+            if (d.data.estatus === '000') {
+                console.log(d.data);
+                for (let item of d.data.colonias) {
+                    item = item.toUpperCase();
+                    var obj = { label: item, values: item };
+                    $scope.listColonias = [...$scope.listColonias, obj];
+                }
+                $scope.formulario.entidadDom = d.data.estado
+                $scope.formulario.municipioDom = d.data.municipio;
+            } else {
+                var error = 'Codigo Postal Domicilio ' + d.data.descripcionMovimiento;
+                $scope.formulario.entidadDom = '';
+                $scope.formulario.municipioDom = '';
+                $scope.codigoExisteDom = false;
+                alert(error);
             }
-
-            $scope.formulario.entidadDom = d.data.estado
-            $scope.formulario.municipioDom = d.data.municipio;
         });
     }
     $scope.analizaCodigoPostalOcupacion = function (codigo) {
@@ -4434,7 +4441,10 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                 $scope.formulario.entidadT = d.data.estado;
                 $scope.formulario.municipio = d.data.municipio;
             } else {
-                var error = 'Ocupación ' + d.data.descripcionMovimiento;
+                var error = 'Codigo Postal Ocupación ' + d.data.descripcionMovimiento;
+                $scope.formulario.entidadT = '';
+                $scope.formulario.municipio = '';
+                $scope.codigoExisteOcp = false;
                 alert(error);
             }
         });
