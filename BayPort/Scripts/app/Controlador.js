@@ -3586,6 +3586,9 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                         'name': f.name,
                         'error': error
                     }
+                    if (data.file.length == 0) {
+                        data.error = true;
+                    }
                     $scope.newAvisos["Imagenes"] = [...$scope.newAvisos["Imagenes"], data]
 
                 }
@@ -3640,6 +3643,8 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                         'name': f.name,
                         'error': error
                     }
+                    console.log(data.file.length)
+                    if (data.file.length == 0) { data.error = true; }
                     $scope.Aviso.imgs = [...$scope.Aviso.imgs, data]
                     console.log($scope.Aviso.imgs)
                 }
@@ -3807,7 +3812,7 @@ app.controller('ParametrosController', function ($scope, BayportService, $filter
                     fdata.append(f, item.file);
                     i++;
                 }
-                if (!item.file) {
+                if (!item.file && !item.error) {
                     allImgs += (allImgs.length > 0) ? `;${item.name},${item.path}` : `${item.name},${item.path}`;
                 }
             }
@@ -4422,9 +4427,12 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                 $scope.formulario.municipioDom = d.data.municipio;
             } else {
                 var error = 'Codigo Postal Domicilio ' + d.data.descripcionMovimiento;
-                $scope.formulario.entidadDom = '';
-                $scope.formulario.municipioDom = '';
                 $scope.codigoExisteDom = false;
+                for (let item of d.data.colonias) {
+                    item = item.toUpperCase();
+                    var obj = { label: item, values: item };
+                    $scope.listColonias = [...$scope.listColonias, obj];
+                }
                 alert(error);
             }
         });
@@ -4442,9 +4450,12 @@ app.controller('OriginacionController', function ($scope, BayportService, $filte
                 $scope.formulario.municipio = d.data.municipio;
             } else {
                 var error = 'Codigo Postal Ocupación ' + d.data.descripcionMovimiento;
-                $scope.formulario.entidadT = '';
-                $scope.formulario.municipio = '';
                 $scope.codigoExisteOcp = false;
+                for (let item of d.data.colonias) {
+                    item = item.toUpperCase();
+                    var obj = { label: item, values: item };
+                    $scope.listColonias = [...$scope.listColonias, obj];
+                }
                 alert(error);
             }
         });

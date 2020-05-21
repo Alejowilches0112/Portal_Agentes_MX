@@ -206,9 +206,9 @@ namespace Models
                 documents.nombreDoc = documents.nombreDoc.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
                 documents.nombreDoc = documents.nombreDoc.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U");
 
-                documents.nombre_cartera = documents.nombreDoc.Replace("Ñ", "N").Replace("ñ", "n");
-                documents.nombre_cartera = documents.nombreDoc.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
-                documents.nombre_cartera = documents.nombreDoc.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U");
+                documents.nombre_cartera = documents.nombre_cartera.Replace("Ñ", "N").Replace("ñ", "n");
+                documents.nombre_cartera = documents.nombre_cartera.Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u");
+                documents.nombre_cartera = documents.nombre_cartera.Replace("Á", "A").Replace("É", "E").Replace("Í", "I").Replace("Ó", "O").Replace("Ú", "U");
 
                 Regex regex = new Regex("(.pdf|.png|.jpeg|.jpg)$");
 
@@ -224,11 +224,13 @@ namespace Models
                 path += (documents.producto != null) ? "\\" + documents.producto : "";
                 var firma = (documents.firma == 1) ? "_firma" : "";
                 var expediente = (documents.expedienteCompleto == 1) ? "_expediente_completo" : "";
+
                 documents.nombreDoc = regex.Replace(documents.nombreDoc, "_" + firma + expediente + extension);
                 documents.nombreDoc = documents.nombreDoc.Replace(" ", "_");
 
-                documents.nombre_cartera = regex.Replace(documents.nombre_cartera, "_" + firma + expediente + extension);
+                documents.nombre_cartera = regex.Replace(documents.nombre_cartera, "_" + firma + expediente + ".pdf");
                 documents.nombre_cartera = documents.nombre_cartera.Replace(" ", "_");
+
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 if (File.Exists(path + "\\" + documents.nombreDoc))
@@ -244,7 +246,6 @@ namespace Models
                     return false;
                 }
                 documents.file = null;
-                documents.path = savedFileName;
                 ProfileDAO dao = new ProfileDAO();
 
                         var actualiza = new ManageProfile().updDocFirmaCompra(documents.codigo_doc, (double)(documents.codigo), documents.folder, savedFileName, documents.path, documents.nombre_cartera);

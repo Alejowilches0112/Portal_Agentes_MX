@@ -1560,10 +1560,10 @@
                     <div class="modal-body">
                         <div class="col-sm-12">
                             <label class="control-label col-sm-12"> {{docLoad.nombreDoc}}</label>
-                            <label for={{docLoad.nombreDoc}} class="custom-file-upload">
+                            <label for="documento-cartera" class="custom-file-upload">
                                 <i class="fa fa-cloud-upload"></i> Cargar Documento
                             </label>
-                            <input id={{docLoad.nombreDoc}} type="file" accept=".pdf;.png;.jpeg" onchange="angular.element(this).scope().uploadedFileOriginacionCompra(this)" />
+                            <input id="documento-cartera" type="file" accept=".pdf;.png;.jpeg" onchange="angular.element(this).scope().uploadedFileOriginacionCompra(this)" />
                             <label id="data-docOriginacionCompra"></label>
                         </div>
                     </div>

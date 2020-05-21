@@ -283,6 +283,16 @@ namespace Models
                         data.estatus = xmlnode[i].ChildNodes.Item(0).InnerText.Trim();
                         data.descripcionMovimiento = xmlnode[i].ChildNodes.Item(2).InnerText.Trim();
                     }
+                    if (xt.GetElementsByTagName("colonias").Count > 0)
+                    {
+                        xmlnode = xt.GetElementsByTagName("colonias");
+                        List<string> list = new List<string>();
+                        for (var i = 0; i < xmlnode[0].ChildNodes.Count; i++)
+                        {
+                            list.Add(xmlnode[0].ChildNodes.Item(i).InnerText.Trim());
+                        }
+                        data.colonias = list;
+                    }
                 }
 
             }
@@ -3371,18 +3381,9 @@ namespace Models
             var infoDoc = new ParamsDAO().getIdDocumentos(codigo_doc).ListDocumentos[0];
             var msg = new Response();
             regex = new Regex("(.png|.jpeg|.jpg)$");
-            match = regex.Match(docExist);
+            match = regex.Match(urlFirma);
             var width = 575f;
             var height = 822f;
-            if (match.Success)
-            {
-                msg = new ProfileDAO().actualizaDocOriginacion(doc, folder, nombre_doc_cartera, nomDoumento);
-                write = (msg.errorCode.Equals("0")) ? true : false;
-                File.Delete(docExist);
-                File.Delete(urlFirma);
-                return write;
-            }
-
             PdfReader reader = new PdfReader(docExist);
             PdfDocument docR = new PdfDocument(reader);
             PdfReader reader1;
@@ -3400,7 +3401,6 @@ namespace Models
                     if (i == infoDoc.pagina_firma)
                     {
                         regex = new Regex("(.jpg|.png|.jpeg)$");
-                        match = regex.Match(urlFirma);
                         var n = docR.GetNumberOfPages();
                         if (match.Success)
                         {

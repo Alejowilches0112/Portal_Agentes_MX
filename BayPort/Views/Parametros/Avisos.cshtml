@@ -116,10 +116,11 @@
                                         <tr ng-repeat="item in newAvisos.Imagenes">
                                             <td>
                                                 <img src="{{item.imageDataUrl}}" style="width: 70px; height: 100px" />
-                                                <span> {{item.name}}</span>
+                                                <span> {{item.name}} </span>
                                                 <span>
-                                                    <i class="fa fa-check" style="background: #00930b;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(!error)"></i>
-                                                    <i class="fa fa-times" style="background: red;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(error)"></i>
+                                                    
+                                                    <i class="fa fa-check" style="background: #00930b;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(!item.error)"></i>
+                                                    <i class="fa fa-times" style="background: red;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(item.error)"></i>
                                                 </span>
                                                 <label for="" ng-click="eliminarImagen(item)">
                                                     <i class="glyphicon glyphicon-remove" style="color:red"></i>
@@ -238,8 +239,8 @@
                                                 <img src="{{item.imageDataUrl}}" style="width: 70px; height: 100px" />
                                                 <span> {{item.name}}</span>
                                                 <span>
-                                                    <i class="fa fa-check" style="background: #00930b;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(!error)"></i>
-                                                    <i class="fa fa-times" style="background: red;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(error)"></i>
+                                                    <i class="fa fa-check" style="background: #00930b;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(!item.error)"></i>
+                                                    <i class="fa fa-times" style="background: red;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(item.error)"></i>
                                                 </span>
                                                 <label for="" ng-click="removeImgsUpdate(item)">
                                                     <i class="glyphicon glyphicon-remove" style="color:red"></i>
