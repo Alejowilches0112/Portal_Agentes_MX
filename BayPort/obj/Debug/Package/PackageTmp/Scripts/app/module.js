@@ -30,7 +30,7 @@ angular.module('appBayport')
                     return elem[0].value;
                 });
             }
-        };
+        }
     })
 
     .directive('uppercase', function () {
@@ -47,7 +47,7 @@ angular.module('appBayport')
                 //This part of the code manipulates the viewvalue of the element
                 element.css("text-transform", "uppercase");
             }
-        };
+        }
     })
 
     .directive("datepicker", function () {
@@ -71,12 +71,9 @@ angular.module('appBayport')
         }
     })
 
-
     .filter('jsonDate', ['$filter', function ($filter) {
         return function (input, format) {
-            return (input)
-                ? $filter('date')(parseInt(input.substr(6)), format)
-                : '';
+            return (input) ? $filter('date')(parseInt(input.substr(6)), format) : '';
         };
     }]);
 
@@ -87,7 +84,7 @@ angular.module('appBayport')
 //        return input.split(splitChar)[splitIndex];
 //    }
 //})
-;
+
 
 
 

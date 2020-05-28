@@ -283,6 +283,16 @@ namespace Models
                         data.estatus = xmlnode[i].ChildNodes.Item(0).InnerText.Trim();
                         data.descripcionMovimiento = xmlnode[i].ChildNodes.Item(2).InnerText.Trim();
                     }
+                    if (xt.GetElementsByTagName("colonias").Count > 0)
+                    {
+                        xmlnode = xt.GetElementsByTagName("colonias");
+                        List<string> list = new List<string>();
+                        for (var i = 0; i < xmlnode[0].ChildNodes.Count; i++)
+                        {
+                            list.Add(xmlnode[0].ChildNodes.Item(i).InnerText.Trim());
+                        }
+                        data.colonias = list;
+                    }
                 }
 
             }
@@ -817,7 +827,7 @@ namespace Models
                                 config.valor = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "TASA_ANUAL":
-                                config.valor = formulario.tAnual;
+                                config.valor = double.Parse(formulario.tAnual).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "CAT":
                                 config.valor = formulario.cat;
@@ -1512,7 +1522,7 @@ namespace Models
                                 config.valor = edad + "";
                                 break;
                             case "TASA_MENSUAL":
-                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                               config.valor = (double.Parse(formulario.tAnual) / 12).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "TOTAL_A_PAGAR_CON_INTERES":
                                 config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
@@ -2024,7 +2034,7 @@ namespace Models
                                 config.valor = formulario.dscto;
                                 break;
                             case "TASA_ANUAL":
-                                config.valor = formulario.tAnual;
+                                config.valor = double.Parse(formulario.tAnual).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "CAT":
                                 config.valor = formulario.cat;
@@ -2728,7 +2738,7 @@ namespace Models
                                 config.valor = edad + "";
                                 break;
                             case "TASA_MENSUAL":
-                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                               config.valor = (double.Parse(formulario.tAnual) / 12).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "TOTAL_A_PAGAR_CON_INTERES":
                                 config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
@@ -2743,38 +2753,40 @@ namespace Models
                             case "CASA_FINANCIERA":
                                 config.valor = cart.ElementAt(x).entidad;
                                 break;
+                            case "SUMA_SALDO_INSOLUTO_TABLA":
+                                sum = 0;
+                                var q1 = (int)item;
+                                var lim4 = ((int)_document.max_item + q1 == 0) ? cart.Count() : (int)_document.max_item + q1;
+
+                                for (; q1 < lim4; q1++)
+                                {
+                                    if (q1 >= cart.Count()) break;
+                                    sum += cart.ElementAt(q1).saldoInsoluto;
+                                }
+                                config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                break;
                             case "SUMA_SALDO_INSOLUTO":
                                 sum = 0;
-                                var q = (int)item;
-                                var lim = ((int)_document.max_item+q == 0) ? cart.Count() : (int)_document.max_item + q;
-                                
-                                for (; q < lim; q++)
+                                for (var q = 0; q < cart.Count(); q++)
                                 {
-                                    if (q >= cart.Count()) break;
                                     sum += cart.ElementAt(q).saldoInsoluto;
                                 }
                                 config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                 break;
                             case "SUMA_SALDO_INSOLUTO_LETRA":
                                 sum = 0;
-                                var q1 = (int)item;
-                                var lim1 = ((int)_document.max_item+q1 == 0) ? cart.Count() : (int)_document.max_item + q1;
-                                for (; q1 < lim1; q1++)
+                                for (var q = 0; q < cart.Count(); q++)
                                 {
-                                    if (q1 == cart.Count()) break;
-                                    sum += cart.ElementAt(q1).saldoInsoluto;
+                                    sum += cart.ElementAt(q).saldoInsoluto;
                                 }
                                 sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", ""));
                                 config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
                                 break;
                             case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
                                 sum = 0;
-                                var q2 = (int)item;
-                                var lim2 = ((int)_document.max_item + q2 == 0) ? cart.Count() : (int)_document.max_item + q2;
-                                for (; q2 < lim2; q2++)
+                                for (var q = 0; q < cart.Count(); q++)
                                 {
-                                    if (q2 >= cart.Count()) break;
-                                    sum += cart.ElementAt(q2).saldoInsoluto;
+                                    sum += cart.ElementAt(q).saldoInsoluto;
                                 }
                                 var arr = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.');
                                 config.valor = arr[1];
@@ -3369,18 +3381,9 @@ namespace Models
             var infoDoc = new ParamsDAO().getIdDocumentos(codigo_doc).ListDocumentos[0];
             var msg = new Response();
             regex = new Regex("(.png|.jpeg|.jpg)$");
-            match = regex.Match(docExist);
+            match = regex.Match(urlFirma);
             var width = 575f;
             var height = 822f;
-            if (match.Success)
-            {
-                msg = new ProfileDAO().actualizaDocOriginacion(doc, folder, nombre_doc_cartera, nomDoumento);
-                write = (msg.errorCode.Equals("0")) ? true : false;
-                File.Delete(docExist);
-                File.Delete(urlFirma);
-                return write;
-            }
-
             PdfReader reader = new PdfReader(docExist);
             PdfDocument docR = new PdfDocument(reader);
             PdfReader reader1;
@@ -3398,7 +3401,6 @@ namespace Models
                     if (i == infoDoc.pagina_firma)
                     {
                         regex = new Regex("(.jpg|.png|.jpeg)$");
-                        match = regex.Match(urlFirma);
                         var n = docR.GetNumberOfPages();
                         if (match.Success)
                         {
@@ -3616,7 +3618,7 @@ namespace Models
                                         config.valor = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                         break;
                                     case "TASA_ANUAL":
-                                        config.valor = formulario.tAnual;
+                                        config.valor = double.Parse(formulario.tAnual).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                         break;
                                     case "CAT":
                                         config.valor = formulario.cat;
@@ -4311,7 +4313,7 @@ namespace Models
                                         config.valor = edad + "";
                                         break;
                                     case "TASA_MENSUAL":
-                                        config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                       config.valor = (double.Parse(formulario.tAnual) / 12).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                         break;
                                     case "TOTAL_A_PAGAR_CON_INTERES":
                                         config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
@@ -4639,7 +4641,7 @@ namespace Models
                                             config.valor = formulario.dscto;
                                             break;
                                         case "TASA_ANUAL":
-                                            config.valor = formulario.tAnual;
+                                            config.valor = double.Parse(formulario.tAnual).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "CAT":
                                             config.valor = formulario.cat;
@@ -5343,7 +5345,7 @@ namespace Models
                                             config.valor = edad + "";
                                             break;
                                         case "TASA_MENSUAL":
-                                            config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                           config.valor = (double.Parse(formulario.tAnual) / 12).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "TOTAL_A_PAGAR_CON_INTERES":
                                             config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
@@ -5358,38 +5360,40 @@ namespace Models
                                         case "CASA_FINANCIERA":
                                             config.valor = cart.ElementAt(h).entidad;
                                             break;
+                                        case "SUMA_SALDO_INSOLUTO_TABLA":
+                                            sum = 0;
+                                            var q1 = (int)item;
+                                            var lim4 = ((int)data1.ListDocumentos[i].max_item + q1 == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q1;
+
+                                            for (; q1 < lim4; q1++)
+                                            {
+                                                if (q1 >= cart.Count()) break;
+                                                sum += cart.ElementAt(q1).saldoInsoluto;
+                                            }
+                                            config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                            break;
                                         case "SUMA_SALDO_INSOLUTO":
                                             sum = 0;
-                                            var q = (int)item;
-                                            var lim = ((int)data1.ListDocumentos[i].max_item + q == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q;
-
-                                            for (; q < lim; q++)
+                                            for (var q = 0; q < cart.Count(); q++)
                                             {
-                                                if (q >= cart.Count()) break;
                                                 sum += cart.ElementAt(q).saldoInsoluto;
                                             }
                                             config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "SUMA_SALDO_INSOLUTO_LETRA":
                                             sum = 0;
-                                            var q1 = (int)item;
-                                            var lim1 = ((int)data1.ListDocumentos[i].max_item + q1 == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q1;
-                                            for (; q1 < lim1; q1++)
+                                            for (var q = 0; q < cart.Count(); q++)
                                             {
-                                                if (q1 == cart.Count()) break;
-                                                sum += cart.ElementAt(q1).saldoInsoluto;
+                                                sum += cart.ElementAt(q).saldoInsoluto;
                                             }
                                             sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", ""));
                                             config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
                                             break;
                                         case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
                                             sum = 0;
-                                            var q2 = (int)item;
-                                            var lim2 = ((int)data1.ListDocumentos[i].max_item + q2 == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q2;
-                                            for (; q2 < lim2; q2++)
+                                            for (var q = 0; q < cart.Count(); q++)
                                             {
-                                                if (q2 >= cart.Count()) break;
-                                                sum += cart.ElementAt(q2).saldoInsoluto;
+                                                sum += cart.ElementAt(q).saldoInsoluto;
                                             }
                                             var arr = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.');
                                             config.valor = arr[1];
@@ -5868,7 +5872,7 @@ namespace Models
                                             config.valor = double.Parse(formulario.dscto).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "TASA_ANUAL":
-                                            config.valor = formulario.tAnual;
+                                            config.valor = double.Parse(formulario.tAnual).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "CAT":
                                             config.valor = formulario.cat;
@@ -6563,7 +6567,7 @@ namespace Models
                                             config.valor = edad + "";
                                             break;
                                         case "TASA_MENSUAL":
-                                            config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                           config.valor = (double.Parse(formulario.tAnual) / 12).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                             break;
                                         case "TOTAL_A_PAGAR_CON_INTERES":
                                             config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
@@ -6893,7 +6897,7 @@ namespace Models
                                                 config.valor = formulario.dscto;
                                                 break;
                                             case "TASA_ANUAL":
-                                                config.valor = formulario.tAnual;
+                                                config.valor = double.Parse(formulario.tAnual).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "CAT":
                                                 config.valor = formulario.cat;
@@ -7597,7 +7601,7 @@ namespace Models
                                                 config.valor = edad + "";
                                                 break;
                                             case "TASA_MENSUAL":
-                                                config.valor = double.Parse(formulario.tAnual) / 12 + "";
+                                               config.valor = (double.Parse(formulario.tAnual) / 12).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "TOTAL_A_PAGAR_CON_INTERES":
                                                 config.valor = (double.Parse(formulario.dscto) * double.Parse(formulario.plazo)).ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
@@ -7612,36 +7616,39 @@ namespace Models
                                             case "CASA_FINANCIERA":
                                                 config.valor = cart.ElementAt(h).entidad;
                                                 break;
+                                            case "SUMA_SALDO_INSOLUTO_TABLA":
+                                                sum = 0;
+                                                var q1 = (int)item;
+                                                var lim4 = ((int)data1.ListDocumentos[i].max_item + q1 == 0) ? cart.Count() : (int)data1.ListDocumentos[i].max_item + q1;
+
+                                                for (; q1 < lim4; q1++)
+                                                {
+                                                    if (q1 >= cart.Count()) break;
+                                                    sum += cart.ElementAt(q1).saldoInsoluto;
+                                                }
+                                                config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
+                                                break;
                                             case "SUMA_SALDO_INSOLUTO":
                                                 sum = 0;
-                                                var q3 = h;
-                                                var lim3 = (data1.ListDocumentos[i].max_item + q3 == 0) ? cart.Count() : data1.ListDocumentos[i].max_item + q3;
-                                                for (; q3 < lim3; q3++)
+                                                for (var q = 0; q < cart.Count(); q++)
                                                 {
-                                                    if (q3 == cart.Count()) break;
-                                                    sum += cart.ElementAt(q3).saldoInsoluto;
+                                                    sum += cart.ElementAt(q).saldoInsoluto;
                                                 }
                                                 config.valor = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX"));
                                                 break;
                                             case "SUMA_SALDO_INSOLUTO_LETRA":
                                                 sum = 0;
-                                                var q1 = h;
-                                                var lim2 = (data1.ListDocumentos[i].max_item + q1 == 0) ? cart.Count() : data1.ListDocumentos[i].max_item + q1;
-                                                for (; q1 < lim2; q1++)
+                                                for (var q = 0; q < cart.Count(); q++)
                                                 {
-                                                    if (q1 == cart.Count()) break;
-                                                    sum += cart.ElementAt(q1).saldoInsoluto;
+                                                    sum += cart.ElementAt(q).saldoInsoluto;
                                                 }
                                                 sum = double.Parse(sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.')[0].Replace(",", ""));
                                                 config.valor = dao.monto_escrito(sum).Replace("PESOS", "");
                                                 break;
                                             case "CENTAVOS_SUMA_SALDO_INSOLUTO_LETRA":
                                                 sum = 0;
-                                                var q = h;
-                                                var lim = (data1.ListDocumentos[i].max_item + q == 0) ? cart.Count() : data1.ListDocumentos[i].max_item + q;
-                                                for (; q < lim; q++)
+                                                for (var q = 0; q < cart.Count(); q++)
                                                 {
-                                                    if (q == cart.Count()) break;
                                                     sum += cart.ElementAt(q).saldoInsoluto;
                                                 }
                                                 var arr = sum.ToString("N2", CultureInfo.CreateSpecificCulture("es-MX")).Split('.');

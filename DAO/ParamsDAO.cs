@@ -4,6 +4,7 @@ using Oracle.ManagedDataAccess.Client;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -6007,6 +6008,313 @@ namespace DAO
             catch (Exception ex)
             {
                 throw new Exception("ParamsDAO.deleteClaves", ex);
+
+            }
+            finally
+            {
+                ora.Dispose();
+            }
+            return data;
+        }
+        /* AVISOS */
+        public OutParamAvisos getAvisos()
+        {
+            string connectionString = DataBaseHelper.GetConnectionString("DLG");
+            var ora = new OracleServer(connectionString);
+            OutParamAvisos data = new OutParamAvisos();
+            List<ParamAviso> list = new List<ParamAviso>();
+            ParamAviso aviso;
+            string command = "";
+            try
+            {
+                command = "SELECT * FROM DLG_PARAM_AVISOS ORDER BY SECUENCIA";
+                var rdr = ora.ExecuteCommand(command);
+                while (rdr.Read())
+                {
+                    aviso = new ParamAviso();
+                    List<enlace> lstEnlaces = new List<enlace>();
+                    List<string> imgs = new List<string>();
+                    aviso.secuencia = DBNull.Value.Equals(rdr["SECUENCIA"]) ? 0 : double.Parse(rdr["SECUENCIA"].ToString());
+                    aviso.titulo = DBNull.Value.Equals(rdr["TITULO_AVISO"]) ? "" : rdr["TITULO_AVISO"].ToString();
+                    aviso.contenido = DBNull.Value.Equals(rdr["CONTENIDO_AVISO"]) ? "" : rdr["CONTENIDO_AVISO"].ToString();
+                    aviso.fuente = DBNull.Value.Equals(rdr["FUENTE_AVISO"]) ? 0 : double.Parse(rdr["FUENTE_AVISO"].ToString());
+                    aviso.fch_inicio = DBNull.Value.Equals(rdr["FECHA_INICIO_VIGENCIA"]) ? "" : rdr["FECHA_INICIO_VIGENCIA"].ToString();
+                    aviso.fch_fin = DBNull.Value.Equals(rdr["FECHA_FIN_VIGENCIA"]) ? "" : rdr["FECHA_FIN_VIGENCIA"].ToString();
+                    aviso.fch_inicio = aviso.fch_inicio.Substring(0, 10);
+                    aviso.fch_fin = aviso.fch_fin.Substring(0, 10);
+                    list.Add(aviso);
+                }
+                rdr.Dispose();
+                data.ListAvisos = list;
+                data.msg = new Response();
+                data.msg.errorCode = "0";
+                data.msg.errorMessage = "Ok";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ParamsDAO.getClaves", ex);
+            }
+            finally
+            {
+                ora.Dispose();
+            }
+            return data;
+        }
+        public OutParamAvisos getIdAviso(double cod)
+        {
+            string connectionString = DataBaseHelper.GetConnectionString("DLG");
+            var ora = new OracleServer(connectionString);
+            OutParamAvisos data = new OutParamAvisos();
+            List<ParamAviso> list = new List<ParamAviso>();
+            ParamAviso aviso;
+            string command = "";
+            try
+            {
+                command = $@"SELECT SECUENCIA, TITULO_AVISO, CONTENIDO_AVISO, FUENTE_AVISO, to_char(FECHA_INICIO_VIGENCIA, 'DD/MM/YYYY') AS FCH_INICIO,
+                            to_char(FECHA_FIN_VIGENCIA, 'DD/MM/YYYY') AS FCH_FIN, ENLACES, URL_IMAGENES
+                            FROM DLG_PARAM_AVISOS WHERE SECUENCIA = {cod} ORDER BY SECUENCIA";
+                var rdr = ora.ExecuteCommand(command);
+                while (rdr.Read())
+                {
+                    aviso = new ParamAviso();
+                    List<enlace> lstEnlaces = new List<enlace>();
+                    List<imagenes> imgs = new List<imagenes>();
+                    aviso.secuencia = DBNull.Value.Equals(rdr["SECUENCIA"]) ? 0 : double.Parse(rdr["SECUENCIA"].ToString());
+                    aviso.titulo = DBNull.Value.Equals(rdr["TITULO_AVISO"]) ? "" : rdr["TITULO_AVISO"].ToString();
+                    aviso.contenido = DBNull.Value.Equals(rdr["CONTENIDO_AVISO"]) ? "" : rdr["CONTENIDO_AVISO"].ToString();
+                    aviso.fuente = DBNull.Value.Equals(rdr["FUENTE_AVISO"]) ? 0 : double.Parse(rdr["FUENTE_AVISO"].ToString());
+                    aviso.fch_inicio = DBNull.Value.Equals(rdr["FCH_INICIO"]) ? "" : rdr["FCH_INICIO"].ToString();
+                    aviso.fch_fin = DBNull.Value.Equals(rdr["FCH_FIN"]) ? "" : rdr["FCH_FIN"].ToString();
+                    var enlaces = DBNull.Value.Equals(rdr["ENLACES"]) ? "" : rdr["ENLACES"].ToString();
+                    if (enlaces.Length > 0)
+                    {
+                        var arrenlaces = enlaces.Split(',');
+                        for (var i = 0; i < arrenlaces.Length; i++)
+                        {
+                            enlaces = arrenlaces[i];
+                            enlace e = new enlace();
+                            e.titulo = enlaces.Split(';')[0];
+                            e.link = enlaces.Split(';')[1];
+                            lstEnlaces.Add(e);
+                        }
+                    }
+                    var imagenes = DBNull.Value.Equals(rdr["URL_IMAGENES"]) ? "" : rdr["URL_IMAGENES"].ToString();
+                    if (imagenes.Length > 0)
+                    {
+                        var img = imagenes.Split(';');
+                        for (var i = 0; i < img.Length; i++)
+                        {
+                            imagenes imagen = new imagenes();
+                            imagen.name = img[i].Split(',')[0];
+                            imagen.path = img[i].Split(',')[1];
+                            imgs.Add(imagen);
+                        }
+                    }
+                    aviso.imgs = imgs;
+                    aviso.enlaces = lstEnlaces;
+                    list.Add(aviso);
+                }
+                rdr.Dispose();
+                data.ListAvisos = list;
+                data.msg = new Response();
+                data.msg.errorCode = "0";
+                data.msg.errorMessage = "Ok";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ParamsDAO.getIdClaves", ex);
+
+            }
+            finally
+            {
+                ora.Dispose();
+            }
+            return data;
+        }
+        public OutParamAvisos getAvisoActual(string fch)
+        {
+            string connectionString = DataBaseHelper.GetConnectionString("DLG");
+            var ora = new OracleServer(connectionString);
+            OutParamAvisos data = new OutParamAvisos();
+            List<ParamAviso> list = new List<ParamAviso>();
+            ParamAviso aviso;
+            string command = "";
+            try
+            {
+                command = $@"SELECT SECUENCIA, TITULO_AVISO, CONTENIDO_AVISO, FUENTE_AVISO, ENLACES, URL_IMAGENES
+                            FROM DLG_PARAM_AVISOS WHERE TO_DATE('{fch}','DD/MM/YYYY') BETWEEN FECHA_INICIO_VIGENCIA and FECHA_FIN_VIGENCIA ORDER BY SECUENCIA";
+                var rdr = ora.ExecuteCommand(command);
+                while (rdr.Read())
+                {
+                    aviso = new ParamAviso();
+                    List<enlace> lstEnlaces = new List<enlace>();
+                    List<imagenes> imgs = new List<imagenes>();
+                    aviso.secuencia = DBNull.Value.Equals(rdr["SECUENCIA"]) ? 0 : double.Parse(rdr["SECUENCIA"].ToString());
+                    aviso.titulo = DBNull.Value.Equals(rdr["TITULO_AVISO"]) ? "" : rdr["TITULO_AVISO"].ToString();
+                    aviso.contenido = DBNull.Value.Equals(rdr["CONTENIDO_AVISO"]) ? "" : rdr["CONTENIDO_AVISO"].ToString();
+                    aviso.fuente = DBNull.Value.Equals(rdr["FUENTE_AVISO"]) ? 0 : double.Parse(rdr["FUENTE_AVISO"].ToString());
+                    var enlaces = DBNull.Value.Equals(rdr["ENLACES"]) ? "" : rdr["ENLACES"].ToString();
+                    if (enlaces.Length > 0)
+                    {
+                        var arrenlaces = enlaces.Split(',');
+                        for (var i = 0; i < arrenlaces.Length; i++)
+                        {
+                            enlaces = arrenlaces[i];
+                            enlace e = new enlace();
+                            e.titulo = enlaces.Split(';')[0];
+                            e.link = enlaces.Split(';')[1];
+                            lstEnlaces.Add(e);
+                        }
+                    }
+                    var imagenes = DBNull.Value.Equals(rdr["URL_IMAGENES"]) ? "" : rdr["URL_IMAGENES"].ToString();
+                    if (imagenes.Length > 0)
+                    {
+                        var img = imagenes.Split(';');
+                        for (var i = 0; i < img.Length; i++)
+                        {
+                            imagenes imagen = new imagenes();
+                            imagen.name = img[i].Split(',')[0];
+                            imagen.path = img[i].Split(',')[1];
+                            imgs.Add(imagen);
+                        }
+                    }
+                    aviso.imgs = imgs;
+                    aviso.enlaces = lstEnlaces;
+                    list.Add(aviso);
+                }
+                rdr.Dispose();
+                data.ListAvisos = list;
+                data.msg = new Response();
+                data.msg.errorCode = "0";
+                data.msg.errorMessage = "Ok";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ParamsDAO.getIdClaves", ex);
+
+            }
+            finally
+            {
+                ora.Dispose();
+            }
+            return data;
+        }
+        public Response saveAviso(ParamAviso av)
+        {
+            string connectionString = DataBaseHelper.GetConnectionString("DLG");
+            var ora = new OracleServer(connectionString);
+            Response data = new Response();
+            try
+            {
+                IFormatProvider format = new CultureInfo("es-MX", true);
+                DateTime fch_Inicio = DateTime.ParseExact(av.fch_inicio, "dd/MM/yyyy", format);
+                DateTime fch_fin = DateTime.ParseExact(av.fch_fin, "dd/MM/yyyy", format);
+                var pi_titulo = new OracleParameter("fa_titulo", OracleDbType.Varchar2, av.titulo, ParameterDirection.Input);
+                var pi_contenido = new OracleParameter("fa_contenido", OracleDbType.Varchar2, av.contenido, ParameterDirection.Input);
+                var pi_fuente = new OracleParameter("fa_fuente", OracleDbType.Double, av.fuente, ParameterDirection.Input);
+                var pi_imagenes = new OracleParameter("fa_imagenes", OracleDbType.Clob, av.allimgs, ParameterDirection.Input);
+                var pi_enlaces = new OracleParameter("fa_enlaces", OracleDbType.Clob, av.allenlaces, ParameterDirection.Input);
+                var pi_fch_ini = new OracleParameter("fa_fch_ini", OracleDbType.Date, fch_Inicio, ParameterDirection.Input);
+                var pi_fch_fin = new OracleParameter("fa_fch_fin", OracleDbType.Date, fch_fin, ParameterDirection.Input);
+                var po_ErrorCode = new OracleParameter("fa_Error", OracleDbType.Double, ParameterDirection.Output);
+                var po_ErrorMessage = new OracleParameter("fa_Descripcion_Error", OracleDbType.Varchar2, ParameterDirection.Output);
+                po_ErrorMessage.Size = 200;
+                ora.AddParameter(pi_titulo);
+                ora.AddParameter(pi_contenido);
+                ora.AddParameter(pi_fuente);
+                ora.AddParameter(pi_imagenes);
+                ora.AddParameter(pi_enlaces);
+                ora.AddParameter(pi_fch_ini);
+                ora.AddParameter(pi_fch_fin);
+                ora.AddParameter(po_ErrorCode);
+                ora.AddParameter(po_ErrorMessage);
+                ora.ExecuteProcedureNonQuery("dlg_insert_aviso");
+                //Respuesta del procedimiento
+                data.errorCode = ora.GetParameter("fa_Error").ToString();
+                data.errorMessage = ora.GetParameter("fa_Descripcion_Error").ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ParamsDAO.saveAviso", ex);
+
+            }
+            finally
+            {
+                ora.Dispose();
+            }
+            return data;
+        }
+        public Response updAvisos(ParamAviso aviso)
+        {
+            string connectionString = DataBaseHelper.GetConnectionString("DLG");
+            var ora = new OracleServer(connectionString);
+            Response data = new Response();
+            try
+            {
+                var pi_secuencia = new OracleParameter("fa_secuencia", OracleDbType.Double, aviso.secuencia, ParameterDirection.Input);
+                IFormatProvider format = new CultureInfo("es-MX", true);
+                DateTime fch_Inicio = DateTime.ParseExact(aviso.fch_inicio, "dd/MM/yyyy", format);
+                DateTime fch_fin = DateTime.ParseExact(aviso.fch_fin, "dd/MM/yyyy", format);
+                var pi_titulo = new OracleParameter("fa_titulo", OracleDbType.Varchar2, aviso.titulo, ParameterDirection.Input);
+                var pi_contenido = new OracleParameter("fa_contenido", OracleDbType.Varchar2, aviso.contenido, ParameterDirection.Input);
+                var pi_fuente = new OracleParameter("fa_fuente", OracleDbType.Double, aviso.fuente, ParameterDirection.Input);
+                var pi_imagenes = new OracleParameter("fa_imagenes", OracleDbType.Clob, aviso.allimgs, ParameterDirection.Input);
+                var pi_enlaces = new OracleParameter("fa_enlaces", OracleDbType.Clob, aviso.allenlaces, ParameterDirection.Input);
+                var pi_fch_ini = new OracleParameter("fa_fch_ini", OracleDbType.Date, fch_Inicio, ParameterDirection.Input);
+                var pi_fch_fin = new OracleParameter("fa_fch_fin", OracleDbType.Date, fch_fin, ParameterDirection.Input);
+                var po_ErrorCode = new OracleParameter("fa_Error", OracleDbType.Double, ParameterDirection.Output);
+                var po_ErrorMessage = new OracleParameter("fa_Descripcion_Error", OracleDbType.Varchar2, ParameterDirection.Output);
+                po_ErrorMessage.Size = 200;
+                ora.AddParameter(pi_secuencia);
+                ora.AddParameter(pi_titulo);
+                ora.AddParameter(pi_contenido);
+                ora.AddParameter(pi_fuente);
+                ora.AddParameter(pi_imagenes);
+                ora.AddParameter(pi_enlaces);
+                ora.AddParameter(pi_fch_ini);
+                ora.AddParameter(pi_fch_fin);
+                ora.AddParameter(po_ErrorCode);
+                ora.AddParameter(po_ErrorMessage);
+                ora.ExecuteProcedureNonQuery("dlg_upd_avisos");
+                //Respuesta del procedimiento
+                data.errorCode = ora.GetParameter("fa_Error").ToString();
+                data.errorMessage = ora.GetParameter("fa_Descripcion_Error").ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ParamsDAO.updClaves", ex);
+
+            }
+            finally
+            {
+                ora.Dispose();
+            }
+
+            return data;
+        }
+        public Response deleteAvisos(double cod)
+        {
+            string connectionString = DataBaseHelper.GetConnectionString("DLG");
+            var ora = new OracleServer(connectionString);
+            Response data = new Response();
+            try
+            {
+                var pi_secuencia = new OracleParameter("fa_secuencia", OracleDbType.Double, cod, ParameterDirection.Input);
+                var po_ErrorCode = new OracleParameter("fa_Error", OracleDbType.Double, ParameterDirection.Output);
+                var po_ErrorMessage = new OracleParameter("fa_Descripcion_Error", OracleDbType.Varchar2, ParameterDirection.Output);
+
+                po_ErrorMessage.Size = 200;
+                ora.AddParameter(pi_secuencia);
+                ora.AddParameter(po_ErrorCode);
+                ora.AddParameter(po_ErrorMessage);
+                ora.ExecuteProcedureNonQuery("dlg_delete_avisos");
+                //Respuesta del procedimiento
+                data.errorCode = ora.GetParameter("fa_Error").ToString();
+                data.errorMessage = ora.GetParameter("fa_Descripcion_Error").ToString();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("ParamsDAO.deleteAvisos", ex);
 
             }
             finally

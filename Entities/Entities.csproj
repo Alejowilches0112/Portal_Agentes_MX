@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="arbolCarpetas.cs" />
+    <Compile Include="OutParamAvisos.cs" />
     <Compile Include="OutParamClaveDelg.cs" />
     <Compile Include="OutParamCasaFinanciera.cs" />
     <Compile Include="OutParamDiasExp.cs" />

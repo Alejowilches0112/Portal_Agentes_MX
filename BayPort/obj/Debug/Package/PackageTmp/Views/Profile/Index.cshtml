@@ -541,14 +541,14 @@
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('ENTIDAD_OCP') > -1">
                             <label for="lblEntidadT" class="control-label col-sm-6">ENTIDAD <a ng-if="CamposAdicionales.indexOf('ENTIDAD_OCP') > -1 && obligatorio[CamposAdicionales.indexOf('ENTIDAD_OCP')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('ENTIDAD_OCP') > -1 && obligatorio[CamposAdicionales.indexOf('ENTIDAD_OCP')] == 'N'" style="color:white;font-size:30px;">*</a> </label>
-                            <select disabled class="selectpicker form-control" required name="entidadT" ng-model="formulario.entidadT" ng-options="entidad.codigo_entidad as entidad.nombre_entidad for entidad in ListEntidadesR.ListEntidades" ng-change="getEntidadesFedR(formulario.paisR);municipioR(formulario.paisR,formulario.entidadT)">
+                            <select ng-disabled="codigoExisteOcp" class="selectpicker form-control" required name="entidadT" ng-model="formulario.entidadT" ng-options="entidad.codigo_entidad as entidad.nombre_entidad for entidad in ListEntidadesR.ListEntidades" ng-change="getEntidadesFedR(formulario.paisR);municipioR(formulario.paisR,formulario.entidadT)">
                                 <option value="">Seleccione...</option>
                             </select>
                             <span id="valid-ocupacion14"></span>
                         </div>
                         <div class="col-sm-6 form-group" ng-if="CamposAdicionales.indexOf('MUNICIPIO_OCP') > -1">
                             <label for="lblMunicipio" class="control-label col-sm-6">MUNICIPIO <a ng-if="CamposAdicionales.indexOf('MUNICIPIO_OCP') > -1 && obligatorio[CamposAdicionales.indexOf('MUNICIPIO_OCP')] == 'S'" style="color:red;font-size:30px;">*</a> <a ng-if="CamposAdicionales.indexOf('MUNICIPIO_OCP') > -1 && obligatorio[CamposAdicionales.indexOf('MUNICIPIO_OCP')] == 'N'" style="color:white;font-size:30px;">*</a> </label>
-                            <input disabled type="text" ng-pattern="NoSpecialCharacters" class="form-control" id="inputMunicipio" placeholder="" name="municipio" ng-model="formulario.municipio">
+                            <input ng-disabled="codigoExisteOcp" type="text" ng-pattern="NoSpecialCharacters" class="form-control" id="inputMunicipio" placeholder="" name="municipio" ng-model="formulario.municipio">
                             <span id="valid-ocupacion15"></span>
                         </div>
                     </div>
@@ -714,14 +714,14 @@
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblMunicipioDom" class="control-label col-sm-12">ENTIDAD<a style="color:red;font-size:30px;">*</a></label>
-                            <select disabled required class="selectpicker form-control" name="entidadDom" ng-model="formulario.entidadDom" ng-options="entidad.codigo_entidad as entidad.nombre_entidad for entidad in ListEntidadesR.ListEntidades" ng-change="getEntidadesFedR(formulario.paisR);municipioDom(formulario.paisR,formulario.entidadT)">
+                            <select ng-disabled="codigoExisteDom" required class="selectpicker form-control" name="entidadDom" ng-model="formulario.entidadDom" ng-options="entidad.codigo_entidad as entidad.nombre_entidad for entidad in ListEntidadesR.ListEntidades" ng-change="getEntidadesFedR(formulario.paisR);municipioDom(formulario.paisR,formulario.entidadT)">
                                 <option value="">Selecione Entidad</option>
                             </select>
                             <span id="valid-domicilio3"></span>
                         </div>
                         <div class="col-sm-6 form-group">
                             <label for="lblMunicipioDom" class="control-label col-sm-12">MUNICIPIO<a style="color:red;font-size:30px;">*</a></label>
-                            <input disabled type="text" ng-pattern="NoSpecialCharacters" class="form-control" id="municipioDom" placeholder="" name="municipioDom" ng-model="formulario.municipioDom">
+                            <input ng-disabled="codigoExisteDom" type="text" ng-pattern="NoSpecialCharacters" class="form-control" id="municipioDom" placeholder="" name="municipioDom" ng-model="formulario.municipioDom">
                             <span id="valid-domicilio4"></span>
                         </div>
                         <div class="col-sm-6 form-group">
@@ -1117,7 +1117,7 @@
                                             <td>{{item.tasa }}</td>
                                             <td>{{item.fecha}}</td>
                                             <td>
-                                                <span class="glyphicon glyphicon-remove" style="color:blue;" ng-click="removeItem(item);"></span>
+                                                <span class="glyphicon glyphicon-remove" style="color:red;" ng-click="removeItem(item);"></span>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -1560,10 +1560,10 @@
                     <div class="modal-body">
                         <div class="col-sm-12">
                             <label class="control-label col-sm-12"> {{docLoad.nombreDoc}}</label>
-                            <label for={{docLoad.nombreDoc}} class="custom-file-upload">
+                            <label for="documento-cartera" class="custom-file-upload">
                                 <i class="fa fa-cloud-upload"></i> Cargar Documento
                             </label>
-                            <input id={{docLoad.nombreDoc}} type="file" accept=".pdf;.png;.jpeg" onchange="angular.element(this).scope().uploadedFileOriginacionCompra(this)" />
+                            <input id="documento-cartera" type="file" accept=".pdf;.png;.jpeg" onchange="angular.element(this).scope().uploadedFileOriginacionCompra(this)" />
                             <label id="data-docOriginacionCompra"></label>
                         </div>
                     </div>

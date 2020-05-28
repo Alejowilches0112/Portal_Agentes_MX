@@ -1,0 +1,324 @@
+﻿
+@{
+
+    ViewBag.Title = "Entidades Bancarias";
+    Layout = "~/Views/Shared/_MenuLayout.cshtml";
+
+}
+@Html.Partial("~/views/shared/_NavBar.cshtml")
+<ol class="breadcrumb">
+    <li><a href="/Parametros/ListParametros">Parámetros</a></li>
+    <li><a href="#">Avisos</a></li>
+</ol>
+
+<div ng-controller="ParametrosController" class="panel-group" id="accordion" ng-init="getAvisos();">
+    <form name="formData" novalidate="novalidate" encType="multipart/form-data" autocomplete="off">
+        <div class="row">
+            <button class="btn btn-primary btn-xs" ng-click="openModal('myModalNueva')">
+                <i class="fa fa-plus"></i>
+            </button>
+            <button  class="btn btn-success btn-xs"  ng-click="exportCVS()">
+                <i class="glyphicon glyphicon-save" style="color:green"></i>
+            </button>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-title"> Avisos</div>
+            <div class="panel-body">
+                <label>Buscar: <input ng-model="searchText"></label>
+                <div class="table-responsive">
+                    <table class="table table-hover" id="table">
+                        <thead>
+                            <tr style="font-size: small;">
+                                <th> Título del Aviso </th>
+                                <th> Fecha Inicial</th>
+                                <th> Fecha Final</th>
+                                <th> </th>
+                                <th> </th>
+                            </tr>
+                        </thead>
+                        <tbody style="font-size: small;">
+                            <tr ng-repeat="item in Avisos  | filter:searchText" style="font-size:  small; white-space:nowrap;">
+                                <td>{{item.titulo}}</td>
+                                <td>{{item.fch_inicio}}</td>
+                                <td>{{item.fch_fin}}</td>
+                                <td class="col-sm-1">
+                                    <button class="btn btn-success btn-xs" ng-click="getIdAviso(item.secuencia);">
+                                        <i class="fas fa-edit" style="color:green;"></i>
+                                    </button>
+                                </td>
+                                <td class="col-sm-1">
+                                    <button class="btn btn-danger btn-xs" ng-click="openModal('myModalDelete'); objDelete(item);">
+                                        <i class="fas fa-trash" style="color:red;"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalNueva" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalNueva')">&times;</button>
+                        <h5 class="modal-title" id="modal-title">Nuevo Aviso</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Título del Aviso</label>
+                                <input type="text" class="form-control" id="inputTitleAviso" name="titleAviso" uppercase ng-model="newAvisos.title" required>
+                                <span id="newTitulo"></span>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Tamaño de Fuente</label>
+                                <input type="number" class="form-control" id="inputFuente" name="fuente" ng-model="newAvisos.fuente" required>
+                                <span id="newTamano"></span>
+                            </div>
+                            <div class="col-sm.-12">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Texto del Aviso</label>
+                                <textarea class="form-control" ng-model="newAvisos.cuerpo" ng-maxlength="100">
+                                </textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Fecha Inicial de Vigencia</label>
+                                <input type="text" id='fch_inicial' class="form-control col-sm-12" ng-model="newAvisos.fchIniVigencia" datepicker placeholder="DD/MM/AAAA" />
+                                <span id="newFchI"></span>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Fecha Final de Vigencia</label>
+                                <input type="text" id='fcn_final' class="form-control col-sm-12" ng-model="newAvisos.fchFinVigencia" datepicker placeholder="DD/MM/AAAA" />
+                                <span id="newFchF"></span>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="" class="control-label col-sm-12">Subir Imagenes</label>
+                            </div>
+                            <div >
+                                <table class="table table-hover">
+                                    <thead style="color:#E6E4E4; border-bottom:1px solid">
+                                        <tr>
+                                            <th style="width:300px">
+                                                <label for="imagen_avisos" class="custom-file-upload bg-primary">
+                                                    <i class="fa fa-cloud-upload"></i> Buscar
+                                                </label>
+                                                <input id="imagen_avisos" type="file" accept="image/png, image/jpeg" onchange="angular.element(this).scope().uploadedFileSAvisos(this)" />
+                                                <label for="" ng-click="eliminarImagenAll()" class="custom-file-upload bg-primary">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancelar
+                                                </label>
+                                            </th>
+                                            <th style="width: 100px">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in newAvisos.Imagenes">
+                                            <td>
+                                                <img src="{{item.imageDataUrl}}" style="width: 70px; height: 100px" />
+                                                <span> {{item.name}} </span>
+                                                <span>
+                                                    
+                                                    <i class="fa fa-check" style="background: #00930b;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(!item.error)"></i>
+                                                    <i class="fa fa-times" style="background: red;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(item.error)"></i>
+                                                </span>
+                                                <label for="" ng-click="eliminarImagen(item)">
+                                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="" class="control-label col-sm-12">Vinculos Adicionales</label>
+                            </div>
+                            <div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Título del Enlace</th>
+                                            <th>Enlace al recurso</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in newAvisos.Enlaces">
+                                            <td>
+                                                {{item.titulo}}
+                                            </td>
+                                            <td>
+                                                {{item.enlace}}
+                                            </td>
+                                            <td>
+                                                <span class="text-center" ng-click="removeEnlace(item)">
+                                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>
+                                                <input type="text" class="form-control" ng-model="tituloEnlace" />
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" ng-model="enlace"/>
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs" ng-click="addEnlace()">
+                                                    <i class="fas fa-plus" style="color:blue;align-content:center;"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="saveAviso()">Guardar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" id="myModalEdit" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" ng-click="closeModal('myModalEdit')">&times;</button>
+                        <h5 class="modal-title">Editar Aviso</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Título del Aviso</label>
+                                <input type="text" class="form-control" id="inputTitleAviso" name="titleAviso" uppercase ng-model="Aviso.titulo" required>
+                            </div>
+                            <div class="col-sm-6 form-group">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Tamaño de Fuente</label>
+                                <input type="number" class="form-control" id="inputFuente" name="fuente" ng-model="Aviso.fuente" required>
+                            </div>
+                            <div class="col-sm.-12">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Texto del Aviso</label>
+                                <textarea class="form-control" ng-model="Aviso.contenido" uppercase ng-maxlength="100">
+                                </textarea>
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Fecha Inicial de Vigencia</label>
+                                <input type="text" id='fch_inicial_update' class="form-control col-sm-12" ng-model="Aviso.fch_inicio" datepicker placeholder="DD/MM/AAAA" />
+                            </div>
+                            <div class="col-sm-6">
+                                <label for="lblPlazo" id="lblPlazo" class="control-label col-sm-12">Fecha Final de Vigencia</label>
+                                <input type="text" id='fcn_final_update' class="form-control col-sm-12" ng-model="Aviso.fch_fin" datepicker placeholder="DD/MM/AAAA" />
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="" class="control-label col-sm-12">Subir Imagenes</label>
+                            </div>
+                            <div>
+                                <table class="table table-hover">
+                                    <thead style="color:#E6E4E4; border-bottom:1px solid">
+                                        <tr>
+                                            <th style="width:300px">
+                                                <label for="imagen" class="custom-file-upload bg-primary">
+                                                    <i class="fa fa-cloud-upload"></i> Buscar
+                                                </label>
+                                                <input id="imagen" type="file" accept="image/png, image/jpeg" onchange="angular.element(this).scope().updUploadedFileSAvisos(this)" />
+                                                <label for="" ng-click="removeimgAll()" class="custom-file-upload bg-primary">
+                                                    <i class="glyphicon glyphicon-remove"></i> Cancelar
+                                                </label>
+                                            </th>
+                                            <th style="width: 100px">
+
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in Aviso.imgs">
+                                            <td>
+                                                <img src="{{item.imageDataUrl}}" style="width: 70px; height: 100px" />
+                                                <span> {{item.name}}</span>
+                                                <span>
+                                                    <i class="fa fa-check" style="background: #00930b;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(!item.error)"></i>
+                                                    <i class="fa fa-times" style="background: red;border-radius: 100%;vertical-align: middle;margin-top:-10px;padding: 5px;" ng-show="(item.error)"></i>
+                                                </span>
+                                                <label for="" ng-click="removeImgsUpdate(item)">
+                                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                                </label>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-sm-12">
+                                <label for="" class="control-label col-sm-12">Vinculos Adicionales</label>
+                            </div>
+                            <div>
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Título del Enlace</th>
+                                            <th>Enlace al recurso</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="item in Aviso.enlaces">
+                                            <td>
+                                                {{item.titulo}}
+                                            </td>
+                                            <td>
+                                                {{item.link}}
+                                            </td>
+                                            <td>
+                                                <span class="text-center" ng-click="removeEnlaceUpd(item)">
+                                                    <i class="glyphicon glyphicon-remove" style="color:red"></i>
+                                                </span>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                    <tfoot>
+                                        <tr>
+                                            <td>
+                                                <input type="text" class="form-control" ng-model="tituloEnlace" />
+                                            </td>
+                                            <td>
+                                                <input type="text" class="form-control" ng-model="enlace" />
+                                            </td>
+                                            <td>
+                                                <button class="btn btn-xs" ng-click="addEnlaceUpd()">
+                                                    <i class="fas fa-plus" style="color:blue;align-content:center;"></i>
+                                                </button>
+                                            </td>
+                                        </tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="updAviso()">Editar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="myModalDelete" role="dialog">
+            <div class="modal-dialog modal-md">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close"  ng-click="closeModal('myModalDelete')" data-dismiss="modal">&times;</button>
+                        <h5 class="modal-title">Eliminar Aviso</h5>
+                    </div>
+                    <div class="modal-body">
+                        <legend>¿Esta Seguro De Eliminar Este Aviso?</legend>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="deleteAviso(objEliminar.secuencia)">SI</button>
+                        <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('myModalDelete')">NO</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

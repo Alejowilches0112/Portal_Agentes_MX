@@ -26,207 +26,252 @@
             <strong>Atencion!</strong> @Html.Raw(ViewBag.mensaje)
         </div>
     }
-    <div ng-controller="OriginacionController" id="myTopnav" class="topnavnew navbar-static-top" ng-init="getDashBoard();">
-        <div class="row">
-            <div class="col-sm-3" ng-click="verListado('NUEVA');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Nueva</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Nueva}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Nueva</small>
+        <div ng-controller="OriginacionController" id="myTopnav" class="topnavnew navbar-static-top" ng-init="getDashBoard();GetAvisoActual()">
+            <div class="row">
+                <div class="col-sm-3" ng-click="verListado('NUEVA');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Nueva</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Nueva}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Nueva</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Devolucion Auxiliar');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Devolucion Auxiliar</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Devolucion_Auxiliar}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Devolucion Auxiliar</small>
+                <div class="col-sm-3" ng-click="verListado('Devolucion Auxiliar');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Devolucion Auxiliar</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Devolucion_Auxiliar}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Devolucion Auxiliar</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Recuperado Asesor');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Recuperado por Asesor</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Recuperado_Asesor}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Recuperado por Asesor</small>
+                <div class="col-sm-3" ng-click="verListado('Recuperado Asesor');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Recuperado por Asesor</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Recuperado_Asesor}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Recuperado por Asesor</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Enviada');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Enviada</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Enviada}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Enviada</small>
+                <div class="col-sm-3" ng-click="verListado('Enviada');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Enviada</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Enviada}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Enviada</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Pre Capturada');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Pre Captura</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Pre_Capturada}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Pre Captura</small>
+                <div class="col-sm-3" ng-click="verListado('Pre Capturada');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Pre Captura</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Pre_Capturada}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Pre Captura</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Recibida');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Recibida</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Recibida}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Recibida</small>
+                <div class="col-sm-3" ng-click="verListado('Recibida');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Recibida</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Recibida}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Recibida</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Asignado');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Asignado</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Asignado}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Asignado</small>
+                <div class="col-sm-3" ng-click="verListado('Asignado');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Asignado</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Asignado}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Asignado</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Devolucion');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Devolucion</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Devolucion}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Devolucion</small>
+                <div class="col-sm-3" ng-click="verListado('Devolucion');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Devolucion</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Devolucion}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Devolucion</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Recuperado');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Recuperado</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Recuperado}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Recuperado</small>
+                <div class="col-sm-3" ng-click="verListado('Recuperado');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Recuperado</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Recuperado}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Recuperado</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Pendiente Autorizacion');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Pendiente Autorizacion</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Pendiente_Autorizacion}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Pendiente Autorizacion</small>
+                <div class="col-sm-3" ng-click="verListado('Pendiente Autorizacion');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Pendiente Autorizacion</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Pendiente_Autorizacion}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Pendiente Autorizacion</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Autorizado');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Autorizado</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Autorizado}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Autorizado</small>
+                <div class="col-sm-3" ng-click="verListado('Autorizado');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Autorizado</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Autorizado}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Autorizado</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Atendida');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Atendida</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Atendida}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Atendida</small>
+                <div class="col-sm-3" ng-click="verListado('Atendida');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Atendida</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Atendida}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Atendida</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Cancelada');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Cancelada</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Cancelada}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Cancelada</small>
+                <div class="col-sm-3" ng-click="verListado('Cancelada');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Cancelada</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Cancelada}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Cancelada</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-sm-3" ng-click="verListado('Cancelada Portal');">
-                <div class="panel panel-default float-e-margins">
-                    <div class="panel-heading">
-                        <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
-                        <h5 class="modal-title" style="font-size:17px">Cancelada por Portal</h5>
-                    </div>
-                    <div class="panel-body">
-                        <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Cancelada_Portal}}</h1>
-                        <div class="stat-percent font-bold text-success" style="color:#999999">
-                            <small>Total Cancelada por Portal</small>
+                <div class="col-sm-3" ng-click="verListado('Cancelada Portal');">
+                    <div class="panel panel-default float-e-margins">
+                        <div class="panel-heading">
+                            <span class=" label label-success pull-right" style="background-color:#FF0000;font-size:15px;">Total</span>
+                            <h5 class="modal-title" style="font-size:17px">Cancelada por Portal</h5>
+                        </div>
+                        <div class="panel-body">
+                            <h1 class="modal-title" style="font-size:30px">{{dashBoardList.Cancelada_Portal}}</h1>
+                            <div class="stat-percent font-bold text-success" style="color:#999999">
+                                <small>Total Cancelada por Portal</small>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
+            <div class="modal fade" id="aviso" role="dialog">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" ng-click="closeModal('aviso')" data-dismiss="modal">&times;</button>
+                            <h5 class="modal-title" id="titulo_aviso" style="font-size:{{Aviso.fuente}}px">{{Aviso.titulo}}</h5>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-sm-12" ng-show="Aviso.contenido && Aviso.contenido != ''">
+                                    <textarea style="font-size:{{Aviso.fuente}}px" class="form-control" disabled ng-model="Aviso.contenido" id="contenido_aviso"></textarea>
+                                </div>
+                                <div class="col-sm-12" ng-show="Aviso.imgs.length > 0">
+                                    <table class="table table-hover">
+                                        <tbody>
+                                            <tr ng-repeat="item in Aviso.imgs">
+                                                <td>
+                                                    <img src={{item.imageDataUrl}} style="width: 80%;height: 100%;" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="col-sm-12" ng-show="Aviso.enlaces.length > 0">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr><th>Enlaces</th></tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="item in Aviso.enlaces">
+                                                <td>
+                                                    <a href={{item.link}}>{{item.titulo}}</a>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary btn-xs" ng-click="closeModal('aviso')">OK</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
 
         }
         else
